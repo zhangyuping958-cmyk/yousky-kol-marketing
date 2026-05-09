@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la \"/Users/qisanjiudekeaiduo/Downloads/坎贝尔/KOL营销/Yousky手持清洁机海外KOL营销拆解.pdf\")",
+      "Read(//Users/qisanjiudekeaiduo/Downloads/坎贝尔/KOL营销/**)",
+      "Bash(gh auth *)",
+      "Bash(cp \"/Users/qisanjiudekeaiduo/Downloads/坎贝尔/KOL营销/Yousky手持清洁机海外KOL营销拆解.pdf\" /Users/qisanjiudekeaiduo/Downloads/python3/Harlottecc/)",
+      "Bash(pdftotext \"/Users/qisanjiudekeaiduo/Downloads/python3/Harlottecc/Yousky手持清洁机海外KOL营销拆解.pdf\" /tmp/yousky_kol.txt)",
+      "Read(//tmp/**)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ],
+    "additionalDirectories": [
+      "/Users/qisanjiudekeaiduo/Downloads/坎贝尔/KOL营销"
+    ]
+  }
+}
