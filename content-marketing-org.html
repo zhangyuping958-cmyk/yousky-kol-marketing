@@ -5,29 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yousky 内容营销部门 · 组织架构设计</title>
     <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700,800&f[]=satoshi@400,500,700,900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background: #f5f7fa;
-            color: #1a1a2e;
-            min-height: 100vh;
+        :root {
+            --bg-primary:   #070a14;
+            --bg-secondary: #0f1420;
+            --bg-tertiary:  #161c2e;
+            --bg-card:      #0f1420;
+            --accent-cyan:    #00ffcc;
+            --accent-magenta: #ff3d9a;
+            --accent-blue:    #4cc9ff;
+            --accent-yellow:  #ffd93d;
+            --text-primary:   #e6edf3;
+            --text-secondary: #8b949e;
+            --text-muted:     #545d6b;
+            --font-display: "Clash Display", "Noto Sans SC", sans-serif;
+            --font-body:    "Satoshi", "Noto Sans SC", sans-serif;
+            --font-mono:    "JetBrains Mono", "SF Mono", Consolas, monospace;
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.55;
+            position: relative;
+        }
+
+        /* Grid background */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(76, 201, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(76, 201, 255, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 15% 10%, rgba(0, 255, 204, 0.08) 0%, transparent 45%),
+                radial-gradient(ellipse at 85% 90%, rgba(255, 61, 154, 0.06) 0%, transparent 45%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
         header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            color: #fff;
-            padding: 48px 24px 36px;
+            position: relative;
+            z-index: 1;
+            padding: 56px 24px 40px;
             text-align: center;
+            border-bottom: 1px solid rgba(0, 255, 204, 0.1);
         }
         header h1 {
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: clamp(1.6rem, 4vw, 2.8rem);
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-cyan) 50%, var(--accent-magenta) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         header .subtitle {
-            font-size: 15px;
-            opacity: .75;
+            font-size: clamp(0.85rem, 1.2vw, 1rem);
+            color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
@@ -38,69 +95,94 @@
             gap: 24px;
             flex-wrap: wrap;
             font-size: 13px;
-            opacity: .6;
-            margin-top: 12px;
+            color: var(--text-muted);
+            margin-top: 16px;
+            font-family: var(--font-mono);
         }
+
         nav {
+            position: relative;
+            z-index: 1;
             display: flex;
             justify-content: center;
             gap: 8px;
             padding: 16px 24px;
-            background: #fff;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             flex-wrap: wrap;
+            background: rgba(15, 20, 32, 0.8);
+            backdrop-filter: blur(12px);
         }
         nav a {
-            color: #0f3460;
+            color: var(--text-secondary);
             text-decoration: none;
             font-size: 14px;
             padding: 6px 16px;
             border-radius: 20px;
-            transition: all .2s;
+            transition: all .25s var(--ease-out-expo);
+            border: 1px solid transparent;
         }
-        nav a:hover { background: #e2e8f0; }
+        nav a:hover {
+            color: var(--text-primary);
+            border-color: rgba(0, 255, 204, 0.2);
+        }
         nav a.active {
-            background: #0f3460;
-            color: #fff;
+            color: var(--accent-cyan);
+            border-color: rgba(0, 255, 204, 0.3);
+            background: rgba(0, 255, 204, 0.06);
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.06);
         }
+
         .container {
+            position: relative;
+            z-index: 1;
             max-width: 1100px;
             margin: 0 auto;
-            padding: 24px;
+            padding: 32px 24px;
         }
+
         section {
-            background: #fff;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(0, 255, 204, 0.08);
             border-radius: 12px;
             padding: 32px;
             margin-bottom: 24px;
-            box-shadow: 0 1px 6px rgba(0,0,0,.08);
+            transition: border-color .3s var(--ease-out-expo);
+        }
+        section:hover {
+            border-color: rgba(0, 255, 204, 0.15);
         }
         section h2 {
-            font-size: 22px;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
             margin-bottom: 20px;
-            color: #0f3460;
+            color: var(--text-primary);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            letter-spacing: -0.01em;
         }
         section h2 .badge {
-            font-size: 12px;
+            font-family: var(--font-mono);
+            font-size: 11px;
             font-weight: 600;
-            padding: 2px 10px;
-            border-radius: 12px;
-            background: #e2e8f0;
-            color: #475569;
-        }
-        section h3 {
-            font-size: 17px;
-            margin: 20px 0 12px;
-            color: #334155;
+            padding: 3px 10px;
+            border-radius: 4px;
+            background: rgba(0, 255, 204, 0.1);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(0, 255, 204, 0.2);
+            letter-spacing: 0.05em;
         }
         section p, section li {
             font-size: 14px;
             line-height: 1.7;
-            color: #475569;
+            color: var(--text-secondary);
         }
+        section p strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
         .org-chart-wrapper {
             overflow-x: auto;
             padding: 16px 0;
@@ -108,6 +190,8 @@
         .org-chart-wrapper svg {
             max-width: 100%;
             height: auto;
+            display: block;
+            margin: 0 auto;
         }
 
         /* --- Status Bar --- */
@@ -119,68 +203,81 @@
             justify-content: center;
         }
         .status-item {
-            background: #fff;
-            border-radius: 10px;
+            background: var(--bg-tertiary);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
             padding: 16px 20px;
             flex: 1;
-            min-width: 140px;
+            min-width: 130px;
             text-align: center;
-            box-shadow: 0 1px 6px rgba(0,0,0,.08);
+            transition: border-color .25s var(--ease-out-expo);
+        }
+        .status-item:hover {
+            border-color: rgba(0, 255, 204, 0.2);
         }
         .status-item .num {
+            font-family: var(--font-display);
             font-size: 28px;
             font-weight: 700;
-            color: #0f3460;
+            color: var(--text-primary);
         }
         .status-item .label {
             font-size: 12px;
-            color: #94a3b8;
+            color: var(--text-muted);
             margin-top: 4px;
+            font-family: var(--font-mono);
         }
         .status-item.new {
-            border-top: 3px solid #3b82f6;
+            border-left: 3px solid var(--accent-cyan);
         }
         .status-item.existing {
-            border-top: 3px solid #94a3b8;
+            border-left: 3px solid var(--text-muted);
         }
 
         /* --- Phase Timeline --- */
         .phase-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 16px;
         }
         .phase-card {
-            border-radius: 10px;
+            background: var(--bg-tertiary);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
             padding: 20px;
-            border: 1px solid #e2e8f0;
-            transition: box-shadow .2s;
+            transition: all .3s var(--ease-out-expo);
+            position: relative;
         }
-        .phase-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,.06); }
-        .phase-card.p1 { border-left: 4px solid #3b82f6; }
-        .phase-card.p2 { border-left: 4px solid #8b5cf6; }
-        .phase-card.p3 { border-left: 4px solid #10b981; }
+        .phase-card:hover {
+            border-color: rgba(0, 255, 204, 0.2);
+            transform: translateY(-2px);
+        }
+        .phase-card.p1 { border-left: 3px solid var(--accent-cyan); }
+        .phase-card.p2 { border-left: 3px solid var(--accent-magenta); }
+        .phase-card.p3 { border-left: 3px solid var(--accent-blue); }
         .phase-card .phase-title {
+            font-family: var(--font-display);
             font-size: 16px;
             font-weight: 700;
-            color: #0f3460;
+            color: var(--text-primary);
             margin-bottom: 4px;
         }
         .phase-card .phase-time {
-            font-size: 13px;
-            color: #94a3b8;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
             margin-bottom: 12px;
         }
-        .phase-card ul {
-            list-style: none;
-        }
+        .phase-card ul { list-style: none; }
         .phase-card ul li {
             padding: 4px 0;
-            font-size: 14px;
+            font-size: 13px;
+            color: var(--text-secondary);
         }
         .phase-card ul li::before {
             content: "→ ";
-            color: #94a3b8;
+            color: var(--accent-cyan);
+            opacity: 0.5;
         }
 
         /* --- Role Cards --- */
@@ -190,12 +287,16 @@
             gap: 16px;
         }
         .role-card {
-            border: 1px solid #e2e8f0;
-            border-radius: 10px;
+            background: var(--bg-tertiary);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
             padding: 20px;
-            transition: box-shadow .2s;
+            transition: all .3s var(--ease-out-expo);
         }
-        .role-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+        .role-card:hover {
+            border-color: rgba(0, 255, 204, 0.2);
+            transform: translateY(-2px);
+        }
         .role-card .role-header {
             display: flex;
             justify-content: space-between;
@@ -203,40 +304,42 @@
             margin-bottom: 8px;
         }
         .role-card .role-header h4 {
+            font-family: var(--font-display);
             font-size: 15px;
             font-weight: 700;
-            color: #0f3460;
+            color: var(--text-primary);
         }
         .role-card .role-header .headcount {
-            font-size: 12px;
+            font-family: var(--font-mono);
+            font-size: 11px;
             font-weight: 600;
-            padding: 2px 10px;
-            border-radius: 12px;
-            background: #dbeafe;
-            color: #2563eb;
-        }
-        .role-card .role-header .headcount.filled {
-            background: #e2e8f0;
-            color: #64748b;
+            padding: 3px 10px;
+            border-radius: 4px;
+            background: rgba(0, 255, 204, 0.1);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(0, 255, 204, 0.15);
         }
         .role-card .role-report {
+            font-family: var(--font-mono);
             font-size: 12px;
-            color: #94a3b8;
+            color: var(--text-muted);
             margin-bottom: 10px;
         }
         .role-card .role-desc {
             font-size: 13px;
-            color: #475569;
-            line-height: 1.6;
+            color: var(--text-secondary);
+            line-height: 1.65;
             margin-bottom: 10px;
         }
         .role-card .role-kpis {
             font-size: 12px;
-            color: #64748b;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 10px;
         }
         .role-card .role-kpis span {
             font-weight: 600;
-            color: #334155;
+            color: var(--accent-cyan);
         }
 
         /* --- KPI Table --- */
@@ -247,45 +350,64 @@
         }
         .kpi-table th {
             text-align: left;
-            padding: 10px 12px;
-            background: #f8fafc;
-            border-bottom: 2px solid #e2e8f0;
-            color: #334155;
+            padding: 12px 14px;
+            background: rgba(0, 255, 204, 0.04);
+            border-bottom: 1px solid rgba(0, 255, 204, 0.15);
+            color: var(--accent-cyan);
             font-weight: 600;
+            font-size: 12px;
+            font-family: var(--font-mono);
+            letter-spacing: 0.05em;
         }
         .kpi-table td {
-            padding: 10px 12px;
-            border-bottom: 1px solid #e2e8f0;
-            color: #475569;
+            padding: 12px 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
         }
-        .kpi-table tr:hover td { background: #f8fafc; }
+        .kpi-table tr:hover td { background: rgba(0, 255, 204, 0.03); }
 
         footer {
+            position: relative;
+            z-index: 1;
             text-align: center;
-            padding: 24px;
-            font-size: 13px;
-            color: #94a3b8;
+            padding: 32px 24px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         @media (max-width: 600px) {
-            header h1 { font-size: 22px; }
+            header { padding: 40px 16px 32px; }
             section { padding: 20px; }
             .role-grid { grid-template-columns: 1fr; }
+            .container { padding: 16px; }
         }
 
         .highlight {
-            background: #fffbeb;
-            border: 1px solid #fcd34d;
-            border-radius: 10px;
+            background: rgba(0, 255, 204, 0.04);
+            border: 1px solid rgba(0, 255, 204, 0.15);
+            border-radius: 8px;
             padding: 16px 20px;
             margin-top: 16px;
         }
         .highlight p {
             font-size: 13px;
-            color: #92400e;
+            color: var(--text-secondary);
         }
         .highlight strong {
-            color: #78350f;
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        ul li strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Mermaid dark-theme overrides */
+        .org-chart-wrapper :global(.mermaid) {
+            background: transparent !important;
         }
     </style>
 </head>
@@ -343,17 +465,23 @@
         <div class="org-chart-wrapper">
             <pre class="mermaid">
 %%{init: {'theme': 'base', 'themeVariables': {
-  'primaryColor': '#0f3460',
-  'primaryTextColor': '#fff',
-  'primaryBorderColor': '#0f3460',
-  'lineColor': '#94a3b8',
-  'secondaryColor': '#f8fafc',
-  'tertiaryColor': '#fff',
-  'clusterBkg': '#f1f5f9',
-  'clusterBorder': '#e2e8f0'
+  'background': '#0f1420',
+  'primaryColor': '#1e293b',
+  'primaryTextColor': '#e6edf3',
+  'primaryBorderColor': '#00ffcc',
+  'lineColor': '#00ffcc',
+  'secondaryColor': '#161c2e',
+  'tertiaryColor': '#0f1420',
+  'clusterBkg': '#0f1420',
+  'clusterBorder': '#00ffcc',
+  'nodePadding': 14,
+  'edgeLabelBackground': '#0f1420',
+  'nodeBorder': '#334155',
+  'mainBkg': '#0f1420'
 }}}%%
 graph TB
     CMO["市场营销总监"]
+    style CMO fill:#1e293b,color:#e6edf3,stroke:#00ffcc,stroke-width:2px
 
     subgraph EXISTING["现有团队"]
         TK["TK 团队<br/>6 人"]
@@ -363,10 +491,10 @@ graph TB
 
     subgraph NEW["内容营销部 · 新建"]
         CM["内容营销经理<br/>Content Marketing Manager"]
-        CW["内容编辑<br/>Content Writer<br/><i>1-2 人</i>"]
-        EDM["EDM 专员<br/>Email Marketing Spec.<br/><i>1 人</i>"]
-        PRO["PR & 外联专员<br/>PR & Outreach Spec.<br/><i>1 人</i>"]
-        RED["Reddit 社区专员<br/>Reddit Community Spec.<br/><i>1 人</i>"]
+        CW["内容编辑<br/>Content Writer<br/>1-2 人"]
+        EDM["EDM 专员<br/>Email Marketing Spec.<br/>1 人"]
+        PRO["PR & 外联专员<br/>PR & Outreach Spec.<br/>1 人"]
+        RED["Reddit 社区专员<br/>Reddit Community Spec.<br/>1 人"]
     end
 
     CMO --> TK
@@ -378,9 +506,13 @@ graph TB
     CM --> PRO
     CM --> RED
 
-    style NEW fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
-    style EXISTING fill:#f8fafc,stroke:#94a3b8,stroke-width:1px
-    style CM fill:#1e40af,color:#fff
+    style NEW fill:#0f1420,stroke:#00ffcc,stroke-width:2px,stroke-dasharray:6 4
+    style EXISTING fill:#0f1420,stroke:#545d6b,stroke-width:1px
+    style CM fill:#0a2e2a,stroke:#00ffcc,stroke-width:2px,color:#00ffcc
+    style CW fill:#161c2e,stroke:#4cc9ff,stroke-width:1px,color:#e6edf3
+    style EDM fill:#161c2e,stroke:#4cc9ff,stroke-width:1px,color:#e6edf3
+    style PRO fill:#161c2e,stroke:#4cc9ff,stroke-width:1px,color:#e6edf3
+    style RED fill:#161c2e,stroke:#4cc9ff,stroke-width:1px,color:#e6edf3
     </pre>
         </div>
         <p style="text-align:center;font-size:13px;color:#94a3b8;margin-top:8px;">内容营销部归属于市场营销部，与 TK、KOL、独立站运营平级</p>
@@ -513,7 +645,7 @@ graph TB
             <li><strong>内容营销经理</strong> 负责追踪品牌在主流 AI 搜索中的提及率和情感倾向</li>
             <li><strong>Reddit 专员</strong> 运营的高质量讨论帖常被 AI 搜索作为答案源——这是天然优势</li>
         </ul>
-        <div class="highlight" style="margin-top: 16px;">
+        <div class="highlight">
             <p><strong>一句话：</strong>GEO 不是一个人的工作，是内容团队的默认意识——每一篇内容都要考虑"AI 搜索会怎么引用我"。</p>
         </div>
     </section>
@@ -634,7 +766,7 @@ graph TB
                 <tr><td>内容 Freelancer</td><td>非核心内容可外包（如翻译、批量 product roundup）</td><td>$500-2000</td></tr>
                 <tr><td>Guest Post 费用</td><td>部分优质媒体需付费发布</td><td>$500-1500</td></tr>
                 <tr><td>GEO 监控工具</td><td>Brand24 / Mention 等品牌监测</td><td>$100-300</td></tr>
-                <tr><td style="font-weight:700;color:#0f3460;">合计</td><td></td><td style="font-weight:700;color:#0f3460;">$1,600-5,100 / 月</td></tr>
+                <tr><td style="font-weight:700;color:#00ffcc;">合计</td><td></td><td style="font-weight:700;color:#00ffcc;">$1,600-5,100 / 月</td></tr>
             </tbody>
         </table>
     </section>
@@ -650,15 +782,17 @@ graph TB
         startOnLoad: true,
         theme: 'base',
         themeVariables: {
-            primaryColor: '#0f3460',
-            primaryTextColor: '#fff',
-            primaryBorderColor: '#0f3460',
-            lineColor: '#94a3b8',
-            secondaryColor: '#f8fafc',
-            tertiaryColor: '#fff',
-            clusterBkg: '#f1f5f9',
-            clusterBorder: '#e2e8f0',
-            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+            background: '#0f1420',
+            primaryColor: '#1e293b',
+            primaryTextColor: '#e6edf3',
+            primaryBorderColor: '#00ffcc',
+            lineColor: '#00ffcc',
+            secondaryColor: '#161c2e',
+            tertiaryColor: '#0f1420',
+            clusterBkg: '#0f1420',
+            clusterBorder: '#00ffcc',
+            nodePadding: 14,
+            fontFamily: '"Satoshi", "Noto Sans SC", sans-serif'
         },
         flowchart: {
             htmlLabels: true,
