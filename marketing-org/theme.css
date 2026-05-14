@@ -1,0 +1,486 @@
+/* =============================================================
+   MARKETING ORG · DARK TECH THEME
+   Reference: sellersprite.obuudo.com/claude-code
+   ============================================================= */
+
+/* Fonts */
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@600,700,800&f[]=satoshi@400,500,700,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+
+:root {
+  /* Backgrounds */
+  --color-bg:        #070a14;
+  --color-surface:   #0f1420;
+  --color-card:      #161c2e;
+  --color-card-hover:#1a2240;
+
+  /* Accents */
+  --color-primary:   #00ffcc;
+  --color-secondary: #ff3d9a;
+  --color-accent:    #4cc9ff;
+  --color-warm:      #ffd93d;
+
+  /* Text */
+  --color-fg:        #e6edf3;
+  --color-muted:     #8b949e;
+  --color-dim:       #545d6b;
+
+  /* Borders */
+  --color-border:    rgba(0, 255, 204, 0.15);
+  --color-border-light: rgba(255, 255, 255, 0.06);
+
+  /* Typography */
+  --font-sans: "Clash Display", "Satoshi", "Noto Sans SC", "PingFang SC", system-ui, sans-serif;
+  --font-body: "Satoshi", "Noto Sans SC", "PingFang SC", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", Consolas, monospace;
+
+  /* Sizing */
+  --slide-padding: 56px;
+  --content-gap: 20px;
+  --card-radius: 8px;
+}
+
+/* ----- Global base ----- */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ----- Grid background overlay ----- */
+.slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(76, 201, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(76, 201, 255, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ----- Glow effect ----- */
+.slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 10%, rgba(0, 255, 204, 0.07) 0%, transparent 45%),
+    radial-gradient(ellipse at 85% 90%, rgba(255, 61, 154, 0.05) 0%, transparent 45%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ----- Slide base ----- */
+.slide {
+  position: relative;
+  width: 1280px;
+  height: 720px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--slide-padding);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.slide > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ----- Title slide ----- */
+.slide-title {
+  text-align: center;
+  justify-content: center;
+}
+
+.slide-title h1 {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 56px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 16px;
+  background: linear-gradient(135deg, var(--color-fg) 0%, var(--color-primary) 50%, var(--color-secondary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.slide-title .subtitle {
+  font-size: 22px;
+  color: var(--color-muted);
+  max-width: 700px;
+  line-height: 1.5;
+}
+
+.slide-title .meta {
+  display: flex;
+  gap: 24px;
+  margin-top: 24px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-dim);
+}
+
+/* ----- Content slide (top-aligned) ----- */
+.slide-content {
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-top: 48px;
+}
+
+.slide-content .slide-title-text {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 32px;
+  margin: 0 0 8px;
+  color: var(--color-fg);
+}
+
+.slide-content .slide-subtitle {
+  font-size: 16px;
+  color: var(--color-muted);
+  margin: 0 0 24px;
+  font-family: var(--font-mono);
+}
+
+/* ----- Section divider ----- */
+.slide-section {
+  text-align: center;
+  justify-content: center;
+}
+
+.slide-section .section-tag {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--color-secondary);
+  letter-spacing: 0.3em;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.slide-section .section-num {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 100px;
+  line-height: 0.85;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--color-primary);
+  text-stroke: 2px var(--color-primary);
+  margin-bottom: 12px;
+}
+
+.slide-section h2 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 40px;
+  margin: 0 0 12px;
+  color: var(--color-fg);
+}
+
+.slide-section p {
+  font-size: 18px;
+  color: var(--color-muted);
+  max-width: 600px;
+}
+
+/* ----- Cards grid ----- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: 1168px;
+}
+
+.card-grid.team-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.card-grid.two-col {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--card-radius);
+  padding: 20px;
+  transition: border-color 0.2s ease;
+  position: relative;
+}
+
+.card:hover {
+  border-color: rgba(0, 255, 204, 0.2);
+}
+
+.card .card-title {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--color-fg);
+  margin: 0 0 8px;
+}
+
+.card .card-headcount {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-primary);
+  border: 1px solid rgba(0, 255, 204, 0.15);
+  background: rgba(0, 255, 204, 0.06);
+  padding: 2px 10px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.card ul li {
+  font-size: 13px;
+  color: var(--color-muted);
+  line-height: 1.6;
+  padding: 2px 0;
+  position: relative;
+  padding-left: 14px;
+}
+
+.card ul li::before {
+  content: ">";
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+  opacity: 0.4;
+  font-family: var(--font-mono);
+}
+
+/* ----- Cyan left border cards ----- */
+.card.accent-cyan { border-left: 3px solid var(--color-primary); }
+.card.accent-magenta { border-left: 3px solid var(--color-secondary); }
+.card.accent-blue { border-left: 3px solid var(--color-accent); }
+.card.accent-warm { border-left: 3px solid var(--color-warm); }
+
+/* ----- Org Tree ----- */
+.org-tree {
+  width: 100%;
+  max-width: 1168px;
+}
+
+.org-node {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.org-node .node-label {
+  background: var(--color-card);
+  border: 1px solid var(--color-border-light);
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: var(--color-fg);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.org-node .node-label.root {
+  background: var(--color-primary);
+  color: #070a14;
+  font-weight: 700;
+  border-color: var(--color-primary);
+}
+
+.org-node .node-label.team {
+  border-color: rgba(0, 255, 204, 0.2);
+  font-weight: 600;
+}
+
+.org-node .node-count {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-primary);
+}
+
+.org-indent {
+  padding-left: 32px;
+}
+
+.org-indent-2 {
+  padding-left: 64px;
+}
+
+.org-indent-3 {
+  padding-left: 96px;
+}
+
+.org-line {
+  width: 2px;
+  background: rgba(0, 255, 204, 0.15);
+  margin: 0 8px;
+  align-self: stretch;
+}
+
+/* ----- Stats bar ----- */
+.stats-bar {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  max-width: 1168px;
+  margin-bottom: 24px;
+}
+
+.stat-item {
+  flex: 1;
+  background: var(--color-card);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--card-radius);
+  padding: 16px;
+  text-align: center;
+  min-width: 0;
+  border-left: 3px solid var(--color-primary);
+}
+
+.stat-item .stat-num {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 28px;
+  color: var(--color-fg);
+}
+
+.stat-item .stat-label {
+  font-size: 12px;
+  color: var(--color-dim);
+  margin-top: 4px;
+  font-family: var(--font-mono);
+}
+
+/* ----- Table ----- */
+.role-table {
+  width: 100%;
+  max-width: 1168px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.role-table th {
+  text-align: left;
+  padding: 10px 14px;
+  background: rgba(0, 255, 204, 0.04);
+  border-bottom: 1px solid rgba(0, 255, 204, 0.15);
+  color: var(--color-primary);
+  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+}
+
+.role-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--color-muted);
+}
+
+.role-table tr:hover td {
+  background: rgba(0, 255, 204, 0.03);
+}
+
+/* ----- Highlight box ----- */
+.highlight-box {
+  background: rgba(0, 255, 204, 0.04);
+  border: 1px solid rgba(0, 255, 204, 0.15);
+  border-radius: var(--card-radius);
+  padding: 16px 20px;
+  max-width: 1168px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.highlight-box p {
+  font-size: 14px;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.highlight-box strong {
+  color: var(--color-primary);
+}
+
+/* ----- Closing slide ----- */
+.slide-end h1 {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 48px;
+  margin: 0 0 16px;
+  color: var(--color-fg);
+}
+
+.slide-end .steps {
+  display: flex;
+  gap: 32px;
+  margin-top: 32px;
+}
+
+.slide-end .step {
+  text-align: center;
+}
+
+.slide-end .step .step-num {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 36px;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.slide-end .step .step-label {
+  font-size: 16px;
+  color: var(--color-muted);
+}
+
+/* ----- Sub-role list inline ----- */
+.sub-roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.sub-role-tag {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--color-accent);
+  background: rgba(76, 201, 255, 0.06);
+  border: 1px solid rgba(76, 201, 255, 0.15);
+  padding: 2px 10px;
+  border-radius: 10px;
+}
+
+.sub-role-tag.cyan { color: var(--color-primary); border-color: rgba(0, 255, 204, 0.2); background: rgba(0, 255, 204, 0.06); }
+.sub-role-tag.magenta { color: var(--color-secondary); border-color: rgba(255, 61, 154, 0.2); background: rgba(255, 61, 154, 0.06); }
+.sub-role-tag.warm { color: var(--color-warm); border-color: rgba(255, 217, 61, 0.2); background: rgba(255, 217, 61, 0.06); }
+
+/* ----- Generic helpers ----- */
+.flex-row { display: flex; flex-direction: row; gap: var(--content-gap); }
+.flex-col { display: flex; flex-direction: column; }
+.w-full { width: 100%; max-width: 1168px; }
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mb-8 { margin-bottom: 8px; }
+.mb-16 { margin-bottom: 16px; }
+.gap-8 { gap: 8px; }
+.gap-12 { gap: 12px; }
+.gap-16 { gap: 16px; }

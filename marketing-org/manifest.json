@@ -1,0 +1,13 @@
+{
+  "title": "Yousky Marketing Department · Org Structure 2026",
+  "slides": [
+    { "file": "slides/slide-01.html", "title": "Cover" },
+    { "file": "slides/slide-02.html", "title": "Department Overview" },
+    { "file": "slides/slide-03.html", "title": "TikTok Team" },
+    { "file": "slides/slide-04.html", "title": "Creator Partnerships" },
+    { "file": "slides/slide-05.html", "title": "Website / Paid Media" },
+    { "file": "slides/slide-06.html", "title": "Content & Community Marketing" },
+    { "file": "slides/slide-07.html", "title": "Headcount Summary" },
+    { "file": "slides/slide-08.html", "title": "Closing" }
+  ]
+}
