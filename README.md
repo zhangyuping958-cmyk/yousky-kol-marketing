@@ -25,6 +25,10 @@ Yousky 手持清洁机品牌出海的 KOL（Key Opinion Leader）营销系统性
 
 本仓库已启用 GitHub Pages，可直接在线预览 PDF 文档。
 
+- 首页：https://zhangyuping958-cmyk.github.io/yousky-kol-marketing/
+- 中文演示文稿：https://zhangyuping958-cmyk.github.io/yousky-kol-marketing/marketing-org/viewer-zh.html
+- English deck：https://zhangyuping958-cmyk.github.io/yousky-kol-marketing/marketing-org/viewer.html
+
 ## 部署
 
 ```bash
