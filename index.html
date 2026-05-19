@@ -10,19 +10,19 @@
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:       #fafaf8;
-  --surface:  #f4f2ed;
-  --text:     #1a1d28;
-  --text-2:   #5a5d68;
-  --text-3:   #90939e;
-  --ocean:    #1a3a52;
-  --ocean-glow:#2c5f8a;
-  --copper:   #b8875a;
+  --bg:         #fafaf8;
+  --surface:    #f4f2ed;
+  --text:       #1a1d28;
+  --text-2:     #5a5d68;
+  --text-3:     #90939e;
+  --ocean:      #1a3a52;
+  --ocean-glow: #2c5f8a;
+  --copper:     #b8875a;
   --copper-glow:#d4a574;
-  --gold:     #c4a35a;
-  --gold-glow:#ddc08a;
-  --steel:    #8a8d95;
-  --steel-glow:#b0b3bb;
+  --gold:       #c4a35a;
+  --gold-glow:  #ddc08a;
+  --steel:      #8a8d95;
+  --steel-glow: #b0b3bb;
   --font-display: "Clash Display","Inter","Noto Sans SC",sans-serif;
   --font-serif:   "Playfair Display","Noto Serif SC",serif;
   --font-body:    "Inter","Noto Sans SC",sans-serif;
@@ -37,98 +37,77 @@ body{
   display:flex;flex-direction:column;align-items:center;
 }
 
-/* ---- hero ---- */
+/* =============================================
+   HERO
+   ============================================= */
 .hero{
   text-align:center;padding:72px 40px 40px;
   display:flex;flex-direction:column;align-items:center;
 }
 .hero .tag{
   font-family:var(--font-mono);font-size:11px;color:var(--copper);
-  letter-spacing:0.28em;margin-bottom:20px;
-  text-transform:uppercase;
+  letter-spacing:0.28em;margin-bottom:20px;text-transform:uppercase;
 }
-
-/* -- serif gradient title -- */
 .hero h1{
   font-family:var(--font-serif);
   font-weight:700;font-size:clamp(2.8rem,6vw,4.8rem);
   letter-spacing:-0.02em;line-height:1.1;
   background:linear-gradient(135deg,#c4a35a 0%,#d4b896 25%,#1a3a52 55%,#2c5f8a 100%);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
   background-clip:text;
   margin-bottom:18px;
   filter:drop-shadow(0 1px 2px rgba(26,58,82,0.08));
 }
-
-/* -- description with varied weights -- */
 .hero .sub{
   display:flex;align-items:center;justify-content:center;
-  gap:10px;flex-wrap:wrap;
-  font-size:15px;line-height:1.6;
-  margin-bottom:6px;
+  gap:10px;flex-wrap:wrap;font-size:15px;line-height:1.6;margin-bottom:6px;
 }
-.hero .sub .kw-bold{
-  font-weight:700;font-size:16px;color:var(--text);
-  letter-spacing:-0.01em;
-}
-.hero .sub .kw-mid{
-  font-weight:450;color:var(--text-2);
-  letter-spacing:0.02em;
-}
-.hero .sub .kw-light{
-  font-weight:300;color:var(--text-3);
-  font-family:var(--font-mono);font-size:13px;
-  letter-spacing:0.06em;
-}
-.hero .sub .kw-sep{
-  color:#d5d0c7;font-weight:200;font-size:12px;
-}
-
-/* -- signature -- */
+.hero .sub .kw-bold{font-weight:700;font-size:16px;color:var(--text);letter-spacing:-0.01em}
+.hero .sub .kw-mid{font-weight:450;color:var(--text-2);letter-spacing:0.02em}
+.hero .sub .kw-light{font-weight:300;color:var(--text-3);font-family:var(--font-mono);font-size:13px;letter-spacing:0.06em}
+.hero .sub .kw-sep{color:#d5d0c7;font-weight:200;font-size:12px}
 .hero .sig{
   font-family:var(--font-mono);font-size:11px;font-weight:300;
-  color:var(--text-3);letter-spacing:0.12em;
-  margin-top:10px;
+  color:var(--text-3);letter-spacing:0.12em;margin-top:10px;
 }
 
-/* ---- bubble grid ---- */
+/* =============================================
+   BUBBLE STAGE
+   ============================================= */
 .bubble-stage{
-  position:relative;
-  display:flex;flex-direction:column;align-items:center;
-  padding:8px 32px 20px;
-  width:100%;max-width:700px;
+  position:relative;display:flex;flex-direction:column;align-items:center;
+  padding:8px 32px 20px;width:100%;max-width:960px;
 }
 .bubble-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:40px 56px;
-  justify-items:center;
-  padding:8px 0;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:44px 64px;justify-items:center;padding:8px 0;
 }
 
-/* ---- individual bubble wrapper ---- */
+/* ---- wrapper ---- */
 .bw{
   display:flex;flex-direction:column;align-items:center;
   cursor:pointer;position:relative;
 }
 
-/* ---- the bubble sphere ---- */
+/* ---- bubble anchor (positioning context for side elements) ---- */
+.b-anchor{
+  position:relative;width:108px;height:108px;
+}
+
+/* ---- bubble sphere ---- */
 .bubble{
   width:108px;height:108px;border-radius:50%;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-decoration:none;position:relative;
-  transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1),
-             box-shadow 0.4s ease;
+  text-decoration:none;position:absolute;inset:0;
+  transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
   z-index:2;
 }
 .bubble::after{
   content:"";position:absolute;inset:0;border-radius:50%;
-  opacity:0;transition:opacity 0.4s ease;
-  pointer-events:none;
+  opacity:0;transition:opacity 0.4s ease;pointer-events:none;
 }
 
-/* -- bubble 1: ocean -- */
+/* bubble colour variants */
 .b1{
   background:
     radial-gradient(circle at 38% 32%,rgba(255,255,255,0.55) 0%,rgba(255,255,255,0.08) 25%,transparent 45%),
@@ -138,7 +117,6 @@ body{
 }
 .b1::after{box-shadow:0 0 40px rgba(26,58,82,0.35),0 0 80px rgba(44,95,138,0.15)}
 
-/* -- bubble 2: copper -- */
 .b2{
   background:
     radial-gradient(circle at 38% 32%,rgba(255,255,255,0.5) 0%,rgba(255,255,255,0.06) 25%,transparent 45%),
@@ -148,7 +126,6 @@ body{
 }
 .b2::after{box-shadow:0 0 40px rgba(184,135,90,0.35),0 0 80px rgba(212,165,116,0.15)}
 
-/* -- bubble 3: matte gold -- */
 .b3{
   background:
     radial-gradient(circle at 38% 32%,rgba(255,255,255,0.55) 0%,rgba(255,255,255,0.08) 25%,transparent 45%),
@@ -158,7 +135,6 @@ body{
 }
 .b3::after{box-shadow:0 0 40px rgba(196,163,90,0.35),0 0 80px rgba(221,192,138,0.15)}
 
-/* -- bubble 4: polished steel -- */
 .b4{
   background:
     radial-gradient(circle at 38% 32%,rgba(255,255,255,0.55) 0%,rgba(255,255,255,0.08) 25%,transparent 45%),
@@ -168,136 +144,160 @@ body{
 }
 .b4::after{box-shadow:0 0 40px rgba(138,141,149,0.3),0 0 80px rgba(176,179,187,0.12)}
 
-/* -- bubble inner icon -- */
+/* bubble inner */
 .bubble .b-icon{
-  font-size:22px;color:rgba(255,255,255,0.9);
-  line-height:1;margin-bottom:2px;
-  text-shadow:0 1px 2px rgba(0,0,0,0.15);
-  position:relative;z-index:1;
+  font-size:22px;color:rgba(255,255,255,0.9);line-height:1;margin-bottom:2px;
+  text-shadow:0 1px 2px rgba(0,0,0,0.15);position:relative;z-index:1;
 }
 .bubble .b-num{
-  font-family:var(--font-display);font-weight:600;
-  font-size:10px;color:rgba(255,255,255,0.7);
-  letter-spacing:0.06em;
-  position:relative;z-index:1;
+  font-family:var(--font-display);font-weight:600;font-size:10px;
+  color:rgba(255,255,255,0.7);letter-spacing:0.06em;position:relative;z-index:1;
 }
 
-/* -- bubble label (outside, below) -- */
+/* bubble label + chip */
 .b-label{
-  margin-top:12px;
-  font-family:var(--font-display);font-weight:600;
-  font-size:14px;color:var(--text);
-  letter-spacing:-0.01em;
-  transition:color 0.3s ease;
+  margin-top:12px;font-family:var(--font-display);font-weight:600;
+  font-size:14px;color:var(--text);letter-spacing:-0.01em;transition:color 0.3s ease;
 }
-
-/* -- bubble hover state -- */
-.bw:hover .bubble{
-  transform:scale(1.18);
-}
-.bw:hover .bubble::after{opacity:1}
-.bw.active .bubble{
-  transform:scale(1.18);
-}
-.bw.active .bubble::after{opacity:1}
-
-/* -- bubble type tag (small gold chip) -- */
 .b-chip{
-  margin-top:6px;
-  font-family:var(--font-mono);font-size:10px;
+  margin-top:6px;font-family:var(--font-mono);font-size:10px;
   color:var(--copper);letter-spacing:0.06em;
-  padding:2px 10px;background:var(--surface);
-  border-radius:6px;opacity:0;
-  transform:translateY(-6px);
+  padding:2px 10px;background:var(--surface);border-radius:6px;
+  opacity:0;transform:translateY(-6px);
   transition:opacity 0.35s ease,transform 0.35s ease;
 }
+
+/* ---- bubble hover state ---- */
+.bw:hover .bubble,
+.bw.active .bubble{transform:scale(1.18)}
+.bw:hover .bubble::after,
+.bw.active .bubble::after{opacity:1}
 .bw:hover .b-chip,
-.bw.active .b-chip{
-  opacity:1;transform:translateY(0);
-}
+.bw.active .b-chip{opacity:1;transform:translateY(0)}
 
-/* ---- data stream dots (between bubble grid and detail panel) ---- */
-.stream-dots{
-  display:flex;gap:14px;justify-content:center;
-  height:20px;align-items:center;
-  margin:6px 0 0;
-  opacity:0;transition:opacity 0.4s ease;
-}
-.stream-dots.visible{opacity:1}
-.stream-dots .dot{
-  width:4px;height:4px;border-radius:50%;
-  background:var(--copper);
-  animation:pulse-dot 1.6s ease-in-out infinite;
-}
-.stream-dots .dot:nth-child(2){animation-delay:0.25s}
-.stream-dots .dot:nth-child(3){animation-delay:0.5s}
-@keyframes pulse-dot{
-  0%,100%{opacity:0.2;transform:scale(0.8)}
-  50%{opacity:1;transform:scale(1.6)}
-}
-
-/* ---- detail panel (glassmorphism) ---- */
-.detail-zone{
-  width:100%;max-width:560px;min-height:90px;
-  position:relative;margin-top:4px;
-}
-.detail-panel{
-  position:absolute;left:0;right:0;
+/* =============================================
+   SIDE PANEL — glassmorphism
+   ============================================= */
+.side-panel{
+  position:absolute;top:50%;
+  width:272px;
   background:rgba(255,255,255,0.72);
-  backdrop-filter:blur(24px);
-  -webkit-backdrop-filter:blur(24px);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
   border:1px solid rgba(255,255,255,0.6);
-  border-radius:16px;
-  padding:22px 28px;
+  border-radius:16px;padding:20px 24px;
   box-shadow:0 8px 40px rgba(0,0,0,0.07),0 1px 3px rgba(0,0,0,0.04);
-  opacity:0;transform:translateY(8px);
+  opacity:0;pointer-events:none;z-index:10;
   transition:opacity 0.4s ease,transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
-  pointer-events:none;
-  text-align:center;
 }
-.detail-panel.active{
-  opacity:1;transform:translateY(0);
-  pointer-events:auto;
+.side-panel .sp-title{
+  font-family:var(--font-display);font-weight:600;font-size:16px;
+  color:var(--ocean);margin-bottom:6px;letter-spacing:-0.01em;
 }
-.detail-panel .d-title{
-  font-family:var(--font-display);font-weight:600;
-  font-size:17px;color:var(--ocean);margin-bottom:6px;
-  letter-spacing:-0.01em;
+.side-panel .sp-desc{
+  font-size:13px;color:var(--text-2);line-height:1.6;margin-bottom:14px;
 }
-.detail-panel .d-desc{
-  font-size:13.5px;color:var(--text-2);line-height:1.6;
-  max-width:440px;margin:0 auto 14px;
-}
-.detail-panel .d-btn{
-  display:inline-block;
-  font-family:var(--font-mono);font-size:11px;
+.side-panel .sp-btn{
+  display:inline-block;font-family:var(--font-mono);font-size:11px;
   color:#fff;background:linear-gradient(135deg,#c4a35a,#b8875a);
-  padding:7px 20px;border-radius:20px;
-  text-decoration:none;letter-spacing:0.06em;
+  padding:6px 18px;border-radius:20px;text-decoration:none;
+  letter-spacing:0.06em;
   transition:box-shadow 0.3s ease,transform 0.2s ease;
   box-shadow:0 2px 8px rgba(184,135,90,0.25);
 }
-.detail-panel .d-btn:hover{
-  box-shadow:0 4px 16px rgba(184,135,90,0.4);
-  transform:translateY(-1px);
+.side-panel .sp-btn:hover{
+  box-shadow:0 4px 16px rgba(184,135,90,0.4);transform:translateY(-1px);
 }
 
-/* ---- footer ---- */
+/* left-side panels (bubbles 01, 03) */
+.bw.left .side-panel{
+  right:calc(100% + 32px);
+  transform:translateY(-50%) translateX(10px);
+}
+.bw.left:hover .side-panel,
+.bw.left.active .side-panel{
+  opacity:1;transform:translateY(-50%) translateX(0);pointer-events:auto;
+}
+
+/* right-side panels (bubbles 02, 04) */
+.bw.right .side-panel{
+  left:calc(100% + 32px);
+  transform:translateY(-50%) translateX(-10px);
+}
+.bw.right:hover .side-panel,
+.bw.right.active .side-panel{
+  opacity:1;transform:translateY(-50%) translateX(0);pointer-events:auto;
+}
+
+/* =============================================
+   CONNECTOR DOTS — vertical row in the gap
+   ============================================= */
+.side-dots{
+  position:absolute;top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:5px;
+  opacity:0;transition:opacity 0.4s ease;z-index:5;pointer-events:none;
+}
+.bw.left  .side-dots{right:calc(100% + 12px)}
+.bw.right .side-dots{left:calc(100% + 12px)}
+
+.bw:hover .side-dots,
+.bw.active .side-dots{opacity:1}
+
+.side-dots i{
+  display:block;width:4px;height:4px;border-radius:50%;
+  background:var(--copper);
+  animation:pulse-dot 1.6s ease-in-out infinite;
+}
+.side-dots i:nth-child(2){animation-delay:0.22s}
+.side-dots i:nth-child(3){animation-delay:0.44s}
+
+@keyframes pulse-dot{
+  0%,100%{opacity:0.15;transform:scale(0.7)}
+  50%{opacity:1;transform:scale(1.5)}
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
 .footer{
   text-align:center;padding:8px 32px 32px;
   font-size:11px;color:var(--text-3);font-family:var(--font-mono);
   letter-spacing:0.06em;margin-top:auto;
 }
 
-/* ---- responsive ---- */
+/* =============================================
+   RESPONSIVE — stack & panels below
+   ============================================= */
+@media(max-width:900px){
+  .bubble-stage{max-width:100%;padding:8px 16px 20px}
+  .bubble-grid{
+    grid-template-columns:1fr;gap:20px;width:100%;max-width:360px;
+  }
+  /* panels become static, centred below each bubble */
+  .side-panel{
+    position:relative;top:auto;left:auto!important;right:auto!important;
+    transform:none!important;width:100%;max-width:320px;
+    opacity:0;max-height:0;overflow:hidden;
+    padding:0 20px;margin-top:0;
+    border-width:0;
+    transition:opacity 0.35s ease,max-height 0.45s ease,padding 0.45s ease,margin 0.45s ease;
+  }
+  .bw.left:hover .side-panel,
+  .bw.left.active .side-panel,
+  .bw.right:hover .side-panel,
+  .bw.right.active .side-panel{
+    opacity:1;max-height:220px;pointer-events:auto;
+    padding:18px 20px;margin-top:14px;border-width:1px;
+    transform:none!important;
+  }
+  .side-dots{display:none}
+  .b-anchor{width:88px;height:88px}
+  .bubble{width:88px;height:88px}
+  .bubble .b-icon{font-size:18px}
+  .b-label{font-size:13px}
+}
 @media(max-width:600px){
   .hero{padding:48px 24px 28px}
   .hero h1{font-size:clamp(2rem,8vw,3rem)}
-  .bubble-grid{gap:28px 36px}
-  .bubble{width:88px;height:88px}
-  .bubble .b-icon{font-size:18px}
-  .b-label{font-size:12px}
-  .detail-zone{max-width:100%;padding:0 16px}
 }
 </style>
 </head>
@@ -318,60 +318,78 @@ body{
 
   <div class="bubble-grid">
 
-    <!-- 01: Org Structure -->
-    <div class="bw" data-index="0">
-      <a href="marketing-org/viewer-zh.html" class="bubble b1">
-        <span class="b-icon">&#9670;</span>
-        <span class="b-num">01</span>
-      </a>
+    <!-- 01 — left -->
+    <div class="bw left" data-index="0">
+      <div class="b-anchor">
+        <div class="side-panel">
+          <div class="sp-title">市场营销部组织架构</div>
+          <p class="sp-desc">8 页完整 Slide 演示文稿，涵盖四大团队 16 人编制、岗位职责、招聘路线图 — TikTok · 达人 · 广告 · 内容社区</p>
+          <a href="marketing-org/viewer-zh.html" class="sp-btn">8页 Slide</a>
+        </div>
+        <div class="side-dots"><i></i><i></i><i></i></div>
+        <a href="marketing-org/viewer-zh.html" class="bubble b1">
+          <span class="b-icon">&#9670;</span>
+          <span class="b-num">01</span>
+        </a>
+      </div>
       <span class="b-label">市场组织架构</span>
       <span class="b-chip">8页 Slide</span>
     </div>
 
-    <!-- 02: Org Chart -->
-    <div class="bw" data-index="1">
-      <a href="marketing-org/org-chart-zh.html" class="bubble b2">
-        <span class="b-icon">&#9711;</span>
-        <span class="b-num">02</span>
-      </a>
+    <!-- 02 — right -->
+    <div class="bw right" data-index="1">
+      <div class="b-anchor">
+        <div class="side-panel">
+          <div class="sp-title">组织架构框架图</div>
+          <p class="sp-desc">单页树形架构图，市场营销部 + IT 部共 19 人全景，逐岗标注人数与职责，清晰展示汇报关系</p>
+          <a href="marketing-org/org-chart-zh.html" class="sp-btn">单页图表</a>
+        </div>
+        <div class="side-dots"><i></i><i></i><i></i></div>
+        <a href="marketing-org/org-chart-zh.html" class="bubble b2">
+          <span class="b-icon">&#9711;</span>
+          <span class="b-num">02</span>
+        </a>
+      </div>
       <span class="b-label">组织架构框架</span>
       <span class="b-chip">单页图表</span>
     </div>
 
-    <!-- 03: April Review -->
-    <div class="bw" data-index="2">
-      <a href="marketing-org/april-review-zh.html" class="bubble b3">
-        <span class="b-icon">&#9650;</span>
-        <span class="b-num">03</span>
-      </a>
+    <!-- 03 — left -->
+    <div class="bw left" data-index="2">
+      <div class="b-anchor">
+        <div class="side-panel">
+          <div class="sp-title">4月复盘 &amp; 5月战略部署</div>
+          <p class="sp-desc">12 页 Consulting 风格汇报 Slide。跨部门数据拉通（亚马逊 · TK · KOL · 产品端），五大结构性问题诊断，5 月私域引擎搭建计划</p>
+          <a href="marketing-org/april-review-zh.html" class="sp-btn">12页 Slide</a>
+        </div>
+        <div class="side-dots"><i></i><i></i><i></i></div>
+        <a href="marketing-org/april-review-zh.html" class="bubble b3">
+          <span class="b-icon">&#9650;</span>
+          <span class="b-num">03</span>
+        </a>
+      </div>
       <span class="b-label">4月复盘 &amp; 5月战略</span>
       <span class="b-chip">12页 Slide</span>
     </div>
 
-    <!-- 04: KOL PDF -->
-    <div class="bw" data-index="3">
-      <a href="Yousky手持清洁机海外KOL营销拆解.pdf" class="bubble b4">
-        <span class="b-icon">&#9632;</span>
-        <span class="b-num">04</span>
-      </a>
+    <!-- 04 — right -->
+    <div class="bw right" data-index="3">
+      <div class="b-anchor">
+        <div class="side-panel">
+          <div class="sp-title">Yousky 手持清洁机 · 海外 KOL 营销拆解</div>
+          <p class="sp-desc">完整 PDF 策略文档。团队能力盘点、产品差异化定位、KOL 矩阵策略（头部→腰部→尾部）、内容 SOP、激励分佣模型、数据复盘体系</p>
+          <a href="Yousky手持清洁机海外KOL营销拆解.pdf" class="sp-btn">PDF 文档</a>
+        </div>
+        <div class="side-dots"><i></i><i></i><i></i></div>
+        <a href="Yousky手持清洁机海外KOL营销拆解.pdf" class="bubble b4">
+          <span class="b-icon">&#9632;</span>
+          <span class="b-num">04</span>
+        </a>
+      </div>
       <span class="b-label">KOL 营销拆解</span>
       <span class="b-chip">PDF 文档</span>
     </div>
 
-  </div>
-
-  <!-- data stream dots -->
-  <div class="stream-dots" id="streamDots">
-    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-  </div>
-
-  <!-- detail panel -->
-  <div class="detail-zone">
-    <div class="detail-panel" id="detailPanel">
-      <div class="d-title" id="dTitle"></div>
-      <p class="d-desc" id="dDesc"></p>
-      <a class="d-btn" id="dBtn" href="#">浏览</a>
-    </div>
   </div>
 
 </div>
@@ -383,89 +401,56 @@ body{
 
 <script>
 (function(){
-  var detailPanel = document.getElementById('detailPanel');
-  var streamDots  = document.getElementById('streamDots');
-  var dTitle      = document.getElementById('dTitle');
-  var dDesc       = document.getElementById('dDesc');
-  var dBtn        = document.getElementById('dBtn');
-  var wrappers    = document.querySelectorAll('.bw');
-  var activeIdx   = -1;
+  var wrappers = document.querySelectorAll('.bw');
+  var activeIdx = -1;
 
-  var data = [
-    {
-      title:'市场营销部组织架构',
-      desc:'8 页完整 Slide 演示文稿，涵盖四大团队 16 人编制、岗位职责、招聘路线图 — TikTok · 达人 · 广告 · 内容社区',
-      btn:'8页 Slide',
-      href:'marketing-org/viewer-zh.html'
-    },
-    {
-      title:'组织架构框架图',
-      desc:'单页树形架构图，市场营销部 + IT 部共 19 人全景，逐岗标注人数与职责，清晰展示汇报关系',
-      btn:'单页图表',
-      href:'marketing-org/org-chart-zh.html'
-    },
-    {
-      title:'4月复盘 & 5月战略部署',
-      desc:'12 页 Consulting 风格汇报 Slide。跨部门数据拉通（亚马逊 · TK · KOL · 产品端），五大结构性问题诊断，5 月私域引擎搭建计划',
-      btn:'12页 Slide',
-      href:'marketing-org/april-review-zh.html'
-    },
-    {
-      title:'Yousky 手持清洁机 · 海外 KOL 营销拆解',
-      desc:'完整 PDF 策略文档。团队能力盘点、产品差异化定位、KOL 矩阵策略（头部→腰部→尾部）、内容 SOP、激励分佣模型、数据复盘体系',
-      btn:'PDF 文档',
-      href:'Yousky手持清洁机海外KOL营销拆解.pdf'
-    }
-  ];
-
-  function showDetail(idx){
-    if (activeIdx === idx) return;
-    activeIdx = idx;
-    var d = data[idx];
-    dTitle.textContent = d.title;
-    dDesc.textContent  = d.desc;
-    dBtn.textContent   = d.btn;
-    dBtn.href          = d.href;
-    detailPanel.classList.add('active');
-    streamDots.classList.add('visible');
-
-    wrappers.forEach(function(w,i){ w.classList.toggle('active', i===idx); });
-  }
-
-  function hideDetail(){
-    activeIdx = -1;
-    detailPanel.classList.remove('active');
-    streamDots.classList.remove('visible');
+  function deactivateAll(){
     wrappers.forEach(function(w){ w.classList.remove('active'); });
   }
 
   wrappers.forEach(function(w){
     w.addEventListener('mouseenter', function(){
-      showDetail(parseInt(w.getAttribute('data-index')));
+      var idx = parseInt(w.getAttribute('data-index'));
+      if (activeIdx === idx) return;
+      deactivateAll();
+      activeIdx = idx;
+      w.classList.add('active');
     });
+
     w.addEventListener('mouseleave', function(){
-      hideDetail();
+      w.classList.remove('active');
+      if (activeIdx === parseInt(w.getAttribute('data-index'))) {
+        activeIdx = -1;
+      }
     });
-    // touch devices: tap to toggle
+
+    // touch: tap to toggle
     w.addEventListener('click', function(e){
       var idx = parseInt(w.getAttribute('data-index'));
       if (activeIdx !== idx){
         e.preventDefault();
-        showDetail(idx);
+        deactivateAll();
+        activeIdx = idx;
+        w.classList.add('active');
       }
-      // if already active, let the link through
     });
   });
 
-  // keep panel visible when hovering over it
-  detailPanel.addEventListener('mouseenter', function(){
-    if (activeIdx >= 0){
-      detailPanel.classList.add('active');
-      streamDots.classList.add('visible');
-    }
-  });
-  detailPanel.addEventListener('mouseleave', function(){
-    hideDetail();
+  // keep panel open when hovering into it
+  document.querySelectorAll('.side-panel').forEach(function(p){
+    p.addEventListener('mouseenter', function(){
+      var bw = p.closest('.bw');
+      if (bw) {
+        deactivateAll();
+        activeIdx = parseInt(bw.getAttribute('data-index'));
+        bw.classList.add('active');
+      }
+    });
+    p.addEventListener('mouseleave', function(){
+      var bw = p.closest('.bw');
+      if (bw) bw.classList.remove('active');
+      activeIdx = -1;
+    });
   });
 
 })();
