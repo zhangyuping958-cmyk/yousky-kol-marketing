@@ -2,652 +2,144 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yousky 市场营销部 · 组织架构 2026</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Yousky · 市场营销部</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:         #08080d;
-  --surface:    #111118;
-  --border:     rgba(255,255,255,0.06);
-  --text:       #f0ece4;
-  --text-2:     #8a8780;
-  --text-3:     #54514c;
-  --gold:       #c9a96e;
-  --gold-dim:   rgba(201,169,110,0.15);
-  --gold-glow:  rgba(201,169,110,0.25);
-  --font-title: "Clash Display", "Noto Sans SC", sans-serif;
-  --font-body:  "Satoshi", "Noto Sans SC", sans-serif;
-  --font-mono:  "JetBrains Mono", "SF Mono", monospace;
+  --bg:      #fafaf9;
+  --surface: #f4f2ed;
+  --border:  #e5e1d8;
+  --text:    #1a1d28;
+  --text-2:  #5a5d68;
+  --text-3:  #90939e;
+  --accent:  #1e3e54;
+  --warm:    #b8875a;
+  --warm-dim:#e8d7c0;
+  --font-display: "Clash Display","Inter","Noto Sans SC",sans-serif;
+  --font-body:    "Inter","Noto Sans SC",sans-serif;
+  --font-mono:    "SF Mono","JetBrains Mono",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:var(--font-body);background:var(--bg);
+  color:var(--text);-webkit-font-smoothing:antialiased;
+  line-height:1.6;min-height:100vh;
 }
 
-* { margin:0; padding:0; box-sizing:border-box; }
-
-html {
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-  background: var(--bg);
+/* ---- hero ---- */
+.hero{
+  text-align:center;padding:80px 40px 48px;
 }
-html, body { height:100%; }
-
-body {
-  font-family: var(--font-body);
-  background: var(--bg);
-  color: var(--text);
-  -webkit-font-smoothing: antialiased;
-  line-height: 1.6;
+.hero .tag{
+  font-family:var(--font-mono);font-size:12px;color:var(--warm);
+  letter-spacing:0.24em;margin-bottom:16px;
 }
-
-/* grid overlay */
-body::before {
-  content:"";
-  position:fixed; inset:0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-  background-size: 80px 80px;
-  pointer-events:none; z-index:0;
+.hero h1{
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(2rem,5vw,3.4rem);
+  letter-spacing:-0.03em;color:var(--accent);
+  margin-bottom:12px;line-height:1.15;
+}
+.hero .sub{
+  font-size:clamp(1rem,1.5vw,1.15rem);color:var(--text-3);
+  max-width:520px;margin:0 auto;line-height:1.6;
 }
 
-/* warm glow */
-body::after {
-  content:"";
-  position:fixed; inset:0;
-  background:
-    radial-gradient(ellipse at 50% 0%, rgba(201,169,110,0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 100%, rgba(201,169,110,0.03) 0%, transparent 40%);
-  pointer-events:none; z-index:0;
+/* ---- cards ---- */
+.cards{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:16px;max-width:1000px;margin:0 auto;padding:0 32px 64px;
+}
+.card{
+  background:#fff;border:1px solid var(--border);
+  border-radius:10px;padding:28px 28px 24px;
+  text-decoration:none;color:inherit;
+  transition:border-color 0.2s,box-shadow 0.2s;
+  display:flex;flex-direction:column;
+  box-shadow:0 1px 3px rgba(0,0,0,0.03);
+}
+.card:hover{
+  border-color:var(--warm-dim);
+  box-shadow:0 4px 16px rgba(0,0,0,0.06);
+}
+.card .c-icon{
+  font-family:var(--font-display);font-weight:600;
+  font-size:2rem;color:var(--accent);margin-bottom:12px;line-height:1;
+}
+.card h3{
+  font-family:var(--font-display);font-weight:600;
+  font-size:18px;color:var(--accent);margin-bottom:6px;
+}
+.card .c-desc{
+  font-size:14px;color:var(--text-3);line-height:1.55;flex:1;
+}
+.card .c-type{
+  font-family:var(--font-mono);font-size:10px;color:var(--warm);
+  letter-spacing:0.08em;margin-top:14px;
+  display:inline-block;
+  padding:3px 10px;background:var(--surface);border-radius:8px;
+  align-self:flex-start;
 }
 
-/* ---- Slide base ---- */
-.slide {
-  width:100vw; height:100vh; height:100dvh;
-  scroll-snap-align: start;
-  display:flex; flex-direction:column;
-  justify-content:center; align-items:center;
-  position:relative;
-  padding: 5vw 6vw;
-  overflow:hidden;
-  isolation:isolate;
+/* ---- footer ---- */
+.footer{
+  text-align:center;padding:0 32px 40px;
+  font-size:12px;color:var(--text-3);font-family:var(--font-mono);
 }
 
-.slide-inner {
-  position:relative; z-index:2;
-  width:100%; max-width:1100px;
-  opacity:0; transform:translateY(36px);
-  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1),
-              transform 0.7s cubic-bezier(0.22,1,0.36,1);
-}
-.slide.visible > .slide-inner { opacity:1; transform:translateY(0); }
-
-/* staggered children */
-.slide-inner > * { opacity:0; transform:translateY(20px);
-  transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1),
-              transform 0.6s cubic-bezier(0.22,1,0.36,1); }
-.slide.visible > .slide-inner > * { opacity:1; transform:translateY(0); }
-.slide.visible > .slide-inner > *:nth-child(1) { transition-delay:0.05s; }
-.slide.visible > .slide-inner > *:nth-child(2) { transition-delay:0.12s; }
-.slide.visible > .slide-inner > *:nth-child(3) { transition-delay:0.19s; }
-.slide.visible > .slide-inner > *:nth-child(4) { transition-delay:0.26s; }
-.slide.visible > .slide-inner > *:nth-child(5) { transition-delay:0.33s; }
-.slide.visible > .slide-inner > *:nth-child(6) { transition-delay:0.40s; }
-
-/* ---- progress bar ---- */
-.progress-bar {
-  position:fixed; top:0; left:0; height:2px; width:0%;
-  background: var(--gold);
-  z-index:1000;
-  box-shadow: 0 0 8px var(--gold-glow);
-  transition: width 0.3s ease;
-}
-
-/* ---- nav dots ---- */
-.nav-dots {
-  position:fixed; right:18px; top:50%; transform:translateY(-50%);
-  display:flex; flex-direction:column; gap:8px; z-index:1000;
-}
-.nav-dots button {
-  width:7px; height:7px; border-radius:50%;
-  border:1px solid rgba(255,255,255,0.2);
-  background:transparent; cursor:pointer; padding:0;
-  transition: all 0.35s ease;
-}
-.nav-dots button.active {
-  background: var(--gold);
-  border-color: var(--gold);
-  box-shadow: 0 0 8px var(--gold-glow);
-  transform: scale(1.5);
-}
-
-/* ---- slide meta ---- */
-.slide-tag {
-  position:absolute; top:28px; left:6vw;
-  font-family: var(--font-mono); font-size: 13px;
-  color: var(--text-3); letter-spacing: 0.12em; z-index:3;
-}
-.slide-num {
-  position:absolute; top:28px; right:6vw;
-  font-family: var(--font-mono); font-size: 12px;
-  color: var(--text-3); letter-spacing: 0.1em; z-index:3;
-}
-.slide-num span { color: var(--gold); }
-
-/* ====== TYPOGRAPHY ====== */
-h1 { font-family: var(--font-title); font-weight:700; font-size: clamp(2.6rem, 5.5vw, 4rem); letter-spacing:-0.02em; line-height:1.15; }
-h2 { font-family: var(--font-title); font-weight:700; font-size: clamp(1.8rem, 3.5vw, 2.6rem); letter-spacing:-0.01em; }
-h3 { font-family: var(--font-body); font-weight:600; font-size: clamp(1.1rem, 1.8vw, 1.35rem); }
-
-.big-number {
-  font-family: var(--font-title); font-weight:700;
-  font-size: clamp(3rem, 7vw, 5rem);
-  line-height:1; letter-spacing:-0.02em;
-}
-
-/* ====== COVER ====== */
-.cover-eyebrow {
-  font-family: var(--font-mono); font-size:14px; color:var(--gold);
-  letter-spacing:0.3em; margin-bottom:28px;
-}
-.cover h1 { margin-bottom:20px; }
-.cover .subtitle {
-  font-size: clamp(1rem, 1.6vw, 1.25rem);
-  color: var(--text-2); max-width:600px; line-height:1.6;
-}
-.cover .meta-row {
-  display:flex; gap:24px; flex-wrap:wrap;
-  font-family: var(--font-mono); font-size:13px; color:var(--text-3);
-  margin-top:40px;
-}
-
-/* ====== STATS BAR ====== */
-.stats-row {
-  display:flex; gap:12px; flex-wrap:wrap;
-}
-.stat-item {
-  flex:1; min-width:140px;
-  background:var(--surface); border:1px solid var(--border);
-  border-radius:8px; padding:20px 24px; text-align:center;
-}
-.stat-item .num {
-  font-family: var(--font-title); font-weight:700;
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  color: var(--gold); line-height:1.1;
-}
-.stat-item .lbl {
-  font-size:13px; color:var(--text-3); margin-top:6px;
-  font-family: var(--font-mono); letter-spacing:0.05em;
-}
-
-/* ====== ORG TREE ====== */
-.org-tree { margin-top:16px; }
-.org-row { display:flex; align-items:center; gap:12px; margin-bottom:6px; }
-.org-row .node {
-  background:var(--surface); border:1px solid var(--border);
-  border-radius:6px; padding:8px 16px; font-size:15px; font-weight:500;
-}
-.org-row .node.root {
-  background:var(--gold); color:#0d0d12; font-weight:700; border-color:var(--gold);
-  font-family:var(--font-title); font-size:17px;
-}
-.org-row .node.team {
-  border-color: var(--gold-dim); font-weight:600; font-size:15px;
-}
-.org-row .node.leaf {
-  font-size:13px; padding:5px 12px; color:var(--text-2);
-}
-.org-row .count {
-  font-family:var(--font-mono); font-size:14px; color:var(--gold);
-  min-width:36px; text-align:center;
-}
-.pl-1 { padding-left:32px; }
-.pl-2 { padding-left:64px; }
-
-/* ====== CARDS ====== */
-.card-grid { display:grid; gap:14px; width:100%; }
-.card-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
-.card-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
-
-.card {
-  background:var(--surface); border:1px solid var(--border);
-  border-radius:8px; padding:22px 24px;
-  border-left:3px solid var(--gold-dim);
-  transition: border-color 0.3s ease, background 0.3s ease;
-}
-.card:hover { border-color:var(--gold); background:rgba(201,169,110,0.03); }
-.card .card-head {
-  font-family: var(--font-body); font-weight:700;
-  font-size: 17px; color:var(--text); margin-bottom:10px;
-}
-.card .card-sub {
-  font-size:12px; color:var(--text-3); font-family:var(--font-mono);
-  display:block; margin-bottom:8px;
-}
-.card ul { list-style:none; }
-.card ul li {
-  font-size: 14px; color:var(--text-2); line-height:1.7;
-  padding-left:16px; position:relative;
-}
-.card ul li::before {
-  content:"─"; position:absolute; left:0; color:var(--gold); opacity:0.5;
-  font-family:var(--font-mono); font-size:10px;
-}
-
-/* tags */
-.tag-row { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
-.tag {
-  font-size:12px; font-family:var(--font-mono);
-  padding:3px 10px; border-radius:12px;
-  color:var(--gold); border:1px solid var(--gold-dim);
-  background:rgba(201,169,110,0.06);
-}
-
-/* ====== TABLE ====== */
-.data-table { width:100%; border-collapse:collapse; font-size:15px; }
-.data-table th {
-  text-align:left; padding:12px 16px;
-  background:rgba(201,169,110,0.04);
-  border-bottom:1px solid var(--gold-dim);
-  color:var(--gold); font-weight:600;
-  font-family:var(--font-mono); font-size:12px;
-  letter-spacing:0.06em; text-transform:uppercase;
-}
-.data-table td {
-  padding:12px 16px;
-  border-bottom:1px solid var(--border);
-  color:var(--text-2);
-}
-.data-table tr:hover td { background:rgba(201,169,110,0.02); }
-
-/* ====== HIGHLIGHT BOX ====== */
-.hl-box {
-  background:rgba(201,169,110,0.04); border:1px solid var(--gold-dim);
-  border-radius:8px; padding:16px 20px; margin-top:16px;
-}
-.hl-box p { font-size:14px; color:var(--text-2); margin:0; }
-.hl-box strong { color:var(--gold); font-weight:600; }
-
-/* ====== END SLIDE ====== */
-.end-eyebrow {
-  font-family:var(--font-mono); font-size:14px; color:var(--text-3);
-  letter-spacing:0.28em; margin-bottom:20px;
-}
-.phase-row { display:flex; gap:36px; justify-content:center; align-items:center; margin-top:36px; }
-.phase-item { text-align:center; }
-.phase-item .p-num {
-  font-family:var(--font-title); font-weight:700;
-  font-size:clamp(2rem,3.5vw,2.8rem); margin-bottom:6px;
-}
-.phase-item .p-label { font-size:15px; color:var(--text-2); }
-.phase-item .p-desc { font-size:13px; color:var(--text-3); margin-top:4px; }
-.phase-arrow { font-family:var(--font-mono); font-size:20px; color:var(--text-3); }
-
-/* ====== RESPONSIVE ====== */
-@media (max-width:900px) {
-  .card-grid.cols-3 { grid-template-columns: repeat(2,1fr); }
-  .slide { padding: 40px 32px; }
-  .slide-tag { left:32px; } .slide-num { right:32px; }
-}
-@media (max-width:600px) {
-  .card-grid.cols-3, .card-grid.cols-2 { grid-template-columns:1fr; }
-  .stats-row { flex-direction:column; }
-  .slide-num { display:none; }
-  .nav-dots { right:6px; }
-  .org-row .node.leaf { display:none; }
+@media(max-width:600px){
+  .hero{padding:48px 24px 32px}
+  .cards{padding:0 16px 40px}
 }
 </style>
 </head>
 <body>
 
-<div class="progress-bar" id="progress"></div>
-<div class="nav-dots" id="navDots"></div>
-
-<!-- ========== SLIDE 01 · 封面 ========== -->
-<div class="slide cover" id="s1">
-  <div class="slide-tag">YOUSKY</div>
-  <div class="slide-num"><span>●</span> 01 / 08</div>
-  <div class="slide-inner" style="text-align:center;">
-    <div class="cover-eyebrow">YOUSKY · 市场营销部</div>
-    <h1 style="margin-bottom:24px;">组织架构全景<br>2026</h1>
-    <p class="subtitle" style="margin:0 auto 48px;">
-      清洁家电出海品牌 · TikTok 内容驱动 · 四大团队十六人编制
-    </p>
-    <div class="meta-row" style="justify-content:center;">
-      <span>16 人总编制</span>
-      <span style="opacity:0.3;">·</span>
-      <span>4 个战壕</span>
-      <span style="opacity:0.3;">·</span>
-      <span>TikTok · 达人 · 广告 · 内容</span>
-    </div>
-  </div>
+<div class="hero">
+  <div class="tag">YOUSKY · 市场营销部</div>
+  <h1>营销资料中心</h1>
+  <p class="sub">品牌出海 · TikTok 内容驱动 · 清洁家电品类<br>张钰萍 · 2026</p>
 </div>
 
-<!-- ========== SLIDE 02 · 部门全景 ========== -->
-<div class="slide" id="s2">
-  <div class="slide-tag">全景</div>
-  <div class="slide-num"><span>●</span> 02 / 08</div>
-  <div class="slide-inner">
-    <h2 style="margin-bottom:6px;">部门全景概览</h2>
-    <p style="font-size:15px;color:var(--text-3);margin-bottom:28px;">市场营销总监直管四大团队，全员 16 人</p>
+<div class="cards">
 
-    <div class="stats-row" style="margin-bottom:28px;">
-      <div class="stat-item"><div class="num">16</div><div class="lbl">总人数</div></div>
-      <div class="stat-item"><div class="num">4</div><div class="lbl">团队数</div></div>
-      <div class="stat-item"><div class="num">11</div><div class="lbl">现有人员</div></div>
-      <div class="stat-item"><div class="num">+5</div><div class="lbl">待招聘</div></div>
-    </div>
+  <a href="marketing-org/viewer-zh.html" class="card">
+    <div class="c-icon">01</div>
+    <h3>市场营销部组织架构</h3>
+    <p class="c-desc">8 页完整 Slide 演示文稿，涵盖四大团队 16 人编制、岗位职责、招聘路线图 — TikTok · 达人 · 广告 · 内容社区</p>
+    <span class="c-type">8页 Slide</span>
+  </a>
 
-    <div class="org-tree">
-      <div class="org-row"><div class="node root">市场营销总监</div></div>
-      <div class="pl-1">
-        <div class="org-row"><div class="node team">TikTok 团队</div><span class="count">6人</span></div>
-        <div class="pl-2"><div class="org-row"><div class="node leaf">内容负责人 · 创意策划 · AI视频 · 剪辑 · 运营 · 数据分析</div></div></div>
-        <div class="org-row" style="margin-top:4px;"><div class="node team">达人合作团队</div><span class="count">3人</span></div>
-        <div class="pl-2"><div class="org-row"><div class="node leaf">合作负责人 · 外联专员 ×2</div></div></div>
-        <div class="org-row" style="margin-top:4px;"><div class="node team">广告投放团队</div><span class="count">3人</span></div>
-        <div class="pl-2"><div class="org-row"><div class="node leaf">Meta广告 · Google广告 · 着陆页/CRO · 网站管理</div></div></div>
-        <div class="org-row" style="margin-top:4px;"><div class="node team">内容与社区团队</div><span class="count">4人</span></div>
-        <div class="pl-2"><div class="org-row"><div class="node leaf">内容经理 · PR/内容 · EDM/CRM · 社区/UGC</div></div></div>
-      </div>
-    </div>
-  </div>
+  <a href="marketing-org/org-chart-zh.html" class="card">
+    <div class="c-icon">02</div>
+    <h3>组织架构框架图</h3>
+    <p class="c-desc">单页树形架构图，市场营销部 + IT 部共 19 人全景，逐岗标注人数与职责，清晰展示汇报关系</p>
+    <span class="c-type">单页图表</span>
+  </a>
+
+  <a href="marketing-org/april-review-zh.html" class="card">
+    <div class="c-icon">03</div>
+    <h3>4月复盘 & 5月战略部署</h3>
+    <p class="c-desc">12 页 Consulting 风格汇报 Slide。跨部门数据拉通（亚马逊 · TK · KOL · 产品端），五大结构性问题诊断，5 月私域引擎搭建计划</p>
+    <span class="c-type">12页 Slide</span>
+  </a>
+
+  <a href="Yousky手持清洁机海外KOL营销拆解.pdf" class="card">
+    <div class="c-icon">04</div>
+    <h3>Yousky 手持清洁机 · 海外 KOL 营销拆解</h3>
+    <p class="c-desc">完整 PDF 策略文档。团队能力盘点、产品差异化定位、KOL 矩阵策略（头部→腰部→尾部）、内容 SOP、激励分佣模型、数据复盘体系</p>
+    <span class="c-type">PDF 文档</span>
+  </a>
+
 </div>
 
-<!-- ========== SLIDE 03 · TikTok 团队 ========== -->
-<div class="slide" id="s3">
-  <div class="slide-tag">TikTok</div>
-  <div class="slide-num"><span>●</span> 03 / 08</div>
-  <div class="slide-inner">
-    <h2 style="margin-bottom:4px;">TikTok 内容与运营团队</h2>
-    <p style="font-size:15px;color:var(--text-3);margin-bottom:8px;">现有团队 · 内容创作到账号运营全链路覆盖</p>
-    <div style="font-family:var(--font-mono);font-size:13px;color:var(--gold);margin-bottom:24px;">6 人 · 已有编制</div>
-
-    <div class="card-grid cols-3">
-      <div class="card">
-        <div class="card-head">内容负责人</div>
-        <ul><li>把控TikTok内容方向与周度发布计划</li><li>追踪清洁家电品类热点，拆解爆款选题</li><li>统筹团队产出节奏，做内容效果复盘</li></ul>
-      </div>
-      <div class="card">
-        <div class="card-head">创意策划</div>
-        <ul><li>撰写产品展示脚本与分镜</li><li>设计前3秒钩子，提升完播率</li><li>跑创意测试，沉淀有效素材模板</li></ul>
-      </div>
-      <div class="card">
-        <div class="card-head">AI 视频工作流</div>
-        <ul><li>搭建AI批量生成短视频的管线</li><li>配置数字人口播 + AI 配音流程</li><li>把控AI产出质量，持续迭代 prompt</li></ul>
-      </div>
-      <div class="card">
-        <div class="card-head">视频剪辑</div>
-        <ul><li>负责拍摄素材后期精修与调色</li><li>添加动态图形与字幕特效</li><li>适配 TK / IG / YT 多格式输出</li></ul>
-      </div>
-      <div class="card">
-        <div class="card-head">TikTok 运营</div>
-        <ul><li>管理品牌TK账号矩阵，维护账号安全</li><li>执行每日发布，跟进热门话题与BGM</li><li>运营TK Shop小店与联盟带货</li></ul>
-      </div>
-      <div class="card">
-        <div class="card-head">内容数据分析</div>
-        <ul><li>搭建TK内容数据看板</li><li>跑A/B测试，输出素材效果分析报告</li><li>追踪播放量、转化率、ROI 等核心指标</li></ul>
-      </div>
-    </div>
-  </div>
+<div class="footer">
+  Yousky Marketing · 2026
 </div>
-
-<!-- ========== SLIDE 04 · 达人合作 ========== -->
-<div class="slide" id="s4">
-  <div class="slide-tag">达人</div>
-  <div class="slide-num"><span>●</span> 04 / 08</div>
-  <div class="slide-inner">
-    <h2 style="margin-bottom:4px;">达人合作团队</h2>
-    <p style="font-size:15px;color:var(--text-3);margin-bottom:8px;">新建团队 · 从零搭建达人BD与关系管理体系</p>
-    <div style="font-family:var(--font-mono);font-size:13px;color:var(--gold);margin-bottom:24px;">3 人 · 1 人已有 + 2 人待招</div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
-      <div class="card" style="grid-column:1/-1;">
-        <div class="card-head">达人合作负责人 <span style="font-weight:400;font-size:13px;color:var(--text-3);margin-left:8px;">1人 · 已有</span></div>
-        <div class="tag-row">
-          <span class="tag">达人筛选策略</span>
-          <span class="tag">预算与ROI管控</span>
-          <span class="tag">样品寄送协调</span>
-          <span class="tag">合作条款谈判</span>
-          <span class="tag">跨团队资源衔接</span>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-head">外联专员 <span style="font-weight:400;font-size:13px;color:var(--text-3);">#1 · 待招</span></div>
-        <ul><li>TikTok 达人批量建联与初步沟通</li><li>Instagram DM 开发海外达人</li><li>邮件外联及后续跟进</li></ul>
-      </div>
-      <div class="card">
-        <div class="card-head">外联专员 <span style="font-weight:400;font-size:13px;color:var(--text-3);">#2 · 待招</span></div>
-        <ul><li>TikTok 腰部达人定向挖掘</li><li>达人数据库维护与标签分类</li><li>长期合作关系维护与复投</li></ul>
-      </div>
-    </div>
-
-    <div class="hl-box">
-      <p><strong>团队逻辑：</strong>负责人把控策略与谈判，两名专员分渠道（TK / IG）并行拓展，按达人量级分工协作。</p>
-    </div>
-  </div>
-</div>
-
-<!-- ========== SLIDE 05 · 广告投放 ========== -->
-<div class="slide" id="s5">
-  <div class="slide-tag">广告</div>
-  <div class="slide-num"><span>●</span> 05 / 08</div>
-  <div class="slide-inner">
-    <h2 style="margin-bottom:4px;">网站 / 广告投放团队</h2>
-    <p style="font-size:15px;color:var(--text-3);margin-bottom:8px;">现有团队 · 独立站运营与付费流量获取</p>
-    <div style="font-family:var(--font-mono);font-size:13px;color:var(--gold);margin-bottom:24px;">3 人 · 已有编制 · 每人覆盖多职能</div>
-
-    <div class="card-grid cols-2">
-      <div class="card" style="grid-column:1/-1;border-left-color:var(--gold);">
-        <div class="card-head">精干配置 — 3 人覆盖 4 大板块</div>
-        <p style="font-size:14px;color:var(--text-2);">从广告投放到独立站转化，全链路闭环。每人身兼多职，适合现阶段业务体量。</p>
-      </div>
-      <div class="card">
-        <div class="card-head">Meta 广告投放</div>
-        <ul><li>Facebook + Instagram 信息流广告</li><li>受众定向、再营销与Lookalike</li><li>素材测试，优化CTR与ROAS</li></ul>
-      </div>
-      <div class="card">
-        <div class="card-head">Google 广告投放</div>
-        <ul><li>搜索广告 + Shopping 购物广告</li><li>YouTube 展示 + Performance Max</li><li>关键词拓词、出价策略与预算分配</li></ul>
-      </div>
-      <div class="card">
-        <div class="card-head">着陆页 / CRO</div>
-        <ul><li>产品页A/B测试与转化率优化</li><li>着陆页文案与视觉迭代</li><li>用户行为分析与漏斗追踪</li></ul>
-      </div>
-      <div class="card">
-        <div class="card-head">网站运营</div>
-        <ul><li>Shopify 独立站日常维护</li><li>SEO 技术优化与页面性能</li><li>插件管理、速度优化与安全</li></ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ========== SLIDE 06 · 内容与社区 ========== -->
-<div class="slide" id="s6">
-  <div class="slide-tag">内容</div>
-  <div class="slide-num"><span>●</span> 06 / 08</div>
-  <div class="slide-inner">
-    <h2 style="margin-bottom:4px;">内容与社区营销团队</h2>
-    <p style="font-size:15px;color:var(--text-3);margin-bottom:8px;">全新团队 · 内容驱动品牌增长与用户沉淀</p>
-    <div style="font-family:var(--font-mono);font-size:13px;color:var(--gold);margin-bottom:24px;">4 人 · 全部待招 · 最高优先级</div>
-
-    <div class="card-grid cols-2">
-      <div class="card" style="grid-column:1/-1;border-left-color:var(--gold);">
-        <div class="card-head">内容营销经理 <span style="font-weight:400;font-size:13px;color:var(--text-3);margin-left:8px;">1人 · 待招</span></div>
-        <div class="tag-row">
-          <span class="tag">内容策略制定</span>
-          <span class="tag">AI内容生产流程</span>
-          <span class="tag">TK内容多平台复用</span>
-          <span class="tag">品牌叙事统一</span>
-          <span class="tag">跨团队内容协调</span>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-head">PR & 内容专员 <span style="font-weight:400;font-size:13px;color:var(--text-3);">1人 · 待招</span></div>
-        <ul><li>撰写英文PR稿，做海外媒体外联</li><li>写SEO博客，覆盖清洁家电长尾词</li><li>针对GEO（生成式搜索）优化内容结构</li></ul>
-      </div>
-      <div class="card">
-        <div class="card-head">EDM & CRM 专员 <span style="font-weight:400;font-size:13px;color:var(--text-3);">1人 · 待招</span></div>
-        <ul><li>搭建用户生命周期自动化邮件流</li><li>策划 Newsletter，定期触达订阅用户</li><li>用户分群、A/B测试、流失召回</li></ul>
-      </div>
-      <div class="card" style="grid-column:1/-1;">
-        <div class="card-head">社区 & UGC 专员 <span style="font-weight:400;font-size:13px;color:var(--text-3);">1人 · 待招</span></div>
-        <div class="tag-row">
-          <span class="tag">Reddit 账号矩阵运营</span>
-          <span class="tag">Karma 积累与养号</span>
-          <span class="tag">Reddit 社区互动引流</span>
-          <span class="tag">Facebook Group 运营</span>
-          <span class="tag">种子用户招募</span>
-          <span class="tag">UGC 内容挖掘与授权</span>
-          <span class="tag">品牌口碑与舆情监控</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ========== SLIDE 07 · 编制总结 ========== -->
-<div class="slide" id="s7">
-  <div class="slide-tag">编制</div>
-  <div class="slide-num"><span>●</span> 07 / 08</div>
-  <div class="slide-inner">
-    <h2 style="margin-bottom:16px;">人员编制 & 招聘路线图</h2>
-
-    <table class="data-table" style="margin-bottom:20px;">
-      <thead><tr><th>团队</th><th>编制</th><th>状态</th><th>优先级</th></tr></thead>
-      <tbody>
-        <tr>
-          <td style="color:var(--text);font-weight:600;">TikTok 团队</td>
-          <td style="color:var(--gold);font-weight:700;">6</td>
-          <td style="color:var(--text-3);">现有团队，已就位</td>
-          <td style="color:var(--text-3);">—</td>
-        </tr>
-        <tr>
-          <td style="color:var(--text);font-weight:600;">达人合作</td>
-          <td style="color:var(--gold);font-weight:700;">3</td>
-          <td style="color:var(--gold);">1人已有 + 2人待招</td>
-          <td style="color:#e8a84c;">高</td>
-        </tr>
-        <tr>
-          <td style="color:var(--text);font-weight:600;">广告投放</td>
-          <td style="color:var(--gold);font-weight:700;">3</td>
-          <td style="color:var(--text-3);">现有团队，已就位</td>
-          <td style="color:var(--text-3);">—</td>
-        </tr>
-        <tr>
-          <td style="color:var(--text);font-weight:600;">内容与社区</td>
-          <td style="color:var(--gold);font-weight:700;">4</td>
-          <td style="color:var(--gold);">4人全部待招</td>
-          <td style="color:#e07050;">紧急</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="card-grid cols-2">
-      <div class="card" style="border-left-color:var(--gold);">
-        <div class="card-head">Phase 1 · 立即启动</div>
-        <ul>
-          <li>招聘达人外联专员 ×2（TK渠道优先）</li>
-          <li>招聘内容营销经理（核心岗位，优先到岗）</li>
-          <li>招聘 PR & 内容专员</li>
-          <li>达人负责人 + 内容经理对齐协作流程</li>
-        </ul>
-      </div>
-      <div class="card" style="border-left-color:var(--gold);">
-        <div class="card-head">Phase 2 · 第 3～6 个月</div>
-        <ul>
-          <li>招聘 EDM & CRM 专员</li>
-          <li>招聘社区 & UGC 专员</li>
-          <li>四大团队全部到齐，进入满编运转</li>
-          <li>广告 + 达人 + 内容三角协同正式跑通</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ========== SLIDE 08 · 结尾 ========== -->
-<div class="slide" id="s8">
-  <div class="slide-tag">终点</div>
-  <div class="slide-num"><span>●</span> 08 / 08</div>
-  <div class="slide-inner" style="text-align:center;">
-    <div class="end-eyebrow">YOUSKY · 市场营销部</div>
-    <h1 style="margin-bottom:12px;">搭建 · 扩张 · 优化</h1>
-    <p style="font-size:18px;color:var(--text-2);max-width:560px;margin:0 auto 40px;line-height:1.7;">
-      「广告 + 达人 + 内容」三角驱动<br>16 人 · 4 团队 · 一个目标
-    </p>
-    <div class="phase-row">
-      <div class="phase-item">
-        <div class="p-num" style="color:var(--gold);">Phase 1</div>
-        <div class="p-label">基础搭建</div>
-        <div class="p-desc">核心岗位就位</div>
-      </div>
-      <div class="phase-arrow">→</div>
-      <div class="phase-item">
-        <div class="p-num" style="color:var(--gold);">Phase 2</div>
-        <div class="p-label">规模扩张</div>
-        <div class="p-desc">团队满编 · SOP标准化</div>
-      </div>
-      <div class="phase-arrow">→</div>
-      <div class="phase-item">
-        <div class="p-num" style="color:var(--gold);">Phase 3</div>
-        <div class="p-label">持续优化</div>
-        <div class="p-desc">数据驱动迭代</div>
-      </div>
-    </div>
-    <div style="margin-top:44px;font-family:var(--font-mono);font-size:12px;color:var(--text-3);">市场营销部 · 2026 · <a href="marketing-org/org-chart-zh.html" style="color:var(--gold);text-decoration:none;">框架图</a> · <a href="marketing-org/april-review-zh.html" style="color:var(--gold);text-decoration:none;">4月复盘</a></div>
-  </div>
-</div>
-
-<script>
-(function(){
-  var slides = document.querySelectorAll('.slide');
-  var total = slides.length;
-  var dots = document.getElementById('navDots');
-  var bar = document.getElementById('progress');
-
-  for(var i=0; i<total; i++){
-    var btn = document.createElement('button');
-    btn.setAttribute('aria-label','第'+(i+1)+'页');
-    btn.onclick = (function(idx){
-      return function(){ document.getElementById('s'+(idx+1)).scrollIntoView({behavior:'smooth'}); };
-    })(i);
-    dots.appendChild(btn);
-  }
-
-  var obs = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      var idx = parseInt(e.target.id.replace('s','')) - 1;
-      var btns = dots.querySelectorAll('button');
-      if(e.isIntersecting){
-        e.target.classList.add('visible');
-        btns.forEach(function(b,i){ b.classList.toggle('active', i===idx); });
-        bar.style.width = ((idx+1)/total*100)+'%';
-      } else {
-        e.target.classList.remove('visible');
-      }
-    });
-  }, { threshold: 0.4 });
-
-  slides.forEach(function(s){ obs.observe(s); });
-
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'ArrowDown' || e.key === 'ArrowRight'){
-      e.preventDefault();
-      var cur = Math.round(window.scrollY / window.innerHeight);
-      var next = Math.min(cur+1, total-1);
-      document.getElementById('s'+(next+1)).scrollIntoView({behavior:'smooth'});
-    } else if(e.key === 'ArrowUp' || e.key === 'ArrowLeft'){
-      e.preventDefault();
-      var cur = Math.round(window.scrollY / window.innerHeight);
-      var prev = Math.max(cur-1, 0);
-      document.getElementById('s'+(prev+1)).scrollIntoView({behavior:'smooth'});
-    }
-  });
-})();
-</script>
 
 </body>
 </html>
