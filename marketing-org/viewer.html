@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yousky Marketing Department · Org Structure 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700,800&f[]=satoshi@400,500,700,900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+<style>
+:root {
+  --bg-primary:   #070a14;
+  --bg-secondary: #0f1420;
+  --bg-tertiary:  #161c2e;
+  --accent-cyan:    #00ffcc;
+  --accent-magenta: #ff3d9a;
+  --accent-blue:    #4cc9ff;
+  --accent-yellow:  #ffd93d;
+  --text-primary:   #e6edf3;
+  --text-secondary: #8b949e;
+  --text-muted:     #545d6b;
+  --font-display: "Clash Display", "Noto Sans SC", sans-serif;
+  --font-body:    "Satoshi", "Noto Sans SC", sans-serif;
+  --font-mono:    "JetBrains Mono", "SF Mono", Consolas, monospace;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-snap-type: y mandatory; scroll-behavior: smooth; overflow-x: hidden; }
+html, body { height: 100%; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.55;
+}
+
+/* Grid background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(76, 201, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(76, 201, 255, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Glow */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 10%, rgba(0, 255, 204, 0.08) 0%, transparent 45%),
+    radial-gradient(ellipse at 85% 90%, rgba(255, 61, 154, 0.06) 0%, transparent 45%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Slide */
+.slide {
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 64px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.slide > * { position: relative; z-index: 2; }
+
+/* Progress bar */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta));
+  z-index: 1000;
+  box-shadow: 0 0 12px var(--accent-cyan);
+  transition: width 0.1s linear;
+}
+
+/* Nav dots */
+.nav-dots {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+.nav-dots button {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--accent-cyan);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-out-expo);
+  padding: 0;
+}
+.nav-dots button.active {
+  background: var(--accent-cyan);
+  box-shadow: 0 0 10px var(--accent-cyan);
+  transform: scale(1.4);
+}
+
+/* Slide meta */
+.slide-meta {
+  position: absolute;
+  top: 28px;
+  left: 64px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
+  letter-spacing: 0.15em;
+  z-index: 3;
+}
+.slide-meta .dot {
+  color: var(--accent-cyan);
+  animation: blink 1.4s steps(2) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+.slide-chapter {
+  position: absolute;
+  top: 28px;
+  right: 64px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent-cyan);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  z-index: 3;
+}
+.slide-chapter::before { content: "> "; color: var(--accent-magenta); }
+
+/* Title slide */
+.slide-cover { text-align: center; }
+.slide-cover .eyebrow {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--accent-cyan);
+  letter-spacing: 0.35em;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+.slide-cover h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 5.5vw, 4.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-cyan) 50%, var(--accent-magenta) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.slide-cover .subtitle {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto 24px;
+  line-height: 1.5;
+}
+.slide-cover .meta {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 48px;
+}
+.slide-cover .bottom-tag {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.2em;
+}
+
+/* Content slide */
+.slide-content-inner {
+  width: 100%;
+  max-width: 1200px;
+}
+.slide-content-inner .slide-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.slide-content-inner .slide-num {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+}
+.slide-content-inner .slide-num.c { color: var(--accent-cyan); }
+.slide-content-inner .slide-num.m { color: var(--accent-magenta); }
+.slide-content-inner .slide-num.b { color: var(--accent-blue); }
+.slide-content-inner .slide-num.y { color: var(--accent-yellow); }
+.slide-content-inner h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  color: var(--text-primary);
+  margin: 0;
+}
+.slide-content-inner .slide-sub {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin: 0 0 20px;
+  font-family: var(--font-mono);
+}
+.slide-content-inner .headcount-badge {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 2px 10px;
+  border-radius: 4px;
+  margin-left: 8px;
+  font-weight: 600;
+}
+.headcount-badge.c { color: var(--accent-cyan); border: 1px solid rgba(0,255,204,0.2); background: rgba(0,255,204,0.06); }
+.headcount-badge.m { color: var(--accent-magenta); border: 1px solid rgba(255,61,154,0.2); background: rgba(255,61,154,0.06); }
+.headcount-badge.b { color: var(--accent-blue); border: 1px solid rgba(76,201,255,0.2); background: rgba(76,201,255,0.06); }
+
+/* Stats bar */
+.stats-row {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.stat-card {
+  flex: 1;
+  min-width: 120px;
+  background: var(--bg-tertiary);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  padding: 14px 18px;
+  text-align: center;
+}
+.stat-card .num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 26px;
+  color: var(--text-primary);
+}
+.stat-card .lbl {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 4px;
+  font-family: var(--font-mono);
+}
+.stat-card.ac { border-left: 3px solid var(--accent-cyan); }
+.stat-card.am { border-left: 3px solid var(--accent-magenta); }
+.stat-card.ab { border-left: 3px solid var(--accent-blue); }
+.stat-card.ay { border-left: 3px solid var(--accent-yellow); }
+
+/* Cards */
+.card-grid {
+  display: grid;
+  gap: 14px;
+  width: 100%;
+}
+.card-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.card-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.card-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+.card {
+  background: var(--bg-tertiary);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  padding: 18px;
+  transition: border-color 0.3s var(--ease-out-expo);
+}
+.card:hover { border-color: rgba(0,255,204,0.2); }
+.card.ac { border-left: 3px solid var(--accent-cyan); }
+.card.am { border-left: 3px solid var(--accent-magenta); }
+.card.ab { border-left: 3px solid var(--accent-blue); }
+.card .card-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+.card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.card ul li {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  padding: 1px 0;
+  padding-left: 14px;
+  position: relative;
+}
+.card ul li::before {
+  content: ">";
+  position: absolute;
+  left: 0;
+  color: var(--accent-cyan);
+  opacity: 0.4;
+  font-family: var(--font-mono);
+}
+.card .card-hc {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent-cyan);
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+/* Sub-role tags */
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 6px;
+}
+.tag {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+.tag.tc { color: var(--accent-cyan); border: 1px solid rgba(0,255,204,0.2); background: rgba(0,255,204,0.06); }
+.tag.tm { color: var(--accent-magenta); border: 1px solid rgba(255,61,154,0.2); background: rgba(255,61,154,0.06); }
+
+/* Org tree */
+.org-tree { margin-top: 8px; }
+.org-node {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.org-node .nl {
+  background: var(--bg-tertiary);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 13px;
+  color: var(--text-primary);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.org-node .nl.root {
+  background: var(--accent-cyan);
+  color: #070a14;
+  font-weight: 700;
+  border-color: var(--accent-cyan);
+}
+.org-node .nl.team { border-color: rgba(0,255,204,0.25); font-weight: 600; }
+.org-node .nc {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent-cyan);
+}
+.pl-1 { padding-left: 28px; }
+.pl-2 { padding-left: 56px; }
+.pl-3 { padding-left: 84px; }
+
+/* Table */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.data-table th {
+  text-align: left;
+  padding: 10px 14px;
+  background: rgba(0,255,204,0.04);
+  border-bottom: 1px solid rgba(0,255,204,0.15);
+  color: var(--accent-cyan);
+  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+.data-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  color: var(--text-secondary);
+}
+.data-table tr:hover td { background: rgba(0,255,204,0.03); }
+
+/* Highlight box */
+.hl-box {
+  background: rgba(0,255,204,0.04);
+  border: 1px solid rgba(0,255,204,0.12);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-top: 14px;
+}
+.hl-box p { font-size: 13px; color: var(--text-secondary); margin: 0; }
+.hl-box strong { color: var(--accent-cyan); }
+
+/* End slide */
+.slide-end { text-align: center; }
+.slide-end .end-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--accent-magenta);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.slide-end h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+.slide-end .end-sub {
+  font-size: 17px;
+  color: var(--text-secondary);
+  max-width: 550px;
+  margin: 0 auto 36px;
+}
+.slide-end .phase-row {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
+.slide-end .phase {
+  text-align: center;
+}
+.slide-end .phase .pn {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 36px;
+  margin-bottom: 6px;
+}
+.slide-end .phase .plb {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+.slide-end .phase .pm {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+.slide-end .arrow {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .card-grid.cols-3, .card-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+  .slide { padding: 40px; }
+}
+@media (max-width: 600px) {
+  .card-grid.cols-3, .card-grid.cols-4, .card-grid.cols-2 { grid-template-columns: 1fr; }
+  .stats-row { flex-direction: column; }
+  .slide-chapter { display: none; }
+  .nav-dots { right: 8px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Progress bar -->
+<div class="progress-bar" id="progress"></div>
+
+<!-- Nav dots -->
+<div class="nav-dots" id="navDots"></div>
+
+<!-- ============ SLIDE 01 : COVER ============ -->
+<div class="slide slide-cover" id="s1">
+  <div class="slide-meta"><span class="dot">●</span> 01 / 08</div>
+  <div class="slide-chapter">Cover</div>
+  <div class="eyebrow"><span style="color:var(--accent-magenta);">◆</span> Yousky <span style="color:var(--text-muted);">·</span> 2026</div>
+  <h1>Marketing Department<br>Org Structure</h1>
+  <p class="subtitle">市场营销部 · 组织架构全景</p>
+  <div class="meta">
+    <span>Total: 16 人</span>
+    <span style="color:var(--text-muted);">|</span>
+    <span>4 Teams</span>
+    <span style="color:var(--text-muted);">|</span>
+    <span>TikTok · Creator · Paid Media · Content</span>
+  </div>
+  <div class="bottom-tag">
+    <span>BUILD</span>
+    <span style="opacity:0.3;">——</span>
+    <span>SCALE</span>
+    <span style="opacity:0.3;">——</span>
+    <span>OPTIMIZE</span>
+  </div>
+</div>
+
+<!-- ============ SLIDE 02 : OVERVIEW ============ -->
+<div class="slide" id="s2">
+  <div class="slide-meta"><span class="dot">●</span> 02 / 08</div>
+  <div class="slide-chapter">Overview</div>
+  <div class="slide-content-inner">
+    <div class="slide-header">
+      <span class="slide-num c">01</span>
+      <h2>Department Overview</h2>
+    </div>
+    <p class="slide-sub">市场营销部 · 四大团队全景</p>
+
+    <div class="stats-row">
+      <div class="stat-card ac"><div class="num">16</div><div class="lbl">Total Headcount</div></div>
+      <div class="stat-card am"><div class="num">4</div><div class="lbl">Teams</div></div>
+      <div class="stat-card ab"><div class="num">6</div><div class="lbl">TikTok Team</div></div>
+      <div class="stat-card ay"><div class="num">3</div><div class="lbl">Creator Partnerships</div></div>
+      <div class="stat-card am"><div class="num">3</div><div class="lbl">Paid Media</div></div>
+      <div class="stat-card ab"><div class="num">4</div><div class="lbl">Content &amp; Community</div></div>
+    </div>
+
+    <div class="org-tree">
+      <div class="org-node"><div class="nl root">Marketing Director</div></div>
+      <div class="pl-1">
+        <div class="org-node"><div class="nl team" style="border-color:rgba(0,255,204,0.3);">TikTok Team</div><span class="nc">6</span></div>
+        <div class="pl-2"><div class="org-node"><div class="nl" style="font-size:11px;padding:4px 10px;">Content Lead · Creative Planning · AI Video · Video Editing · Ops · Analytics</div></div></div>
+      </div>
+      <div class="pl-1" style="margin-top:4px;">
+        <div class="org-node"><div class="nl team" style="border-color:rgba(255,61,154,0.3);">Creator Partnerships</div><span class="nc">3</span></div>
+        <div class="pl-2"><div class="org-node"><div class="nl" style="font-size:11px;padding:4px 10px;">Partnerships Lead · Outreach Specialist × 2</div></div></div>
+      </div>
+      <div class="pl-1" style="margin-top:4px;">
+        <div class="org-node"><div class="nl team" style="border-color:rgba(76,201,255,0.3);">Website / Paid Media</div><span class="nc">3</span></div>
+        <div class="pl-2"><div class="org-node"><div class="nl" style="font-size:11px;padding:4px 10px;">Meta Ads · Google Ads · Landing Page / CRO · Website Mgmt</div></div></div>
+      </div>
+      <div class="pl-1" style="margin-top:4px;">
+        <div class="org-node"><div class="nl team" style="border-color:rgba(0,255,204,0.3);">Content &amp; Community Marketing</div><span class="nc">4</span></div>
+        <div class="pl-2"><div class="org-node"><div class="nl" style="font-size:11px;padding:4px 10px;">Content Mgr · PR &amp; Content Spec · EDM &amp; CRM Spec · Community &amp; UGC Spec</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SLIDE 03 : TIKTOK TEAM ============ -->
+<div class="slide" id="s3">
+  <div class="slide-meta"><span class="dot">●</span> 03 / 08</div>
+  <div class="slide-chapter">TikTok</div>
+  <div class="slide-content-inner">
+    <div class="slide-header">
+      <span class="slide-num c">02</span>
+      <h2>TikTok Team</h2>
+      <span class="headcount-badge c">6 人</span>
+    </div>
+    <p class="slide-sub">TikTok 内容创作与运营团队</p>
+    <div class="card-grid cols-3">
+      <div class="card ac">
+        <div class="card-title">TikTok Content Lead</div>
+        <ul><li>Content strategy &amp; calendar</li><li>Trend research &amp; topic planning</li><li>Team workflow management</li><li>Performance review</li></ul>
+      </div>
+      <div class="card ac">
+        <div class="card-title">Creative Planning</div>
+        <ul><li>Script &amp; storyboard creation</li><li>Hook &amp; retention optimization</li><li>Creative testing roadmap</li><li>Competitor creative research</li></ul>
+      </div>
+      <div class="card ac">
+        <div class="card-title">AI Video Workflow</div>
+        <ul><li>AI video generation pipeline</li><li>AI avatar &amp; voiceover production</li><li>Automation tooling</li><li>Quality control &amp; iteration</li></ul>
+      </div>
+      <div class="card ac">
+        <div class="card-title">Video Editing</div>
+        <ul><li>Post-production &amp; cuts</li><li>Motion graphics &amp; effects</li><li>Multi-format adaptation</li><li>Asset management</li></ul>
+      </div>
+      <div class="card ac">
+        <div class="card-title">TikTok Operations</div>
+        <ul><li>Account management &amp; safety</li><li>Posting schedule &amp; publishing</li><li>Trend participation &amp; hashtags</li><li>Shop/affiliate operations</li></ul>
+      </div>
+      <div class="card ac">
+        <div class="card-title">Content Analytics</div>
+        <ul><li>Performance dashboard</li><li>A/B test analysis &amp; insights</li><li>Benchmarking &amp; reporting</li><li>ROI &amp; conversion tracking</li></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SLIDE 04 : CREATOR PARTNERSHIPS ============ -->
+<div class="slide" id="s4">
+  <div class="slide-meta"><span class="dot">●</span> 04 / 08</div>
+  <div class="slide-chapter">Creator</div>
+  <div class="slide-content-inner">
+    <div class="slide-header">
+      <span class="slide-num m">03</span>
+      <h2>Creator Partnerships</h2>
+      <span class="headcount-badge m">3 人</span>
+    </div>
+    <p class="slide-sub">达人合作与关系管理团队</p>
+
+    <div class="card-grid cols-3">
+      <div class="card am" style="grid-column:1/-1;">
+        <div class="card-title">Creator Partnerships Lead <span style="font-size:11px;color:var(--accent-cyan);margin-left:6px;font-family:var(--font-mono);">1 人</span></div>
+        <div class="tag-row">
+          <span class="tag tm">Creator Strategy</span>
+          <span class="tag tm">Budget Control</span>
+          <span class="tag tm">Sample Coordination</span>
+          <span class="tag tm">Partnership Negotiation</span>
+          <span class="tag tm">Cross-team Coordination</span>
+        </div>
+      </div>
+      <div class="card am">
+        <div class="card-title">Outreach Specialist <span style="font-size:11px;color:var(--text-muted);margin-left:4px;font-family:var(--font-mono);">#1</span></div>
+        <ul><li>TikTok outreach</li><li>Instagram DM</li><li>Email outreach</li><li>Follow-up &amp; nurturing</li></ul>
+      </div>
+      <div class="card am">
+        <div class="card-title">Outreach Specialist <span style="font-size:11px;color:var(--text-muted);margin-left:4px;font-family:var(--font-mono);">#2</span></div>
+        <ul><li>TikTok outreach</li><li>Instagram DM</li><li>Creator sourcing</li><li>Relationship building</li></ul>
+      </div>
+    </div>
+
+    <div class="hl-box">
+      <p><strong>Structure:</strong> 1 Lead (strategy + negotiation + coordination) + 2 Specialists (execution + sourcing + relationship)</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SLIDE 05 : PAID MEDIA ============ -->
+<div class="slide" id="s5">
+  <div class="slide-meta"><span class="dot">●</span> 05 / 08</div>
+  <div class="slide-chapter">Paid Media</div>
+  <div class="slide-content-inner">
+    <div class="slide-header">
+      <span class="slide-num b">04</span>
+      <h2>Website / Paid Media</h2>
+      <span class="headcount-badge b">3 人</span>
+    </div>
+    <p class="slide-sub">广告投放 · 着陆页转化 · 网站运营</p>
+
+    <div class="card-grid cols-2">
+      <div class="card ab" style="grid-column:1/-1;">
+        <div class="card-title">Team Scope — 3 People Covering 4 Areas</div>
+        <p style="font-size:12px;color:var(--text-secondary);margin:4px 0 0;">一个精干团队，每人承担多个职能，覆盖广告投放与网站运营全链路。</p>
+      </div>
+      <div class="card ab">
+        <div class="card-title" style="font-size:14px;">Meta Ads</div>
+        <ul><li>Facebook &amp; Instagram ad campaigns</li><li>Audience targeting &amp; retargeting</li><li>Creative testing &amp; optimization</li><li>Budget management &amp; ROAS</li></ul>
+      </div>
+      <div class="card ab">
+        <div class="card-title" style="font-size:14px;">Google Ads</div>
+        <ul><li>Search &amp; Shopping campaigns</li><li>Display &amp; YouTube advertising</li><li>Keyword strategy &amp; bidding</li><li>Performance Max campaigns</li></ul>
+      </div>
+      <div class="card ab">
+        <div class="card-title" style="font-size:14px;">Landing Page / CRO</div>
+        <ul><li>A/B testing &amp; conversion optimization</li><li>Landing page design &amp; copy</li><li>User journey optimization</li><li>Analytics &amp; funnel tracking</li></ul>
+      </div>
+      <div class="card ab">
+        <div class="card-title" style="font-size:14px;">Website Management</div>
+        <ul><li>Site maintenance &amp; updates</li><li>SEO technical foundation</li><li>Site speed &amp; performance</li><li>CMS &amp; infrastructure</li></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SLIDE 06 : CONTENT & COMMUNITY ============ -->
+<div class="slide" id="s6">
+  <div class="slide-meta"><span class="dot">●</span> 06 / 08</div>
+  <div class="slide-chapter">Content</div>
+  <div class="slide-content-inner">
+    <div class="slide-header">
+      <span class="slide-num c">05</span>
+      <h2>Content &amp; Community Marketing</h2>
+      <span class="headcount-badge c">4 人</span>
+    </div>
+    <p class="slide-sub">内容驱动增长 · 社区运营 · 品牌建设</p>
+
+    <div class="card-grid cols-2">
+      <div class="card ac" style="grid-column:1/-1;">
+        <div class="card-title">Content Marketing Manager <span style="font-size:11px;color:var(--accent-cyan);margin-left:6px;font-family:var(--font-mono);">1 人</span></div>
+        <div class="tag-row">
+          <span class="tag tc">Content Strategy</span>
+          <span class="tag tc">AI Content Workflow</span>
+          <span class="tag tc">Content Repurposing</span>
+          <span class="tag tc">Brand Narrative</span>
+          <span class="tag tc">Cross-team Coordination</span>
+        </div>
+      </div>
+      <div class="card ac">
+        <div class="card-title">PR &amp; Content Specialist <span style="font-size:11px;color:var(--accent-cyan);margin-left:6px;font-family:var(--font-mono);">1 人</span></div>
+        <ul><li>Guest post &amp; media outreach</li><li>SEO blog writing</li><li>GEO-oriented content optimization</li><li>Brand mentions tracking</li></ul>
+      </div>
+      <div class="card ac">
+        <div class="card-title">EDM &amp; CRM Specialist <span style="font-size:11px;color:var(--accent-cyan);margin-left:6px;font-family:var(--font-mono);">1 人</span></div>
+        <ul><li>Lifecycle automation flows</li><li>Newsletter &amp; email campaigns</li><li>User segmentation &amp; A/B testing</li><li>Retention &amp; win-back marketing</li></ul>
+      </div>
+      <div class="card ac" style="grid-column:1/-1;">
+        <div class="card-title">Community &amp; UGC Specialist <span style="font-size:11px;color:var(--accent-cyan);margin-left:6px;font-family:var(--font-mono);">1 人</span></div>
+        <div class="tag-row">
+          <span class="tag tc">Reddit Account Matrix</span>
+          <span class="tag tc">Karma Growth</span>
+          <span class="tag tc">Reddit Engagement</span>
+          <span class="tag tc">Facebook Group Ops</span>
+          <span class="tag tc">Community Seeding</span>
+          <span class="tag tc">UGC Discovery</span>
+          <span class="tag tc">Brand Sentiment</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SLIDE 07 : HEADCOUNT SUMMARY ============ -->
+<div class="slide" id="s7">
+  <div class="slide-meta"><span class="dot">●</span> 07 / 08</div>
+  <div class="slide-chapter">Summary</div>
+  <div class="slide-content-inner">
+    <div class="slide-header">
+      <span class="slide-num y">06</span>
+      <h2>Headcount Summary</h2>
+    </div>
+    <p class="slide-sub">团队规模 · 优先级 · 招聘路线图</p>
+
+    <div class="stats-row">
+      <div class="stat-card ac"><div class="num">16</div><div class="lbl">Total</div></div>
+      <div class="stat-card ab"><div class="num">13</div><div class="lbl">Current</div></div>
+      <div class="stat-card am"><div class="num">+3</div><div class="lbl">New Hires</div></div>
+    </div>
+
+    <table class="data-table" style="margin-bottom:14px;">
+      <thead><tr><th>Team</th><th>Headcount</th><th>Status</th><th>Priority</th></tr></thead>
+      <tbody>
+        <tr><td style="color:var(--text-primary);">TikTok Team</td><td style="color:var(--accent-cyan);">6</td><td style="font-size:11px;color:var(--text-muted);">Existing</td><td>—</td></tr>
+        <tr><td style="color:var(--text-primary);">Creator Partnerships</td><td style="color:var(--accent-magenta);">3</td><td style="font-size:11px;color:var(--accent-cyan);">1 Existing + 2 New</td><td style="color:var(--accent-yellow);">High</td></tr>
+        <tr><td style="color:var(--text-primary);">Website / Paid Media</td><td style="color:var(--accent-blue);">3</td><td style="font-size:11px;color:var(--text-muted);">Existing</td><td>—</td></tr>
+        <tr><td style="color:var(--text-primary);">Content &amp; Community</td><td style="color:var(--accent-cyan);">4</td><td style="font-size:11px;color:var(--accent-magenta);">4 New Hires</td><td style="color:var(--accent-yellow);">Urgent</td></tr>
+      </tbody>
+    </table>
+
+    <div class="card-grid cols-2">
+      <div class="card ac">
+        <div class="card-title" style="font-size:14px;">Phase 1 · Now</div>
+        <ul><li>Hire Creator Outreach ×2</li><li>Hire Content Marketing Mgr</li><li>Hire PR &amp; Content Specialist</li><li>Creator Lead + Content Mgr align on process</li></ul>
+      </div>
+      <div class="card am">
+        <div class="card-title" style="font-size:14px;">Phase 2 · Month 3-6</div>
+        <ul><li>Hire EDM &amp; CRM Specialist</li><li>Hire Community &amp; UGC Specialist</li><li>Full team operational</li><li>Content + Ads + Creator synergy</li></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SLIDE 08 : CLOSING ============ -->
+<div class="slide slide-end" id="s8">
+  <div class="slide-meta"><span class="dot">●</span> 08 / 08</div>
+  <div class="end-eyebrow">Yousky · Marketing</div>
+  <h1>Build · Scale · Optimize</h1>
+  <p class="end-sub">「广告 + 达人 + 内容」三角驱动 —— 16 人团队 · 4 个战壕 · 一个目标</p>
+  <div class="phase-row">
+    <div class="phase">
+      <div class="pn" style="color:var(--accent-cyan);">Phase 1</div>
+      <div class="plb">Foundation</div>
+      <div class="pm">核心岗位就位</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="phase">
+      <div class="pn" style="color:var(--accent-blue);">Phase 2</div>
+      <div class="plb">Scale Up</div>
+      <div class="pm">团队满编 + 流程 SOP</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="phase">
+      <div class="pn" style="color:var(--accent-magenta);">Phase 3</div>
+      <div class="plb">Optimize</div>
+      <div class="pm">数据驱动迭代</div>
+    </div>
+  </div>
+  <div style="margin-top:40px;font-family:var(--font-mono);font-size:12px;color:var(--text-muted);">Marketing Department · 2026</div>
+</div>
+
+<script>
+(function(){
+  var slides = document.querySelectorAll('.slide');
+  var total = slides.length;
+  var dots = document.getElementById('navDots');
+  var bar = document.getElementById('progress');
+
+  // Build nav dots
+  for(var i=0; i<total; i++){
+    var btn = document.createElement('button');
+    btn.setAttribute('aria-label', 'Slide '+(i+1));
+    btn.onclick = (function(idx){
+      return function(){ document.getElementById('s'+(idx+1)).scrollIntoView({behavior:'smooth'}); };
+    })(i);
+    dots.appendChild(btn);
+  }
+
+  // Update active dot on scroll
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var idx = parseInt(e.target.id.replace('s','')) - 1;
+        var btns = dots.querySelectorAll('button');
+        btns.forEach(function(b,i){ b.classList.toggle('active', i===idx); });
+        bar.style.width = ((idx+1)/total*100)+'%';
+      }
+    });
+  }, { threshold: 0.5 });
+
+  slides.forEach(function(s){ obs.observe(s); });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'ArrowDown' || e.key === 'ArrowRight'){
+      e.preventDefault();
+      var cur = Math.round(window.scrollY / window.innerHeight);
+      var next = Math.min(cur+1, total-1);
+      document.getElementById('s'+(next+1)).scrollIntoView({behavior:'smooth'});
+    } else if(e.key === 'ArrowUp' || e.key === 'ArrowLeft'){
+      e.preventDefault();
+      var cur = Math.round(window.scrollY / window.innerHeight);
+      var prev = Math.max(cur-1, 0);
+      document.getElementById('s'+(prev+1)).scrollIntoView({behavior:'smooth'});
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
