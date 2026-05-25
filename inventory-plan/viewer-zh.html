@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Yousky 三渠道备货计划 2026.6-8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #fafaf9;
+  --surface:  #f4f2ed;
+  --border:   #e5e1d8;
+  --text:     #1a1d28;
+  --text-2:   #5a5d68;
+  --text-3:   #90939e;
+  --accent:   #1e3e54;
+  --warm:     #b8875a;
+  --warm-dim: #e8d7c0;
+  --good:     #4a7c6b;
+  --bad:      #b55a4a;
+  --warn:     #d4a040;
+  --font-display: "Clash Display","Inter","Noto Sans SC",sans-serif;
+  --font-body:    "Inter","Noto Sans SC",sans-serif;
+  --font-mono:    "SF Mono","JetBrains Mono",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{
+  scroll-snap-type:y mandatory;scroll-behavior:smooth;overflow-x:hidden;background:var(--bg);
+}
+html,body{height:100%}
+body{
+  font-family:var(--font-body);background:var(--bg);color:var(--text);
+  -webkit-font-smoothing:antialiased;line-height:1.5;
+}
+
+.progress-bar{
+  position:fixed;top:0;left:0;height:2px;width:0%;background:var(--warm);z-index:1000;transition:width 0.3s ease;
+}
+.nav-dots{
+  position:fixed;right:14px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:6px;z-index:1000;
+}
+.nav-dots button{
+  width:6px;height:6px;border-radius:50%;border:1px solid var(--border);background:transparent;cursor:pointer;padding:0;transition:all 0.35s ease;
+}
+.nav-dots button.active{background:var(--accent);border-color:var(--accent);transform:scale(1.6);}
+
+.slide{
+  width:100vw;height:100vh;height:100dvh;scroll-snap-align:start;
+  display:flex;flex-direction:column;justify-content:center;padding:6vw 8vw;
+  position:relative;overflow:hidden;isolation:isolate;
+}
+.slide-inner{
+  position:relative;z-index:2;width:100%;max-width:920px;
+  opacity:0;transform:translateY(24px);
+  transition:opacity 0.55s cubic-bezier(0.22,1,0.36,1),transform 0.55s cubic-bezier(0.22,1,0.36,1);
+}
+.slide.visible>.slide-inner{opacity:1;transform:translateY(0)}
+.slide-inner>*{opacity:0;transform:translateY(16px);
+  transition:opacity 0.5s cubic-bezier(0.22,1,0.36,1),transform 0.5s cubic-bezier(0.22,1,0.36,1);}
+.slide.visible>.slide-inner>*{opacity:1;transform:translateY(0)}
+.slide.visible>.slide-inner>:nth-child(1){transition-delay:0.04s}
+.slide.visible>.slide-inner>:nth-child(2){transition-delay:0.10s}
+.slide.visible>.slide-inner>:nth-child(3){transition-delay:0.16s}
+.slide.visible>.slide-inner>:nth-child(4){transition-delay:0.22s}
+.slide.visible>.slide-inner>:nth-child(5){transition-delay:0.28s}
+.slide.visible>.slide-inner>:nth-child(6){transition-delay:0.34s}
+
+.slide-tag{position:absolute;top:28px;left:8vw;font-family:var(--font-mono);font-size:11px;color:var(--text-3);letter-spacing:0.14em;z-index:3;text-transform:uppercase;}
+.slide-num{position:absolute;top:28px;right:8vw;font-family:var(--font-mono);font-size:11px;color:var(--text-3);z-index:3;}
+.slide-num span{color:var(--accent)}
+
+h1{font-family:var(--font-display);font-weight:600;font-size:clamp(2.8rem,6vw,4.8rem);letter-spacing:-0.03em;line-height:1.1;color:var(--accent);}
+h2{font-family:var(--font-display);font-weight:600;font-size:clamp(1.8rem,3.5vw,2.8rem);letter-spacing:-0.02em;line-height:1.2;}
+h3{font-family:var(--font-body);font-weight:600;font-size:clamp(1.1rem,1.8vw,1.4rem);letter-spacing:-0.01em;}
+.section-label{font-family:var(--font-mono);font-size:12px;color:var(--warm);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px;}
+.kpi-hero{display:flex;align-items:baseline;gap:14px;margin:8px 0;}
+.kpi-hero .value{font-family:var(--font-display);font-weight:600;font-size:clamp(3.6rem,8vw,7rem);letter-spacing:-0.03em;color:var(--accent);line-height:1;}
+.kpi-hero .unit{font-family:var(--font-body);font-size:clamp(1rem,2vw,1.3rem);color:var(--text-2);font-weight:500;}
+.kpi-hero.warm .value{color:var(--warm)}
+.kpi-hero.bad .value{color:var(--bad)}
+.insight{font-size:clamp(1.1rem,1.8vw,1.4rem);color:var(--text-2);line-height:1.55;max-width:680px;margin-top:8px;padding-left:16px;border-left:2px solid var(--warm-dim);}
+.insight strong{color:var(--accent);font-weight:600;}
+
+.stat-row{display:flex;gap:24px;flex-wrap:wrap;}
+.stat-box{min-width:160px;padding:0 0 12px 0;border-bottom:2px solid var(--border);}
+.stat-box .num{font-family:var(--font-display);font-weight:600;font-size:clamp(2.2rem,4vw,3.2rem);color:var(--accent);line-height:1.1;}
+.stat-box .lbl{font-size:13px;color:var(--text-3);margin-top:4px;font-family:var(--font-mono);letter-spacing:0.04em;}
+.stat-box.warm .num{color:var(--warm)}
+.stat-box.bad .num{color:var(--bad)}
+.stat-box.good .num{color:var(--good)}
+
+.card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:20px 24px;box-shadow:0 1px 3px rgba(0,0,0,0.03);}
+.card-hl{border-left:3px solid var(--warm);}
+
+.tag-green{background:#e8f0ec;color:var(--good);font-family:var(--font-mono);font-size:11px;padding:3px 10px;border-radius:6px;display:inline-block;}
+.tag-red{background:#f5e8e5;color:var(--bad);font-family:var(--font-mono);font-size:11px;padding:3px 10px;border-radius:6px;display:inline-block;}
+.tag-amber{background:#faf3e2;color:var(--warn);font-family:var(--font-mono);font-size:11px;padding:3px 10px;border-radius:6px;display:inline-block;}
+
+.tbl{width:100%;border-collapse:collapse;}
+.tbl th{background:var(--accent);color:#fff;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;padding:10px 16px;text-align:left;}
+.tbl td{padding:10px 16px;border-bottom:1px solid var(--border);font-size:14px;}
+.tbl tr:nth-child(even) td{background:var(--surface);}
+.tbl .num{text-align:right;font-family:var(--font-mono);font-weight:600;}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+
+.bold-num{font-family:var(--font-display);font-weight:600;font-size:36px;line-height:1;}
+
+@media(max-width:768px){
+  .grid2,.grid3{grid-template-columns:1fr}
+  .stat-box{min-width:120px}
+}
+
+/* slide-specific bg tints */
+.slide-cover{background:linear-gradient(160deg,#fafaf9 0%,#f4f2ed 40%,#eae6dd 100%)}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+<div class="nav-dots" id="navDots"></div>
+
+<!-- ====== SLIDE 01: COVER ====== -->
+<div class="slide slide-cover">
+  <div class="slide-tag">YOUSKY · 供应链管理</div>
+  <div class="slide-num"><span>01</span> / 10</div>
+  <div class="slide-inner" style="text-align:center;">
+    <div class="section-label">手持清洁机</div>
+    <h1>三渠道备货计划</h1>
+    <p style="font-size:clamp(1.1rem,1.5vw,1.3rem);color:var(--text-3);margin-top:8px;">独立站 · TikTok · 亚马逊 &nbsp;|&nbsp; 2026年 6—8月</p>
+    <div style="display:flex;gap:32px;justify-content:center;margin-top:40px;flex-wrap:wrap;">
+      <div style="text-align:center;"><div style="font-family:var(--font-display);font-weight:600;font-size:36px;color:var(--accent);">3</div><div style="font-size:12px;color:var(--text-3);font-family:var(--font-mono);">渠道</div></div>
+      <div style="width:1px;background:var(--border);"></div>
+      <div style="text-align:center;"><div style="font-family:var(--font-display);font-weight:600;font-size:36px;color:var(--accent);">7</div><div style="font-size:12px;color:var(--text-3);font-family:var(--font-mono);">SKU</div></div>
+      <div style="width:1px;background:var(--border);"></div>
+      <div style="text-align:center;"><div style="font-family:var(--font-display);font-weight:600;font-size:36px;color:var(--bad);">8,256</div><div style="font-size:12px;color:var(--text-3);font-family:var(--font-mono);">H11 当前库存</div></div>
+      <div style="width:1px;background:var(--border);"></div>
+      <div style="text-align:center;"><div style="font-family:var(--font-display);font-weight:600;font-size:36px;color:var(--warm);">~4.5万</div><div style="font-size:12px;color:var(--text-3);font-family:var(--font-mono);">3个月总需求</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SLIDE 02: STOCK STATUS ====== -->
+<div class="slide">
+  <div class="slide-tag">01 · 库存现状</div>
+  <div class="slide-num"><span>02</span> / 10</div>
+  <div class="slide-inner">
+    <div class="section-label">数据截至 2026.05.25</div>
+    <h2>当前库存水位盘点</h2>
+    <p style="color:var(--text-3);margin-bottom:20px;">含 FBA + 海外仓 + 海运在途</p>
+
+    <div class="card card-hl" style="margin-bottom:14px;">
+      <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+        <div style="text-align:center;min-width:100px;">
+          <div class="bold-num" style="color:var(--accent);">8,256</div>
+          <div style="font-size:11px;color:var(--text-3);font-family:var(--font-mono);">总库存</div>
+        </div>
+        <div style="flex:1;">
+          <h3>H11 手持清洁机 <span style="font-weight:400;font-size:13px;color:var(--text-3);">· 主力款</span></h3>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;">
+            <span class="tag-green">FBA 在售 881</span><span class="tag-green">FBA 在途 5,376</span><span class="tag-amber">FBA 预留 120</span><span class="tag-amber">海外仓 75</span><span style="font-family:var(--font-mono);font-size:11px;color:var(--warm);padding:3px 10px;background:#faf3e2;border-radius:6px;">海运在途 1,804</span>
+          </div>
+          <p style="margin-top:6px;font-size:13px;color:var(--bad);font-weight:500;">库存仅够支撑到 7月中旬 · 6月第一周必须下PO</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:14px;">
+      <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+        <div style="text-align:center;min-width:100px;">
+          <div class="bold-num" style="color:var(--text-3);">3,351</div>
+          <div style="font-size:11px;color:var(--text-3);font-family:var(--font-mono);">总库存</div>
+        </div>
+        <div style="flex:1;">
+          <h3>H10 手持清洁机 <span class="tag-red">已下市</span></h3>
+          <p style="font-size:13px;color:var(--text-3);margin-top:4px;">蓝色 1,323 + 灰色 2,028 · 6月 Amazon 清仓消化</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card"><h3>H11 Pro <span class="tag-amber">新品待发</span></h3><p style="font-size:13px;color:var(--text-3);margin-top:4px;">ASIN 待建 · 首批生产未启动 · 7月首发 100台</p></div>
+      <div class="card"><h3>T11 / L10 / L11</h3><p style="font-size:13px;color:var(--text-3);margin-top:4px;">当前库存待确认 · 7月 T11 起量需提前备货</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SLIDE 03: DEMAND PANORAMA ====== -->
+<div class="slide">
+  <div class="slide-tag">02 · 需求全景</div>
+  <div class="slide-num"><span>03</span> / 10</div>
+  <div class="slide-inner">
+    <div class="section-label">亚马逊 · 独立站 · TikTok</div>
+    <h2>三渠道销量预测汇总</h2>
+
+    <div class="stat-row" style="margin:20px 0;">
+      <div class="stat-box"><div class="num">10,500</div><div class="lbl">6月需求总量</div></div>
+      <div class="stat-box bad"><div class="num">12,400</div><div class="lbl">7月需求总量</div></div>
+      <div class="stat-box"><div class="num">8,500</div><div class="lbl">8月需求总量</div></div>
+    </div>
+
+    <table class="tbl" style="margin-top:12px;">
+      <tr><th>产品线</th><th>渠道</th><th style="text-align:right;">6月</th><th style="text-align:right;">7月</th><th style="text-align:right;">8月</th></tr>
+      <tr><td rowspan="3" style="font-weight:600;color:var(--accent);">H11</td><td>Amazon</td><td class="num">4,500</td><td class="num">4,000</td><td class="num">900</td></tr>
+      <tr><td>TK</td><td class="num">1,000</td><td class="num">800</td><td class="num">800</td></tr>
+      <tr><td>DTC</td><td class="num">600</td><td class="num">1,200</td><td class="num" style="color:var(--warm);">1,500</td></tr>
+      <tr style="background:#faf8f4;"><td style="font-weight:600;"></td><td style="font-weight:600;color:var(--warm);">H11 小计</td><td class="num" style="font-size:15px;color:var(--bad);">6,100</td><td class="num" style="font-size:15px;color:var(--bad);">6,000</td><td class="num" style="font-size:15px;">3,200</td></tr>
+      <tr><td rowspan="3" style="font-weight:600;color:var(--accent);">落叶机</td><td>Amazon</td><td class="num">2,000</td><td class="num">1,700</td><td class="num">1,800</td></tr>
+      <tr><td>TK</td><td class="num">1,500</td><td class="num">1,300</td><td class="num">1,000</td></tr>
+      <tr><td>DTC</td><td class="num">100</td><td class="num">300</td><td class="num">300</td></tr>
+      <tr><td rowspan="2" style="font-weight:600;color:var(--accent);">T11</td><td>Amazon</td><td class="num">600</td><td class="num" style="color:var(--bad);font-size:15px;">2,400</td><td class="num">1,800</td></tr>
+      <tr><td>TK + DTC</td><td class="num">200</td><td class="num">300</td><td class="num">400</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ====== SLIDE 04: H11 RUNWAY ====== -->
+<div class="slide">
+  <div class="slide-tag">03 · 关键推演</div>
+  <div class="slide-num"><span>04</span> / 10</div>
+  <div class="slide-inner">
+    <div class="section-label">当前库存 8,256 台 · 月均消耗 ~5,100 台</div>
+    <h2>H11 主力款库存消耗推演</h2>
+
+    <div class="kpi-hero bad" style="margin:16px 0;"><div class="value">~40</div><div class="unit">天库存可支撑</div></div>
+    <p class="insight">6月三渠道消耗 <strong>6,100 台</strong> → 月底剩余 ~2,156 → 7月上半月即告罄 → <strong style="color:var(--bad);">7/15 起面临断货</strong></p>
+
+    <div class="grid3" style="margin-top:20px;">
+      <div class="card card-hl"><h3>6月</h3><div class="bold-num" style="color:var(--accent);margin:8px 0;">6,100</div><p style="font-size:13px;color:var(--text-3);">三渠道需求<br>月底剩余 ~2,156</p></div>
+      <div class="card" style="border-left:3px solid var(--bad);"><h3>7月</h3><div class="bold-num" style="color:var(--bad);margin:8px 0;">6,000</div><p style="font-size:13px;color:var(--bad);">库存仅够撑到 7/10-15<br>缺口约 3,844 台!</p></div>
+      <div class="card" style="border-left:3px solid var(--text-3);"><h3>8月</h3><div class="bold-num" style="color:var(--text);margin:8px 0;">3,200</div><p style="font-size:13px;color:var(--text-3);">需求回落<br>需补货约 7,000+ 台</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SLIDE 05: JUNE PLAN ====== -->
+<div class="slide">
+  <div class="slide-tag">04 · 月度计划</div>
+  <div class="slide-num"><span>05</span> / 10</div>
+  <div class="slide-inner">
+    <div class="section-label">核心任务：H11下紧急PO · H11 Pro启动 · H10清库存</div>
+    <h2>6月备货计划</h2>
+
+    <div class="grid2" style="margin-top:16px;">
+      <div class="card card-hl">
+        <div style="display:flex;justify-content:space-between;align-items:center;"><h3>H11 手持清洁机</h3><span class="tag-red">最高优先级</span></div>
+        <div class="stat-row" style="margin:12px 0;"><div class="stat-box"><div class="num" style="font-size:24px;">4,500</div><div class="lbl">Amazon</div></div><div class="stat-box"><div class="num" style="font-size:24px;">1,000</div><div class="lbl">TK</div></div><div class="stat-box"><div class="num" style="font-size:24px;">600</div><div class="lbl">DTC</div></div></div>
+        <div style="background:var(--surface);border-radius:8px;padding:14px;font-size:13px;line-height:1.8;">
+          <p style="font-weight:600;color:var(--bad);margin-bottom:4px;">6月第一周必须下新PO</p>
+          <span style="font-family:var(--font-mono);">建议PO量：<strong style="color:var(--accent);">8,000台</strong> · 采购成本 ¥144万 · 预计 7/15-20 到仓</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div class="card"><h3>H11 Pro <span class="tag-amber">新品</span></h3><p style="font-size:13px;color:var(--text-3);margin-top:4px;">7月首发100台 · 首批PO 500台 · 6月中旬前下</p></div>
+        <div class="card"><h3>H10 <span class="tag-red">下市</span></h3><p style="font-size:13px;color:var(--text-3);margin-top:4px;">Amazon 售1,500台 · BD+站外清仓</p></div>
+        <div class="card"><h3>T11 + 落叶机</h3><p style="font-size:13px;color:var(--text-3);margin-top:4px;">T11 800台 + 落叶机 3,600台 · 常规补货</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SLIDE 06: JULY PLAN ====== -->
+<div class="slide">
+  <div class="slide-tag">05 · 月度计划</div>
+  <div class="slide-num"><span>06</span> / 10</div>
+  <div class="slide-inner">
+    <div class="section-label">核心任务：H11新PO到仓衔接 · T11需求暴增 · H11 Pro首发</div>
+    <h2>7月备货计划</h2>
+
+    <div class="grid2" style="margin-top:16px;">
+      <div class="card" style="border-left:3px solid var(--bad);background:#fff9f7;">
+        <div style="display:flex;justify-content:space-between;"><h3>H11 · 库存缺口风险</h3><span class="tag-red">断货风险</span></div>
+        <div class="stat-row" style="margin:12px 0;"><div class="stat-box"><div class="num" style="font-size:24px;">4,000</div><div class="lbl">Amazon</div></div><div class="stat-box"><div class="num" style="font-size:24px;">800</div><div class="lbl">TK</div></div><div class="stat-box"><div class="num" style="font-size:24px;">1,200</div><div class="lbl">DTC</div></div></div>
+        <div style="background:#fff;border-radius:8px;padding:14px;font-size:13px;line-height:1.8;">
+          <p style="font-weight:600;color:var(--bad);">月初仅剩 ~2,156台 → 新PO必须在7/15前到仓</p>
+          <span style="font-family:var(--font-mono);">新PO 8,000台到仓后月底剩余约 4,156台</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div class="card card-hl"><h3>T11 · 需求暴增 <span class="tag-red">注意</span></h3><div class="bold-num" style="color:var(--bad);margin:4px 0;">2,400</div><p style="font-size:13px;color:var(--text-3);">Amazon 从 6月600 → 7月2,400 (4倍) · 需提前备货 3,000台</p></div>
+        <div class="card"><h3>H11 Pro 首发</h3><p style="font-size:13px;color:var(--text-3);">100台 Amazon试水 · 收集VINE评价</p></div>
+        <div class="card"><h3>落叶机 L10/L11</h3><p style="font-size:13px;color:var(--text-3);">合计 3,300台 · 按月补货</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SLIDE 07: AUGUST PLAN ====== -->
+<div class="slide">
+  <div class="slide-tag">06 · 月度计划</div>
+  <div class="slide-num"><span>07</span> / 10</div>
+  <div class="slide-inner">
+    <div class="section-label">核心任务：H11 Pro放量 · DTC超越Amazon · 库存回稳</div>
+    <h2>8月备货计划</h2>
+
+    <div class="grid2" style="margin-top:16px;">
+      <div class="card card-hl">
+        <div style="display:flex;justify-content:space-between;"><h3>H11 · 需求回落</h3><span class="tag-green">库存安全</span></div>
+        <div class="stat-row" style="margin:12px 0;"><div class="stat-box"><div class="num" style="font-size:24px;">900</div><div class="lbl">Amazon</div></div><div class="stat-box"><div class="num" style="font-size:24px;">800</div><div class="lbl">TK</div></div><div class="stat-box warm"><div class="num" style="font-size:24px;">1,500</div><div class="lbl">DTC ↑</div></div></div>
+        <p style="font-size:13px;color:var(--text-3);">DTC 超越 Amazon 成为 H11 最大渠道 · 月初库存 ~4,156台覆盖全月</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div class="card card-hl"><h3>H11 Pro · 放量 <span class="tag-amber">关键</span></h3><div class="bold-num" style="color:var(--accent);margin:4px 0;">1,000</div><p style="font-size:13px;color:var(--text-3);">从7月100→8月1,000 (10倍) · 需7月追加1,000台PO</p></div>
+        <div class="card"><h3>T11 · 稳定运行</h3><p style="font-size:13px;color:var(--text-3);">Amazon 1,800 + TK+DTC 400 = 2,200台</p></div>
+        <div class="card"><h3>落叶机</h3><p style="font-size:13px;color:var(--text-3);">合计 3,100台 · 维持常规补货</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SLIDE 08: CHANNEL ALLOCATION ====== -->
+<div class="slide">
+  <div class="slide-tag">07 · 渠道策略</div>
+  <div class="slide-num"><span>08</span> / 10</div>
+  <div class="slide-inner">
+    <div class="section-label">库存紧张时避免三渠道互相争抢</div>
+    <h2>渠道配额分配策略</h2>
+
+    <div class="grid3" style="margin:20px 0;">
+      <div class="card" style="border-top:3px solid var(--accent);">
+        <h3 style="color:var(--accent);">Amazon · P1</h3>
+        <div style="font-size:13px;color:var(--text-3);margin:8px 0;">最高客单 · 最大体量 · 品牌主阵地</div>
+        <div style="font-size:13px;line-height:2;"><div>6月: <strong>4,500</strong></div><div>7月: <strong>4,000</strong></div><div>8月: <strong>900</strong></div><div style="color:var(--text-3);">H11 客单 $129.99</div></div>
+      </div>
+      <div class="card" style="border-top:3px solid var(--warm);">
+        <h3 style="color:var(--warm);">DTC · P2</h3>
+        <div style="font-size:13px;color:var(--text-3);margin:8px 0;">最高利润 · 用户沉淀 · 8月起量</div>
+        <div style="font-size:13px;line-height:2;"><div>6月: <strong>600</strong></div><div>7月: <strong>1,200</strong></div><div>8月: <strong style="color:var(--warm);">1,500</strong></div><div style="color:var(--text-3);">H11 客单 $139.99</div></div>
+      </div>
+      <div class="card" style="border-top:3px solid #1a1d28;">
+        <h3>TikTok · P3</h3>
+        <div style="font-size:13px;color:var(--text-3);margin:8px 0;">内容引擎 · 引流价值 · 弹性调节</div>
+        <div style="font-size:13px;line-height:2;"><div>6月: <strong>1,000</strong></div><div>7月: <strong>800</strong></div><div>8月: <strong>800</strong></div><div style="color:var(--text-3);">H11 客单 $99.99</div></div>
+      </div>
+    </div>
+
+    <div class="card" style="background:var(--surface);">
+      <h3 style="margin-bottom:8px;">库存紧张期分配规则</h3>
+      <div style="display:flex;gap:24px;flex-wrap:wrap;font-size:14px;line-height:2;">
+        <div><strong>Amazon</strong> — 保持 15天 库存 · BSR排名不可掉</div>
+        <div><strong>DTC</strong> — 保持 7天 库存 · 利润率最高</div>
+        <div><strong>TK</strong> — 保持 7天 库存 · 可接受短期缺货</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SLIDE 09: PO TIMELINE & RISKS ====== -->
+<div class="slide">
+  <div class="slide-tag">08 · 执行时间线</div>
+  <div class="slide-num"><span>09</span> / 10</div>
+  <div class="slide-inner">
+    <div class="section-label">以海运 30-45天 倒推</div>
+    <h2>PO 时间线与风险预警</h2>
+
+    <div style="margin:20px 0;font-size:14px;line-height:2.2;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;"><span class="tag-red">6/1前</span><strong>H11 紧急PO 8,000台</strong> — 工厂排期 15-20天 → 海运 30-45天 → <span style="color:var(--good);font-weight:600;">7/15-20 到仓</span></div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;"><span class="tag-amber">6月中旬</span><strong>T11 PO 3,000台</strong> — 覆盖7月暴增 → <span style="color:var(--good);font-weight:600;">7月底到仓</span></div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;"><span class="tag-amber">6月中旬</span><strong>H11 Pro PO 500台</strong> — 首批生产 → <span style="color:var(--good);font-weight:600;">7月初到仓</span></div>
+      <div style="display:flex;align-items:center;gap:12px;"><span style="background:var(--accent);color:#fff;font-family:var(--font-mono);font-size:11px;padding:3px 10px;border-radius:6px;">7月中旬</span><strong>H11 Pro 追加PO 1,000台</strong> — 8月放量准备</div>
+    </div>
+
+    <table class="tbl" style="margin-top:16px;">
+      <tr><th></th><th>风险事件</th><th style="text-align:center;">影响</th><th style="text-align:center;">概率</th></tr>
+      <tr><td style="color:var(--bad);font-weight:700;">1</td><td>H11 PO未在6/1前下出 → 工厂排期延后</td><td style="text-align:center;color:var(--bad);font-weight:600;">7月断货2周</td><td style="text-align:center;font-family:var(--font-mono);">高</td></tr>
+      <tr><td style="color:var(--warn);font-weight:700;">2</td><td>海运延误 (港口拥堵/海关查验)</td><td style="text-align:center;color:var(--bad);font-weight:600;">三渠道同步缺货</td><td style="text-align:center;font-family:var(--font-mono);">中</td></tr>
+      <tr><td style="color:var(--warn);font-weight:700;">3</td><td>T11备货不足 → 7月Amazon 2,400缺口</td><td style="text-align:center;color:var(--warn);font-weight:600;">错失增量</td><td style="text-align:center;font-family:var(--font-mono);">中</td></tr>
+      <tr><td style="color:var(--text-3);font-weight:700;">4</td><td>三渠道同时起量超出预期 20%+</td><td style="text-align:center;color:var(--bad);font-weight:600;">提前断货</td><td style="text-align:center;font-family:var(--font-mono);">低</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ====== SLIDE 10: ACTION CHECKLIST ====== -->
+<div class="slide">
+  <div class="slide-tag">09 · 行动清单</div>
+  <div class="slide-num"><span>10</span> / 10</div>
+  <div class="slide-inner">
+    <div class="section-label">优先级排序 · 本周必须启动</div>
+    <h2>备货行动清单 & 下一步</h2>
+
+    <div style="margin:16px 0 12px;"><span class="tag-red" style="font-size:12px;padding:5px 14px;">P0 · 本周必须完成</span></div>
+    <div class="grid2" style="margin-bottom:12px;">
+      <div class="card" style="border-left:3px solid var(--bad);">
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="font-family:var(--font-display);font-size:24px;font-weight:600;color:var(--bad);line-height:1;">01</div>
+          <div><h3>下 H11 紧急 PO</h3><p style="font-size:13px;color:var(--text-3);">8,000台 · ¥180/台 · 总额 ¥144万<br>6月1日前下出 · 确保7/15前到仓</p></div>
+        </div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--bad);">
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="font-family:var(--font-display);font-size:24px;font-weight:600;color:var(--bad);line-height:1;">02</div>
+          <div><h3>确认 H11 Pro 首批</h3><p style="font-size:13px;color:var(--text-3);">500台 · 6月中旬前下PO<br>ASIN创建 · FBA入仓计划同步</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin:12px 0;"><span class="tag-amber" style="font-size:12px;padding:5px 14px;">P1 · 6月内完成</span></div>
+    <div class="grid3" style="margin-bottom:12px;">
+      <div class="card"><span style="font-family:var(--font-display);font-weight:600;font-size:18px;color:var(--accent);">03</span><h3 style="margin:4px 0;font-size:15px;">T11 备货PO</h3><p style="font-size:12px;color:var(--text-3);">3,000台 · 7月起量</p></div>
+      <div class="card"><span style="font-family:var(--font-display);font-weight:600;font-size:18px;color:var(--accent);">04</span><h3 style="margin:4px 0;font-size:15px;">落叶机补货</h3><p style="font-size:12px;color:var(--text-3);">确认库存后按需下单</p></div>
+      <div class="card"><span style="font-family:var(--font-display);font-weight:600;font-size:18px;color:var(--accent);">05</span><h3 style="margin:4px 0;font-size:15px;">H10清仓</h3><p style="font-size:12px;color:var(--text-3);">BD+站外 · 6月底清完</p></div>
+    </div>
+
+    <div style="margin:12px 0;"><span style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);letter-spacing:0.08em;">P2 · 持续跟踪</span></div>
+    <div class="grid3">
+      <div class="card"><span style="font-weight:600;">06</span><h3 style="margin:4px 0;font-size:15px;">每周库存仪表盘</h3><p style="font-size:12px;color:var(--text-3);">FBA+海外仓+在途 · 预警15天</p></div>
+      <div class="card"><span style="font-weight:600;">07</span><h3 style="margin:4px 0;font-size:15px;">配额周度review</h3><p style="font-size:12px;color:var(--text-3);">实际消耗 vs 计划动态调整</p></div>
+      <div class="card"><span style="font-weight:600;">08</span><h3 style="margin:4px 0;font-size:15px;">H11 Pro上市跟踪</h3><p style="font-size:12px;color:var(--text-3);">VINE → 转化率 → 追加PO决策</p></div>
+    </div>
+
+    <div style="background:var(--accent);border-radius:10px;padding:14px 24px;margin-top:16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+      <span style="font-family:var(--font-mono);font-size:12px;color:var(--warm-dim);">总备货规模</span>
+      <span style="font-size:24px;font-weight:600;color:#fff;font-family:var(--font-display);">~¥250万</span>
+      <span style="color:rgba(255,255,255,0.3);">|</span>
+      <span style="color:rgba(255,255,255,0.8);font-size:13px;">H11 8,000 + T11 3,000 + H11 Pro 1,500 + 落叶机补货</span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var slides=document.querySelectorAll('.slide');
+  var dotsContainer=document.getElementById('navDots');
+  var bar=document.getElementById('progressBar');
+  var total=slides.length;
+
+  slides.forEach(function(_,i){
+    var btn=document.createElement('button');
+    btn.title='Slide '+(i+1);
+    btn.addEventListener('click',function(){slides[i].scrollIntoView();});
+    dotsContainer.appendChild(btn);
+  });
+  var dots=document.querySelectorAll('.nav-dots button');
+
+  var observer=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var idx=Array.from(slides).indexOf(e.target);
+        e.target.classList.add('visible');
+        dots.forEach(function(d,i){d.classList.toggle('active',i===idx);});
+        bar.style.width=((idx+1)/total*100)+'%';
+      }
+    });
+  },{threshold:0.35});
+
+  slides.forEach(function(s){observer.observe(s);});
+})();
+</script>
+</body>
+</html>

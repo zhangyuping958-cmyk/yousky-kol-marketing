@@ -23,6 +23,8 @@
   --gold-glow:  #ddc08a;
   --steel:      #8a8d95;
   --steel-glow: #b0b3bb;
+  --teal:       #2d6a6a;
+  --teal-glow:  #4a9a9a;
   --font-display: "Clash Display","Inter","Noto Sans SC",sans-serif;
   --font-serif:   "Playfair Display","Noto Serif SC",serif;
   --font-body:    "Inter","Noto Sans SC",sans-serif;
@@ -79,8 +81,8 @@ body{
   padding:8px 32px 20px;width:100%;max-width:960px;
 }
 .bubble-grid{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:44px 64px;justify-items:center;padding:8px 0;
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:44px 56px;justify-items:center;padding:8px 0;
 }
 
 /* ---- wrapper ---- */
@@ -143,6 +145,15 @@ body{
   box-shadow:0 6px 24px rgba(138,141,149,0.25),inset 0 -2px 4px rgba(0,0,0,0.12);
 }
 .b4::after{box-shadow:0 0 40px rgba(138,141,149,0.3),0 0 80px rgba(176,179,187,0.12)}
+
+.b5{
+  background:
+    radial-gradient(circle at 38% 32%,rgba(255,255,255,0.55) 0%,rgba(255,255,255,0.08) 25%,transparent 45%),
+    radial-gradient(circle at 60% 65%,rgba(74,154,154,0.3) 0%,transparent 50%),
+    linear-gradient(145deg,#2d6a6a 0%,#357d7d 35%,#214d4d 100%);
+  box-shadow:0 6px 24px rgba(45,106,106,0.25),inset 0 -2px 4px rgba(0,0,0,0.12);
+}
+.b5::after{box-shadow:0 0 40px rgba(45,106,106,0.35),0 0 80px rgba(74,154,154,0.15)}
 
 /* bubble inner */
 .bubble .b-icon{
@@ -228,6 +239,16 @@ body{
   opacity:1;transform:translateY(-50%) translateX(0);pointer-events:auto;
 }
 
+/* center-column panels — appear below bubble */
+.bw.center .side-panel{
+  left:50%;top:calc(100% + 14px);
+  transform:translateX(-50%) translateY(8px);
+}
+.bw.center:hover .side-panel,
+.bw.center.active .side-panel{
+  opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto;
+}
+
 /* =============================================
    CONNECTOR DOTS — vertical row in the gap
    ============================================= */
@@ -238,6 +259,10 @@ body{
 }
 .bw.left  .side-dots{right:calc(100% + 12px)}
 .bw.right .side-dots{left:calc(100% + 12px)}
+.bw.center .side-dots{
+  left:50%;top:calc(100% + 4px);
+  transform:translateX(-50%);flex-direction:row;
+}
 
 .bw:hover .side-dots,
 .bw.active .side-dots{opacity:1}
@@ -270,7 +295,7 @@ body{
 @media(max-width:900px){
   .bubble-stage{max-width:100%;padding:8px 16px 20px}
   .bubble-grid{
-    grid-template-columns:1fr;gap:20px;width:100%;max-width:360px;
+    grid-template-columns:1fr 1fr;gap:28px 40px;width:100%;
   }
   /* panels become static, centred below each bubble */
   .side-panel{
@@ -284,7 +309,9 @@ body{
   .bw.left:hover .side-panel,
   .bw.left.active .side-panel,
   .bw.right:hover .side-panel,
-  .bw.right.active .side-panel{
+  .bw.right.active .side-panel,
+  .bw.center:hover .side-panel,
+  .bw.center.active .side-panel{
     opacity:1;max-height:220px;pointer-events:auto;
     padding:18px 20px;margin-top:14px;border-width:1px;
     transform:none!important;
@@ -298,6 +325,7 @@ body{
 @media(max-width:600px){
   .hero{padding:48px 24px 28px}
   .hero h1{font-size:clamp(2rem,8vw,3rem)}
+  .bubble-grid{grid-template-columns:1fr;gap:20px;max-width:280px;margin:0 auto}
 }
 </style>
 </head>
@@ -336,8 +364,8 @@ body{
       <span class="b-chip">8页 Slide</span>
     </div>
 
-    <!-- 02 — right -->
-    <div class="bw right" data-index="1">
+    <!-- 02 — center -->
+    <div class="bw center" data-index="1">
       <div class="b-anchor">
         <div class="side-panel">
           <div class="sp-title">组织架构框架图</div>
@@ -354,8 +382,8 @@ body{
       <span class="b-chip">单页图表</span>
     </div>
 
-    <!-- 03 — left -->
-    <div class="bw left" data-index="2">
+    <!-- 03 — right -->
+    <div class="bw right" data-index="2">
       <div class="b-anchor">
         <div class="side-panel">
           <div class="sp-title">4月复盘 &amp; 5月战略部署</div>
@@ -372,8 +400,8 @@ body{
       <span class="b-chip">12页 Slide</span>
     </div>
 
-    <!-- 04 — right -->
-    <div class="bw right" data-index="3">
+    <!-- 04 — left -->
+    <div class="bw left" data-index="3">
       <div class="b-anchor">
         <div class="side-panel">
           <div class="sp-title">Yousky 手持清洁机 · 海外 KOL 营销拆解</div>
@@ -388,6 +416,24 @@ body{
       </div>
       <span class="b-label">KOL 营销拆解</span>
       <span class="b-chip">PDF 文档</span>
+    </div>
+
+    <!-- 05 — center (row 2) -->
+    <div class="bw center" data-index="4">
+      <div class="b-anchor">
+        <div class="side-panel">
+          <div class="sp-title">三渠道备货计划 2026.6-8</div>
+          <p class="sp-desc">10 页 Consulting 风格汇报 Slide。库存现状盘点、三渠道(Amazon·TK·DTC)需求预测、H11 主力款库存推演、月度备货PO计划、渠道配额分配策略、风险预警与行动清单</p>
+          <a href="inventory-plan/viewer-zh.html" class="sp-btn">10页 Slide</a>
+        </div>
+        <div class="side-dots"><i></i><i></i><i></i></div>
+        <a href="inventory-plan/viewer-zh.html" class="bubble b5">
+          <span class="b-icon">&#9679;</span>
+          <span class="b-num">05</span>
+        </a>
+      </div>
+      <span class="b-label">备货计划 6-8月</span>
+      <span class="b-chip">10页 Slide</span>
     </div>
 
   </div>
