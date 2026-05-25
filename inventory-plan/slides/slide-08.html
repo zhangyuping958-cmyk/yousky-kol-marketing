@@ -1,0 +1,80 @@
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<div class="slide">
+  <div class="section-tag">07 · 渠道策略</div>
+  <h2>渠道配额分配策略</h2>
+  <p style="color:var(--color-muted);margin-bottom:24px;">如何在库存紧张时避免三渠道互相争抢 &mdash; 按优先级 + 利润贡献分配</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px;">
+
+    <!-- Amazon -->
+    <div class="card" style="border-top:3px solid var(--color-primary);">
+      <h3 style="color:var(--color-primary);">Amazon</h3>
+      <div style="font-family:var(--font-mono);font-size:28px;font-weight:600;color:var(--color-primary);margin:8px 0;">P1</div>
+      <p style="font-size:13px;color:var(--color-muted);margin-bottom:12px;">最高客单 · 最大体量 · 品牌主阵地</p>
+      <div style="font-size:12px;line-height:1.8;">
+        <div style="display:flex;justify-content:space-between;"><span>6月配额</span><span style="font-weight:600;">H11: 4,500</span></div>
+        <div style="display:flex;justify-content:space-between;"><span>7月配额</span><span style="font-weight:600;">H11: 4,000</span></div>
+        <div style="display:flex;justify-content:space-between;"><span>8月配额</span><span>H11: 900</span></div>
+        <div style="display:flex;justify-content:space-between;"><span style="color:var(--color-muted);">H11 客单价</span><span style="font-weight:600;">$129.99</span></div>
+      </div>
+    </div>
+
+    <!-- DTC -->
+    <div class="card" style="border-top:3px solid var(--color-secondary);">
+      <h3 style="color:var(--color-secondary);">独立站 DTC</h3>
+      <div style="font-family:var(--font-mono);font-size:28px;font-weight:600;color:var(--color-secondary);margin:8px 0;">P2</div>
+      <p style="font-size:13px;color:var(--color-muted);margin-bottom:12px;">最高利润 · 用户沉淀 · 8月起量</p>
+      <div style="font-size:12px;line-height:1.8;">
+        <div style="display:flex;justify-content:space-between;"><span>6月配额</span><span style="font-weight:600;">H11: 600</span></div>
+        <div style="display:flex;justify-content:space-between;"><span>7月配额</span><span style="font-weight:600;">H11: 1,200</span></div>
+        <div style="display:flex;justify-content:space-between;"><span>8月配额</span><span style="font-weight:600;color:var(--color-secondary);">H11: 1,500</span></div>
+        <div style="display:flex;justify-content:space-between;"><span style="color:var(--color-muted);">H11 客单价</span><span style="font-weight:600;">$139.99</span></div>
+      </div>
+    </div>
+
+    <!-- TK -->
+    <div class="card" style="border-top:3px solid #1a1d28;">
+      <h3>TikTok</h3>
+      <div style="font-family:var(--font-mono);font-size:28px;font-weight:600;color:var(--color-fg);margin:8px 0;">P3</div>
+      <p style="font-size:13px;color:var(--color-muted);margin-bottom:12px;">内容引擎 · 引流价值 · 低客单走量</p>
+      <div style="font-size:12px;line-height:1.8;">
+        <div style="display:flex;justify-content:space-between;"><span>6月配额</span><span style="font-weight:600;">H11: 1,000</span></div>
+        <div style="display:flex;justify-content:space-between;"><span>7月配额</span><span style="font-weight:600;">H11: 800</span></div>
+        <div style="display:flex;justify-content:space-between;"><span>8月配额</span><span>H11: 800</span></div>
+        <div style="display:flex;justify-content:space-between;"><span style="color:var(--color-muted);">H11 客单价</span><span style="font-weight:600;">$99.99</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Allocation rules -->
+  <div style="background:#fff;border:1px solid var(--color-border);border-radius:10px;padding:20px 24px;">
+    <h3 style="margin-bottom:12px;">库存紧张期分配规则</h3>
+    <div style="display:flex;gap:24px;">
+      <div style="flex:1;">
+        <div style="font-size:12px;font-family:var(--font-mono);color:var(--color-muted);margin-bottom:8px;">优先级排序</div>
+        <div style="font-size:14px;line-height:2;">
+          <div><span style="color:var(--color-primary);font-weight:600;">1. Amazon</span> — 品牌主战场,BSR排名不可掉</div>
+          <div><span style="color:var(--color-secondary);font-weight:600;">2. DTC</span> — 最高利润率,用户数据自有</div>
+          <div><span style="font-weight:600;">3. TK</span> — 弹性调节,可接受短期缺货</div>
+        </div>
+      </div>
+      <div style="width:1px;background:var(--color-border);"></div>
+      <div style="flex:1;">
+        <div style="font-size:12px;font-family:var(--font-mono);color:var(--color-muted);margin-bottom:8px;">安全库存底线 (每渠道)</div>
+        <div style="font-size:14px;line-height:2;">
+          <div>· Amazon: 保持 15天 销量库存</div>
+          <div>· DTC: 保持 7天 销量库存</div>
+          <div>· TK: 保持 7天 销量库存 (小批量高频补)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <span>Yousky 供应链管理</span>
+    <span>渠道分配策略 · 利润导向 + 品牌优先</span>
+  </div>
+</div>

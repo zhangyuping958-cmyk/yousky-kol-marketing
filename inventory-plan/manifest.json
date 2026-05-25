@@ -1,0 +1,15 @@
+{
+  "title": "Yousky 手持清洁机 · 三渠道备货计划 2026.6-8",
+  "slides": [
+    { "file": "slides/slide-01.html", "title": "封面 — 备货计划总览" },
+    { "file": "slides/slide-02.html", "title": "现状盘点 — 库存水位" },
+    { "file": "slides/slide-03.html", "title": "三渠道需求全景" },
+    { "file": "slides/slide-04.html", "title": "H11 主力款库存推演" },
+    { "file": "slides/slide-05.html", "title": "6月备货计划" },
+    { "file": "slides/slide-06.html", "title": "7月备货计划" },
+    { "file": "slides/slide-07.html", "title": "8月备货计划" },
+    { "file": "slides/slide-08.html", "title": "渠道配额分配策略" },
+    { "file": "slides/slide-09.html", "title": "PO时间线与风险预警" },
+    { "file": "slides/slide-10.html", "title": "备货行动清单" }
+  ]
+}
