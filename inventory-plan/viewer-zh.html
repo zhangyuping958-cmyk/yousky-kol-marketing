@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Yousky 6-8月 SKU / 渠道 / 月度备货计划</title>
-  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=inter@400,500,600,700&display=swap" rel="stylesheet">
   <style>
 :root {
   --color-bg: #fafaf9;
@@ -25,9 +24,9 @@
   --color-gold-soft: #f5eadb;
   --color-green-soft: #e8f0ec;
   --color-red-soft: #f5e8e5;
-  --font-sans: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
-  --font-mono: "SF Mono", "JetBrains Mono", "Cascadia Mono", monospace;
-  --font-display: "Clash Display", "Inter", "Noto Sans SC", "PingFang SC", sans-serif;
+  --font-sans: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", "Inter", sans-serif;
+  --font-mono: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", "Inter", sans-serif;
+  --font-display: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", "Inter", sans-serif;
   --slide-padding: 54px;
 }
 
@@ -118,7 +117,7 @@ h1 {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 58px;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.025em;
   color: var(--color-primary);
   line-height: 1.04;
 }
@@ -127,7 +126,7 @@ h2 {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 36px;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.018em;
   color: var(--color-primary);
   line-height: 1.12;
   margin-bottom: 12px;
@@ -164,7 +163,7 @@ p, li {
 }
 
 .muted { color: var(--color-muted); }
-.num { font-family: var(--font-mono); text-align: right; white-space: nowrap; }
+.num { text-align: right; white-space: nowrap; font-variant-numeric: lining-nums tabular-nums; }
 .strong { font-weight: 700; color: var(--color-primary); }
 
 .card {
@@ -208,7 +207,8 @@ p, li {
   font-weight: 700;
   font-size: 46px;
   line-height: 0.96;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.018em;
+  font-variant-numeric: lining-nums tabular-nums;
   color: var(--color-primary);
 }
 
@@ -421,16 +421,16 @@ p, li {
 
 .slide-footer {
   position: absolute;
-  bottom: 18px;
+  bottom: 16px;
   left: var(--slide-padding);
-  right: var(--slide-padding);
+  right: 112px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 10px;
   color: rgba(127,132,144,0.88);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.03em;
 }
 
 .tight-note {
@@ -487,8 +487,8 @@ p, li {
 
 .slide-dense .slide-footer {
   left: 54px;
-  right: 48px;
-  bottom: 14px;
+  right: 112px;
+  bottom: 12px;
 }
 
 .table-large {
@@ -514,19 +514,19 @@ p, li {
 }
 
 .master-table-wrap {
-  height: 565px;
+  height: 548px;
 }
 
 .master-table {
   height: 100%;
   table-layout: fixed;
-  font-size: 13.2px;
-  line-height: 1.12;
+  font-size: 14px;
+  line-height: 1.1;
 }
 
 .master-table th,
 .master-table td {
-  padding: 5px 7px;
+  padding: 4px 7px;
 }
 
 .master-table th:nth-child(1) { width: 9.5%; }
@@ -542,6 +542,18 @@ p, li {
   text-align: center;
   vertical-align: middle;
   border-right: 1px solid #d8d0c4;
+}
+
+.master-table .channel-sep td {
+  border-top: 3px solid #d8d0c4;
+}
+
+.master-table .dtc-row td {
+  background: rgba(232, 240, 236, 0.52);
+}
+
+.master-table .dtc-row:nth-child(even) td {
+  background: rgba(232, 240, 236, 0.72);
 }
 
 .channel-total td {
@@ -909,12 +921,16 @@ p, li {
     .page-num {
       position: absolute;
       right: 28px;
-      bottom: 20px;
-      font-family: var(--font-mono);
+      bottom: 18px;
+      min-width: 58px;
+      text-align: right;
+      font-family: var(--font-sans);
       font-size: 11px;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.08em;
       color: rgba(23, 27, 36, 0.42);
       z-index: 30;
+      background: rgba(250, 250, 249, 0.72);
+      padding-left: 8px;
     }
 
     .nav-dots {
@@ -949,14 +965,14 @@ p, li {
       left: 22px;
       bottom: 18px;
       z-index: 1001;
-      padding: 9px 12px;
+      padding: 8px 11px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.72);
+      background: rgba(255, 255, 255, 0.66);
       border: 1px solid rgba(228, 222, 210, 0.9);
-      color: rgba(23, 27, 36, 0.56);
-      font-family: var(--font-mono);
+      color: rgba(23, 27, 36, 0.52);
+      font-family: var(--font-sans);
       font-size: 10px;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.04em;
     }
 
     @media (max-width: 860px) {
@@ -1087,13 +1103,13 @@ p, li {
         <tr><td><span class="sku-chip">L11</span></td><td class="num">1,000</td><td class="num">1,000</td><td class="num">800</td><td class="num">2,800</td><td>站外主力消化</td></tr>
         <tr class="channel-total"><td>TikTok合计</td><td class="num">2,060</td><td class="num">2,210</td><td class="num">2,110</td><td class="num">6,380</td><td>只能卖海外仓库存</td></tr>
 
-        <tr class="channel-row"><td rowspan="7"><span class="channel-chip dtc">独立站</span></td><td><span class="sku-chip">H10</span> 蓝/灰</td><td class="num">100</td><td class="num">200</td><td class="num">200</td><td class="num">500</td><td>海外仓清货，H10灰控量</td></tr>
-        <tr><td><span class="sku-chip">H11</span> 灰</td><td class="num">400</td><td class="num">900</td><td class="num strong">1,200</td><td class="num strong">2,500</td><td>站外配额需预留</td></tr>
-        <tr><td><span class="sku-chip">H11 Pro</span></td><td class="num">100</td><td class="num">100</td><td class="num">100</td><td class="num">300</td><td>新品稳定承接</td></tr>
-        <tr><td><span class="sku-chip">T11</span> 浅灰</td><td class="num">100</td><td class="num">200</td><td class="num">300</td><td class="num">600</td><td>首批1,000海外仓承接</td></tr>
-        <tr><td><span class="sku-chip">L10</span></td><td class="num">20</td><td class="num">50</td><td class="num">100</td><td class="num">170</td><td>Amazon转出补充渠道</td></tr>
-        <tr><td><span class="sku-chip">L11</span></td><td class="num">80</td><td class="num">250</td><td class="num">200</td><td class="num">530</td><td>站外持续消化</td></tr>
-        <tr class="channel-total"><td>独立站合计</td><td class="num">800</td><td class="num">1,700</td><td class="num">2,100</td><td class="num">4,600</td><td>只用海外仓与自发货</td></tr>
+        <tr class="channel-row channel-sep dtc-row"><td rowspan="7"><span class="channel-chip dtc">独立站</span></td><td><span class="sku-chip">H10</span> 蓝/灰</td><td class="num">100</td><td class="num">200</td><td class="num">200</td><td class="num">500</td><td>海外仓清货，H10灰控量</td></tr>
+        <tr class="dtc-row"><td><span class="sku-chip">H11</span> 灰</td><td class="num">400</td><td class="num">900</td><td class="num strong">1,200</td><td class="num strong">2,500</td><td>站外配额需预留</td></tr>
+        <tr class="dtc-row"><td><span class="sku-chip">H11 Pro</span></td><td class="num">100</td><td class="num">100</td><td class="num">100</td><td class="num">300</td><td>新品稳定承接</td></tr>
+        <tr class="dtc-row"><td><span class="sku-chip">T11</span> 浅灰</td><td class="num">100</td><td class="num">200</td><td class="num">300</td><td class="num">600</td><td>首批1,000海外仓承接</td></tr>
+        <tr class="dtc-row"><td><span class="sku-chip">L10</span></td><td class="num">20</td><td class="num">50</td><td class="num">100</td><td class="num">170</td><td>Amazon转出补充渠道</td></tr>
+        <tr class="dtc-row"><td><span class="sku-chip">L11</span></td><td class="num">80</td><td class="num">250</td><td class="num">200</td><td class="num">530</td><td>站外持续消化</td></tr>
+        <tr class="channel-total dtc-row"><td>独立站合计</td><td class="num">800</td><td class="num">1,700</td><td class="num">2,100</td><td class="num">4,600</td><td>只用海外仓与自发货</td></tr>
 
         <tr class="subtotal"><td colspan="2">三渠道合计</td><td class="num">9,260</td><td class="num">10,510</td><td class="num">8,910</td><td class="num">28,680</td><td>新增PO只投 H11 / H11 Pro / T11：11,500 台</td></tr>
       </tbody>

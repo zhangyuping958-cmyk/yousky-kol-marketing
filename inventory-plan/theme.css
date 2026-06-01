@@ -17,9 +17,9 @@
   --color-gold-soft: #f5eadb;
   --color-green-soft: #e8f0ec;
   --color-red-soft: #f5e8e5;
-  --font-sans: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
-  --font-mono: "SF Mono", "JetBrains Mono", "Cascadia Mono", monospace;
-  --font-display: "Clash Display", "Inter", "Noto Sans SC", "PingFang SC", sans-serif;
+  --font-sans: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", "Inter", sans-serif;
+  --font-mono: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", "Inter", sans-serif;
+  --font-display: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", "Inter", sans-serif;
   --slide-padding: 54px;
 }
 
@@ -110,7 +110,7 @@ h1 {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 58px;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.025em;
   color: var(--color-primary);
   line-height: 1.04;
 }
@@ -119,7 +119,7 @@ h2 {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 36px;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.018em;
   color: var(--color-primary);
   line-height: 1.12;
   margin-bottom: 12px;
@@ -156,7 +156,7 @@ p, li {
 }
 
 .muted { color: var(--color-muted); }
-.num { font-family: var(--font-mono); text-align: right; white-space: nowrap; }
+.num { text-align: right; white-space: nowrap; font-variant-numeric: lining-nums tabular-nums; }
 .strong { font-weight: 700; color: var(--color-primary); }
 
 .card {
@@ -200,7 +200,8 @@ p, li {
   font-weight: 700;
   font-size: 46px;
   line-height: 0.96;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.018em;
+  font-variant-numeric: lining-nums tabular-nums;
   color: var(--color-primary);
 }
 
@@ -413,16 +414,16 @@ p, li {
 
 .slide-footer {
   position: absolute;
-  bottom: 18px;
+  bottom: 16px;
   left: var(--slide-padding);
-  right: var(--slide-padding);
+  right: 112px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 10px;
   color: rgba(127,132,144,0.88);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.03em;
 }
 
 .tight-note {
@@ -479,8 +480,8 @@ p, li {
 
 .slide-dense .slide-footer {
   left: 54px;
-  right: 48px;
-  bottom: 14px;
+  right: 112px;
+  bottom: 12px;
 }
 
 .table-large {
@@ -506,19 +507,19 @@ p, li {
 }
 
 .master-table-wrap {
-  height: 565px;
+  height: 548px;
 }
 
 .master-table {
   height: 100%;
   table-layout: fixed;
-  font-size: 13.2px;
-  line-height: 1.12;
+  font-size: 14px;
+  line-height: 1.1;
 }
 
 .master-table th,
 .master-table td {
-  padding: 5px 7px;
+  padding: 4px 7px;
 }
 
 .master-table th:nth-child(1) { width: 9.5%; }
@@ -534,6 +535,18 @@ p, li {
   text-align: center;
   vertical-align: middle;
   border-right: 1px solid #d8d0c4;
+}
+
+.master-table .channel-sep td {
+  border-top: 3px solid #d8d0c4;
+}
+
+.master-table .dtc-row td {
+  background: rgba(232, 240, 236, 0.52);
+}
+
+.master-table .dtc-row:nth-child(even) td {
+  background: rgba(232, 240, 236, 0.72);
 }
 
 .channel-total td {
