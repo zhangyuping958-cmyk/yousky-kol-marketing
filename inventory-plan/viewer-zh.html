@@ -984,8 +984,8 @@ p, li {
 }
 
 
-    * { box-sizing: border-box; }
 
+    /* ── Override theme canvas constraints to enable native document scroll ── */
     html {
       scroll-snap-type: y mandatory;
       scroll-behavior: smooth;
@@ -994,14 +994,11 @@ p, li {
     }
 
     html, body {
-      width: 100%;
-      height: 100%;
-      min-height: 100%;
+      width: 100% !important;
+      height: 100% !important;
       margin: 0;
-      overflow-x: hidden;
-      overflow-y: visible;
-      background: var(--color-bg);
       font-family: var(--font-sans);
+      background: var(--color-bg);
     }
 
     body {
@@ -1020,15 +1017,10 @@ p, li {
       transition: width 0.3s ease;
     }
 
-    .slide-stage,
-    .slide-track {
-      width: 100%;
-    }
-
     .slide-frame {
       width: 100vw;
       height: 100vh;
-      min-height: 720px;
+      height: 100dvh;
       scroll-snap-align: start;
       display: flex;
       align-items: center;
@@ -1057,7 +1049,8 @@ p, li {
       border-radius: 18px;
       overflow: hidden;
       background: #fafaf9;
-      transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .slide-frame.visible .slide-scale {
@@ -1108,24 +1101,8 @@ p, li {
       transform: scale(1.6);
     }
 
-    .nav-hint {
-      position: fixed;
-      left: 22px;
-      bottom: 18px;
-      z-index: 1001;
-      padding: 8px 11px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.66);
-      border: 1px solid rgba(228, 222, 210, 0.9);
-      color: rgba(23, 27, 36, 0.52);
-      font-family: var(--font-sans);
-      font-size: 10px;
-      letter-spacing: 0.04em;
-    }
-
     @media (max-width: 860px) {
       .nav-dots { right: 10px; gap: 5px; }
-      .nav-hint { display: none; }
     }
 
   </style>
@@ -1133,9 +1110,7 @@ p, li {
 <body>
   <div class="progress-bar" id="progressBar"></div>
   <nav class="nav-dots" id="navDots" aria-label="页面导航"></nav>
-  <div class="nav-hint">WHEEL · ARROWS · SPACE</div>
-  <main class="slide-stage" id="slideStage">
-    <div class="slide-track" id="slideTrack">
+  <main>
   <section class="slide-frame" id="s1" data-title="封面 — 备货计划总览">
     <div class="slide-scale">
 <div class="slide-title">
@@ -1819,61 +1794,52 @@ p, li {
       <div class="page-num">20 / 20</div>
     </div>
   </section>
-    </div>
   </main>
   <script>
 
-    (function(){
-      var slides = Array.prototype.slice.call(document.querySelectorAll('.slide-frame'));
-      var total = slides.length;
-      var dots = document.getElementById('navDots');
-      var bar = document.getElementById('progressBar');
-
-      function setScale(){
-        var scale = Math.min(window.innerWidth / 1280, window.innerHeight / 720, 1);
-        document.documentElement.style.setProperty('--viewer-scale', scale.toFixed(4));
+(function(){
+  var slides = document.querySelectorAll('.slide-frame'), total = slides.length;
+  var dots = document.getElementById('navDots'), bar = document.getElementById('progressBar');
+  for (var i = 0; i < total; i++) {
+    var btn = document.createElement('button');
+    btn.setAttribute('aria-label', '第' + (i + 1) + '页');
+    btn.onclick = (function(idx){ return function(){ document.getElementById('s' + (idx + 1)).scrollIntoView({ behavior: 'smooth' }); }; })(i);
+    dots.appendChild(btn);
+  }
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var idx = parseInt(e.target.id.replace('s', ''), 10) - 1;
+      var btns = dots.querySelectorAll('button');
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        btns.forEach(function(b, i){ b.classList.toggle('active', i === idx); });
+        bar.style.width = ((idx + 1) / total * 100) + '%';
+      } else {
+        e.target.classList.remove('visible');
       }
-
-      for(var i = 0; i < total; i++){
-        var btn = document.createElement('button');
-        btn.setAttribute('aria-label', '第' + (i + 1) + '页');
-        btn.onclick = (function(idx){ return function(){ document.getElementById('s' + (idx + 1)).scrollIntoView({ behavior: 'smooth' }); }; })(i);
-        dots.appendChild(btn);
-      }
-
-      var obs = new IntersectionObserver(function(entries){
-        entries.forEach(function(e){
-          var idx = parseInt(e.target.id.replace('s', ''), 10) - 1;
-          var btns = dots.querySelectorAll('button');
-          if(e.isIntersecting){
-            e.target.classList.add('visible');
-            btns.forEach(function(b, i){ b.classList.toggle('active', i === idx); });
-            bar.style.width = ((idx + 1) / total * 100) + '%';
-          } else {
-            e.target.classList.remove('visible');
-          }
-        });
-      }, { threshold: 0.4 });
-
-      slides.forEach(function(s){ obs.observe(s); });
-
-      document.addEventListener('keydown', function(e){
-        if(e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' '){
-          e.preventDefault();
-          var cur = Math.round(window.scrollY / window.innerHeight);
-          var next = Math.min(cur + 1, total - 1);
-          document.getElementById('s' + (next + 1)).scrollIntoView({ behavior: 'smooth' });
-        } else if(e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp'){
-          e.preventDefault();
-          var cur = Math.round(window.scrollY / window.innerHeight);
-          var prev = Math.max(cur - 1, 0);
-          document.getElementById('s' + (prev + 1)).scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-
-      window.addEventListener('resize', setScale);
-      setScale();
-    })();
+    });
+  }, { threshold: 0.4 });
+  slides.forEach(function(s){ obs.observe(s); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+      e.preventDefault();
+      var cur = Math.round(window.scrollY / window.innerHeight);
+      var next = Math.min(cur + 1, total - 1);
+      document.getElementById('s' + (next + 1)).scrollIntoView({ behavior: 'smooth' });
+    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      var cur = Math.round(window.scrollY / window.innerHeight);
+      var prev = Math.max(cur - 1, 0);
+      document.getElementById('s' + (prev + 1)).scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+  function setScale(){
+    var s = Math.min(window.innerWidth / 1280, window.innerHeight / 720, 1);
+    document.documentElement.style.setProperty('--viewer-scale', s.toFixed(4));
+  }
+  window.addEventListener('resize', setScale);
+  setScale();
+})();
 
   </script>
 </body>
