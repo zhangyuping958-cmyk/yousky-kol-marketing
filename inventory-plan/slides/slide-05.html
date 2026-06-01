@@ -1,10 +1,22 @@
-<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<div class="slide">
-  <div class="section-tag">04 · 需求全景</div><h2>6-8月三渠道销量计划</h2>
-  <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:20px;">
-    <div class="card"><h3>月度总量</h3><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px;"><div style="text-align:center;background:var(--color-surface);padding:16px;border-radius:8px;"><div class="metric-num" style="font-size:34px;">9,260</div><div class="metric-label">6月</div></div><div style="text-align:center;background:var(--color-surface);padding:16px;border-radius:8px;"><div class="metric-num" style="font-size:34px;">10,510</div><div class="metric-label">7月</div></div><div style="text-align:center;background:var(--color-surface);padding:16px;border-radius:8px;"><div class="metric-num" style="font-size:34px;">8,910</div><div class="metric-label">8月</div></div></div><p style="font-size:13px;color:var(--color-muted);margin-top:14px;">合计28,680台；备货管理口径剔除H10与T10下市款后为23,980台。</p></div>
-    <div class="card"><h3>渠道合计</h3><table style="width:100%;font-size:14px;line-height:2.05;"><tr><td>Amazon</td><td style="text-align:right;font-family:var(--font-mono);">17,700</td></tr><tr><td>TikTok</td><td style="text-align:right;font-family:var(--font-mono);">6,380</td></tr><tr><td>独立站</td><td style="text-align:right;font-family:var(--font-mono);">4,600</td></tr><tr><td style="font-weight:600;">合计</td><td style="text-align:right;font-family:var(--font-mono);font-weight:600;">28,680</td></tr></table></div>
+<div class="slide-content">
+  <div class="deck-mark">GAP TO ACTION</div>
+  <div class="header-row">
+    <div><div class="section-tag">04 · 总缺口与PO决策</div><h2>从需求、库存到采购动作，一页看清</h2></div>
+    <p class="lead">新增PO只投向三类SKU：H11主力款、H11 Pro新品、T11新品。下市款与专利受限款只做库存调拨和渠道消化。</p>
   </div>
-  <div class="slide-footer"><span>Yousky 供应链管理</span><span>2026.6-8 · SKU统一调整版</span></div>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr><th>SKU</th><th class="num">6-8月需求</th><th class="num">当前库存口径</th><th>渠道限制</th><th class="num">新增PO</th><th>覆盖判断</th><th>优先级</th><th>采购/调拨动作</th></tr></thead>
+      <tbody>
+        <tr><td><span class="sku-chip">H11</span> 灰</td><td class="num strong">14,000</td><td class="num">可用 8,256</td><td>三渠道均可卖</td><td class="num strong">7,000</td><td>PO后名义缓冲 1,256</td><td><span class="priority-p0">P0</span></td><td>6月第一周锁单，优先保障Amazon</td></tr>
+        <tr><td><span class="sku-chip">H11 Pro</span></td><td class="num strong">2,450</td><td class="num">按0可售</td><td>7月Amazon新品节奏</td><td class="num strong">2,500</td><td>PO后缓冲 50</td><td><span class="priority-p0">P0</span></td><td>生产与FBA预约并行</td></tr>
+        <tr><td><span class="sku-chip">T11</span> 浅灰</td><td class="num strong">2,730</td><td class="num">1,985含在途</td><td>首批海外仓，二批FBA</td><td class="num strong">2,000</td><td>数量足，路径需拆分</td><td><span class="priority-p1">P1</span></td><td>海外仓与FBA不可混用</td></tr>
+        <tr><td><span class="sku-chip">L10/L11</span></td><td class="num">4,800</td><td class="num">3,016</td><td>不新增Amazon FBA</td><td class="num">0</td><td>渠道重排后持续监控</td><td><span class="priority-risk">风险</span></td><td>转TK、DTC、自发货消化</td></tr>
+        <tr><td><span class="sku-chip">H10</span></td><td class="num">3,300</td><td class="num">3,539</td><td>蓝色不再发FBA</td><td class="num">0</td><td>库存可覆盖清货量</td><td><span class="priority-clearance">清货</span></td><td>蓝色转TK、DTC、Walmart</td></tr>
+        <tr><td><span class="sku-chip">T10</span></td><td class="num">1,400</td><td class="num">1,998</td><td>现有FBA清完下架</td><td class="num">0</td><td>库存足够清货</td><td><span class="priority-clearance">清货</span></td><td>不再发货，不新增PO</td></tr>
+        <tr class="subtotal"><td>新增PO合计</td><td class="num">23,980 管理需求</td><td class="num">按SKU分配</td><td>执行渠道约束</td><td class="num">11,500</td><td>采购预算 ¥200.5万</td><td>总控</td><td>周度滚动复盘</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-footer"><span>缺口矩阵</span><span>新增采购只投可持续销售SKU</span></div>
 </div>

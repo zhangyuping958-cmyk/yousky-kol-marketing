@@ -1,527 +1,1293 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yousky 6-8月三渠道备货计划（SKU统一调整版）</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yousky 6-8月 SKU / 渠道 / 月度备货计划</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=inter@400,500,600,700&display=swap" rel="stylesheet">
+  <style>
 :root {
-  --color-bg:       #fafaf9;
-  --color-fg:       #1a1d28;
-  --color-primary:  #1e3e54;
-  --color-secondary:#b8875a;
-  --color-accent:   #c4a35a;
-  --color-muted:    #90939e;
-  --color-surface:  #f4f2ed;
-  --color-border:   #e5e1d8;
-  --color-good:     #4a7c6b;
-  --color-bad:      #b55a4a;
-  --color-warn:     #d4a040;
-  --font-sans: "Inter","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
-  --font-mono: "SF Mono","JetBrains Mono",monospace;
-  --font-display: "Clash Display","Inter","Noto Sans SC",sans-serif;
-  --slide-padding: 64px;
+  --color-bg: #fafaf9;
+  --color-bg-warm: #f3eee6;
+  --color-fg: #171b24;
+  --color-primary: #1e3e54;
+  --color-primary-2: #2d5872;
+  --color-secondary: #b8875a;
+  --color-accent: #c4a35a;
+  --color-muted: #7f8490;
+  --color-surface: #f4f2ed;
+  --color-card: #ffffff;
+  --color-border: #e4ded2;
+  --color-good: #4a7c6b;
+  --color-bad: #b55a4a;
+  --color-warn: #d4a040;
+  --color-blue-soft: #e8eef2;
+  --color-gold-soft: #f5eadb;
+  --color-green-soft: #e8f0ec;
+  --color-red-soft: #f5e8e5;
+  --font-sans: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-mono: "SF Mono", "JetBrains Mono", "Cascadia Mono", monospace;
+  --font-display: "Clash Display", "Inter", "Noto Sans SC", "PingFang SC", sans-serif;
+  --slide-padding: 54px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html, body {
+  width: 1280px;
+  height: 720px;
+  overflow: hidden;
   font-family: var(--font-sans);
   background: var(--color-bg);
   color: var(--color-fg);
   -webkit-font-smoothing: antialiased;
-  width: 1280px; height: 720px;
-  overflow: hidden;
 }
 
-/* ---- Base slide layouts ---- */
-.slide {
-  width: 1280px; height: 720px;
-  padding: var(--slide-padding);
-  display: flex; flex-direction: column;
-  justify-content: center;
-  background: var(--color-bg);
-  position: relative;
-}
-.slide-title {
-  width: 1280px; height: 720px;
-  padding: var(--slide-padding);
-  display: flex; flex-direction: column;
-  justify-content: center; align-items: center;
-  text-align: center;
-  background: var(--color-bg);
-  position: relative;
-}
+.slide,
+.slide-title,
+.slide-content,
 .slide-split {
-  width: 1280px; height: 720px;
-  padding: var(--slide-padding);
-  display: flex; flex-direction: row;
-  align-items: center; gap: 48px;
-  background: var(--color-bg);
+  width: 1280px;
+  height: 720px;
   position: relative;
-}
-.slide-content {
-  width: 1280px; height: 720px;
-  padding: var(--slide-padding);
-  display: flex; flex-direction: column;
-  justify-content: flex-start;
-  background: var(--color-bg);
-  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 8% 12%, rgba(196, 163, 90, 0.12), transparent 28%),
+    linear-gradient(135deg, #fafaf9 0%, #f7f1e8 100%);
 }
 
-/* ---- Typography ---- */
+.slide,
+.slide-content {
+  padding: var(--slide-padding);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.slide-title {
+  padding: 58px 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.slide-split {
+  padding: var(--slide-padding);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 34px;
+  align-items: center;
+}
+
+.slide::before,
+.slide-title::before,
+.slide-content::before,
+.slide-split::before {
+  content: "";
+  position: absolute;
+  left: 36px;
+  top: 34px;
+  bottom: 34px;
+  width: 3px;
+  background: linear-gradient(180deg, var(--color-secondary), transparent 72%);
+  opacity: 0.78;
+}
+
+.slide::after,
+.slide-title::after,
+.slide-content::after,
+.slide-split::after {
+  content: "";
+  position: absolute;
+  right: -90px;
+  bottom: -120px;
+  width: 360px;
+  height: 360px;
+  border: 1px solid rgba(184, 135, 90, 0.18);
+  border-radius: 50%;
+}
+
+.deck-mark {
+  position: absolute;
+  right: 58px;
+  top: 38px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: rgba(30, 62, 84, 0.45);
+  text-transform: uppercase;
+}
+
+.section-tag,
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-secondary);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
 h1 {
   font-family: var(--font-display);
-  font-weight: 600; font-size: 48px;
-  letter-spacing: -0.03em; color: var(--color-primary);
-  line-height: 1.15;
-}
-h2 {
-  font-family: var(--font-display);
-  font-weight: 600; font-size: 32px;
-  letter-spacing: -0.02em; color: var(--color-primary);
-  margin-bottom: 12px; line-height: 1.2;
-}
-h3 {
-  font-family: var(--font-display);
-  font-weight: 600; font-size: 20px;
+  font-weight: 700;
+  font-size: 58px;
+  letter-spacing: -0.045em;
   color: var(--color-primary);
-  margin-bottom: 4px; line-height: 1.3;
-}
-p, li {
-  font-size: 16px; color: var(--color-fg);
-  line-height: 1.6;
+  line-height: 1.04;
 }
 
-/* ---- Section tag ---- */
-.section-tag {
-  font-family: var(--font-mono);
-  font-size: 11px; color: var(--color-secondary);
-  letter-spacing: 0.2em; text-transform: uppercase;
+h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 36px;
+  letter-spacing: -0.035em;
+  color: var(--color-primary);
+  line-height: 1.12;
   margin-bottom: 12px;
 }
 
-/* ---- Metric number ---- */
-.metric-num {
+h3 {
   font-family: var(--font-display);
-  font-weight: 600; font-size: 48px;
-  line-height: 1; letter-spacing: -0.02em;
-}
-.metric-label {
-  font-size: 13px; color: var(--color-muted);
-  font-family: var(--font-mono);
-  margin-top: 4px;
+  font-weight: 650;
+  font-size: 19px;
+  color: var(--color-primary);
+  line-height: 1.24;
+  margin-bottom: 7px;
 }
 
-/* ---- Cards ---- */
-.card {
-  background: #fff; border: 1px solid var(--color-border);
-  border-radius: 10px; padding: 24px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-}
-.card-highlight {
-  border-left: 3px solid var(--color-secondary);
-}
-
-/* ---- Tags ---- */
-.tag-green {
-  background: #e8f0ec; color: var(--color-good);
-  font-family: var(--font-mono); font-size: 11px;
-  padding: 3px 10px; border-radius: 6px;
-}
-.tag-red {
-  background: #f5e8e5; color: var(--color-bad);
-  font-family: var(--font-mono); font-size: 11px;
-  padding: 3px 10px; border-radius: 6px;
-}
-.tag-amber {
-  background: #faf3e2; color: var(--color-warn);
-  font-family: var(--font-mono); font-size: 11px;
-  padding: 3px 10px; border-radius: 6px;
-}
-
-/* ---- Footer ---- */
-.slide-footer {
-  position: absolute; bottom: 20px; left: 64px; right: 64px;
-  display: flex; justify-content: space-between;
-  font-family: var(--font-mono); font-size: 10px;
-  color: var(--color-muted); letter-spacing: 0.04em;
-}
-
-
-html, body {
-  width: 100%;
-  min-height: 100%;
-  height: auto;
-  overflow-x: hidden;
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
-  background: var(--color-bg);
-}
-body {
-  font-family: var(--font-sans);
+p, li {
+  font-size: 15px;
   color: var(--color-fg);
-  -webkit-font-smoothing: antialiased;
+  line-height: 1.55;
 }
-.progress-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  width: 0;
-  background: var(--color-secondary);
-  z-index: 1000;
+
+.lead {
+  font-size: 20px;
+  line-height: 1.55;
+  color: #4b5360;
+  max-width: 880px;
 }
-.nav-dots {
-  position: fixed;
-  right: 18px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  z-index: 1000;
+
+.micro {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+  text-transform: uppercase;
 }
-.nav-dots button {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+
+.muted { color: var(--color-muted); }
+.num { font-family: var(--font-mono); text-align: right; white-space: nowrap; }
+.strong { font-weight: 700; color: var(--color-primary); }
+
+.card {
+  background: rgba(255, 255, 255, 0.92);
   border: 1px solid var(--color-border);
-  background: rgba(255,255,255,0.72);
-  cursor: pointer;
-  padding: 0;
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: 0 12px 26px rgba(30, 62, 84, 0.06);
 }
-.nav-dots button.active {
-  background: var(--color-primary);
-  border-color: var(--color-primary);
+
+.card-tight { padding: 14px 16px; }
+.card-highlight,
+.card-hl {
+  border-left: 4px solid var(--color-secondary);
+  background: linear-gradient(135deg, #fff 0%, #fbf4ea 100%);
 }
-.slide-frame {
-  width: 100vw;
-  height: 100vh;
-  min-height: 720px;
-  scroll-snap-align: start;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  background: var(--color-bg);
-  overflow: hidden;
+.card-primary { border-left: 4px solid var(--color-primary); }
+.card-good { border-left: 4px solid var(--color-good); }
+.card-risk { border-left: 4px solid var(--color-bad); }
+
+.kpi-grid,
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
 }
-.slide-scale {
-  width: 1280px;
-  height: 720px;
-  transform: scale(var(--viewer-scale, 1));
-  transform-origin: center center;
+
+.kpi-card,
+.stat-box {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 18px 18px 16px;
+  min-height: 104px;
+  box-shadow: 0 10px 24px rgba(30, 62, 84, 0.06);
 }
-.page-num {
-  position: absolute;
-  top: 22px;
-  right: 42px;
-  z-index: 900;
+
+.metric-num,
+.kpi-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 46px;
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+  color: var(--color-primary);
+}
+
+.metric-label,
+.kpi-label {
   font-family: var(--font-mono);
   font-size: 11px;
   color: var(--color-muted);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
+  margin-top: 8px;
 }
-.page-num span {
+
+.grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.grid-aside { display: grid; grid-template-columns: 1.36fr 0.82fr; gap: 18px; align-items: stretch; }
+.grid-main { display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; align-items: stretch; }
+
+.table-wrap {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 12px 26px rgba(30, 62, 84, 0.055);
+}
+
+.data-table,
+.matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  line-height: 1.32;
+}
+
+.data-table th,
+.matrix-table th {
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-align: left;
+  padding: 9px 10px;
+  border-right: 1px solid rgba(255,255,255,0.14);
+}
+
+.data-table td,
+.matrix-table td {
+  padding: 8px 10px;
+  border-top: 1px solid #ece6dc;
+  border-right: 1px solid #f0ebe3;
+  vertical-align: middle;
+}
+
+.matrix-table td { padding: 7px 9px; }
+.data-table tr:nth-child(even) td,
+.matrix-table tr:nth-child(even) td { background: rgba(244, 242, 237, 0.5); }
+.data-table .subtotal td,
+.matrix-table .subtotal td {
+  background: #f3eadb;
   color: var(--color-primary);
+  font-weight: 700;
 }
-@media (max-height: 720px), (max-width: 1280px) {
-  .slide-frame {
-    min-height: 100vh;
-  }
+
+.tag,
+.tag-green,
+.tag-red,
+.tag-amber,
+.priority-p0,
+.priority-p1,
+.priority-clearance,
+.priority-risk,
+.priority-watch,
+.sku-chip,
+.color-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 3px 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.2;
+  white-space: nowrap;
+  letter-spacing: 0.03em;
 }
-</style>
+
+.tag-green { background: var(--color-green-soft); color: var(--color-good); }
+.tag-red { background: var(--color-red-soft); color: var(--color-bad); }
+.tag-amber { background: #faf3e2; color: #9a6b12; }
+.priority-p0 { background: var(--color-red-soft); color: var(--color-bad); }
+.priority-p1 { background: #faf3e2; color: #9a6b12; }
+.priority-clearance { background: var(--color-blue-soft); color: var(--color-primary); }
+.priority-risk { background: var(--color-red-soft); color: var(--color-bad); }
+.priority-watch { background: var(--color-green-soft); color: var(--color-good); }
+.sku-chip { background: var(--color-primary); color: #fff; min-width: 48px; }
+.color-chip { background: #fff; color: var(--color-primary); border: 1px solid var(--color-border); }
+
+.decision-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.decision-card {
+  min-height: 330px;
+  padding: 18px;
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 12px 26px rgba(30, 62, 84, 0.055);
+}
+
+.decision-card ul { margin-left: 18px; margin-top: 12px; }
+.decision-card li { margin-bottom: 8px; font-size: 14px; }
+
+.route-map {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.route-step {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 15px;
+  padding: 16px;
+  position: relative;
+}
+
+.route-step::after {
+  content: "›";
+  position: absolute;
+  right: -13px;
+  top: 50%;
+  color: var(--color-secondary);
+  font-size: 34px;
+  line-height: 1;
+}
+
+.route-step:last-child::after { display: none; }
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.timeline-item {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-top: 4px solid var(--color-secondary);
+  border-radius: 13px;
+  padding: 14px;
+  min-height: 150px;
+}
+
+.risk-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.risk-item {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-warn);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.band {
+  border-radius: 14px;
+  padding: 12px 16px;
+  background: var(--color-primary);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+}
+.band strong { font-family: var(--font-display); font-size: 24px; }
+.band span { color: rgba(255,255,255,0.78); font-size: 13px; }
+
+.runway {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 14px;
+}
+.runway-box {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 14px;
+}
+.runway-bar {
+  height: 9px;
+  border-radius: 999px;
+  background: #e8e1d6;
+  overflow: hidden;
+  margin-top: 12px;
+}
+.runway-bar > span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
+}
+
+.slide-footer {
+  position: absolute;
+  bottom: 18px;
+  left: var(--slide-padding);
+  right: var(--slide-padding);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(127,132,144,0.88);
+  letter-spacing: 0.06em;
+}
+
+.tight-note {
+  font-size: 12px;
+  color: var(--color-muted);
+  line-height: 1.45;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+.header-row .lead { font-size: 15px; max-width: 520px; }
+
+.compact-list { margin-left: 16px; }
+.compact-list li { font-size: 13px; margin-bottom: 5px; line-height: 1.42; }
+
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      height: auto;
+      margin: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+      background: var(--color-bg);
+      font-family: var(--font-sans);
+    }
+
+    body {
+      color: var(--color-fg);
+    }
+
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      width: 0;
+      background: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
+      z-index: 1000;
+      box-shadow: 0 0 18px rgba(184, 135, 90, 0.45);
+    }
+
+    .slide-frame {
+      width: 100vw;
+      height: 100vh;
+      min-height: 720px;
+      scroll-snap-align: start;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(196, 163, 90, 0.13), transparent 28%),
+        linear-gradient(135deg, #fbfaf7 0%, #efe5d7 100%);
+      overflow: hidden;
+    }
+
+    .slide-frame:nth-child(even) {
+      background:
+        radial-gradient(circle at 82% 18%, rgba(30, 62, 84, 0.10), transparent 28%),
+        linear-gradient(135deg, #f7f1e8 0%, #fbfaf7 100%);
+    }
+
+    .slide-scale {
+      width: 1280px;
+      height: 720px;
+      position: relative;
+      transform: scale(var(--viewer-scale, 1));
+      transform-origin: center center;
+      box-shadow: 0 26px 80px rgba(30, 62, 84, 0.18);
+      border-radius: 18px;
+      overflow: hidden;
+      background: #fafaf9;
+    }
+
+    .page-num {
+      position: absolute;
+      right: 28px;
+      bottom: 20px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      color: rgba(23, 27, 36, 0.42);
+      z-index: 30;
+    }
+
+    .nav-dots {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1001;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      padding: 10px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.68);
+      border: 1px solid rgba(228, 222, 210, 0.85);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 16px 42px rgba(30, 62, 84, 0.14);
+    }
+
+    .nav-dots button {
+      width: 28px;
+      height: 22px;
+      border: 0;
+      border-radius: 999px;
+      cursor: pointer;
+      background: transparent;
+      color: rgba(30, 62, 84, 0.42);
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.06em;
+      display: grid;
+      place-items: center;
+    }
+
+    .nav-dots button.active {
+      background: var(--color-primary);
+      color: #fff;
+      box-shadow: 0 8px 18px rgba(30, 62, 84, 0.22);
+    }
+
+    .nav-hint {
+      position: fixed;
+      left: 22px;
+      bottom: 18px;
+      z-index: 1001;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(228, 222, 210, 0.9);
+      color: rgba(23, 27, 36, 0.56);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      backdrop-filter: blur(12px);
+    }
+
+    @media (max-width: 860px) {
+      .nav-dots { right: 10px; gap: 4px; }
+      .nav-dots button { width: 24px; height: 18px; font-size: 8px; }
+      .nav-hint { display: none; }
+    }
+  </style>
 </head>
 <body>
-<div class="progress-bar" id="progressBar"></div>
-<nav class="nav-dots" id="navDots" aria-label="幻灯片导航">
-    <button type="button" data-index="0" aria-label="跳转到第1页"></button>
-    <button type="button" data-index="1" aria-label="跳转到第2页"></button>
-    <button type="button" data-index="2" aria-label="跳转到第3页"></button>
-    <button type="button" data-index="3" aria-label="跳转到第4页"></button>
-    <button type="button" data-index="4" aria-label="跳转到第5页"></button>
-    <button type="button" data-index="5" aria-label="跳转到第6页"></button>
-    <button type="button" data-index="6" aria-label="跳转到第7页"></button>
-    <button type="button" data-index="7" aria-label="跳转到第8页"></button>
-    <button type="button" data-index="8" aria-label="跳转到第9页"></button>
-    <button type="button" data-index="9" aria-label="跳转到第10页"></button>
-    <button type="button" data-index="10" aria-label="跳转到第11页"></button>
-    <button type="button" data-index="11" aria-label="跳转到第12页"></button>
-    <button type="button" data-index="12" aria-label="跳转到第13页"></button>
-    <button type="button" data-index="13" aria-label="跳转到第14页"></button>
-    <button type="button" data-index="14" aria-label="跳转到第15页"></button>
-    <button type="button" data-index="15" aria-label="跳转到第16页"></button>
-    <button type="button" data-index="16" aria-label="跳转到第17页"></button>
-    <button type="button" data-index="17" aria-label="跳转到第18页"></button>
-    <button type="button" data-index="18" aria-label="跳转到第19页"></button>
-    <button type="button" data-index="19" aria-label="跳转到第20页"></button>
-</nav>
-<main>
-  <section class="slide-frame" id="slide-01" aria-label="封面 — 备货计划总览">
-    <div class="page-num"><span>01</span> / 20</div>
+  <div class="progress-bar" id="progressBar"></div>
+  <nav class="nav-dots" aria-label="页面导航">
+    <button type="button" data-index="0" aria-label="跳转到第1页"><span>01</span></button>
+    <button type="button" data-index="1" aria-label="跳转到第2页"><span>02</span></button>
+    <button type="button" data-index="2" aria-label="跳转到第3页"><span>03</span></button>
+    <button type="button" data-index="3" aria-label="跳转到第4页"><span>04</span></button>
+    <button type="button" data-index="4" aria-label="跳转到第5页"><span>05</span></button>
+    <button type="button" data-index="5" aria-label="跳转到第6页"><span>06</span></button>
+    <button type="button" data-index="6" aria-label="跳转到第7页"><span>07</span></button>
+    <button type="button" data-index="7" aria-label="跳转到第8页"><span>08</span></button>
+    <button type="button" data-index="8" aria-label="跳转到第9页"><span>09</span></button>
+    <button type="button" data-index="9" aria-label="跳转到第10页"><span>10</span></button>
+    <button type="button" data-index="10" aria-label="跳转到第11页"><span>11</span></button>
+    <button type="button" data-index="11" aria-label="跳转到第12页"><span>12</span></button>
+    <button type="button" data-index="12" aria-label="跳转到第13页"><span>13</span></button>
+    <button type="button" data-index="13" aria-label="跳转到第14页"><span>14</span></button>
+    <button type="button" data-index="14" aria-label="跳转到第15页"><span>15</span></button>
+    <button type="button" data-index="15" aria-label="跳转到第16页"><span>16</span></button>
+    <button type="button" data-index="16" aria-label="跳转到第17页"><span>17</span></button>
+    <button type="button" data-index="17" aria-label="跳转到第18页"><span>18</span></button>
+    <button type="button" data-index="18" aria-label="跳转到第19页"><span>19</span></button>
+    <button type="button" data-index="19" aria-label="跳转到第20页"><span>20</span></button>
+  </nav>
+  <div class="nav-hint">SCROLL · ARROWS · SPACE</div>
+  <section class="slide-frame" data-title="封面 — 备货计划总览">
     <div class="slide-scale">
 <div class="slide-title">
-  <div class="section-tag">INVENTORY PLAN · 2026.6-8</div>
-  <h1>Yousky 6-8月三渠道备货计划</h1>
-  <p style="color:var(--color-muted);margin-top:18px;max-width:760px;">基于最新独立站、TikTok、Amazon销量计划及三张库存截图重算；本版已纳入SKU统一、落叶机专利暂停Amazon出货、H10与T10下市规则。</p>
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;width:860px;margin-top:44px;">
-    <div class="card"><div class="metric-num" style="color:var(--color-primary);">28,680</div><div class="metric-label">6-8月计划销量</div></div>
-    <div class="card"><div class="metric-num" style="color:var(--color-bad);">23,980</div><div class="metric-label">需备货管理口径</div></div>
-    <div class="card"><div class="metric-num" style="color:var(--color-secondary);">11,500</div><div class="metric-label">建议新增PO台数</div></div>
-    <div class="card"><div class="metric-num" style="color:var(--color-good);">200.5万</div><div class="metric-label">新增采购成本</div></div>
+  <div class="deck-mark">SUPPLY CHAIN · 2026.6-8</div>
+  <div class="section-tag">INVENTORY PLAN</div>
+  <h1 style="max-width:900px;">Yousky 6-8月 SKU / 渠道 / 月度备货计划</h1>
+  <p class="lead" style="margin-top:22px;">本版不是销量计划复述，而是基于三渠道销量输入、SKU统一规则和库存截图，输出可执行的 PO、入仓、清货和渠道分配方案。</p>
+  <div class="kpi-grid" style="width:980px;margin-top:42px;">
+    <div class="kpi-card"><div class="kpi-num">28,680</div><div class="kpi-label">6-8月计划销量</div></div>
+    <div class="kpi-card"><div class="kpi-num" style="color:var(--color-bad);">23,980</div><div class="kpi-label">备货管理口径</div></div>
+    <div class="kpi-card"><div class="kpi-num" style="color:var(--color-secondary);">11,500</div><div class="kpi-label">建议新增PO台数</div></div>
+    <div class="kpi-card"><div class="kpi-num" style="color:var(--color-good);">200.5万</div><div class="kpi-label">新增采购成本</div></div>
   </div>
+  <div class="band" style="width:980px;margin-top:20px;">
+    <strong>P0 决策</strong>
+    <span>H11灰色 7,000台、H11 Pro 2,500台、T11 2,000台；H10/T10/落叶机Amazon FBA不新增补货。</span>
+  </div>
+  <div class="slide-footer"><span>Yousky 供应链管理</span><span>SKU统一调整版 · 2026.6-8</span></div>
 </div>
+      <div class="page-num">01 / 20</div>
     </div>
   </section>
-
-  <section class="slide-frame" id="slide-02" aria-label="调整背景 — SKU与渠道规则">
-    <div class="page-num"><span>02</span> / 20</div>
+  <section class="slide-frame" data-title="决策摘要 — 先补什么、停什么、转什么">
     <div class="slide-scale">
 <div class="slide">
-  <div class="section-tag">01 · 规则调整</div><h2>本次重算的核心变化</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
-    <div class="card card-highlight"><h3>SKU统一</h3><p>Amazon、TikTok、独立站按H10、H11、H11 Pro、T10、T11、L10、L11统一口径计算，避免上版跨表命名不一致。</p></div>
-    <div class="card"><h3>落叶机渠道规则</h3><p>Amazon因发明专利风险暂停出货；销售完现有FBA库存后只保留自发货，不再按Amazon计划新增备货。</p></div>
-    <div class="card"><h3>下市款处理</h3><p>H10与T10卖完下市，不再从国内发货；H10蓝色不再发FBA，海外仓库存优先给TikTok、独立站、沃尔玛清货。</p></div>
-    <div class="card"><h3>T11入仓节奏</h3><p>第一批1,000台快到海外仓，先给TikTok与独立站；第二批直入FBA，Amazon约6月10日开售。</p></div>
+  <div class="deck-mark">EXECUTIVE SUMMARY</div>
+  <div class="header-row">
+    <div><div class="section-tag">01 · 决策摘要</div><h2>先补什么、停什么、转什么</h2></div>
+    <p class="lead">销售计划只是输入，真正需要落地的是：哪些SKU要下PO、哪些库存只能清货、哪些渠道必须改变入仓路径。</p>
   </div>
-  <div class="slide-footer"><span>Yousky 供应链管理</span><span>2026.6-8 · SKU统一调整版</span></div>
-</div>
+  <div class="decision-grid">
+    <div class="decision-card card-hl">
+      <span class="priority-p0">P0 新增PO</span>
+      <h3 style="margin-top:14px;">主力与新品不断货</h3>
+      <ul>
+        <li><span class="strong">H11灰色</span>：新增 7,000 台，保护 7月与8月主力销量。</li>
+        <li><span class="strong">H11 Pro</span>：新增 2,500 台，支撑 7月 Amazon 新品节奏。</li>
+        <li><span class="strong">T11浅灰</span>：新增 2,000 台，第二批直入 FBA。</li>
+        <li>新增PO合计 11,500 台，采购成本 ¥200.5万。</li>
+      </ul>
     </div>
-  </section>
-
-  <section class="slide-frame" id="slide-03" aria-label="数据源与计算口径">
-    <div class="page-num"><span>03</span> / 20</div>
-    <div class="slide-scale">
-<div class="slide">
-  <div class="section-tag">02 · 数据口径</div><h2>六份文件与计算边界</h2>
-  <div style="display:grid;grid-template-columns:1.15fr 1fr;gap:22px;align-items:stretch;">
-    <div class="card"><h3>销量来源</h3><table style="width:100%;font-size:14px;line-height:2.05;border-collapse:collapse;"><tr><td>独立站</td><td style="text-align:right;font-family:var(--font-mono);">6月800 · 7月1,700 · 8月2,100</td></tr><tr><td>Amazon</td><td style="text-align:right;font-family:var(--font-mono);">6月6,400 · 7月6,600 · 8月4,700</td></tr><tr><td>TikTok</td><td style="text-align:right;font-family:var(--font-mono);">6月2,060 · 7月2,210 · 8月2,110</td></tr></table></div>
-    <div class="card"><h3>库存来源</h3><p style="margin-bottom:10px;">大手持、落叶机、小手持T10/T11三张库存截图，日期均为2026/5/25。</p><p style="color:var(--color-muted);font-size:14px;">OCR核对到H11灰色总计8,328，销售推演按H11可用8,256计算；T11浅灰总计1,985，其中海运在途1,000。</p></div>
+    <div class="decision-card">
+      <span class="priority-clearance">停止补货</span>
+      <h3 style="margin-top:14px;">下市款只做库存消化</h3>
+      <ul>
+        <li><span class="strong">H10</span>：下市，不再从国内发货；蓝色不再发FBA。</li>
+        <li><span class="strong">T10</span>：卖完下市，FBA清完即下架。</li>
+        <li><span class="strong">落叶机</span>：Amazon专利风险，不新增Amazon FBA。</li>
+        <li>所有清货SKU都不进入新增采购预算。</li>
+      </ul>
+    </div>
+    <div class="decision-card card-primary">
+      <span class="priority-p1">渠道转向</span>
+      <h3 style="margin-top:14px;">库存按渠道能力分配</h3>
+      <ul>
+        <li>TikTok 与独立站只使用海外仓可售库存。</li>
+        <li>T11 第一批 1,000 台先到海外仓，优先 TK 和独立站。</li>
+        <li>落叶机转 TK、独立站和自发货，不再补 Amazon FBA。</li>
+        <li>H10蓝色海外仓库存承接 TK、独立站、Walmart 清货。</li>
+      </ul>
+    </div>
   </div>
-  <div class="slide-footer"><span>Yousky 供应链管理</span><span>2026.6-8 · SKU统一调整版</span></div>
+  <div class="slide-footer"><span>决策摘要</span><span>补主力 · 停下市 · 转渠道</span></div>
 </div>
+      <div class="page-num">02 / 20</div>
     </div>
   </section>
-
-  <section class="slide-frame" id="slide-04" aria-label="当前库存水位总览">
-    <div class="page-num"><span>04</span> / 20</div>
+  <section class="slide-frame" data-title="备货管理总表 — SKU × 颜色 × 渠道 × 月度">
     <div class="slide-scale">
-<div class="slide">
-  <div class="section-tag">03 · 当前库存</div><h2>库存水位总览</h2>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:12px;">
-    <div class="card card-highlight"><h3>大手持</h3><div class="metric-num" style="color:var(--color-primary);">8,328</div><p style="font-size:13px;color:var(--color-muted);">H11灰色总计；销售推演按H11可用8,256台计算，截图未显示可覆盖计划的H11 Pro可售库存。H10蓝色1,372、H10灰色2,167均按下市清货处理。</p></div>
-    <div class="card"><h3>小手持T10/T11</h3><div class="metric-num" style="color:var(--color-secondary);">1,985</div><p style="font-size:13px;color:var(--color-muted);">T11浅灰总计；含海运在途1,000。T10总计1,998，均标记下市或FBA清完下架。</p></div>
-    <div class="card"><h3>落叶机</h3><div class="metric-num" style="color:var(--color-warn);">3,016</div><p style="font-size:13px;color:var(--color-muted);">L10灰色1,755、L10蓝色63、L11 1,198；Amazon暂停新增出货，转TK、独立站及自发货。</p></div>
+<div class="slide-content">
+  <div class="deck-mark">MASTER STOCKING TABLE</div>
+  <div class="header-row">
+    <div><div class="section-tag">02 · 备货管理总表</div><h2>SKU × 颜色 × 渠道 × 月度备货口径</h2></div>
+    <p class="lead">这张表用于排产和入仓，不是单纯销量展示；下市款与专利受限款单独标记，避免进入新增采购。</p>
   </div>
-  <div class="slide-footer"><span>Yousky 供应链管理</span><span>2026.6-8 · SKU统一调整版</span></div>
-</div>
-    </div>
-  </section>
-
-  <section class="slide-frame" id="slide-05" aria-label="三渠道销量计划总览">
-    <div class="page-num"><span>05</span> / 20</div>
-    <div class="slide-scale">
-<div class="slide">
-  <div class="section-tag">04 · 需求全景</div><h2>6-8月三渠道销量计划</h2>
-  <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:20px;">
-    <div class="card"><h3>月度总量</h3><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px;"><div style="text-align:center;background:var(--color-surface);padding:16px;border-radius:8px;"><div class="metric-num" style="font-size:34px;">9,260</div><div class="metric-label">6月</div></div><div style="text-align:center;background:var(--color-surface);padding:16px;border-radius:8px;"><div class="metric-num" style="font-size:34px;">10,510</div><div class="metric-label">7月</div></div><div style="text-align:center;background:var(--color-surface);padding:16px;border-radius:8px;"><div class="metric-num" style="font-size:34px;">8,910</div><div class="metric-label">8月</div></div></div><p style="font-size:13px;color:var(--color-muted);margin-top:14px;">合计28,680台；备货管理口径剔除H10与T10下市款后为23,980台。</p></div>
-    <div class="card"><h3>渠道合计</h3><table style="width:100%;font-size:14px;line-height:2.05;"><tr><td>Amazon</td><td style="text-align:right;font-family:var(--font-mono);">17,700</td></tr><tr><td>TikTok</td><td style="text-align:right;font-family:var(--font-mono);">6,380</td></tr><tr><td>独立站</td><td style="text-align:right;font-family:var(--font-mono);">4,600</td></tr><tr><td style="font-weight:600;">合计</td><td style="text-align:right;font-family:var(--font-mono);font-weight:600;">28,680</td></tr></table></div>
+  <div class="table-wrap">
+    <table class="matrix-table">
+      <thead><tr><th>SKU/颜色</th><th>主渠道</th><th class="num">6月</th><th class="num">7月</th><th class="num">8月</th><th class="num">合计</th><th class="num">库存口径</th><th class="num">建议PO</th><th>优先级</th><th>备货动作</th></tr></thead>
+      <tbody>
+        <tr><td><span class="sku-chip">H11</span> 灰</td><td>Amazon / TK / DTC</td><td class="num">5,400</td><td class="num">4,900</td><td class="num">3,700</td><td class="num strong">14,000</td><td class="num">可用 8,256</td><td class="num strong">7,000</td><td><span class="priority-p0">P0</span></td><td>6月锁PO，覆盖7月主力缺口</td></tr>
+        <tr><td><span class="sku-chip">H11 Pro</span></td><td>Amazon新品 / TK / DTC</td><td class="num">150</td><td class="num">1,100</td><td class="num">1,200</td><td class="num strong">2,450</td><td class="num">按0可售</td><td class="num strong">2,500</td><td><span class="priority-p0">P0</span></td><td>7月新品节奏，提前FBA预约</td></tr>
+        <tr><td><span class="sku-chip">T11</span> 浅灰</td><td>Amazon / TK / DTC</td><td class="num">410</td><td class="num">810</td><td class="num">1,510</td><td class="num strong">2,730</td><td class="num">1,985含在途</td><td class="num strong">2,000</td><td><span class="priority-p1">P1</span></td><td>首批海外仓，二批直入FBA</td></tr>
+        <tr><td><span class="sku-chip">L10/L11</span></td><td>TK / DTC / 自发货</td><td class="num">1,600</td><td class="num">1,800</td><td class="num">1,400</td><td class="num strong">4,800</td><td class="num">3,016</td><td class="num">0</td><td><span class="priority-risk">风险</span></td><td>不新增Amazon FBA，转渠道消化</td></tr>
+        <tr><td><span class="sku-chip">H10</span> 蓝/灰</td><td>TK / DTC / Walmart</td><td class="num">1,200</td><td class="num">1,000</td><td class="num">1,100</td><td class="num">3,300</td><td class="num">3,539</td><td class="num">0</td><td><span class="priority-clearance">清货</span></td><td>蓝色优先海外仓清货，灰色谨慎承诺</td></tr>
+        <tr><td><span class="sku-chip">T10</span></td><td>Amazon清完下架</td><td class="num">500</td><td class="num">900</td><td class="num">0</td><td class="num">1,400</td><td class="num">1,998</td><td class="num">0</td><td><span class="priority-clearance">清货</span></td><td>卖完下市，不再发货</td></tr>
+        <tr class="subtotal"><td>管理合计</td><td>排产与调拨口径</td><td class="num">9,260</td><td class="num">10,510</td><td class="num">8,910</td><td class="num">28,680</td><td class="num">剔除下市后 23,980</td><td class="num">11,500</td><td>总控</td><td>新增PO只投H11、H11 Pro、T11</td></tr>
+      </tbody>
+    </table>
   </div>
-  <div class="slide-footer"><span>Yousky 供应链管理</span><span>2026.6-8 · SKU统一调整版</span></div>
+  <div class="slide-footer"><span>备货管理总表</span><span>销量输入转为库存、PO与渠道动作</span></div>
 </div>
+      <div class="page-num">03 / 20</div>
     </div>
   </section>
-
-  <section class="slide-frame" id="slide-06" aria-label="Amazon销量计划拆解">
-    <div class="page-num"><span>06</span> / 20</div>
+  <section class="slide-frame" data-title="当前库存水位 — SKU颜色与限制">
     <div class="slide-scale">
-<div class="slide"><div class="section-tag">05 · AMAZON</div><h2>Amazon销量计划拆解</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;"><div class="card card-highlight"><h3>可继续发货SKU</h3><table style="width:100%;font-size:13px;line-height:1.9;"><tr><td>H11</td><td style="text-align:right;font-family:var(--font-mono);">4,800 · 3,600 · 2,000</td></tr><tr><td>H11 Pro</td><td style="text-align:right;font-family:var(--font-mono);">0 · 900 · 1,000</td></tr><tr><td>T11</td><td style="text-align:right;font-family:var(--font-mono);">300 · 600 · 1,200</td></tr></table></div><div class="card"><h3>限制SKU</h3><p>H10计划仍显示6-8月1,900台，但按下市清FBA处理，不再国内补货。T10计划1,400台，卖完下架。落叶机不纳入Amazon新增备货。</p></div></div>
-  <div class="slide-footer"><span>Yousky 供应链管理</span><span>2026.6-8 · SKU统一调整版</span></div>
+<div class="slide-content">
+  <div class="deck-mark">INVENTORY POSITION</div>
+  <div class="header-row">
+    <div><div class="section-tag">03 · 当前库存水位</div><h2>SKU颜色、库存来源与渠道限制</h2></div>
+    <p class="lead">库存不是简单相加，必须同时看颜色、在途、仓位和能卖渠道；受限库存不能被错误地当作Amazon可补货库存。</p>
+  </div>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr><th>产品</th><th>颜色</th><th class="num">库存/可用</th><th>在途或仓位备注</th><th>能卖渠道</th><th>不能做什么</th><th>处理动作</th></tr></thead>
+      <tbody>
+        <tr><td><span class="sku-chip">H11</span></td><td><span class="color-chip">灰色</span></td><td class="num strong">总计 8,328 / 可用 8,256</td><td>FBA 6,377、海外仓 75、海运在途 1,804</td><td>Amazon、TK、独立站</td><td>不能覆盖全量14,000需求</td><td><span class="priority-p0">新增7,000</span></td></tr>
+        <tr><td><span class="sku-chip">H10</span></td><td><span class="color-chip">蓝色</span></td><td class="num">1,372</td><td>下市库存</td><td>TK、独立站、Walmart</td><td>不再发FBA，不再国内补货</td><td><span class="priority-clearance">清货</span></td></tr>
+        <tr><td><span class="sku-chip">H10</span></td><td><span class="color-chip">灰色</span></td><td class="num">2,167</td><td>海外仓较少，需谨慎承诺</td><td>按可用仓位分配</td><td>不能承诺TK/DTC大促量</td><td><span class="priority-clearance">控量</span></td></tr>
+        <tr><td><span class="sku-chip">T10</span></td><td><span class="color-chip">多色</span></td><td class="num">1,998</td><td>下市/FBA清完下架</td><td>现有FBA优先</td><td>不再发货，不新增PO</td><td><span class="priority-clearance">清完下架</span></td></tr>
+        <tr><td><span class="sku-chip">T11</span></td><td><span class="color-chip">浅灰</span></td><td class="num strong">1,985</td><td>含海运在途 1,000，预计先到海外仓</td><td>TK、独立站、Amazon</td><td>海外仓库存不能直接当FBA库存</td><td><span class="priority-p1">新增2,000</span></td></tr>
+        <tr><td><span class="sku-chip">L10</span></td><td><span class="color-chip">灰色</span></td><td class="num">1,755</td><td>落叶机库存主力</td><td>TK、独立站、自发货</td><td>不新增Amazon FBA</td><td><span class="priority-risk">转渠道</span></td></tr>
+        <tr><td><span class="sku-chip">L10</span></td><td><span class="color-chip">蓝色</span></td><td class="num">63</td><td>尾货数量少</td><td>清货渠道</td><td>不做主推承诺</td><td><span class="priority-clearance">尾货</span></td></tr>
+        <tr><td><span class="sku-chip">L11</span></td><td><span class="color-chip">标准</span></td><td class="num">1,198</td><td>落叶机第二库存池</td><td>TK、独立站、自发货</td><td>不新增Amazon FBA</td><td><span class="priority-risk">转渠道</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-footer"><span>库存水位</span><span>截图日期：2026/5/25</span></div>
 </div>
+      <div class="page-num">04 / 20</div>
     </div>
   </section>
-
-  <section class="slide-frame" id="slide-07" aria-label="TikTok销量计划拆解">
-    <div class="page-num"><span>07</span> / 20</div>
+  <section class="slide-frame" data-title="总缺口与PO决策矩阵">
     <div class="slide-scale">
-<div class="slide"><div class="section-tag">06 · TIKTOK</div><h2>TikTok销量计划拆解</h2><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;"><div class="card"><h3>6月 2,060</h3><p>H10 300、H11 200、H11 Pro 50、T11 10、L10 500、L11 1,000。</p></div><div class="card"><h3>7月 2,210</h3><p>H10 200、H11 400、H11 Pro 100、T11 10、L10 500、L11 1,000。</p></div><div class="card"><h3>8月 2,110</h3><p>H10 400、H11 500、H11 Pro 100、T11 10、L10 300、L11 800。</p></div></div><p style="color:var(--color-muted);margin-top:18px;">TikTok只能卖海外仓库存，H10灰色海外仓少，不能按国内库存补发。</p>
-  <div class="slide-footer"><span>Yousky 供应链管理</span><span>2026.6-8 · SKU统一调整版</span></div>
+<div class="slide-content">
+  <div class="deck-mark">GAP TO ACTION</div>
+  <div class="header-row">
+    <div><div class="section-tag">04 · 总缺口与PO决策</div><h2>从需求、库存到采购动作，一页看清</h2></div>
+    <p class="lead">新增PO只投向三类SKU：H11主力款、H11 Pro新品、T11新品。下市款与专利受限款只做库存调拨和渠道消化。</p>
+  </div>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr><th>SKU</th><th class="num">6-8月需求</th><th class="num">当前库存口径</th><th>渠道限制</th><th class="num">新增PO</th><th>覆盖判断</th><th>优先级</th><th>采购/调拨动作</th></tr></thead>
+      <tbody>
+        <tr><td><span class="sku-chip">H11</span> 灰</td><td class="num strong">14,000</td><td class="num">可用 8,256</td><td>三渠道均可卖</td><td class="num strong">7,000</td><td>PO后名义缓冲 1,256</td><td><span class="priority-p0">P0</span></td><td>6月第一周锁单，优先保障Amazon</td></tr>
+        <tr><td><span class="sku-chip">H11 Pro</span></td><td class="num strong">2,450</td><td class="num">按0可售</td><td>7月Amazon新品节奏</td><td class="num strong">2,500</td><td>PO后缓冲 50</td><td><span class="priority-p0">P0</span></td><td>生产与FBA预约并行</td></tr>
+        <tr><td><span class="sku-chip">T11</span> 浅灰</td><td class="num strong">2,730</td><td class="num">1,985含在途</td><td>首批海外仓，二批FBA</td><td class="num strong">2,000</td><td>数量足，路径需拆分</td><td><span class="priority-p1">P1</span></td><td>海外仓与FBA不可混用</td></tr>
+        <tr><td><span class="sku-chip">L10/L11</span></td><td class="num">4,800</td><td class="num">3,016</td><td>不新增Amazon FBA</td><td class="num">0</td><td>渠道重排后持续监控</td><td><span class="priority-risk">风险</span></td><td>转TK、DTC、自发货消化</td></tr>
+        <tr><td><span class="sku-chip">H10</span></td><td class="num">3,300</td><td class="num">3,539</td><td>蓝色不再发FBA</td><td class="num">0</td><td>库存可覆盖清货量</td><td><span class="priority-clearance">清货</span></td><td>蓝色转TK、DTC、Walmart</td></tr>
+        <tr><td><span class="sku-chip">T10</span></td><td class="num">1,400</td><td class="num">1,998</td><td>现有FBA清完下架</td><td class="num">0</td><td>库存足够清货</td><td><span class="priority-clearance">清货</span></td><td>不再发货，不新增PO</td></tr>
+        <tr class="subtotal"><td>新增PO合计</td><td class="num">23,980 管理需求</td><td class="num">按SKU分配</td><td>执行渠道约束</td><td class="num">11,500</td><td>采购预算 ¥200.5万</td><td>总控</td><td>周度滚动复盘</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-footer"><span>缺口矩阵</span><span>新增采购只投可持续销售SKU</span></div>
 </div>
+      <div class="page-num">05 / 20</div>
     </div>
   </section>
-
-  <section class="slide-frame" id="slide-08" aria-label="独立站销量计划拆解">
-    <div class="page-num"><span>08</span> / 20</div>
+  <section class="slide-frame" data-title="Amazon入仓备货计划">
     <div class="slide-scale">
-<div class="slide"><div class="section-tag">07 · DTC</div><h2>独立站销量计划拆解</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;"><div class="card card-highlight"><h3>月度目标</h3><table style="width:100%;font-size:14px;line-height:2;"><tr><td>6月</td><td style="text-align:right;font-family:var(--font-mono);">800台</td></tr><tr><td>7月</td><td style="text-align:right;font-family:var(--font-mono);">1,700台</td></tr><tr><td>8月</td><td style="text-align:right;font-family:var(--font-mono);">2,100台</td></tr></table></div><div class="card"><h3>重点SKU</h3><p>H11 2,500台为主力增长项；T11 600台跟随Amazon教育市场；落叶机L10/L11合计700台，需与专利风险口径一致。</p></div></div>
-  <div class="slide-footer"><span>Yousky 供应链管理</span><span>2026.6-8 · SKU统一调整版</span></div>
+<div class="slide-content">
+  <div class="deck-mark">AMAZON STOCKING</div>
+  <div class="header-row">
+    <div><div class="section-tag">05 · Amazon入仓计划</div><h2>Amazon只补主力、新品与T11</h2></div>
+    <p class="lead">Amazon总计划 17,700 台。落叶机暂停新增出货，H10与T10只消化既有库存，FBA资源集中给H11、H11 Pro和T11。</p>
+  </div>
+  <div class="grid-aside">
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>SKU</th><th class="num">6月</th><th class="num">7月</th><th class="num">8月</th><th class="num">合计</th><th>入仓路径</th><th>备货动作</th></tr></thead>
+        <tbody>
+          <tr><td><span class="sku-chip">H11</span></td><td class="num">4,800</td><td class="num">3,600</td><td class="num">2,000</td><td class="num strong">10,400</td><td>FBA主力</td><td><span class="priority-p0">PO 7,000</span></td></tr>
+          <tr><td><span class="sku-chip">H11 Pro</span></td><td class="num">0</td><td class="num">900</td><td class="num">1,000</td><td class="num strong">1,900</td><td>新品FBA</td><td><span class="priority-p0">PO 2,500</span></td></tr>
+          <tr><td><span class="sku-chip">T11</span></td><td class="num">300</td><td class="num">600</td><td class="num">1,200</td><td class="num strong">2,100</td><td>第二批直入FBA</td><td><span class="priority-p1">6/10开售</span></td></tr>
+          <tr><td><span class="sku-chip">H10</span></td><td class="num">800</td><td class="num">600</td><td class="num">500</td><td class="num">1,900</td><td>现有FBA清货</td><td><span class="priority-clearance">不新增</span></td></tr>
+          <tr><td><span class="sku-chip">T10</span></td><td class="num">500</td><td class="num">900</td><td class="num">0</td><td class="num">1,400</td><td>现有FBA清完下架</td><td><span class="priority-clearance">不新增</span></td></tr>
+          <tr class="subtotal"><td>Amazon合计</td><td class="num">6,400</td><td class="num">6,600</td><td class="num">4,700</td><td class="num">17,700</td><td>FBA资源聚焦</td><td>按优先级分仓</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="card card-risk"><span class="priority-risk">禁止项</span><h3 style="margin-top:10px;">落叶机不新增Amazon FBA</h3><p class="tight-note">现有FBA库存售完后，只保留自发货销售；不要把TK和独立站备货量转成Amazon入仓。</p></div>
+      <div class="card card-hl"><span class="priority-p0">资源分配</span><h3 style="margin-top:10px;">FBA仓位优先顺序</h3><p class="tight-note">H11主力补货优先，其次H11 Pro新品节奏，再安排T11第二批直入FBA。</p></div>
+      <div class="card card-primary"><span class="priority-p1">节点</span><h3 style="margin-top:10px;">T11约6月10日开售</h3><p class="tight-note">提前完成listing、预约和第二批FBA路径确认，避免海外仓库存与FBA库存混用。</p></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span>Amazon备货</span><span>FBA资源聚焦可持续销售SKU</span></div>
 </div>
+      <div class="page-num">06 / 20</div>
     </div>
   </section>
-
-  <section class="slide-frame" id="slide-09" aria-label="H11库存消耗推演">
-    <div class="page-num"><span>09</span> / 20</div>
+  <section class="slide-frame" data-title="TikTok备货计划">
     <div class="slide-scale">
-<div class="slide"><div class="section-tag">08 · H11推演</div><h2>H11库存消耗推演</h2><p style="color:var(--color-muted);margin-bottom:18px;">当前H11可售8,256台，6-8月需求14,000台。</p><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;"><div class="card"><h3>当前库存</h3><div class="metric-num" style="font-size:34px;color:var(--color-primary);">8,256</div></div><div class="card"><h3>6月需求</h3><div class="metric-num" style="font-size:34px;">5,400</div><p style="font-size:12px;color:var(--color-muted);">月底余2,856</p></div><div class="card"><h3>7月需求</h3><div class="metric-num" style="font-size:34px;color:var(--color-bad);">4,900</div><p style="font-size:12px;color:var(--color-bad);">7月中旬断货</p></div><div class="card"><h3>8月需求</h3><div class="metric-num" style="font-size:34px;">3,700</div><p style="font-size:12px;color:var(--color-muted);">需新PO接续</p></div></div><div class="card" style="margin-top:18px;border-left:3px solid var(--color-bad);"><p>建议6月第一周下H11新增PO 7,000台，采购成本按¥180/台计算为¥126万。</p></div>
-  <div class="slide-footer"><span>Yousky 供应链管理</span><span>2026.6-8 · SKU统一调整版</span></div>
+<div class="slide-content">
+  <div class="deck-mark">TIKTOK STOCKING</div>
+  <div class="header-row">
+    <div><div class="section-tag">06 · TikTok备货计划</div><h2>TikTok只卖海外仓，先承接T11首批</h2></div>
+    <p class="lead">TikTok总计划 6,380 台。核心约束不是销量，而是库存必须在海外仓；T11第一批 1,000 台与H10蓝色清货都要优先在这里消化。</p>
+  </div>
+  <div class="grid-main">
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>SKU</th><th class="num">6月</th><th class="num">7月</th><th class="num">8月</th><th class="num">合计</th><th>库存来源</th><th>动作</th></tr></thead>
+        <tbody>
+          <tr><td><span class="sku-chip">H11</span></td><td class="num">200</td><td class="num">400</td><td class="num">500</td><td class="num">1,100</td><td>海外仓</td><td>按周预留，避免被Amazon挤占</td></tr>
+          <tr><td><span class="sku-chip">H11 Pro</span></td><td class="num">50</td><td class="num">100</td><td class="num">100</td><td class="num">250</td><td>新品海外仓配额</td><td>小批测试，不抢FBA主仓</td></tr>
+          <tr><td><span class="sku-chip">T11</span></td><td class="num">10</td><td class="num">10</td><td class="num">10</td><td class="num">30</td><td>首批1,000海外仓</td><td><span class="priority-p1">优先承接</span></td></tr>
+          <tr><td><span class="sku-chip">H10</span></td><td class="num">300</td><td class="num">200</td><td class="num">400</td><td class="num">900</td><td>蓝色海外仓库存</td><td><span class="priority-clearance">清货</span></td></tr>
+          <tr><td><span class="sku-chip">L10</span></td><td class="num">500</td><td class="num">500</td><td class="num">300</td><td class="num">1,300</td><td>落叶机海外仓</td><td>承接Amazon转出量</td></tr>
+          <tr><td><span class="sku-chip">L11</span></td><td class="num">1,000</td><td class="num">1,000</td><td class="num">800</td><td class="num">2,800</td><td>落叶机海外仓</td><td>主推消化</td></tr>
+          <tr class="subtotal"><td>TikTok合计</td><td class="num">2,060</td><td class="num">2,210</td><td class="num">2,110</td><td class="num">6,380</td><td>只用海外仓</td><td>周度核对仓位</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="band"><strong>海外仓限定</strong><span>TK不能消耗国内待发和Amazon FBA库存</span></div>
+      <div class="card card-hl"><h3>T11第一批 1,000 台</h3><p class="tight-note">预计先到海外仓，需为TikTok与独立站预留；不可误判为Amazon可直接消耗库存。</p></div>
+      <div class="card card-primary"><h3>H10蓝色清货</h3><p class="tight-note">不再发FBA，海外仓现有库存通过TikTok、独立站与Walmart持续去化。</p></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span>TikTok备货</span><span>海外仓限定 · T11首批优先承接</span></div>
 </div>
+      <div class="page-num">07 / 20</div>
     </div>
   </section>
-
-  <section class="slide-frame" id="slide-10" aria-label="H11 Pro新品备货">
-    <div class="page-num"><span>10</span> / 20</div>
+  <section class="slide-frame" data-title="独立站与Walmart承接计划">
     <div class="slide-scale">
-<div class="slide"><div class="section-tag">09 · H11 PRO</div><h2>H11 Pro新品备货</h2><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;"><div class="card"><h3>现有可售</h3><div class="metric-num" style="font-size:36px;">0</div><p style="font-size:13px;color:var(--color-muted);">截图未显示可覆盖计划的可售库存，本轮按新品备货处理。</p></div><div class="card card-highlight"><h3>6-8月需求</h3><div class="metric-num" style="font-size:36px;color:var(--color-primary);">2,450</div><p style="font-size:13px;color:var(--color-muted);">Amazon 1,900、TK 250、独立站300。</p></div><div class="card"><h3>建议PO</h3><div class="metric-num" style="font-size:36px;color:var(--color-secondary);">2,500</div><p style="font-size:13px;color:var(--color-muted);">6月启动，7月承接Amazon新品节奏。</p></div></div>
-  <div class="slide-footer"><span>Yousky 供应链管理</span><span>2026.6-8 · SKU统一调整版</span></div>
+<div class="slide-content">
+  <div class="deck-mark">DTC & WALMART</div>
+  <div class="header-row">
+    <div><div class="section-tag">07 · 独立站与Walmart</div><h2>独立站承接新品与落叶机，Walmart承接H10蓝色</h2></div>
+    <p class="lead">独立站总计划 4,600 台，同样只能卖海外仓库存。Walmart不作为主计划渠道，但可用于加速H10蓝色清货。</p>
+  </div>
+  <div class="grid-aside">
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>SKU</th><th class="num">6月</th><th class="num">7月</th><th class="num">8月</th><th class="num">合计</th><th>库存来源</th><th>承接方式</th></tr></thead>
+        <tbody>
+          <tr><td><span class="sku-chip">H11</span></td><td class="num">400</td><td class="num">900</td><td class="num">1,200</td><td class="num">2,500</td><td>海外仓配额</td><td>按周锁量，避免被Amazon透支</td></tr>
+          <tr><td><span class="sku-chip">H11 Pro</span></td><td class="num">100</td><td class="num">100</td><td class="num">100</td><td class="num">300</td><td>新品海外仓配额</td><td>维持稳定露出</td></tr>
+          <tr><td><span class="sku-chip">T11</span></td><td class="num">100</td><td class="num">200</td><td class="num">300</td><td class="num">600</td><td>首批1,000海外仓</td><td><span class="priority-p1">首批优先</span></td></tr>
+          <tr><td><span class="sku-chip">H10</span></td><td class="num">100</td><td class="num">200</td><td class="num">200</td><td class="num">500</td><td>海外仓可用库存</td><td>蓝色可转Walmart协同清货</td></tr>
+          <tr><td><span class="sku-chip">L10</span></td><td class="num">20</td><td class="num">50</td><td class="num">100</td><td class="num">170</td><td>落叶机海外仓</td><td>Amazon转出后的补充渠道</td></tr>
+          <tr><td><span class="sku-chip">L11</span></td><td class="num">80</td><td class="num">250</td><td class="num">200</td><td class="num">530</td><td>落叶机海外仓</td><td>稳定消化</td></tr>
+          <tr class="subtotal"><td>独立站合计</td><td class="num">800</td><td class="num">1,700</td><td class="num">2,100</td><td class="num">4,600</td><td>只用海外仓</td><td>周度锁仓</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="card card-hl"><span class="priority-p1">承接重点</span><h3 style="margin-top:10px;">T11首批与落叶机转向</h3><p class="tight-note">独立站是T11第一批海外仓库存和落叶机Amazon转出量的核心承接渠道。</p></div>
+      <div class="card card-primary"><span class="priority-clearance">Walmart补位</span><h3 style="margin-top:10px;">加速H10蓝色去化</h3><p class="tight-note">Walmart只作为H10蓝色清货补充渠道，不写入核心销量计划，避免虚增承诺。</p></div>
+      <div class="card card-risk"><span class="priority-risk">限制</span><h3 style="margin-top:10px;">H10灰色海外仓很少</h3><p class="tight-note">活动排期与渠道承诺必须按每周海外仓实物确认，不能照总库存直接分配。</p></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span>DTC / Walmart备货</span><span>海外仓锁量 · 清货渠道协同</span></div>
 </div>
+      <div class="page-num">08 / 20</div>
     </div>
   </section>
-
-  <section class="slide-frame" id="slide-11" aria-label="T11首批与FBA节奏">
-    <div class="page-num"><span>11</span> / 20</div>
+  <section class="slide-frame" data-title="H11灰色主力款备货推演">
     <div class="slide-scale">
-<div class="slide"><div class="section-tag">10 · T11</div><h2>T11首批与FBA节奏</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;"><div class="card card-highlight"><h3>库存与到仓</h3><p>截图显示T11浅灰总计1,985台，其中海运在途1,000台，备注为月底到海外仓。</p><p style="margin-top:8px;">用户补充：第一批1,000台先给TikTok和独立站；第二批直入FBA，Amazon约6月10日开售。</p></div><div class="card"><h3>6-8月需求</h3><table style="width:100%;font-size:14px;line-height:2;"><tr><td>Amazon</td><td style="text-align:right;font-family:var(--font-mono);">2,100</td></tr><tr><td>TikTok</td><td style="text-align:right;font-family:var(--font-mono);">30</td></tr><tr><td>独立站</td><td style="text-align:right;font-family:var(--font-mono);">600</td></tr><tr><td style="font-weight:600;">合计</td><td style="text-align:right;font-family:var(--font-mono);font-weight:600;">2,730</td></tr></table></div></div><p style="color:var(--color-muted);margin-top:16px;">建议第二批直入FBA 2,000台，海外仓第一批覆盖TK与独立站。</p>
-  <div class="slide-footer"><span>Yousky 供应链管理</span><span>2026.6-8 · SKU统一调整版</span></div>
+<div class="slide-content">
+  <div class="deck-mark">H11 RUNWAY</div>
+  <div class="header-row">
+    <div><div class="section-tag">08 · H11灰色备货推演</div><h2>主力款必须在6月锁定 7,000 台 PO</h2></div>
+    <p class="lead">H11是三渠道主力，6-8月需求 14,000 台；当前可用 8,256 台，若不新增PO，7月开始进入断货风险区。</p>
+  </div>
+  <div class="grid-main">
+    <div class="card card-hl" style="padding:22px;">
+      <div class="stat-row" style="grid-template-columns:repeat(3,1fr);">
+        <div><div class="kpi-num">14,000</div><div class="kpi-label">6-8月需求</div></div>
+        <div><div class="kpi-num" style="color:var(--color-bad);">8,256</div><div class="kpi-label">可用库存</div></div>
+        <div><div class="kpi-num" style="color:var(--color-secondary);">7,000</div><div class="kpi-label">建议新增PO</div></div>
+      </div>
+      <div class="runway">
+        <div class="runway-box"><div class="micro">6月需求</div><h3>5,400</h3><div class="runway-bar"><span style="width:65%;"></span></div><p class="tight-note">月末剩余约2,856</p></div>
+        <div class="runway-box"><div class="micro">7月需求</div><h3>4,900</h3><div class="runway-bar"><span style="width:92%;"></span></div><p class="tight-note">无PO则缺口约2,044</p></div>
+        <div class="runway-box"><div class="micro">8月需求</div><h3>3,700</h3><div class="runway-bar"><span style="width:70%;"></span></div><p class="tight-note">依赖6月PO到货</p></div>
+        <div class="runway-box"><div class="micro">PO后缓冲</div><h3>1,256</h3><div class="runway-bar"><span style="width:30%;"></span></div><p class="tight-note">名义缓冲，不含入仓延误</p></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="band"><strong>结论</strong><span>H11不是8月才补，必须在6月完成PO锁定</span></div>
+      <div class="card card-risk"><span class="priority-risk">风险点</span><h3 style="margin-top:10px;">7月断货窗口</h3><p class="tight-note">当前可用库存扣除6月需求后约剩 2,856 台，不足覆盖7月 4,900 台需求。</p></div>
+      <div class="card card-primary"><span class="priority-p0">执行动作</span><h3 style="margin-top:10px;">FBA优先，TK/DTC按周预留</h3><p class="tight-note">新增PO到货前，Amazon不可透支全部H11库存，需保留海外仓渠道承诺。</p></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span>H11灰色推演</span><span>当前可用 8,256 · 新增PO 7,000</span></div>
 </div>
+      <div class="page-num">09 / 20</div>
     </div>
   </section>
-
-  <section class="slide-frame" id="slide-12" aria-label="H10与T10下市清货">
-    <div class="page-num"><span>12</span> / 20</div>
+  <section class="slide-frame" data-title="H11 Pro新品备货计划">
     <div class="slide-scale">
-<div class="slide"><div class="section-tag">11 · 清货SKU</div><h2>H10与T10下市清货</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;"><div class="card"><h3>H10</h3><p>6-8月表内需求3,300台。库存截图显示H10蓝色总计1,372、H10灰色总计2,167。蓝色不再发FBA，海外仓现有库存给TikTok、独立站、沃尔玛清货。</p></div><div class="card"><h3>T10</h3><p>Amazon表内需求1,400台。截图显示T10总计1,998，备注高退货率或新建，按卖完下市执行，不再安排新增PO。</p></div></div>
-  <div class="slide-footer"><span>Yousky 供应链管理</span><span>2026.6-8 · SKU统一调整版</span></div>
+<div class="slide-content">
+  <div class="deck-mark">H11 PRO LAUNCH</div>
+  <div class="header-row">
+    <div><div class="section-tag">09 · H11 Pro新品备货</div><h2>新品按0可售处理，2,500 台用于承接7月节奏</h2></div>
+    <p class="lead">截图未显示可覆盖计划的H11 Pro可售库存，本轮按新品备货处理；核心不是现货消耗，而是生产、入仓与Amazon新品节奏对齐。</p>
+  </div>
+  <div class="grid-aside">
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>渠道</th><th class="num">6月</th><th class="num">7月</th><th class="num">8月</th><th class="num">合计</th><th>备货动作</th><th>风险控制</th></tr></thead>
+        <tbody>
+          <tr><td>Amazon</td><td class="num">0</td><td class="num strong">900</td><td class="num strong">1,000</td><td class="num">1,900</td><td>7月前完成FBA预约</td><td><span class="priority-p0">新品节点</span></td></tr>
+          <tr><td>TikTok</td><td class="num">50</td><td class="num">100</td><td class="num">100</td><td class="num">250</td><td>海外仓小批测试</td><td>不挤占Amazon首批</td></tr>
+          <tr><td>独立站</td><td class="num">100</td><td class="num">100</td><td class="num">100</td><td class="num">300</td><td>DTC稳定承接</td><td>按海外仓可用锁量</td></tr>
+          <tr class="subtotal"><td>合计</td><td class="num">150</td><td class="num">1,100</td><td class="num">1,200</td><td class="num">2,450</td><td>建议PO 2,500</td><td>缓冲 50</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid2" style="grid-template-columns:1fr;gap:14px;">
+      <div class="card card-hl"><div class="kpi-num">2,500</div><div class="kpi-label">建议新增PO</div><p class="tight-note" style="margin-top:10px;">覆盖6-8月2,450台需求，保留50台名义缓冲。</p></div>
+      <div class="card card-risk"><span class="priority-risk">不要误用库存</span><h3 style="margin-top:10px;">H11 Pro不引用未经确认的样机库存</h3><p class="tight-note">本版只使用已核对库存口径，避免新品备货被低估。</p></div>
+      <div class="card card-primary"><span class="priority-p0">关键依赖</span><h3 style="margin-top:10px;">7月Amazon新品节奏</h3><p class="tight-note">生产、贴标、FBA预约要与7月900台计划同步推进。</p></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span>H11 Pro备货</span><span>现有可售按0 · 新增PO 2,500</span></div>
 </div>
+      <div class="page-num">10 / 20</div>
     </div>
   </section>
-
-  <section class="slide-frame" id="slide-13" aria-label="落叶机专利风险与渠道切换">
-    <div class="page-num"><span>13</span> / 20</div>
+  <section class="slide-frame" data-title="T11两批次备货与入仓路径">
     <div class="slide-scale">
-<div class="slide"><div class="section-tag">12 · 落叶机</div><h2>落叶机专利风险与渠道切换</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;"><div class="card card-highlight"><h3>库存水位</h3><p>L10灰色1,755、L10蓝色63、L11 1,198，合计3,016台。</p></div><div class="card"><h3>销售口径</h3><p>6-8月TikTok与独立站需求4,800台；Amazon因发明专利风险暂停出货，售完FBA后仅自发货。缺口以海外仓周转和保守补货管理，不新增Amazon FBA PO。</p></div></div>
-  <div class="slide-footer"><span>Yousky 供应链管理</span><span>2026.6-8 · SKU统一调整版</span></div>
+<div class="slide-content">
+  <div class="deck-mark">T11 ROUTING</div>
+  <div class="header-row">
+    <div><div class="section-tag">10 · T11两批次备货</div><h2>第一批海外仓承接TK/DTC，第二批直入FBA</h2></div>
+    <p class="lead">T11数量层面并不紧张，真正风险是路径：海外仓库存不能直接变成FBA库存，Amazon 6月10日前后开售需要第二批直入FBA。</p>
+  </div>
+  <div class="route-map" style="margin-bottom:16px;">
+    <div class="route-step"><span class="priority-p1">第一批</span><h3 style="margin-top:10px;">1,000台快到海外仓</h3><p class="tight-note">优先供应 TikTok 与独立站，支撑新品冷启动和站外承接。</p></div>
+    <div class="route-step"><span class="priority-p0">第二批</span><h3 style="margin-top:10px;">新增2,000台直入FBA</h3><p class="tight-note">承接Amazon 6月10日前后开售及7-8月放量。</p></div>
+    <div class="route-step"><span class="priority-watch">周度复盘</span><h3 style="margin-top:10px;">仓位不能混算</h3><p class="tight-note">每周分开看海外仓、FBA、在途，避免渠道承诺错配。</p></div>
+  </div>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr><th>渠道</th><th class="num">6月</th><th class="num">7月</th><th class="num">8月</th><th class="num">合计</th><th>库存来源</th><th>备货动作</th></tr></thead>
+      <tbody>
+        <tr><td>Amazon</td><td class="num">300</td><td class="num">600</td><td class="num">1,200</td><td class="num strong">2,100</td><td>第二批直入FBA</td><td><span class="priority-p0">预约FBA</span></td></tr>
+        <tr><td>TikTok</td><td class="num">10</td><td class="num">10</td><td class="num">10</td><td class="num">30</td><td>第一批海外仓</td><td>小批测试承接</td></tr>
+        <tr><td>独立站</td><td class="num">100</td><td class="num">200</td><td class="num">300</td><td class="num">600</td><td>第一批海外仓</td><td>DTC稳定承接</td></tr>
+        <tr class="subtotal"><td>合计</td><td class="num">410</td><td class="num">810</td><td class="num">1,510</td><td class="num">2,730</td><td>现有1,985含在途</td><td>新增PO 2,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-footer"><span>T11路径</span><span>首批海外仓 · 第二批FBA</span></div>
 </div>
+      <div class="page-num">11 / 20</div>
     </div>
   </section>
-
-  <section class="slide-frame" id="slide-14" aria-label="6月备货计划">
-    <div class="page-num"><span>14</span> / 20</div>
+  <section class="slide-frame" data-title="H10与T10下市清货计划">
     <div class="slide-scale">
-<div class="slide"><div class="section-tag">13 · 6月计划</div><h2>6月备货计划</h2><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;"><div class="card card-highlight"><h3>H11</h3><p>需求5,400台；库存消耗后剩2,856台。6月第一周下PO 7,000台。</p></div><div class="card"><h3>H11 Pro</h3><p>需求150台，主要为TK与独立站。6月启动2,500台生产，准备7月Amazon新品。</p></div><div class="card"><h3>T11</h3><p>需求410台；第一批1,000台到海外仓后优先给TK和独立站。</p></div></div><p style="color:var(--color-muted);margin-top:16px;">落叶机6月需求1,600台，只走TK、独立站和必要自发货。</p>
-  <div class="slide-footer"><span>Yousky 供应链管理</span><span>2026.6-8 · SKU统一调整版</span></div>
+<div class="slide-content">
+  <div class="deck-mark">CLEARANCE PLAN</div>
+  <div class="header-row">
+    <div><div class="section-tag">11 · H10 / T10下市清货</div><h2>下市款不再补货，只做渠道化清货</h2></div>
+    <p class="lead">H10和T10不能进入新增采购预算。重点是分清颜色、仓位和渠道承接能力，避免把清货库存误当成常规补货。</p>
+  </div>
+  <div class="grid-aside">
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>SKU</th><th>颜色/状态</th><th class="num">库存</th><th class="num">6-8月消化目标</th><th>优先渠道</th><th>限制</th><th>动作</th></tr></thead>
+        <tbody>
+          <tr><td><span class="sku-chip">H10</span></td><td>蓝色</td><td class="num">1,372</td><td class="num">清货池</td><td>TK / DTC / Walmart</td><td>不再发FBA</td><td><span class="priority-clearance">海外仓清货</span></td></tr>
+          <tr><td><span class="sku-chip">H10</span></td><td>灰色</td><td class="num">2,167</td><td class="num">谨慎分配</td><td>按实际仓位</td><td>海外仓很少</td><td><span class="priority-risk">控量承诺</span></td></tr>
+          <tr><td><span class="sku-chip">T10</span></td><td>下市/FBA</td><td class="num">1,998</td><td class="num">1,400</td><td>Amazon现有FBA</td><td>清完下架</td><td><span class="priority-clearance">不再发货</span></td></tr>
+          <tr class="subtotal"><td>下市合计</td><td>H10 + T10</td><td class="num">5,537</td><td class="num">4,700</td><td>清货渠道</td><td>不新增PO</td><td>从备货管理口径剔除</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="card card-hl"><span class="priority-clearance">H10蓝色</span><h3 style="margin-top:10px;">Walmart作为清货补充</h3><p class="tight-note">H10蓝色库存不再发FBA，需用TK、独立站和Walmart消化海外仓存量。</p></div>
+      <div class="card card-risk"><span class="priority-risk">H10灰色</span><h3 style="margin-top:10px;">海外仓少，不能大促承诺</h3><p class="tight-note">灰色虽有总库存，但TK和独立站只能卖海外仓，排期前必须二次核仓。</p></div>
+      <div class="card card-primary"><span class="priority-clearance">T10</span><h3 style="margin-top:10px;">FBA清完即下架</h3><p class="tight-note">T10卖完下市，不再从国内发货，不进入任何新增PO表。</p></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span>下市清货</span><span>H10 / T10 不新增采购</span></div>
 </div>
+      <div class="page-num">12 / 20</div>
     </div>
   </section>
-
-  <section class="slide-frame" id="slide-15" aria-label="7月备货计划">
-    <div class="page-num"><span>15</span> / 20</div>
+  <section class="slide-frame" data-title="落叶机专利风险与备货转向">
     <div class="slide-scale">
-<div class="slide"><div class="section-tag">14 · 7月计划</div><h2>7月备货计划</h2><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;"><div class="card card-highlight"><h3>H11</h3><p>需求4,900台。若6月PO未及时发出，7月中旬出现缺口2,044台。</p></div><div class="card"><h3>H11 Pro</h3><p>需求1,100台，Amazon 900台是主要压力。需确保6月生产排期与头程同步。</p></div><div class="card"><h3>T11</h3><p>需求810台，Amazon 600台。第二批直入FBA需要在6月完成发运安排。</p></div></div><p style="color:var(--color-muted);margin-top:16px;">7月是库存风险最高月份，核心是H11接续与H11 Pro首发。</p>
-  <div class="slide-footer"><span>Yousky 供应链管理</span><span>2026.6-8 · SKU统一调整版</span></div>
+<div class="slide-content">
+  <div class="deck-mark">LEAF BLOWER ROUTING</div>
+  <div class="header-row">
+    <div><div class="section-tag">12 · 落叶机备货转向</div><h2>Amazon专利风险下，落叶机转TK、独立站与自发货</h2></div>
+    <p class="lead">落叶机不是缺少销量，而是Amazon新增FBA路径被暂停；库存计划必须从“发FBA”切换为“消化现有FBA后自发货与站外承接”。</p>
+  </div>
+  <div class="grid-main">
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>SKU</th><th>颜色</th><th class="num">库存</th><th class="num">TK需求</th><th class="num">DTC需求</th><th>Amazon处理</th><th>备货动作</th></tr></thead>
+        <tbody>
+          <tr><td><span class="sku-chip">L10</span></td><td>灰色</td><td class="num">1,755</td><td class="num">1,300</td><td class="num">170</td><td>不新增FBA</td><td>TK优先消化</td></tr>
+          <tr><td><span class="sku-chip">L10</span></td><td>蓝色</td><td class="num">63</td><td class="num">尾货</td><td class="num">尾货</td><td>不新增FBA</td><td><span class="priority-clearance">尾货清理</span></td></tr>
+          <tr><td><span class="sku-chip">L11</span></td><td>标准</td><td class="num">1,198</td><td class="num">2,800</td><td class="num">530</td><td>不新增FBA</td><td>站外主推，周度核仓</td></tr>
+          <tr class="subtotal"><td>落叶机合计</td><td>L10/L11</td><td class="num">3,016</td><td class="num">4,100</td><td class="num">700</td><td>现有FBA售完后自发货</td><td>不新增PO到Amazon FBA</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="band"><strong>渠道转向</strong><span>Amazon停止新增出货，站外承接库存</span></div>
+      <div class="card card-risk"><span class="priority-risk">专利风险</span><h3 style="margin-top:10px;">禁止把落叶机写入Amazon新增FBA</h3><p class="tight-note">Amazon只销售现有FBA库存，售完后采用自发货，不新增国内发FBA动作。</p></div>
+      <div class="card card-hl"><span class="priority-p1">库存压力</span><h3 style="margin-top:10px;">需求4,800高于现有3,016</h3><p class="tight-note">缺口不能简单用Amazon FBA补，需要结合专利进展、站外投放和周度库存动态处理。</p></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span>落叶机转向</span><span>L10/L11 站外承接 · Amazon不新增FBA</span></div>
 </div>
+      <div class="page-num">13 / 20</div>
     </div>
   </section>
-
-  <section class="slide-frame" id="slide-16" aria-label="8月备货计划">
-    <div class="page-num"><span>16</span> / 20</div>
+  <section class="slide-frame" data-title="6月备货执行表">
     <div class="slide-scale">
-<div class="slide"><div class="section-tag">15 · 8月计划</div><h2>8月备货计划</h2><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;"><div class="card"><h3>H11</h3><p>需求3,700台，依赖6月新增PO到仓后继续供应。</p></div><div class="card card-highlight"><h3>T11</h3><p>需求1,510台，Amazon 1,200台。需要确认第二批FBA入仓量是否足够。</p></div><div class="card"><h3>落叶机</h3><p>TK与独立站需求1,400台。Amazon不新增FBA，避免专利风险放大。</p></div></div><p style="color:var(--color-muted);margin-top:16px;">8月需求回落但SKU结构更分散，T11与H11 Pro的补货节奏不能滞后。</p>
-  <div class="slide-footer"><span>Yousky 供应链管理</span><span>2026.6-8 · SKU统一调整版</span></div>
+<div class="slide-content">
+  <div class="deck-mark">JUNE EXECUTION</div>
+  <div class="header-row">
+    <div><div class="section-tag">13 · 6月备货执行表</div><h2>6月先锁PO、分清海外仓与FBA</h2></div>
+    <p class="lead">6月的核心不是补完所有货，而是锁定H11/H11 Pro/T11采购路径，同时把下市款和落叶机从Amazon新增FBA逻辑里剥离。</p>
+  </div>
+  <div class="table-wrap">
+    <table class="matrix-table">
+      <thead><tr><th>SKU/颜色</th><th class="num">Amazon</th><th class="num">TikTok</th><th class="num">独立站/Walmart</th><th>库存来源</th><th>6月动作</th><th>月底判断</th><th>优先级</th></tr></thead>
+      <tbody>
+        <tr><td><span class="sku-chip">H11</span> 灰</td><td class="num">4,800</td><td class="num">200</td><td class="num">400</td><td>现有FBA+海外仓+在途</td><td>锁定7,000 PO</td><td>不含PO约剩2,856</td><td><span class="priority-p0">P0</span></td></tr>
+        <tr><td><span class="sku-chip">H11 Pro</span></td><td class="num">0</td><td class="num">50</td><td class="num">100</td><td>新品PO</td><td>启动2,500生产</td><td>7月前确认FBA预约</td><td><span class="priority-p0">P0</span></td></tr>
+        <tr><td><span class="sku-chip">T11</span> 浅灰</td><td class="num">300</td><td class="num">10</td><td class="num">100</td><td>首批1,000海外仓+二批FBA</td><td>拆分渠道路径</td><td>6/10 Amazon开售准备</td><td><span class="priority-p1">P1</span></td></tr>
+        <tr><td><span class="sku-chip">H10</span> 蓝/灰</td><td class="num">800</td><td class="num">300</td><td class="num">100</td><td>既有库存</td><td>蓝色转站外清货</td><td>不新增FBA</td><td><span class="priority-clearance">清货</span></td></tr>
+        <tr><td><span class="sku-chip">T10</span></td><td class="num">500</td><td class="num">0</td><td class="num">0</td><td>现有FBA</td><td>清完下架</td><td>不再补货</td><td><span class="priority-clearance">清货</span></td></tr>
+        <tr><td><span class="sku-chip">L10/L11</span></td><td class="num">自发货</td><td class="num">1,500</td><td class="num">100</td><td>落叶机库存</td><td>暂停Amazon新增出货</td><td>转TK/DTC</td><td><span class="priority-risk">风险</span></td></tr>
+        <tr class="subtotal"><td>6月合计</td><td class="num">6,400</td><td class="num">2,060</td><td class="num">800</td><td>总量 9,260</td><td>锁PO与分仓</td><td>进入7月风险月</td><td>总控</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-footer"><span>6月执行</span><span>锁PO · 分仓位 · 停止错误入仓</span></div>
 </div>
+      <div class="page-num">14 / 20</div>
     </div>
   </section>
-
-  <section class="slide-frame" id="slide-17" aria-label="采购预算与现金占用">
-    <div class="page-num"><span>17</span> / 20</div>
+  <section class="slide-frame" data-title="7月备货执行表">
     <div class="slide-scale">
-<div class="slide"><div class="section-tag">16 · 预算</div><h2>采购预算与现金占用</h2><div style="display:grid;grid-template-columns:1.2fr 1fr;gap:20px;"><div class="card card-highlight"><h3>新增PO建议</h3><table style="width:100%;font-size:14px;line-height:2;"><tr><td>H11</td><td style="text-align:right;font-family:var(--font-mono);">7,000台 × ¥180 = ¥126万</td></tr><tr><td>H11 Pro</td><td style="text-align:right;font-family:var(--font-mono);">2,500台 × ¥190 = ¥47.5万</td></tr><tr><td>T11</td><td style="text-align:right;font-family:var(--font-mono);">2,000台 × ¥135 = ¥27万</td></tr><tr><td style="font-weight:600;">合计</td><td style="text-align:right;font-family:var(--font-mono);font-weight:600;">¥200.5万</td></tr></table></div><div class="card"><h3>说明</h3><p>这里使用采购成本，不使用销售客单价。H11的129美金是销售价，不能用于采购预算计算。</p></div></div>
-  <div class="slide-footer"><span>Yousky 供应链管理</span><span>2026.6-8 · SKU统一调整版</span></div>
+<div class="slide-content">
+  <div class="deck-mark">JULY EXECUTION</div>
+  <div class="header-row">
+    <div><div class="section-tag">14 · 7月备货执行表</div><h2>7月是断货风险月，H11与H11 Pro必须同时到位</h2></div>
+    <p class="lead">如果H11新增PO未到，7月将直接出现主力缺口；同时H11 Pro新品和T11第二批FBA都在7月进入压力期。</p>
+  </div>
+  <div class="table-wrap">
+    <table class="matrix-table">
+      <thead><tr><th>SKU/颜色</th><th class="num">Amazon</th><th class="num">TikTok</th><th class="num">独立站/Walmart</th><th>库存来源</th><th>7月动作</th><th>风险判断</th><th>优先级</th></tr></thead>
+      <tbody>
+        <tr><td><span class="sku-chip">H11</span> 灰</td><td class="num">3,600</td><td class="num">400</td><td class="num">900</td><td>6月PO到货+现有库存</td><td>优先补FBA，周度给站外留量</td><td>PO延迟则缺口约2,044</td><td><span class="priority-p0">P0</span></td></tr>
+        <tr><td><span class="sku-chip">H11 Pro</span></td><td class="num">900</td><td class="num">100</td><td class="num">100</td><td>新品PO</td><td>FBA首批入仓完成</td><td>新品节奏不可延迟</td><td><span class="priority-p0">P0</span></td></tr>
+        <tr><td><span class="sku-chip">T11</span> 浅灰</td><td class="num">600</td><td class="num">10</td><td class="num">200</td><td>FBA二批+海外仓首批</td><td>确认FBA库存与海外仓分开核算</td><td>路径错配影响Amazon</td><td><span class="priority-p1">P1</span></td></tr>
+        <tr><td><span class="sku-chip">H10</span> 蓝/灰</td><td class="num">600</td><td class="num">200</td><td class="num">200</td><td>既有库存</td><td>继续清货，不做新采购</td><td>灰色海外仓需核实</td><td><span class="priority-clearance">清货</span></td></tr>
+        <tr><td><span class="sku-chip">T10</span></td><td class="num">900</td><td class="num">0</td><td class="num">0</td><td>现有FBA</td><td>大促清完下架</td><td>不承诺后续供货</td><td><span class="priority-clearance">清货</span></td></tr>
+        <tr><td><span class="sku-chip">L10/L11</span></td><td class="num">自发货</td><td class="num">1,500</td><td class="num">300</td><td>落叶机库存</td><td>站外承接Amazon转出</td><td>专利风险持续</td><td><span class="priority-risk">风险</span></td></tr>
+        <tr class="subtotal"><td>7月合计</td><td class="num">6,600</td><td class="num">2,210</td><td class="num">1,700</td><td>总量 10,510</td><td>重点防断货</td><td>H11/H11 Pro双P0</td><td>风险月</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-footer"><span>7月执行</span><span>主力补货 · 新品入仓 · T11路径确认</span></div>
 </div>
+      <div class="page-num">15 / 20</div>
     </div>
   </section>
-
-  <section class="slide-frame" id="slide-18" aria-label="渠道配额分配原则">
-    <div class="page-num"><span>18</span> / 20</div>
+  <section class="slide-frame" data-title="8月备货执行表">
     <div class="slide-scale">
-<div class="slide"><div class="section-tag">17 · 配额</div><h2>渠道配额分配原则</h2><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;"><div class="card card-highlight"><h3>Amazon</h3><p>优先保障H11、H11 Pro、T11；落叶机不新增FBA，H10与T10售完下架。</p></div><div class="card"><h3>TikTok</h3><p>只卖海外仓库存，重点承接T11第一批和H10清货，避免承诺国内补发。</p></div><div class="card"><h3>独立站</h3><p>承接H11、T11与落叶机转化，库存不足时排在Amazon之后但高于低毛利清货。</p></div></div>
-  <div class="slide-footer"><span>Yousky 供应链管理</span><span>2026.6-8 · SKU统一调整版</span></div>
+<div class="slide-content">
+  <div class="deck-mark">AUGUST EXECUTION</div>
+  <div class="header-row">
+    <div><div class="section-tag">15 · 8月备货执行表</div><h2>8月重点是连续供应和渠道纪律</h2></div>
+    <p class="lead">8月单月总量低于7月，但T11和H11 Pro压力更集中；不能因总量下降就放松FBA预约、海外仓锁量和落叶机渠道限制。</p>
+  </div>
+  <div class="table-wrap">
+    <table class="matrix-table">
+      <thead><tr><th>SKU/颜色</th><th class="num">Amazon</th><th class="num">TikTok</th><th class="num">独立站/Walmart</th><th>库存来源</th><th>8月动作</th><th>月底判断</th><th>优先级</th></tr></thead>
+      <tbody>
+        <tr><td><span class="sku-chip">H11</span> 灰</td><td class="num">2,000</td><td class="num">500</td><td class="num">1,200</td><td>6月PO剩余+周度分配</td><td>FBA与站外按周锁量</td><td>进入下一轮滚动PO判断</td><td><span class="priority-p0">P0</span></td></tr>
+        <tr><td><span class="sku-chip">H11 Pro</span></td><td class="num">1,000</td><td class="num">100</td><td class="num">100</td><td>新品PO</td><td>确认第二轮补货是否启动</td><td>新品需求稳定后复盘</td><td><span class="priority-p1">P1</span></td></tr>
+        <tr><td><span class="sku-chip">T11</span> 浅灰</td><td class="num">1,200</td><td class="num">10</td><td class="num">300</td><td>FBA+海外仓</td><td>防止Amazon挤占站外库存</td><td>8月压力最高</td><td><span class="priority-p0">P0</span></td></tr>
+        <tr><td><span class="sku-chip">H10</span> 蓝/灰</td><td class="num">500</td><td class="num">400</td><td class="num">200</td><td>清货库存</td><td>继续降价/渠道转移</td><td>不再计划后续补货</td><td><span class="priority-clearance">清货</span></td></tr>
+        <tr><td><span class="sku-chip">T10</span></td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td>清完下架</td><td>停止推广承诺</td><td>下市完成</td><td><span class="priority-clearance">退出</span></td></tr>
+        <tr><td><span class="sku-chip">L10/L11</span></td><td class="num">自发货</td><td class="num">1,100</td><td class="num">300</td><td>落叶机库存</td><td>TK/DTC继续承接</td><td>不新增Amazon FBA</td><td><span class="priority-risk">风险</span></td></tr>
+        <tr class="subtotal"><td>8月合计</td><td class="num">4,700</td><td class="num">2,110</td><td class="num">2,100</td><td>总量 8,910</td><td>滚动复盘</td><td>为9月判断补货</td><td>总控</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-footer"><span>8月执行</span><span>连续供应 · 渠道纪律 · 下一轮PO判断</span></div>
 </div>
+      <div class="page-num">16 / 20</div>
     </div>
   </section>
-
-  <section class="slide-frame" id="slide-19" aria-label="PO时间线与风险预警">
-    <div class="page-num"><span>19</span> / 20</div>
+  <section class="slide-frame" data-title="新增PO与采购预算">
     <div class="slide-scale">
-<div class="slide"><div class="section-tag">18 · 时间线</div><h2>PO时间线与风险预警</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;"><div class="card card-highlight"><h3>关键节点</h3><p>6月第1周：H11 7,000台PO确认。6月中旬：H11 Pro 2,500台生产锁定。6月10日：T11 Amazon开售。6月底：T11第一批到海外仓并开始分配。</p></div><div class="card"><h3>风险预警</h3><p>H11若6月PO延迟，7月中旬断货。H11 Pro若首批产能不足，7月Amazon新品节奏受影响。落叶机不可按旧Amazon计划补FBA。</p></div></div>
-  <div class="slide-footer"><span>Yousky 供应链管理</span><span>2026.6-8 · SKU统一调整版</span></div>
+<div class="slide-content">
+  <div class="deck-mark">PROCUREMENT BUDGET</div>
+  <div class="header-row">
+    <div><div class="section-tag">16 · 新增PO与采购预算</div><h2>采购预算只按成本计算，新增PO合计 ¥200.5万</h2></div>
+    <p class="lead">H11的129美金是销售价，不能用于采购预算。预算口径只使用采购成本，并且只覆盖H11、H11 Pro、T11三类新增PO。</p>
+  </div>
+  <div class="grid-main">
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>SKU</th><th class="num">PO数量</th><th class="num">采购单价</th><th class="num">金额</th><th>下单窗口</th><th>入仓路径</th><th>优先级</th><th>依赖项</th></tr></thead>
+        <tbody>
+          <tr><td><span class="sku-chip">H11</span> 灰</td><td class="num strong">7,000</td><td class="num">¥180</td><td class="num strong">¥126万</td><td>6月第1周</td><td>优先FBA，站外锁量</td><td><span class="priority-p0">P0</span></td><td>7月不断货</td></tr>
+          <tr><td><span class="sku-chip">H11 Pro</span></td><td class="num strong">2,500</td><td class="num">¥190</td><td class="num strong">¥47.5万</td><td>6月启动</td><td>新品FBA+少量海外仓</td><td><span class="priority-p0">P0</span></td><td>7月新品节奏</td></tr>
+          <tr><td><span class="sku-chip">T11</span> 浅灰</td><td class="num strong">2,000</td><td class="num">¥135</td><td class="num strong">¥27万</td><td>6月确认</td><td>第二批直入FBA</td><td><span class="priority-p1">P1</span></td><td>6/10 Amazon开售</td></tr>
+          <tr class="subtotal"><td>合计</td><td class="num">11,500</td><td class="num">采购成本口径</td><td class="num">¥200.5万</td><td>6月锁定</td><td>按渠道分仓</td><td>总控</td><td>周度复盘</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="card card-hl"><div class="kpi-num">¥200.5万</div><div class="kpi-label">新增采购成本</div><p class="tight-note" style="margin-top:10px;">不包含H10、T10和落叶机Amazon FBA新增补货。</p></div>
+      <div class="card card-risk"><span class="priority-risk">口径纠偏</span><h3 style="margin-top:10px;">销售价不是采购价</h3><p class="tight-note">H11客单价129美金用于销售收入判断，不能替代¥180/台采购成本。</p></div>
+      <div class="card card-primary"><span class="priority-p0">现金优先级</span><h3 style="margin-top:10px;">优先保障H11与H11 Pro</h3><p class="tight-note">H11负责连续供应，H11 Pro负责新品窗口，T11按FBA路径节奏执行。</p></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span>采购预算</span><span>11,500台 · ¥200.5万</span></div>
 </div>
+      <div class="page-num">17 / 20</div>
     </div>
   </section>
-
-  <section class="slide-frame" id="slide-20" aria-label="行动清单与负责人">
-    <div class="page-num"><span>20</span> / 20</div>
+  <section class="slide-frame" data-title="渠道配额与库存分配规则">
     <div class="slide-scale">
-<div class="slide"><div class="section-tag">19 · ACTION</div><h2>行动清单与负责人</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;"><div class="card card-highlight"><h3>P0 本周完成</h3><p>确认H11 7,000台PO与¥126万采购预算；确认H11 Pro 2,500台生产排期；确认T11第二批直入FBA数量。</p></div><div class="card"><h3>P1 持续跟进</h3><p>每周更新三张库存截图；H10、T10按下市清货复盘；落叶机每周检查Amazon自发货与专利风险；渠道配额按库存水位动态调整。</p></div></div><p style="color:var(--color-muted);margin-top:18px;">所有销量与预算均按最新三份Excel和2026/5/25库存截图重算。</p>
-  <div class="slide-footer"><span>Yousky 供应链管理</span><span>2026.6-8 · SKU统一调整版</span></div>
+<div class="slide-content">
+  <div class="deck-mark">CHANNEL ALLOCATION</div>
+  <div class="header-row">
+    <div><div class="section-tag">17 · 渠道配额规则</div><h2>四渠道库存分配，不按销量简单平均</h2></div>
+    <p class="lead">不同渠道能使用的库存来源不同。备货表必须先锁渠道规则，再决定月度入仓和活动承诺。</p>
+  </div>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr><th>渠道</th><th>优先SKU</th><th>可用库存来源</th><th>禁发/限制</th><th>补货方式</th><th>决策规则</th><th>优先级</th></tr></thead>
+      <tbody>
+        <tr><td><span class="sku-chip">Amazon</span></td><td>H11、H11 Pro、T11</td><td>FBA、直入FBA、已在FBA库存</td><td>落叶机不新增FBA；H10/T10只清现货</td><td>H11/H11 Pro/T11新增PO</td><td>仓位优先给可持续SKU</td><td><span class="priority-p0">P0</span></td></tr>
+        <tr><td><span class="sku-chip">TikTok</span></td><td>T11、H11、H10蓝、L10/L11</td><td>海外仓库存</td><td>不能卖国内待发与FBA库存</td><td>海外仓锁量，不走FBA</td><td>T11首批1,000优先承接</td><td><span class="priority-p1">P1</span></td></tr>
+        <tr><td><span class="sku-chip">DTC</span></td><td>H11、T11、落叶机、H10蓝</td><td>海外仓、自发货</td><td>H10灰海外仓少，不能过量承诺</td><td>周度锁仓</td><td>承接新品与Amazon转出量</td><td><span class="priority-p1">P1</span></td></tr>
+        <tr><td><span class="sku-chip">Walmart</span></td><td>H10蓝</td><td>海外仓清货库存</td><td>不作为主销量计划口径</td><td>清货补充</td><td>只在H10蓝库存明确时投放</td><td><span class="priority-clearance">清货</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid4" style="margin-top:16px;">
+    <div class="card card-tight"><span class="priority-p0">规则1</span><h3 style="margin-top:8px;">FBA不等于海外仓</h3><p class="tight-note">T11首批海外仓库存不能自动覆盖Amazon需求。</p></div>
+    <div class="card card-tight"><span class="priority-risk">规则2</span><h3 style="margin-top:8px;">落叶机不新增FBA</h3><p class="tight-note">专利风险未解除前，Amazon只做现有FBA与自发货。</p></div>
+    <div class="card card-tight"><span class="priority-clearance">规则3</span><h3 style="margin-top:8px;">下市款不补货</h3><p class="tight-note">H10/T10销量是清货目标，不是采购需求。</p></div>
+    <div class="card card-tight"><span class="priority-watch">规则4</span><h3 style="margin-top:8px;">周度滚动锁量</h3><p class="tight-note">活动前必须按真实仓位复核可售库存。</p></div>
+  </div>
+  <div class="slide-footer"><span>渠道配额</span><span>先渠道约束，后销量承诺</span></div>
 </div>
+      <div class="page-num">18 / 20</div>
     </div>
   </section>
-</main>
-<script>
-const frames = Array.from(document.querySelectorAll('.slide-frame'));
-const dots = Array.from(document.querySelectorAll('.nav-dots button'));
-const progressBar = document.getElementById('progressBar');
-let activeIndex = 0;
+  <section class="slide-frame" data-title="风险与待确认项">
+    <div class="slide-scale">
+<div class="slide-content">
+  <div class="deck-mark">RISKS & OPEN ITEMS</div>
+  <div class="header-row">
+    <div><div class="section-tag">18 · 风险与待确认项</div><h2>不确定项不编数字，放进周度复盘机制</h2></div>
+    <p class="lead">这版计划只使用已核对数据。缺少精确拆分的地方不硬填，而是以风险项和待确认项纳入执行跟踪。</p>
+  </div>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr><th>风险/待确认</th><th>触发条件</th><th>影响</th><th>应对动作</th><th>负责人角色</th><th>状态</th></tr></thead>
+      <tbody>
+        <tr><td>H11 PO延迟</td><td>7,000台未在7月前形成可用库存</td><td>7月主力款缺口约2,044台</td><td>6月第一周锁单，周度追生产与入仓</td><td>供应链 / 采购</td><td><span class="priority-p0">P0</span></td></tr>
+        <tr><td>H11 Pro FBA预约延迟</td><td>7月900台Amazon新品需求无法入仓</td><td>新品节奏断档</td><td>生产、贴标、预约并行推进</td><td>运营 / 物流</td><td><span class="priority-p0">P0</span></td></tr>
+        <tr><td>T11批次路径错配</td><td>海外仓库存被当作FBA库存</td><td>Amazon开售后缺货，TK/DTC也被透支</td><td>首批海外仓、二批FBA分账管理</td><td>仓储 / 运营</td><td><span class="priority-p1">P1</span></td></tr>
+        <tr><td>落叶机专利风险</td><td>继续新增Amazon FBA</td><td>侵权与库存冻结风险</td><td>停止新增FBA，转TK/DTC/自发货</td><td>法务 / 运营</td><td><span class="priority-risk">风险</span></td></tr>
+        <tr><td>H10灰海外仓少</td><td>TK/DTC按总库存承诺活动量</td><td>站外渠道超卖</td><td>每周核海外仓，不按总库存承诺</td><td>渠道运营</td><td><span class="priority-clearance">清货</span></td></tr>
+        <tr><td>部分月度拆分待确认</td><td>源表未给出颜色/仓位级拆分</td><td>分渠道入仓可能偏差</td><td>不编造数字，复盘时补真实仓位</td><td>供应链</td><td><span class="priority-watch">待确认</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="risk-strip" style="margin-top:16px;">
+    <div class="risk-item"><h3>红线</h3><p class="tight-note">落叶机、H10、T10不得被写入新增Amazon FBA补货。</p></div>
+    <div class="risk-item"><h3>复盘重点</h3><p class="tight-note">每周复核 H11 PO、H11 Pro FBA、T11批次路径、海外仓清货库存。</p></div>
+  </div>
+  <div class="slide-footer"><span>风险与待确认</span><span>不确定项进入复盘，不进入虚假精确表</span></div>
+</div>
+      <div class="page-num">19 / 20</div>
+    </div>
+  </section>
+  <section class="slide-frame" data-title="时间线与周度复盘机制">
+    <div class="slide-scale">
+<div class="slide-content">
+  <div class="deck-mark">EXECUTION CADENCE</div>
+  <div class="header-row">
+    <div><div class="section-tag">19 · 时间线与周度复盘</div><h2>从6月第1周开始，把备货计划变成周度动作</h2></div>
+    <p class="lead">最终交付不是一组数字，而是一套每周可检查的采购、入仓、调拨、清货和风险复盘机制。</p>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item"><span class="priority-p0">6月第1周</span><h3 style="margin-top:10px;">锁定PO</h3><p class="tight-note">H11 7,000、H11 Pro 2,500、T11 2,000；确认采购预算¥200.5万。</p></div>
+    <div class="timeline-item"><span class="priority-p1">6月第2周</span><h3 style="margin-top:10px;">T11开售</h3><p class="tight-note">Amazon约6/10开售；首批海外仓与二批FBA分账管理。</p></div>
+    <div class="timeline-item"><span class="priority-p0">7月</span><h3 style="margin-top:10px;">风险月</h3><p class="tight-note">H11补货到位、H11 Pro新品FBA入仓、落叶机继续站外承接。</p></div>
+    <div class="timeline-item"><span class="priority-watch">8月</span><h3 style="margin-top:10px;">连续供应</h3><p class="tight-note">确认H11/H11 Pro/T11是否需要下一轮滚动PO。</p></div>
+    <div class="timeline-item"><span class="priority-clearance">每周</span><h3 style="margin-top:10px;">复盘机制</h3><p class="tight-note">库存截图、FBA预约、海外仓可售、下市清货、专利风险同步更新。</p></div>
+  </div>
+  <div class="grid2" style="margin-top:18px;">
+    <div class="card card-hl">
+      <h3>周度复盘输出</h3>
+      <ul class="compact-list">
+        <li>H11剩余可售与PO进度</li>
+        <li>H11 Pro生产、贴标、FBA预约状态</li>
+        <li>T11海外仓与FBA分账库存</li>
+        <li>落叶机Amazon限制与站外消化</li>
+      </ul>
+    </div>
+    <div class="card card-primary">
+      <h3>执行负责人分工</h3>
+      <ul class="compact-list">
+        <li>供应链：PO、到货、仓位、周度库存</li>
+        <li>Amazon运营：FBA预约、新品节奏、下架清货</li>
+        <li>TK/DTC运营：海外仓锁量与清货节奏</li>
+        <li>法务/负责人：落叶机专利风险复核</li>
+      </ul>
+    </div>
+  </div>
+  <div class="slide-footer"><span>执行节奏</span><span>周度复盘 · 动态锁量 · 滚动PO判断</span></div>
+</div>
+      <div class="page-num">20 / 20</div>
+    </div>
+  </section>
+  <script>
+    const frames = Array.from(document.querySelectorAll('.slide-frame'));
+    const dots = Array.from(document.querySelectorAll('.nav-dots button'));
+    const progressBar = document.getElementById('progressBar');
+    let activeIndex = 0;
 
-function setScale() {
-  const scale = Math.min(window.innerWidth / 1280, window.innerHeight / 720, 1);
-  document.documentElement.style.setProperty('--viewer-scale', scale.toFixed(4));
-}
-
-function setActive(index) {
-  activeIndex = Math.max(0, Math.min(frames.length - 1, index));
-  dots.forEach((dot, i) => dot.classList.toggle('active', i === activeIndex));
-  const progress = frames.length <= 1 ? 100 : (activeIndex / (frames.length - 1)) * 100;
-  progressBar.style.width = progress + '%';
-}
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      setActive(frames.indexOf(entry.target));
+    function setScale() {
+      const scale = Math.min(window.innerWidth / 1280, window.innerHeight / 720, 1);
+      document.documentElement.style.setProperty('--viewer-scale', scale.toFixed(4));
     }
-  });
-}, { threshold: 0.6 });
-frames.forEach(frame => observer.observe(frame));
 
-dots.forEach(dot => {
-  dot.addEventListener('click', () => {
-    const index = Number(dot.dataset.index);
-    frames[index].scrollIntoView();
-    setActive(index);
-  });
-});
+    function setActive(index) {
+      activeIndex = Math.max(0, Math.min(frames.length - 1, index));
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === activeIndex));
+      const progress = frames.length <= 1 ? 100 : ((activeIndex + 1) / frames.length) * 100;
+      progressBar.style.width = progress + '%';
+    }
 
-document.addEventListener('keydown', event => {
-  if (event.key === 'ArrowDown' || event.key === 'PageDown' || event.key === ' ') {
-    event.preventDefault();
-    frames[Math.min(activeIndex + 1, frames.length - 1)].scrollIntoView();
-  }
-  if (event.key === 'ArrowUp' || event.key === 'PageUp') {
-    event.preventDefault();
-    frames[Math.max(activeIndex - 1, 0)].scrollIntoView();
-  }
-});
+    function goTo(index) {
+      const target = frames[Math.max(0, Math.min(frames.length - 1, index))];
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 
-window.addEventListener('resize', setScale);
-setScale();
-setActive(0);
-</script>
+    dots.forEach(dot => dot.addEventListener('click', () => goTo(Number(dot.dataset.index))));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) setActive(frames.indexOf(entry.target));
+      });
+    }, { threshold: 0.58 });
+
+    frames.forEach(frame => observer.observe(frame));
+
+    window.addEventListener('keydown', (event) => {
+      const nextKeys = ['ArrowDown', 'ArrowRight', 'PageDown', ' '];
+      const prevKeys = ['ArrowUp', 'ArrowLeft', 'PageUp'];
+      if (nextKeys.includes(event.key)) { event.preventDefault(); goTo(activeIndex + 1); }
+      if (prevKeys.includes(event.key)) { event.preventDefault(); goTo(activeIndex - 1); }
+      if (event.key === 'Home') { event.preventDefault(); goTo(0); }
+      if (event.key === 'End') { event.preventDefault(); goTo(frames.length - 1); }
+    });
+
+    window.addEventListener('resize', setScale);
+    setScale();
+    setActive(0);
+  </script>
 </body>
 </html>

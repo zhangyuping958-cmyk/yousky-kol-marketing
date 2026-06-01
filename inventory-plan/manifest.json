@@ -1,85 +1,25 @@
 {
-  "title": "Yousky 6-8月三渠道备货计划（SKU统一调整版）",
+  "title": "Yousky 6-8月 SKU / 渠道 / 月度备货计划",
   "slides": [
-    {
-      "file": "slides/slide-01.html",
-      "title": "封面 — 备货计划总览"
-    },
-    {
-      "file": "slides/slide-02.html",
-      "title": "调整背景 — SKU与渠道规则"
-    },
-    {
-      "file": "slides/slide-03.html",
-      "title": "数据源与计算口径"
-    },
-    {
-      "file": "slides/slide-04.html",
-      "title": "当前库存水位总览"
-    },
-    {
-      "file": "slides/slide-05.html",
-      "title": "三渠道销量计划总览"
-    },
-    {
-      "file": "slides/slide-06.html",
-      "title": "Amazon销量计划拆解"
-    },
-    {
-      "file": "slides/slide-07.html",
-      "title": "TikTok销量计划拆解"
-    },
-    {
-      "file": "slides/slide-08.html",
-      "title": "独立站销量计划拆解"
-    },
-    {
-      "file": "slides/slide-09.html",
-      "title": "H11库存消耗推演"
-    },
-    {
-      "file": "slides/slide-10.html",
-      "title": "H11 Pro新品备货"
-    },
-    {
-      "file": "slides/slide-11.html",
-      "title": "T11首批与FBA节奏"
-    },
-    {
-      "file": "slides/slide-12.html",
-      "title": "H10与T10下市清货"
-    },
-    {
-      "file": "slides/slide-13.html",
-      "title": "落叶机专利风险与渠道切换"
-    },
-    {
-      "file": "slides/slide-14.html",
-      "title": "6月备货计划"
-    },
-    {
-      "file": "slides/slide-15.html",
-      "title": "7月备货计划"
-    },
-    {
-      "file": "slides/slide-16.html",
-      "title": "8月备货计划"
-    },
-    {
-      "file": "slides/slide-17.html",
-      "title": "采购预算与现金占用"
-    },
-    {
-      "file": "slides/slide-18.html",
-      "title": "渠道配额分配原则"
-    },
-    {
-      "file": "slides/slide-19.html",
-      "title": "PO时间线与风险预警"
-    },
-    {
-      "file": "slides/slide-20.html",
-      "title": "行动清单与负责人"
-    }
+    { "file": "slides/slide-01.html", "title": "封面 — 备货计划总览" },
+    { "file": "slides/slide-02.html", "title": "决策摘要 — 先补什么、停什么、转什么" },
+    { "file": "slides/slide-03.html", "title": "备货管理总表 — SKU × 颜色 × 渠道 × 月度" },
+    { "file": "slides/slide-04.html", "title": "当前库存水位 — SKU颜色与限制" },
+    { "file": "slides/slide-05.html", "title": "总缺口与PO决策矩阵" },
+    { "file": "slides/slide-06.html", "title": "Amazon入仓备货计划" },
+    { "file": "slides/slide-07.html", "title": "TikTok备货计划" },
+    { "file": "slides/slide-08.html", "title": "独立站与Walmart承接计划" },
+    { "file": "slides/slide-09.html", "title": "H11灰色主力款备货推演" },
+    { "file": "slides/slide-10.html", "title": "H11 Pro新品备货计划" },
+    { "file": "slides/slide-11.html", "title": "T11两批次备货与入仓路径" },
+    { "file": "slides/slide-12.html", "title": "H10与T10下市清货计划" },
+    { "file": "slides/slide-13.html", "title": "落叶机专利风险与备货转向" },
+    { "file": "slides/slide-14.html", "title": "6月备货执行表" },
+    { "file": "slides/slide-15.html", "title": "7月备货执行表" },
+    { "file": "slides/slide-16.html", "title": "8月备货执行表" },
+    { "file": "slides/slide-17.html", "title": "新增PO与采购预算" },
+    { "file": "slides/slide-18.html", "title": "渠道配额与库存分配规则" },
+    { "file": "slides/slide-19.html", "title": "风险与待确认项" },
+    { "file": "slides/slide-20.html", "title": "时间线与周度复盘机制" }
   ]
 }

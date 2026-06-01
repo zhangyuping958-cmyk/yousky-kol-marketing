@@ -1,5 +1,25 @@
-<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<div class="slide"><div class="section-tag">17 · 配额</div><h2>渠道配额分配原则</h2><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;"><div class="card card-highlight"><h3>Amazon</h3><p>优先保障H11、H11 Pro、T11；落叶机不新增FBA，H10与T10售完下架。</p></div><div class="card"><h3>TikTok</h3><p>只卖海外仓库存，重点承接T11第一批和H10清货，避免承诺国内补发。</p></div><div class="card"><h3>独立站</h3><p>承接H11、T11与落叶机转化，库存不足时排在Amazon之后但高于低毛利清货。</p></div></div>
-  <div class="slide-footer"><span>Yousky 供应链管理</span><span>2026.6-8 · SKU统一调整版</span></div>
+<div class="slide-content">
+  <div class="deck-mark">CHANNEL ALLOCATION</div>
+  <div class="header-row">
+    <div><div class="section-tag">17 · 渠道配额规则</div><h2>四渠道库存分配，不按销量简单平均</h2></div>
+    <p class="lead">不同渠道能使用的库存来源不同。备货表必须先锁渠道规则，再决定月度入仓和活动承诺。</p>
+  </div>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr><th>渠道</th><th>优先SKU</th><th>可用库存来源</th><th>禁发/限制</th><th>补货方式</th><th>决策规则</th><th>优先级</th></tr></thead>
+      <tbody>
+        <tr><td><span class="sku-chip">Amazon</span></td><td>H11、H11 Pro、T11</td><td>FBA、直入FBA、已在FBA库存</td><td>落叶机不新增FBA；H10/T10只清现货</td><td>H11/H11 Pro/T11新增PO</td><td>仓位优先给可持续SKU</td><td><span class="priority-p0">P0</span></td></tr>
+        <tr><td><span class="sku-chip">TikTok</span></td><td>T11、H11、H10蓝、L10/L11</td><td>海外仓库存</td><td>不能卖国内待发与FBA库存</td><td>海外仓锁量，不走FBA</td><td>T11首批1,000优先承接</td><td><span class="priority-p1">P1</span></td></tr>
+        <tr><td><span class="sku-chip">DTC</span></td><td>H11、T11、落叶机、H10蓝</td><td>海外仓、自发货</td><td>H10灰海外仓少，不能过量承诺</td><td>周度锁仓</td><td>承接新品与Amazon转出量</td><td><span class="priority-p1">P1</span></td></tr>
+        <tr><td><span class="sku-chip">Walmart</span></td><td>H10蓝</td><td>海外仓清货库存</td><td>不作为主销量计划口径</td><td>清货补充</td><td>只在H10蓝库存明确时投放</td><td><span class="priority-clearance">清货</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid4" style="margin-top:16px;">
+    <div class="card card-tight"><span class="priority-p0">规则1</span><h3 style="margin-top:8px;">FBA不等于海外仓</h3><p class="tight-note">T11首批海外仓库存不能自动覆盖Amazon需求。</p></div>
+    <div class="card card-tight"><span class="priority-risk">规则2</span><h3 style="margin-top:8px;">落叶机不新增FBA</h3><p class="tight-note">专利风险未解除前，Amazon只做现有FBA与自发货。</p></div>
+    <div class="card card-tight"><span class="priority-clearance">规则3</span><h3 style="margin-top:8px;">下市款不补货</h3><p class="tight-note">H10/T10销量是清货目标，不是采购需求。</p></div>
+    <div class="card card-tight"><span class="priority-watch">规则4</span><h3 style="margin-top:8px;">周度滚动锁量</h3><p class="tight-note">活动前必须按真实仓位复核可售库存。</p></div>
+  </div>
+  <div class="slide-footer"><span>渠道配额</span><span>先渠道约束，后销量承诺</span></div>
 </div>

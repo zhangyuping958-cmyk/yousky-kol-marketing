@@ -1,10 +1,22 @@
-<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<div class="slide">
-  <div class="section-tag">02 · 数据口径</div><h2>六份文件与计算边界</h2>
-  <div style="display:grid;grid-template-columns:1.15fr 1fr;gap:22px;align-items:stretch;">
-    <div class="card"><h3>销量来源</h3><table style="width:100%;font-size:14px;line-height:2.05;border-collapse:collapse;"><tr><td>独立站</td><td style="text-align:right;font-family:var(--font-mono);">6月800 · 7月1,700 · 8月2,100</td></tr><tr><td>Amazon</td><td style="text-align:right;font-family:var(--font-mono);">6月6,400 · 7月6,600 · 8月4,700</td></tr><tr><td>TikTok</td><td style="text-align:right;font-family:var(--font-mono);">6月2,060 · 7月2,210 · 8月2,110</td></tr></table></div>
-    <div class="card"><h3>库存来源</h3><p style="margin-bottom:10px;">大手持、落叶机、小手持T10/T11三张库存截图，日期均为2026/5/25。</p><p style="color:var(--color-muted);font-size:14px;">OCR核对到H11灰色总计8,328，销售推演按H11可用8,256计算；T11浅灰总计1,985，其中海运在途1,000。</p></div>
+<div class="slide-content">
+  <div class="deck-mark">MASTER STOCKING TABLE</div>
+  <div class="header-row">
+    <div><div class="section-tag">02 · 备货管理总表</div><h2>SKU × 颜色 × 渠道 × 月度备货口径</h2></div>
+    <p class="lead">这张表用于排产和入仓，不是单纯销量展示；下市款与专利受限款单独标记，避免进入新增采购。</p>
   </div>
-  <div class="slide-footer"><span>Yousky 供应链管理</span><span>2026.6-8 · SKU统一调整版</span></div>
+  <div class="table-wrap">
+    <table class="matrix-table">
+      <thead><tr><th>SKU/颜色</th><th>主渠道</th><th class="num">6月</th><th class="num">7月</th><th class="num">8月</th><th class="num">合计</th><th class="num">库存口径</th><th class="num">建议PO</th><th>优先级</th><th>备货动作</th></tr></thead>
+      <tbody>
+        <tr><td><span class="sku-chip">H11</span> 灰</td><td>Amazon / TK / DTC</td><td class="num">5,400</td><td class="num">4,900</td><td class="num">3,700</td><td class="num strong">14,000</td><td class="num">可用 8,256</td><td class="num strong">7,000</td><td><span class="priority-p0">P0</span></td><td>6月锁PO，覆盖7月主力缺口</td></tr>
+        <tr><td><span class="sku-chip">H11 Pro</span></td><td>Amazon新品 / TK / DTC</td><td class="num">150</td><td class="num">1,100</td><td class="num">1,200</td><td class="num strong">2,450</td><td class="num">按0可售</td><td class="num strong">2,500</td><td><span class="priority-p0">P0</span></td><td>7月新品节奏，提前FBA预约</td></tr>
+        <tr><td><span class="sku-chip">T11</span> 浅灰</td><td>Amazon / TK / DTC</td><td class="num">410</td><td class="num">810</td><td class="num">1,510</td><td class="num strong">2,730</td><td class="num">1,985含在途</td><td class="num strong">2,000</td><td><span class="priority-p1">P1</span></td><td>首批海外仓，二批直入FBA</td></tr>
+        <tr><td><span class="sku-chip">L10/L11</span></td><td>TK / DTC / 自发货</td><td class="num">1,600</td><td class="num">1,800</td><td class="num">1,400</td><td class="num strong">4,800</td><td class="num">3,016</td><td class="num">0</td><td><span class="priority-risk">风险</span></td><td>不新增Amazon FBA，转渠道消化</td></tr>
+        <tr><td><span class="sku-chip">H10</span> 蓝/灰</td><td>TK / DTC / Walmart</td><td class="num">1,200</td><td class="num">1,000</td><td class="num">1,100</td><td class="num">3,300</td><td class="num">3,539</td><td class="num">0</td><td><span class="priority-clearance">清货</span></td><td>蓝色优先海外仓清货，灰色谨慎承诺</td></tr>
+        <tr><td><span class="sku-chip">T10</span></td><td>Amazon清完下架</td><td class="num">500</td><td class="num">900</td><td class="num">0</td><td class="num">1,400</td><td class="num">1,998</td><td class="num">0</td><td><span class="priority-clearance">清货</span></td><td>卖完下市，不再发货</td></tr>
+        <tr class="subtotal"><td>管理合计</td><td>排产与调拨口径</td><td class="num">9,260</td><td class="num">10,510</td><td class="num">8,910</td><td class="num">28,680</td><td class="num">剔除下市后 23,980</td><td class="num">11,500</td><td>总控</td><td>新增PO只投H11、H11 Pro、T11</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-footer"><span>备货管理总表</span><span>销量输入转为库存、PO与渠道动作</span></div>
 </div>
