@@ -470,19 +470,18 @@ p, li {
 
     html, body {
       width: 100%;
+      height: 100%;
       min-height: 100%;
-      height: auto;
       margin: 0;
-      overflow-x: hidden;
-      overflow-y: auto;
-      scroll-snap-type: y mandatory;
-      scroll-behavior: smooth;
+      overflow: hidden;
+      overscroll-behavior: none;
       background: var(--color-bg);
       font-family: var(--font-sans);
     }
 
     body {
       color: var(--color-fg);
+      position: relative;
     }
 
     .progress-bar {
@@ -496,11 +495,28 @@ p, li {
       box-shadow: 0 0 18px rgba(184, 135, 90, 0.45);
     }
 
+    .slide-stage {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(196, 163, 90, 0.13), transparent 28%),
+        linear-gradient(135deg, #fbfaf7 0%, #efe5d7 100%);
+    }
+
+    .slide-track {
+      width: 100%;
+      height: 100%;
+      transform: translate3d(0, calc(var(--active-index, 0) * -100vh), 0);
+      transition: transform 640ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+
     .slide-frame {
       width: 100vw;
       height: 100vh;
       min-height: 720px;
-      scroll-snap-align: start;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -625,7 +641,9 @@ p, li {
     <button type="button" data-index="18" aria-label="跳转到第19页"><span>19</span></button>
     <button type="button" data-index="19" aria-label="跳转到第20页"><span>20</span></button>
   </nav>
-  <div class="nav-hint">SCROLL · ARROWS · SPACE</div>
+  <div class="nav-hint">WHEEL · ARROWS · SPACE</div>
+  <main class="slide-stage" id="slideStage">
+    <div class="slide-track" id="slideTrack">
   <section class="slide-frame" data-title="封面 — 备货计划总览">
     <div class="slide-scale">
 <div class="slide-title">
@@ -1243,11 +1261,18 @@ p, li {
       <div class="page-num">20 / 20</div>
     </div>
   </section>
+    </div>
+  </main>
   <script>
     const frames = Array.from(document.querySelectorAll('.slide-frame'));
     const dots = Array.from(document.querySelectorAll('.nav-dots button'));
     const progressBar = document.getElementById('progressBar');
     let activeIndex = 0;
+    let isAnimating = false;
+    let wheelDelta = 0;
+    let wheelResetTimer = null;
+    let touchStartY = 0;
+    let touchStartX = 0;
 
     function setScale() {
       const scale = Math.min(window.innerWidth / 1280, window.innerHeight / 720, 1);
@@ -1256,31 +1281,62 @@ p, li {
 
     function setActive(index) {
       activeIndex = Math.max(0, Math.min(frames.length - 1, index));
+      document.documentElement.style.setProperty('--active-index', activeIndex);
       dots.forEach((dot, i) => dot.classList.toggle('active', i === activeIndex));
       const progress = frames.length <= 1 ? 100 : ((activeIndex + 1) / frames.length) * 100;
       progressBar.style.width = progress + '%';
+      isAnimating = true;
+      window.setTimeout(() => { isAnimating = false; }, 680);
     }
 
     function goTo(index) {
-      const target = frames[Math.max(0, Math.min(frames.length - 1, index))];
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const nextIndex = Math.max(0, Math.min(frames.length - 1, index));
+      if (nextIndex === activeIndex && isAnimating) return;
+      setActive(nextIndex);
+    }
+
+    function step(direction) {
+      if (isAnimating) return;
+      goTo(activeIndex + direction);
     }
 
     dots.forEach(dot => dot.addEventListener('click', () => goTo(Number(dot.dataset.index))));
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) setActive(frames.indexOf(entry.target));
-      });
-    }, { threshold: 0.58 });
+    window.addEventListener('wheel', (event) => {
+      event.preventDefault();
+      if (isAnimating) return;
+      wheelDelta += event.deltaY;
+      window.clearTimeout(wheelResetTimer);
+      wheelResetTimer = window.setTimeout(() => { wheelDelta = 0; }, 120);
+      if (Math.abs(wheelDelta) < 28) return;
+      step(wheelDelta > 0 ? 1 : -1);
+      wheelDelta = 0;
+    }, { passive: false });
 
-    frames.forEach(frame => observer.observe(frame));
+    window.addEventListener('touchstart', (event) => {
+      const touch = event.touches[0];
+      touchStartY = touch.clientY;
+      touchStartX = touch.clientX;
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (event) => {
+      event.preventDefault();
+    }, { passive: false });
+
+    window.addEventListener('touchend', (event) => {
+      if (isAnimating || !event.changedTouches.length) return;
+      const touch = event.changedTouches[0];
+      const diffY = touchStartY - touch.clientY;
+      const diffX = touchStartX - touch.clientX;
+      if (Math.abs(diffY) < 36 || Math.abs(diffY) < Math.abs(diffX)) return;
+      step(diffY > 0 ? 1 : -1);
+    });
 
     window.addEventListener('keydown', (event) => {
       const nextKeys = ['ArrowDown', 'ArrowRight', 'PageDown', ' '];
       const prevKeys = ['ArrowUp', 'ArrowLeft', 'PageUp'];
-      if (nextKeys.includes(event.key)) { event.preventDefault(); goTo(activeIndex + 1); }
-      if (prevKeys.includes(event.key)) { event.preventDefault(); goTo(activeIndex - 1); }
+      if (nextKeys.includes(event.key)) { event.preventDefault(); step(1); }
+      if (prevKeys.includes(event.key)) { event.preventDefault(); step(-1); }
       if (event.key === 'Home') { event.preventDefault(); goTo(0); }
       if (event.key === 'End') { event.preventDefault(); goTo(frames.length - 1); }
     });
