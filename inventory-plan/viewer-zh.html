@@ -831,18 +831,157 @@ p, li {
   padding: 12px;
 }
 
-.procurement-table {
-  table-layout: fixed;
+.channel-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
 }
 
-.procurement-table th:nth-child(1) { width: 13%; }
-.procurement-table th:nth-child(2) { width: 10%; }
+.channel-panel {
+  background: rgba(255,255,255,0.94);
+  border: 1px solid var(--color-border);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 12px 26px rgba(30, 62, 84, 0.055);
+}
+
+.channel-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  background: #f4f2ed;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.channel-panel-head strong {
+  font-size: 24px;
+  line-height: 1;
+  color: var(--color-primary);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.mini-channel-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 11.5px;
+  line-height: 1.08;
+}
+
+.mini-channel-table th,
+.mini-channel-table td {
+  padding: 5px 6px;
+  border-bottom: 1px solid #eee7dd;
+}
+
+.mini-channel-table th {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--color-muted);
+  background: rgba(244,242,237,0.58);
+  text-align: left;
+}
+
+.mini-channel-table th:nth-child(1) { width: 32%; }
+.mini-channel-table th:nth-child(2),
+.mini-channel-table th:nth-child(3),
+.mini-channel-table th:nth-child(4),
+.mini-channel-table th:nth-child(5) { width: 17%; }
+
+.mini-channel-table .channel-total td {
+  background: #edf1f3 !important;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.channel-action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 8px 10px;
+  font-size: 12px;
+  color: #4b5360;
+}
+
+.master-total-band {
+  margin-top: 10px;
+  border-radius: 13px;
+  padding: 10px 14px;
+  background: var(--color-primary);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+}
+
+.master-total-band strong {
+  font-size: 20px;
+}
+
+.master-total-band span {
+  font-size: 12px;
+  color: rgba(255,255,255,0.76);
+}
+
+.procurement-slide .header-row {
+  margin-bottom: 14px;
+}
+
+.procurement-slide .header-row .lead {
+  max-width: 500px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.procurement-layout {
+  display: grid;
+  grid-template-columns: 1.42fr 0.7fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.procurement-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.procurement-table {
+  table-layout: fixed;
+  font-size: 14px;
+  line-height: 1.22;
+}
+
+.procurement-table th,
+.procurement-table td {
+  padding: 11px 10px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.procurement-table th:nth-child(1) { width: 15%; }
+.procurement-table th:nth-child(2) { width: 11%; }
 .procurement-table th:nth-child(3) { width: 10%; }
 .procurement-table th:nth-child(4) { width: 12%; }
-.procurement-table th:nth-child(5) { width: 15%; }
-.procurement-table th:nth-child(6) { width: 20%; }
-.procurement-table th:nth-child(7) { width: 10%; }
-.procurement-table th:nth-child(8) { width: 10%; }
+.procurement-table th:nth-child(5) { width: 17%; }
+.procurement-table th:nth-child(6) { width: 21%; }
+.procurement-table th:nth-child(7) { width: 14%; }
+
+.window-cell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 74px;
+  border-radius: 999px;
+  padding: 4px 9px;
+  background: #faf3e2;
+  color: #8c651b;
+  white-space: nowrap;
+}
 
 
     * { box-sizing: border-box; }
@@ -856,8 +995,11 @@ p, li {
 
     html, body {
       width: 100%;
+      height: 100%;
       min-height: 100%;
       margin: 0;
+      overflow-x: hidden;
+      overflow-y: visible;
       background: var(--color-bg);
       font-family: var(--font-sans);
     }
@@ -871,26 +1013,21 @@ p, li {
       position: fixed;
       top: 0;
       left: 0;
-      height: 3px;
+      height: 2px;
       width: 0;
       background: var(--color-secondary);
       z-index: 1000;
       transition: width 0.3s ease;
     }
 
-    .slide-stage {
+    .slide-stage,
+    .slide-track {
       width: 100%;
-      background:
-        radial-gradient(circle at 18% 12%, rgba(196, 163, 90, 0.13), transparent 28%),
-        linear-gradient(135deg, #fbfaf7 0%, #efe5d7 100%);
     }
-
-    .slide-track { width: 100%; }
 
     .slide-frame {
       width: 100vw;
       height: 100vh;
-      height: 100dvh;
       min-height: 720px;
       scroll-snap-align: start;
       display: flex;
@@ -920,9 +1057,7 @@ p, li {
       border-radius: 18px;
       overflow: hidden;
       background: #fafaf9;
-      transition:
-        opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .slide-frame.visible .slide-scale {
@@ -1070,43 +1205,62 @@ p, li {
   </section>
   <section class="slide-frame" id="s3" data-title="备货管理总表 — SKU × 颜色 × 渠道 × 月度">
     <div class="slide-scale">
-<div class="slide-content slide-dense">
+<div class="slide-content slide-dense slide-master-overview">
   <div class="deck-mark">MASTER STOCKING TABLE</div>
   <div class="header-row compact-head">
-    <div><div class="section-tag">02 · 渠道 × 产品 × 月度总表</div><h2>Amazon、TikTok、独立站三渠道备货量总表</h2></div>
-    <p class="lead">按渠道、SKU和月份拆开看，才能决定FBA、海外仓和清货池分别锁多少量；合计校验 6月 9,260、7月 10,510、8月 8,910。</p>
+    <div><div class="section-tag">02 · 三渠道月度总表</div><h2>Amazon、TikTok、独立站备货量总表</h2></div>
+    <p class="lead">按渠道拆开呈现，避免独立站被挤到页面外；每个渠道都列出 SKU、6月、7月、8月与合计。</p>
   </div>
-  <div class="table-wrap table-large master-table-wrap">
-    <table class="matrix-table master-table">
-      <thead><tr><th>渠道</th><th>产品 / 颜色</th><th class="num">6月</th><th class="num">7月</th><th class="num">8月</th><th class="num">合计</th><th>库存来源 / 动作</th></tr></thead>
-      <tbody>
-        <tr class="channel-row"><td rowspan="6"><span class="channel-chip amazon">Amazon</span></td><td><span class="sku-chip">H10</span> 蓝/灰</td><td class="num">800</td><td class="num">600</td><td class="num">500</td><td class="num">1,900</td><td>现有FBA清货，不新增FBA</td></tr>
-        <tr><td><span class="sku-chip">H11</span> 灰</td><td class="num strong">4,800</td><td class="num strong">3,600</td><td class="num">2,000</td><td class="num strong">10,400</td><td><span class="priority-p0">P0</span> PO 7,000，FBA优先</td></tr>
-        <tr><td><span class="sku-chip">H11 Pro</span></td><td class="num">0</td><td class="num strong">900</td><td class="num strong">1,000</td><td class="num strong">1,900</td><td><span class="priority-p0">P0</span> 新品FBA预约</td></tr>
-        <tr><td><span class="sku-chip">T10</span></td><td class="num">500</td><td class="num">900</td><td class="num">0</td><td class="num">1,400</td><td>卖完下市</td></tr>
-        <tr><td><span class="sku-chip">T11</span> 浅灰</td><td class="num">300</td><td class="num">600</td><td class="num strong">1,200</td><td class="num strong">2,100</td><td><span class="priority-p1">P1</span> 第二批直入FBA</td></tr>
-        <tr class="channel-total"><td>Amazon合计</td><td class="num">6,400</td><td class="num">6,600</td><td class="num">4,700</td><td class="num">17,700</td><td>FBA资源聚焦H11/H11 Pro/T11</td></tr>
-
-        <tr class="channel-row"><td rowspan="7"><span class="channel-chip tiktok">TikTok</span></td><td><span class="sku-chip">H10</span> 蓝/灰</td><td class="num">300</td><td class="num">200</td><td class="num">400</td><td class="num">900</td><td>海外仓清货</td></tr>
-        <tr><td><span class="sku-chip">H11</span> 灰</td><td class="num">200</td><td class="num">400</td><td class="num">500</td><td class="num">1,100</td><td>海外仓周度锁量</td></tr>
-        <tr><td><span class="sku-chip">H11 Pro</span></td><td class="num">50</td><td class="num">100</td><td class="num">100</td><td class="num">250</td><td>新品小批测试</td></tr>
-        <tr><td><span class="sku-chip">T11</span> 浅灰</td><td class="num">10</td><td class="num">10</td><td class="num">10</td><td class="num">30</td><td>首批1,000海外仓承接</td></tr>
-        <tr><td><span class="sku-chip">L10</span></td><td class="num">500</td><td class="num">500</td><td class="num">300</td><td class="num">1,300</td><td>落叶机转站外</td></tr>
-        <tr><td><span class="sku-chip">L11</span></td><td class="num">1,000</td><td class="num">1,000</td><td class="num">800</td><td class="num">2,800</td><td>站外主力消化</td></tr>
-        <tr class="channel-total"><td>TikTok合计</td><td class="num">2,060</td><td class="num">2,210</td><td class="num">2,110</td><td class="num">6,380</td><td>只能卖海外仓库存</td></tr>
-
-        <tr class="channel-row channel-sep dtc-row"><td rowspan="7"><span class="channel-chip dtc">独立站</span></td><td><span class="sku-chip">H10</span> 蓝/灰</td><td class="num">100</td><td class="num">200</td><td class="num">200</td><td class="num">500</td><td>海外仓清货，H10灰控量</td></tr>
-        <tr class="dtc-row"><td><span class="sku-chip">H11</span> 灰</td><td class="num">400</td><td class="num">900</td><td class="num strong">1,200</td><td class="num strong">2,500</td><td>站外配额需预留</td></tr>
-        <tr class="dtc-row"><td><span class="sku-chip">H11 Pro</span></td><td class="num">100</td><td class="num">100</td><td class="num">100</td><td class="num">300</td><td>新品稳定承接</td></tr>
-        <tr class="dtc-row"><td><span class="sku-chip">T11</span> 浅灰</td><td class="num">100</td><td class="num">200</td><td class="num">300</td><td class="num">600</td><td>首批1,000海外仓承接</td></tr>
-        <tr class="dtc-row"><td><span class="sku-chip">L10</span></td><td class="num">20</td><td class="num">50</td><td class="num">100</td><td class="num">170</td><td>Amazon转出补充渠道</td></tr>
-        <tr class="dtc-row"><td><span class="sku-chip">L11</span></td><td class="num">80</td><td class="num">250</td><td class="num">200</td><td class="num">530</td><td>站外持续消化</td></tr>
-        <tr class="channel-total dtc-row"><td>独立站合计</td><td class="num">800</td><td class="num">1,700</td><td class="num">2,100</td><td class="num">4,600</td><td>只用海外仓与自发货</td></tr>
-
-        <tr class="subtotal"><td colspan="2">三渠道合计</td><td class="num">9,260</td><td class="num">10,510</td><td class="num">8,910</td><td class="num">28,680</td><td>新增PO只投 H11 / H11 Pro / T11：11,500 台</td></tr>
-      </tbody>
-    </table>
+  <div class="channel-summary-grid">
+    <div class="channel-panel amazon-panel">
+      <div class="channel-panel-head"><span class="channel-chip amazon">Amazon</span><strong>17,700</strong></div>
+      <table class="mini-channel-table">
+        <thead><tr><th>产品</th><th class="num">6月</th><th class="num">7月</th><th class="num">8月</th><th class="num">合计</th></tr></thead>
+        <tbody>
+          <tr><td>H10 蓝/灰</td><td class="num">800</td><td class="num">600</td><td class="num">500</td><td class="num">1,900</td></tr>
+          <tr><td>H11 灰</td><td class="num strong">4,800</td><td class="num strong">3,600</td><td class="num">2,000</td><td class="num strong">10,400</td></tr>
+          <tr><td>H11 Pro</td><td class="num">0</td><td class="num strong">900</td><td class="num strong">1,000</td><td class="num strong">1,900</td></tr>
+          <tr><td>T10</td><td class="num">500</td><td class="num">900</td><td class="num">0</td><td class="num">1,400</td></tr>
+          <tr><td>T11 浅灰</td><td class="num">300</td><td class="num">600</td><td class="num strong">1,200</td><td class="num strong">2,100</td></tr>
+          <tr class="channel-total"><td>合计</td><td class="num">6,400</td><td class="num">6,600</td><td class="num">4,700</td><td class="num">17,700</td></tr>
+        </tbody>
+      </table>
+      <div class="channel-action"><span class="priority-p0">重点</span> FBA资源聚焦 H11 / H11 Pro / T11</div>
+    </div>
+    <div class="channel-panel tiktok-panel">
+      <div class="channel-panel-head"><span class="channel-chip tiktok">TikTok</span><strong>6,380</strong></div>
+      <table class="mini-channel-table">
+        <thead><tr><th>产品</th><th class="num">6月</th><th class="num">7月</th><th class="num">8月</th><th class="num">合计</th></tr></thead>
+        <tbody>
+          <tr><td>H10 蓝/灰</td><td class="num">300</td><td class="num">200</td><td class="num">400</td><td class="num">900</td></tr>
+          <tr><td>H11 灰</td><td class="num">200</td><td class="num">400</td><td class="num">500</td><td class="num">1,100</td></tr>
+          <tr><td>H11 Pro</td><td class="num">50</td><td class="num">100</td><td class="num">100</td><td class="num">250</td></tr>
+          <tr><td>T11 浅灰</td><td class="num">10</td><td class="num">10</td><td class="num">10</td><td class="num">30</td></tr>
+          <tr><td>L10</td><td class="num">500</td><td class="num">500</td><td class="num">300</td><td class="num">1,300</td></tr>
+          <tr><td>L11</td><td class="num">1,000</td><td class="num">1,000</td><td class="num">800</td><td class="num">2,800</td></tr>
+          <tr class="channel-total"><td>合计</td><td class="num">2,060</td><td class="num">2,210</td><td class="num">2,110</td><td class="num">6,380</td></tr>
+        </tbody>
+      </table>
+      <div class="channel-action"><span class="priority-p1">约束</span> 只能卖海外仓库存</div>
+    </div>
+    <div class="channel-panel dtc-panel">
+      <div class="channel-panel-head"><span class="channel-chip dtc">独立站</span><strong>4,600</strong></div>
+      <table class="mini-channel-table">
+        <thead><tr><th>产品</th><th class="num">6月</th><th class="num">7月</th><th class="num">8月</th><th class="num">合计</th></tr></thead>
+        <tbody>
+          <tr><td>H10 蓝/灰</td><td class="num">100</td><td class="num">200</td><td class="num">200</td><td class="num">500</td></tr>
+          <tr><td>H11 灰</td><td class="num">400</td><td class="num">900</td><td class="num strong">1,200</td><td class="num strong">2,500</td></tr>
+          <tr><td>H11 Pro</td><td class="num">100</td><td class="num">100</td><td class="num">100</td><td class="num">300</td></tr>
+          <tr><td>T11 浅灰</td><td class="num">100</td><td class="num">200</td><td class="num">300</td><td class="num">600</td></tr>
+          <tr><td>L10</td><td class="num">20</td><td class="num">50</td><td class="num">100</td><td class="num">170</td></tr>
+          <tr><td>L11</td><td class="num">80</td><td class="num">250</td><td class="num">200</td><td class="num">530</td></tr>
+          <tr class="channel-total"><td>合计</td><td class="num">800</td><td class="num">1,700</td><td class="num">2,100</td><td class="num">4,600</td></tr>
+        </tbody>
+      </table>
+      <div class="channel-action"><span class="priority-watch">规则</span> 只用海外仓与自发货</div>
+    </div>
   </div>
+  <div class="master-total-band"><strong>三渠道合计 28,680</strong><span>6月 9,260 · 7月 10,510 · 8月 8,910 · 新增PO只投 H11 / H11 Pro / T11：11,500 台</span></div>
   <div class="slide-footer"><span>渠道总表</span><span>Amazon 17,700 · TikTok 6,380 · 独立站 4,600</span></div>
 </div>
       <div class="page-num">03 / 20</div>
@@ -1536,25 +1690,25 @@ p, li {
   </section>
   <section class="slide-frame" id="s17" data-title="新增PO与采购预算">
     <div class="slide-scale">
-<div class="slide-content">
+<div class="slide-content procurement-slide">
   <div class="deck-mark">PROCUREMENT BUDGET</div>
   <div class="header-row">
     <div><div class="section-tag">16 · 新增PO与采购预算</div><h2>采购预算只按成本计算，新增PO合计 ¥200.5万</h2></div>
-    <p class="lead">H11的129美金是销售价，不能用于采购预算。预算口径只使用采购成本，并且只覆盖H11、H11 Pro、T11三类新增PO。</p>
+    <p class="lead">H11的129美金是销售价，不能用于采购预算。预算口径只使用采购成本，并且只覆盖 H11、H11 Pro、T11 三类新增PO。</p>
   </div>
-  <div class="grid-main">
+  <div class="procurement-layout">
     <div class="table-wrap">
       <table class="data-table procurement-table">
-        <thead><tr><th>SKU</th><th class="num">PO数量</th><th class="num">采购单价</th><th class="num">金额</th><th>下单窗口</th><th>入仓路径</th><th>优先级</th><th>依赖项</th></tr></thead>
+        <thead><tr><th>SKU</th><th class="num">PO数量</th><th class="num">单价</th><th class="num">金额</th><th>下单窗口</th><th>入仓路径</th><th>依赖项</th></tr></thead>
         <tbody>
-          <tr><td><span class="sku-chip">H11</span> 灰</td><td class="num strong">7,000</td><td class="num">¥180</td><td class="num strong">¥126万</td><td>6月第1周</td><td>优先FBA，站外锁量</td><td><span class="priority-p0">P0</span></td><td>7月不断货</td></tr>
-          <tr><td><span class="sku-chip">H11 Pro</span></td><td class="num strong">2,500</td><td class="num">¥190</td><td class="num strong">¥47.5万</td><td>6月启动</td><td>新品FBA+少量海外仓</td><td><span class="priority-p0">P0</span></td><td>7月新品节奏</td></tr>
-          <tr><td><span class="sku-chip">T11</span> 浅灰</td><td class="num strong">2,000</td><td class="num">¥135</td><td class="num strong">¥27万</td><td>6月确认</td><td>第二批直入FBA</td><td><span class="priority-p1">P1</span></td><td>6/10 Amazon开售</td></tr>
-          <tr class="subtotal"><td>合计</td><td class="num">11,500</td><td class="num">采购成本口径</td><td class="num">¥200.5万</td><td>6月锁定</td><td>按渠道分仓</td><td>总控</td><td>周度复盘</td></tr>
+          <tr><td><span class="sku-chip">H11</span> 灰</td><td class="num strong">7,000</td><td class="num">¥180</td><td class="num strong">¥126万</td><td><span class="window-cell">6月第1周</span></td><td>优先FBA，站外锁量</td><td>7月不断货</td></tr>
+          <tr><td><span class="sku-chip">H11 Pro</span></td><td class="num strong">2,500</td><td class="num">¥190</td><td class="num strong">¥47.5万</td><td><span class="window-cell">6月启动</span></td><td>新品FBA，少量海外仓</td><td>7月新品节奏</td></tr>
+          <tr><td><span class="sku-chip">T11</span> 浅灰</td><td class="num strong">2,000</td><td class="num">¥135</td><td class="num strong">¥27万</td><td><span class="window-cell">6月确认</span></td><td>第二批直入FBA</td><td>6/10 Amazon开售</td></tr>
+          <tr class="subtotal"><td>合计</td><td class="num">11,500</td><td class="num">成本口径</td><td class="num">¥200.5万</td><td><span class="window-cell">6月锁定</span></td><td>按渠道分仓</td><td>周度复盘</td></tr>
         </tbody>
       </table>
     </div>
-    <div style="display:flex;flex-direction:column;gap:14px;">
+    <div class="procurement-cards">
       <div class="card card-hl"><div class="kpi-num">¥200.5万</div><div class="kpi-label">新增采购成本</div><p class="tight-note" style="margin-top:10px;">不包含H10、T10和落叶机Amazon FBA新增补货。</p></div>
       <div class="card card-risk"><span class="priority-risk">口径纠偏</span><h3 style="margin-top:10px;">销售价不是采购价</h3><p class="tight-note">H11客单价129美金用于销售收入判断，不能替代¥180/台采购成本。</p></div>
       <div class="card card-primary"><span class="priority-p0">现金优先级</span><h3 style="margin-top:10px;">优先保障H11与H11 Pro</h3><p class="tight-note">H11负责连续供应，H11 Pro负责新品窗口，T11按FBA路径节奏执行。</p></div>
@@ -1670,64 +1824,55 @@ p, li {
   <script>
 
     (function(){
-      const frames = Array.from(document.querySelectorAll('.slide-frame'));
-      const dots = document.getElementById('navDots');
-      const progressBar = document.getElementById('progressBar');
-      const total = frames.length;
+      var slides = Array.prototype.slice.call(document.querySelectorAll('.slide-frame'));
+      var total = slides.length;
+      var dots = document.getElementById('navDots');
+      var bar = document.getElementById('progressBar');
 
-      function setScale() {
-        const scale = Math.min(window.innerWidth / 1280, window.innerHeight / 720, 1);
+      function setScale(){
+        var scale = Math.min(window.innerWidth / 1280, window.innerHeight / 720, 1);
         document.documentElement.style.setProperty('--viewer-scale', scale.toFixed(4));
       }
 
-      frames.forEach((frame, i) => {
-        const btn = document.createElement('button');
+      for(var i = 0; i < total; i++){
+        var btn = document.createElement('button');
         btn.setAttribute('aria-label', '第' + (i + 1) + '页');
-        btn.onclick = () => frame.scrollIntoView({ behavior: 'smooth' });
+        btn.onclick = (function(idx){ return function(){ document.getElementById('s' + (idx + 1)).scrollIntoView({ behavior: 'smooth' }); }; })(i);
         dots.appendChild(btn);
-      });
+      }
 
-      const buttons = Array.from(dots.querySelectorAll('button'));
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          const idx = frames.indexOf(entry.target);
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            buttons.forEach((btn, i) => btn.classList.toggle('active', i === idx));
-            progressBar.style.width = ((idx + 1) / total * 100) + '%';
+      var obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          var idx = parseInt(e.target.id.replace('s', ''), 10) - 1;
+          var btns = dots.querySelectorAll('button');
+          if(e.isIntersecting){
+            e.target.classList.add('visible');
+            btns.forEach(function(b, i){ b.classList.toggle('active', i === idx); });
+            bar.style.width = ((idx + 1) / total * 100) + '%';
           } else {
-            entry.target.classList.remove('visible');
+            e.target.classList.remove('visible');
           }
         });
       }, { threshold: 0.4 });
 
-      frames.forEach(frame => observer.observe(frame));
+      slides.forEach(function(s){ obs.observe(s); });
 
-      document.addEventListener('keydown', (event) => {
-        const nextKeys = ['ArrowDown', 'ArrowRight', 'PageDown', ' '];
-        const prevKeys = ['ArrowUp', 'ArrowLeft', 'PageUp'];
-        if (nextKeys.includes(event.key)) {
-          event.preventDefault();
-          const cur = Math.round(window.scrollY / window.innerHeight);
-          frames[Math.min(cur + 1, total - 1)].scrollIntoView({ behavior: 'smooth' });
-        } else if (prevKeys.includes(event.key)) {
-          event.preventDefault();
-          const cur = Math.round(window.scrollY / window.innerHeight);
-          frames[Math.max(cur - 1, 0)].scrollIntoView({ behavior: 'smooth' });
-        } else if (event.key === 'Home') {
-          event.preventDefault();
-          frames[0].scrollIntoView({ behavior: 'smooth' });
-        } else if (event.key === 'End') {
-          event.preventDefault();
-          frames[total - 1].scrollIntoView({ behavior: 'smooth' });
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' '){
+          e.preventDefault();
+          var cur = Math.round(window.scrollY / window.innerHeight);
+          var next = Math.min(cur + 1, total - 1);
+          document.getElementById('s' + (next + 1)).scrollIntoView({ behavior: 'smooth' });
+        } else if(e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp'){
+          e.preventDefault();
+          var cur = Math.round(window.scrollY / window.innerHeight);
+          var prev = Math.max(cur - 1, 0);
+          document.getElementById('s' + (prev + 1)).scrollIntoView({ behavior: 'smooth' });
         }
       });
 
       window.addEventListener('resize', setScale);
       setScale();
-      frames[0].classList.add('visible');
-      if (buttons[0]) buttons[0].classList.add('active');
-      progressBar.style.width = total ? (1 / total * 100) + '%' : '100%';
     })();
 
   </script>
