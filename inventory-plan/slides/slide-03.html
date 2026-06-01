@@ -1,22 +1,39 @@
-<div class="slide-content">
+<div class="slide-content slide-dense">
   <div class="deck-mark">MASTER STOCKING TABLE</div>
-  <div class="header-row">
-    <div><div class="section-tag">02 · 备货管理总表</div><h2>SKU × 颜色 × 渠道 × 月度备货口径</h2></div>
-    <p class="lead">这张表用于排产和入仓，不是单纯销量展示；下市款与专利受限款单独标记，避免进入新增采购。</p>
+  <div class="header-row compact-head">
+    <div><div class="section-tag">02 · 渠道 × 产品 × 月度总表</div><h2>Amazon、TikTok、独立站三渠道备货量总表</h2></div>
+    <p class="lead">按渠道、SKU和月份拆开看，才能决定FBA、海外仓和清货池分别锁多少量；合计校验 6月 9,260、7月 10,510、8月 8,910。</p>
   </div>
-  <div class="table-wrap">
-    <table class="matrix-table">
-      <thead><tr><th>SKU/颜色</th><th>主渠道</th><th class="num">6月</th><th class="num">7月</th><th class="num">8月</th><th class="num">合计</th><th class="num">库存口径</th><th class="num">建议PO</th><th>优先级</th><th>备货动作</th></tr></thead>
+  <div class="table-wrap table-large master-table-wrap">
+    <table class="matrix-table master-table">
+      <thead><tr><th>渠道</th><th>产品 / 颜色</th><th class="num">6月</th><th class="num">7月</th><th class="num">8月</th><th class="num">合计</th><th>库存来源 / 动作</th></tr></thead>
       <tbody>
-        <tr><td><span class="sku-chip">H11</span> 灰</td><td>Amazon / TK / DTC</td><td class="num">5,400</td><td class="num">4,900</td><td class="num">3,700</td><td class="num strong">14,000</td><td class="num">可用 8,256</td><td class="num strong">7,000</td><td><span class="priority-p0">P0</span></td><td>6月锁PO，覆盖7月主力缺口</td></tr>
-        <tr><td><span class="sku-chip">H11 Pro</span></td><td>Amazon新品 / TK / DTC</td><td class="num">150</td><td class="num">1,100</td><td class="num">1,200</td><td class="num strong">2,450</td><td class="num">按0可售</td><td class="num strong">2,500</td><td><span class="priority-p0">P0</span></td><td>7月新品节奏，提前FBA预约</td></tr>
-        <tr><td><span class="sku-chip">T11</span> 浅灰</td><td>Amazon / TK / DTC</td><td class="num">410</td><td class="num">810</td><td class="num">1,510</td><td class="num strong">2,730</td><td class="num">1,985含在途</td><td class="num strong">2,000</td><td><span class="priority-p1">P1</span></td><td>首批海外仓，二批直入FBA</td></tr>
-        <tr><td><span class="sku-chip">L10/L11</span></td><td>TK / DTC / 自发货</td><td class="num">1,600</td><td class="num">1,800</td><td class="num">1,400</td><td class="num strong">4,800</td><td class="num">3,016</td><td class="num">0</td><td><span class="priority-risk">风险</span></td><td>不新增Amazon FBA，转渠道消化</td></tr>
-        <tr><td><span class="sku-chip">H10</span> 蓝/灰</td><td>TK / DTC / Walmart</td><td class="num">1,200</td><td class="num">1,000</td><td class="num">1,100</td><td class="num">3,300</td><td class="num">3,539</td><td class="num">0</td><td><span class="priority-clearance">清货</span></td><td>蓝色优先海外仓清货，灰色谨慎承诺</td></tr>
-        <tr><td><span class="sku-chip">T10</span></td><td>Amazon清完下架</td><td class="num">500</td><td class="num">900</td><td class="num">0</td><td class="num">1,400</td><td class="num">1,998</td><td class="num">0</td><td><span class="priority-clearance">清货</span></td><td>卖完下市，不再发货</td></tr>
-        <tr class="subtotal"><td>管理合计</td><td>排产与调拨口径</td><td class="num">9,260</td><td class="num">10,510</td><td class="num">8,910</td><td class="num">28,680</td><td class="num">剔除下市后 23,980</td><td class="num">11,500</td><td>总控</td><td>新增PO只投H11、H11 Pro、T11</td></tr>
+        <tr class="channel-row"><td rowspan="6"><span class="channel-chip amazon">Amazon</span></td><td><span class="sku-chip">H10</span> 蓝/灰</td><td class="num">800</td><td class="num">600</td><td class="num">500</td><td class="num">1,900</td><td>现有FBA清货，不新增FBA</td></tr>
+        <tr><td><span class="sku-chip">H11</span> 灰</td><td class="num strong">4,800</td><td class="num strong">3,600</td><td class="num">2,000</td><td class="num strong">10,400</td><td><span class="priority-p0">P0</span> PO 7,000，FBA优先</td></tr>
+        <tr><td><span class="sku-chip">H11 Pro</span></td><td class="num">0</td><td class="num strong">900</td><td class="num strong">1,000</td><td class="num strong">1,900</td><td><span class="priority-p0">P0</span> 新品FBA预约</td></tr>
+        <tr><td><span class="sku-chip">T10</span></td><td class="num">500</td><td class="num">900</td><td class="num">0</td><td class="num">1,400</td><td>卖完下市</td></tr>
+        <tr><td><span class="sku-chip">T11</span> 浅灰</td><td class="num">300</td><td class="num">600</td><td class="num strong">1,200</td><td class="num strong">2,100</td><td><span class="priority-p1">P1</span> 第二批直入FBA</td></tr>
+        <tr class="channel-total"><td>Amazon合计</td><td class="num">6,400</td><td class="num">6,600</td><td class="num">4,700</td><td class="num">17,700</td><td>FBA资源聚焦H11/H11 Pro/T11</td></tr>
+
+        <tr class="channel-row"><td rowspan="7"><span class="channel-chip tiktok">TikTok</span></td><td><span class="sku-chip">H10</span> 蓝/灰</td><td class="num">300</td><td class="num">200</td><td class="num">400</td><td class="num">900</td><td>海外仓清货</td></tr>
+        <tr><td><span class="sku-chip">H11</span> 灰</td><td class="num">200</td><td class="num">400</td><td class="num">500</td><td class="num">1,100</td><td>海外仓周度锁量</td></tr>
+        <tr><td><span class="sku-chip">H11 Pro</span></td><td class="num">50</td><td class="num">100</td><td class="num">100</td><td class="num">250</td><td>新品小批测试</td></tr>
+        <tr><td><span class="sku-chip">T11</span> 浅灰</td><td class="num">10</td><td class="num">10</td><td class="num">10</td><td class="num">30</td><td>首批1,000海外仓承接</td></tr>
+        <tr><td><span class="sku-chip">L10</span></td><td class="num">500</td><td class="num">500</td><td class="num">300</td><td class="num">1,300</td><td>落叶机转站外</td></tr>
+        <tr><td><span class="sku-chip">L11</span></td><td class="num">1,000</td><td class="num">1,000</td><td class="num">800</td><td class="num">2,800</td><td>站外主力消化</td></tr>
+        <tr class="channel-total"><td>TikTok合计</td><td class="num">2,060</td><td class="num">2,210</td><td class="num">2,110</td><td class="num">6,380</td><td>只能卖海外仓库存</td></tr>
+
+        <tr class="channel-row"><td rowspan="7"><span class="channel-chip dtc">独立站</span></td><td><span class="sku-chip">H10</span> 蓝/灰</td><td class="num">100</td><td class="num">200</td><td class="num">200</td><td class="num">500</td><td>海外仓清货，H10灰控量</td></tr>
+        <tr><td><span class="sku-chip">H11</span> 灰</td><td class="num">400</td><td class="num">900</td><td class="num strong">1,200</td><td class="num strong">2,500</td><td>站外配额需预留</td></tr>
+        <tr><td><span class="sku-chip">H11 Pro</span></td><td class="num">100</td><td class="num">100</td><td class="num">100</td><td class="num">300</td><td>新品稳定承接</td></tr>
+        <tr><td><span class="sku-chip">T11</span> 浅灰</td><td class="num">100</td><td class="num">200</td><td class="num">300</td><td class="num">600</td><td>首批1,000海外仓承接</td></tr>
+        <tr><td><span class="sku-chip">L10</span></td><td class="num">20</td><td class="num">50</td><td class="num">100</td><td class="num">170</td><td>Amazon转出补充渠道</td></tr>
+        <tr><td><span class="sku-chip">L11</span></td><td class="num">80</td><td class="num">250</td><td class="num">200</td><td class="num">530</td><td>站外持续消化</td></tr>
+        <tr class="channel-total"><td>独立站合计</td><td class="num">800</td><td class="num">1,700</td><td class="num">2,100</td><td class="num">4,600</td><td>只用海外仓与自发货</td></tr>
+
+        <tr class="subtotal"><td colspan="2">三渠道合计</td><td class="num">9,260</td><td class="num">10,510</td><td class="num">8,910</td><td class="num">28,680</td><td>新增PO只投 H11 / H11 Pro / T11：11,500 台</td></tr>
       </tbody>
     </table>
   </div>
-  <div class="slide-footer"><span>备货管理总表</span><span>销量输入转为库存、PO与渠道动作</span></div>
+  <div class="slide-footer"><span>渠道总表</span><span>Amazon 17,700 · TikTok 6,380 · 独立站 4,600</span></div>
 </div>

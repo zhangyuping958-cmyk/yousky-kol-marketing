@@ -1,27 +1,39 @@
-<div class="slide-content">
+<div class="slide-content slide-dense">
   <div class="deck-mark">H11 RUNWAY</div>
-  <div class="header-row">
-    <div><div class="section-tag">08 · H11灰色备货推演</div><h2>主力款必须在6月锁定 7,000 台 PO</h2></div>
-    <p class="lead">H11是三渠道主力，6-8月需求 14,000 台；当前可用 8,256 台，若不新增PO，7月开始进入断货风险区。</p>
+  <div class="header-row compact-head">
+    <div><div class="section-tag">08 · H11灰色备货推演</div><h2>H11库存曲线在7月跌破订货点，6月必须锁定PO</h2></div>
+    <p class="lead">H11是三渠道主力。当前可用 8,256 台，6月需求 5,400 后只剩约 2,856 台，无法覆盖7月 4,900 台需求。</p>
   </div>
-  <div class="grid-main">
+  <div class="grid-main h11-layout">
     <div class="card card-hl" style="padding:22px;">
       <div class="stat-row" style="grid-template-columns:repeat(3,1fr);">
         <div><div class="kpi-num">14,000</div><div class="kpi-label">6-8月需求</div></div>
-        <div><div class="kpi-num" style="color:var(--color-bad);">8,256</div><div class="kpi-label">可用库存</div></div>
+        <div><div class="kpi-num" style="color:var(--color-bad);">2,856</div><div class="kpi-label">6月后余量</div></div>
         <div><div class="kpi-num" style="color:var(--color-secondary);">7,000</div><div class="kpi-label">建议新增PO</div></div>
       </div>
-      <div class="runway">
-        <div class="runway-box"><div class="micro">6月需求</div><h3>5,400</h3><div class="runway-bar"><span style="width:65%;"></span></div><p class="tight-note">月末剩余约2,856</p></div>
-        <div class="runway-box"><div class="micro">7月需求</div><h3>4,900</h3><div class="runway-bar"><span style="width:92%;"></span></div><p class="tight-note">无PO则缺口约2,044</p></div>
-        <div class="runway-box"><div class="micro">8月需求</div><h3>3,700</h3><div class="runway-bar"><span style="width:70%;"></span></div><p class="tight-note">依赖6月PO到货</p></div>
-        <div class="runway-box"><div class="micro">PO后缓冲</div><h3>1,256</h3><div class="runway-bar"><span style="width:30%;"></span></div><p class="tight-note">名义缓冲，不含入仓延误</p></div>
+      <div class="stock-chart">
+        <div class="stock-grid"></div>
+        <div class="stock-segment seg-1"></div>
+        <div class="stock-segment seg-2"></div>
+        <div class="stock-segment seg-3"></div>
+        <div class="stock-threshold"><span>7月需求线 4,900</span></div>
+        <div class="stock-point p1"><b>8,256</b><span>当前</span></div>
+        <div class="stock-point p2"><b>2,856</b><span>6月底</span></div>
+        <div class="stock-point p3 danger"><b>缺口2,044</b><span>7月无PO</span></div>
+        <div class="stock-point p4 good"><b>+7,000</b><span>PO到货</span></div>
+      </div>
+      <div class="runway runway-large">
+        <div class="runway-box"><div class="micro">6月消耗</div><h3>5,400</h3><div class="runway-bar"><span style="width:65%;"></span></div></div>
+        <div class="runway-box"><div class="micro">7月需求</div><h3>4,900</h3><div class="runway-bar"><span style="width:92%;"></span></div></div>
+        <div class="runway-box"><div class="micro">8月需求</div><h3>3,700</h3><div class="runway-bar"><span style="width:70%;"></span></div></div>
+        <div class="runway-box"><div class="micro">PO后缓冲</div><h3>1,256</h3><div class="runway-bar"><span style="width:30%;"></span></div></div>
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:14px;">
-      <div class="band"><strong>结论</strong><span>H11不是8月才补，必须在6月完成PO锁定</span></div>
-      <div class="card card-risk"><span class="priority-risk">风险点</span><h3 style="margin-top:10px;">7月断货窗口</h3><p class="tight-note">当前可用库存扣除6月需求后约剩 2,856 台，不足覆盖7月 4,900 台需求。</p></div>
-      <div class="card card-primary"><span class="priority-p0">执行动作</span><h3 style="margin-top:10px;">FBA优先，TK/DTC按周预留</h3><p class="tight-note">新增PO到货前，Amazon不可透支全部H11库存，需保留海外仓渠道承诺。</p></div>
+      <div class="band"><strong>ROP触发</strong><span>不是8月补，是6月第1周锁PO</span></div>
+      <div class="card card-risk"><span class="priority-risk">风险点</span><h3 style="margin-top:10px;">7月断货窗口</h3><p class="tight-note">现有库存扣除6月需求后约剩 2,856 台，低于7月需求线 4,900 台。</p></div>
+      <div class="card card-primary"><span class="priority-p0">执行动作</span><h3 style="margin-top:10px;">FBA优先，站外按周锁量</h3><p class="tight-note">新增PO到货前，Amazon不可透支全部H11库存；TikTok与独立站必须预留海外仓配额。</p></div>
+      <div class="card card-good"><span class="priority-watch">复盘参数</span><h3 style="margin-top:10px;">补真实交期与安全天数</h3><p class="tight-note">后续用实际生产交期、海运/入仓时间和活动波动率更新H11订货点。</p></div>
     </div>
   </div>
   <div class="slide-footer"><span>H11灰色推演</span><span>当前可用 8,256 · 新增PO 7,000</span></div>

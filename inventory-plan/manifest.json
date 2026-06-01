@@ -5,7 +5,7 @@
     { "file": "slides/slide-02.html", "title": "决策摘要 — 先补什么、停什么、转什么" },
     { "file": "slides/slide-03.html", "title": "备货管理总表 — SKU × 颜色 × 渠道 × 月度" },
     { "file": "slides/slide-04.html", "title": "当前库存水位 — SKU颜色与限制" },
-    { "file": "slides/slide-05.html", "title": "总缺口与PO决策矩阵" },
+    { "file": "slides/slide-05.html", "title": "订货点模型与PO触发" },
     { "file": "slides/slide-06.html", "title": "Amazon入仓备货计划" },
     { "file": "slides/slide-07.html", "title": "TikTok备货计划" },
     { "file": "slides/slide-08.html", "title": "独立站与Walmart承接计划" },

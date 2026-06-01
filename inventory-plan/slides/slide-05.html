@@ -1,22 +1,40 @@
-<div class="slide-content">
-  <div class="deck-mark">GAP TO ACTION</div>
-  <div class="header-row">
-    <div><div class="section-tag">04 · 总缺口与PO决策</div><h2>从需求、库存到采购动作，一页看清</h2></div>
-    <p class="lead">新增PO只投向三类SKU：H11主力款、H11 Pro新品、T11新品。下市款与专利受限款只做库存调拨和渠道消化。</p>
+<div class="slide-content slide-dense">
+  <div class="deck-mark">ROP MODEL</div>
+  <div class="header-row compact-head">
+    <div><div class="section-tag">04 · 订货点模型与PO触发</div><h2>用订货点模型判断什么时候必须下PO</h2></div>
+    <p class="lead">订货点不是拍脑袋补货。当前缺少完整交期与波动率参数，本版先用已核对需求和库存做触发判断，交期与安全天数进入周度复盘补齐。</p>
   </div>
-  <div class="table-wrap">
-    <table class="data-table">
-      <thead><tr><th>SKU</th><th class="num">6-8月需求</th><th class="num">当前库存口径</th><th>渠道限制</th><th class="num">新增PO</th><th>覆盖判断</th><th>优先级</th><th>采购/调拨动作</th></tr></thead>
-      <tbody>
-        <tr><td><span class="sku-chip">H11</span> 灰</td><td class="num strong">14,000</td><td class="num">可用 8,256</td><td>三渠道均可卖</td><td class="num strong">7,000</td><td>PO后名义缓冲 1,256</td><td><span class="priority-p0">P0</span></td><td>6月第一周锁单，优先保障Amazon</td></tr>
-        <tr><td><span class="sku-chip">H11 Pro</span></td><td class="num strong">2,450</td><td class="num">按0可售</td><td>7月Amazon新品节奏</td><td class="num strong">2,500</td><td>PO后缓冲 50</td><td><span class="priority-p0">P0</span></td><td>生产与FBA预约并行</td></tr>
-        <tr><td><span class="sku-chip">T11</span> 浅灰</td><td class="num strong">2,730</td><td class="num">1,985含在途</td><td>首批海外仓，二批FBA</td><td class="num strong">2,000</td><td>数量足，路径需拆分</td><td><span class="priority-p1">P1</span></td><td>海外仓与FBA不可混用</td></tr>
-        <tr><td><span class="sku-chip">L10/L11</span></td><td class="num">4,800</td><td class="num">3,016</td><td>不新增Amazon FBA</td><td class="num">0</td><td>渠道重排后持续监控</td><td><span class="priority-risk">风险</span></td><td>转TK、DTC、自发货消化</td></tr>
-        <tr><td><span class="sku-chip">H10</span></td><td class="num">3,300</td><td class="num">3,539</td><td>蓝色不再发FBA</td><td class="num">0</td><td>库存可覆盖清货量</td><td><span class="priority-clearance">清货</span></td><td>蓝色转TK、DTC、Walmart</td></tr>
-        <tr><td><span class="sku-chip">T10</span></td><td class="num">1,400</td><td class="num">1,998</td><td>现有FBA清完下架</td><td class="num">0</td><td>库存足够清货</td><td><span class="priority-clearance">清货</span></td><td>不再发货，不新增PO</td></tr>
-        <tr class="subtotal"><td>新增PO合计</td><td class="num">23,980 管理需求</td><td class="num">按SKU分配</td><td>执行渠道约束</td><td class="num">11,500</td><td>采购预算 ¥200.5万</td><td>总控</td><td>周度滚动复盘</td></tr>
-      </tbody>
-    </table>
+  <div class="rop-layout">
+    <div class="card card-hl rop-card">
+      <div class="formula-title">订货点模型</div>
+      <div class="formula-main">ROP = 日均需求 × 补货交期 + 安全库存</div>
+      <div class="formula-sub">安全库存 = 日均需求 × 安全天数</div>
+      <div class="rop-visual">
+        <div class="axis-line"></div>
+        <div class="stock-line"></div>
+        <div class="rop-line"><span>订货点</span></div>
+        <div class="safe-zone"><span>安全库存</span></div>
+        <div class="po-marker"><span>PO到货</span></div>
+      </div>
+      <div class="risk-strip" style="grid-template-columns:1fr 1fr;margin-top:12px;">
+        <div class="risk-item"><h3>不编参数</h3><p class="tight-note">补货交期、安全天数、渠道波动率未确认，不在模型里硬填假精确值。</p></div>
+        <div class="risk-item"><h3>先做触发</h3><p class="tight-note">只要现有库存无法覆盖下一风险月，就进入P0或P1下单动作。</p></div>
+      </div>
+    </div>
+    <div class="table-wrap table-large">
+      <table class="data-table rop-table">
+        <thead><tr><th>SKU</th><th class="num">6-8月需求</th><th class="num">日均需求</th><th class="num">当前可用</th><th>触发判断</th><th class="num">建议PO</th><th>优先级</th></tr></thead>
+        <tbody>
+          <tr><td><span class="sku-chip">H11</span> 灰</td><td class="num strong">14,000</td><td class="num">约156/天</td><td class="num">8,256</td><td>扣除6月后约剩2,856，低于7月4,900需求，立即触发</td><td class="num strong">7,000</td><td><span class="priority-p0">P0</span></td></tr>
+          <tr><td><span class="sku-chip">H11 Pro</span></td><td class="num strong">2,450</td><td class="num">约27/天</td><td class="num">按0可售</td><td>新品可售库存为0，7月Amazon新品节奏直接触发</td><td class="num strong">2,500</td><td><span class="priority-p0">P0</span></td></tr>
+          <tr><td><span class="sku-chip">T11</span> 浅灰</td><td class="num strong">2,730</td><td class="num">约30/天</td><td class="num">1,985含在途</td><td>数量接近覆盖，但海外仓与FBA路径错配，FBA触发</td><td class="num strong">2,000</td><td><span class="priority-p1">P1</span></td></tr>
+          <tr><td><span class="sku-chip">H10</span></td><td class="num">3,300</td><td class="num">约37/天</td><td class="num">3,539</td><td>下市清货，不触发新增PO，只触发渠道锁仓</td><td class="num">0</td><td><span class="priority-clearance">清货</span></td></tr>
+          <tr><td><span class="sku-chip">T10</span></td><td class="num">1,400</td><td class="num">约16/天</td><td class="num">1,998</td><td>卖完下市，不进入订货点补货池</td><td class="num">0</td><td><span class="priority-clearance">清货</span></td></tr>
+          <tr><td><span class="sku-chip">L10/L11</span></td><td class="num">4,800</td><td class="num">约53/天</td><td class="num">3,016</td><td>Amazon专利风险，触发渠道转向而非FBA补货</td><td class="num">0</td><td><span class="priority-risk">风险</span></td></tr>
+          <tr class="subtotal"><td>PO触发合计</td><td class="num">23,980 管理需求</td><td class="num">按SKU滚动</td><td class="num">按仓位复核</td><td>H11/H11 Pro/T11进入新增采购</td><td class="num">11,500</td><td>总控</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <div class="slide-footer"><span>缺口矩阵</span><span>新增采购只投可持续销售SKU</span></div>
+  <div class="slide-footer"><span>订货点模型</span><span>ROP触发 · 不编交期 · 周度补真实参数</span></div>
 </div>
