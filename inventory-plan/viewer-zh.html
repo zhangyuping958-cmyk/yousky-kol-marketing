@@ -526,13 +526,11 @@ p, li {
         linear-gradient(135deg, #fbfaf7 0%, #efe5d7 100%);
       overflow: hidden;
       opacity: 0;
-      filter: blur(10px);
-      transition: opacity 520ms ease, filter 720ms ease;
+      transition: opacity 520ms ease;
     }
 
     .slide-frame.active {
       opacity: 1;
-      filter: blur(0);
     }
 
     .slide-frame:nth-child(even) {
