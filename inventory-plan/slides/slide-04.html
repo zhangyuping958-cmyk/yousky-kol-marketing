@@ -1,70 +1,11 @@
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
 <div class="slide">
-  <div class="section-tag">03 · 关键推演</div>
-  <h2>H11 主力款库存消耗推演</h2>
-  <p style="color:var(--color-muted);margin-bottom:24px;">当前库存 8,256 台 &mdash; 三渠道月均消耗 5,100 台</p>
-
-  <!-- Runway bar visualization -->
-  <div style="margin-bottom:20px;">
-    <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--color-muted);font-family:var(--font-mono);margin-bottom:6px;">
-      <span>5/25</span><span>6月底</span><span>7月中</span><span>7月底</span><span>8月底</span>
-    </div>
-    <div style="height:12px;background:var(--color-surface);border-radius:6px;overflow:hidden;display:flex;">
-      <div style="width:26%;background:var(--color-good);border-radius:6px 0 0 6px;"></div>
-      <div style="width:1px;background:#fff;"></div>
-      <div style="width:23%;background:var(--color-warn);"></div>
-      <div style="width:1px;background:#fff;"></div>
-      <div style="width:26%;background:var(--color-bad);"></div>
-      <div style="width:1px;background:#fff;"></div>
-      <div style="width:24%;background:#e0d8cc;border-radius:0 6px 6px 0;"></div>
-    </div>
-    <div style="display:flex;justify-content:space-between;font-size:11px;font-family:var(--font-mono);margin-top:8px;">
-      <span style="color:var(--color-good);">6月消耗 6,100</span>
-      <span style="color:var(--color-warn);">7/1-15 消耗 3,000</span>
-      <span style="color:var(--color-bad);">缺口 3,844</span>
-      <span style="color:var(--color-muted);">缺口扩大至 7,044</span>
-    </div>
+  <div class="section-tag">03 · 当前库存</div><h2>库存水位总览</h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:12px;">
+    <div class="card card-highlight"><h3>大手持</h3><div class="metric-num" style="color:var(--color-primary);">8,328</div><p style="font-size:13px;color:var(--color-muted);">H11灰色总计；销售推演按H11可用8,256台计算，截图未显示可覆盖计划的H11 Pro可售库存。H10蓝色1,372、H10灰色2,167均按下市清货处理。</p></div>
+    <div class="card"><h3>小手持T10/T11</h3><div class="metric-num" style="color:var(--color-secondary);">1,985</div><p style="font-size:13px;color:var(--color-muted);">T11浅灰总计；含海运在途1,000。T10总计1,998，均标记下市或FBA清完下架。</p></div>
+    <div class="card"><h3>落叶机</h3><div class="metric-num" style="color:var(--color-warn);">3,016</div><p style="font-size:13px;color:var(--color-muted);">L10灰色1,755、L10蓝色63、L11 1,198；Amazon暂停新增出货，转TK、独立站及自发货。</p></div>
   </div>
-
-  <!-- Key metrics -->
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px;">
-    <div class="card" style="text-align:center;border-left:3px solid var(--color-good);">
-      <div class="metric-num" style="font-size:32px;color:var(--color-good);">8,256</div>
-      <div class="metric-label">当前可用</div>
-    </div>
-    <div class="card" style="text-align:center;border-left:3px solid var(--color-bad);">
-      <div class="metric-num" style="font-size:32px;color:var(--color-bad);">203</div>
-      <div class="metric-label">6-7月日均消耗</div>
-    </div>
-    <div class="card" style="text-align:center;border-left:3px solid var(--color-secondary);">
-      <div class="metric-num" style="font-size:32px;color:var(--color-secondary);">40</div>
-      <div class="metric-label">库存可支撑天数</div>
-    </div>
-  </div>
-
-  <!-- Detailed month-by-month -->
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
-    <div class="card card-highlight">
-      <h3>6月</h3>
-      <div style="font-family:var(--font-mono);font-size:28px;font-weight:600;color:var(--color-primary);margin:8px 0;">6,100</div>
-      <p style="font-size:13px;color:var(--color-muted);">三渠道需求<br>月底库存剩余 2,156</p>
-    </div>
-    <div class="card" style="border-left:3px solid var(--color-bad);">
-      <h3>7月</h3>
-      <div style="font-family:var(--font-mono);font-size:28px;font-weight:600;color:var(--color-bad);margin:8px 0;">6,000</div>
-      <p style="font-size:13px;color:var(--color-bad);">库存仅够撑到 7月10-15日<br>缺口约 3,844 台!</p>
-    </div>
-    <div class="card" style="border-left:3px solid var(--color-muted);">
-      <h3>8月</h3>
-      <div style="font-family:var(--font-mono);font-size:28px;font-weight:600;color:var(--color-fg);margin:8px 0;">3,200</div>
-      <p style="font-size:13px;color:var(--color-muted);">需求回落<br>需补货约 7,000+ 台</p>
-    </div>
-  </div>
-
-  <div class="slide-footer">
-    <span>Yousky 供应链管理</span>
-    <span>H11 采购单价 ¥180 · 海运周期 30-45天</span>
-  </div>
+  <div class="slide-footer"><span>Yousky 供应链管理</span><span>2026.6-8 · SKU统一调整版</span></div>
 </div>

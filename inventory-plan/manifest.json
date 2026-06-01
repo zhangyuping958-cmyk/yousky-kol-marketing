@@ -1,15 +1,85 @@
 {
-  "title": "Yousky 手持清洁机 · 三渠道备货计划 2026.6-8",
+  "title": "Yousky 6-8月三渠道备货计划（SKU统一调整版）",
   "slides": [
-    { "file": "slides/slide-01.html", "title": "封面 — 备货计划总览" },
-    { "file": "slides/slide-02.html", "title": "现状盘点 — 库存水位" },
-    { "file": "slides/slide-03.html", "title": "三渠道需求全景" },
-    { "file": "slides/slide-04.html", "title": "H11 主力款库存推演" },
-    { "file": "slides/slide-05.html", "title": "6月备货计划" },
-    { "file": "slides/slide-06.html", "title": "7月备货计划" },
-    { "file": "slides/slide-07.html", "title": "8月备货计划" },
-    { "file": "slides/slide-08.html", "title": "渠道配额分配策略" },
-    { "file": "slides/slide-09.html", "title": "PO时间线与风险预警" },
-    { "file": "slides/slide-10.html", "title": "备货行动清单" }
+    {
+      "file": "slides/slide-01.html",
+      "title": "封面 — 备货计划总览"
+    },
+    {
+      "file": "slides/slide-02.html",
+      "title": "调整背景 — SKU与渠道规则"
+    },
+    {
+      "file": "slides/slide-03.html",
+      "title": "数据源与计算口径"
+    },
+    {
+      "file": "slides/slide-04.html",
+      "title": "当前库存水位总览"
+    },
+    {
+      "file": "slides/slide-05.html",
+      "title": "三渠道销量计划总览"
+    },
+    {
+      "file": "slides/slide-06.html",
+      "title": "Amazon销量计划拆解"
+    },
+    {
+      "file": "slides/slide-07.html",
+      "title": "TikTok销量计划拆解"
+    },
+    {
+      "file": "slides/slide-08.html",
+      "title": "独立站销量计划拆解"
+    },
+    {
+      "file": "slides/slide-09.html",
+      "title": "H11库存消耗推演"
+    },
+    {
+      "file": "slides/slide-10.html",
+      "title": "H11 Pro新品备货"
+    },
+    {
+      "file": "slides/slide-11.html",
+      "title": "T11首批与FBA节奏"
+    },
+    {
+      "file": "slides/slide-12.html",
+      "title": "H10与T10下市清货"
+    },
+    {
+      "file": "slides/slide-13.html",
+      "title": "落叶机专利风险与渠道切换"
+    },
+    {
+      "file": "slides/slide-14.html",
+      "title": "6月备货计划"
+    },
+    {
+      "file": "slides/slide-15.html",
+      "title": "7月备货计划"
+    },
+    {
+      "file": "slides/slide-16.html",
+      "title": "8月备货计划"
+    },
+    {
+      "file": "slides/slide-17.html",
+      "title": "采购预算与现金占用"
+    },
+    {
+      "file": "slides/slide-18.html",
+      "title": "渠道配额分配原则"
+    },
+    {
+      "file": "slides/slide-19.html",
+      "title": "PO时间线与风险预警"
+    },
+    {
+      "file": "slides/slide-20.html",
+      "title": "行动清单与负责人"
+    }
   ]
 }

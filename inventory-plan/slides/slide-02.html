@@ -1,60 +1,12 @@
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
 <div class="slide">
-  <div class="section-tag">01 · 库存现状</div>
-  <h2>当前库存水位盘点</h2>
-  <p style="color:var(--color-muted);margin-bottom:28px;">数据截至 2026.05.25 · 含 FBA + 海外仓 + 海运在途</p>
-
-  <!-- H11 card -->
-  <div class="card card-highlight" style="margin-bottom:16px;display:flex;align-items:center;gap:28px;">
-    <div style="flex:0 0 120px;text-align:center;">
-      <div class="metric-num" style="font-size:40px;color:var(--color-primary);">8,256</div>
-      <div class="metric-label">总库存</div>
-    </div>
-    <div style="flex:1;">
-      <h3>H11 手持清洁机 <span style="font-weight:400;font-size:14px;color:var(--color-muted);">· 主力款</span></h3>
-      <div style="display:flex;gap:12px;margin-top:6px;">
-        <span class="tag-green">FBA 在售 881</span>
-        <span class="tag-green">FBA 在途 5,376</span>
-        <span class="tag-amber">FBA 预留 120</span>
-        <span class="tag-amber">海外仓 75</span>
-        <span style="font-family:var(--font-mono);font-size:11px;color:var(--color-secondary);padding:3px 10px;background:#faf3e2;border-radius:6px;">海运在途 1,804</span>
-      </div>
-      <p style="margin-top:6px;font-size:13px;color:var(--color-bad);">库存仅够支撑到 7月中旬 · 6月第一周必须下PO</p>
-    </div>
+  <div class="section-tag">01 · 规则调整</div><h2>本次重算的核心变化</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+    <div class="card card-highlight"><h3>SKU统一</h3><p>Amazon、TikTok、独立站按H10、H11、H11 Pro、T10、T11、L10、L11统一口径计算，避免上版跨表命名不一致。</p></div>
+    <div class="card"><h3>落叶机渠道规则</h3><p>Amazon因发明专利风险暂停出货；销售完现有FBA库存后只保留自发货，不再按Amazon计划新增备货。</p></div>
+    <div class="card"><h3>下市款处理</h3><p>H10与T10卖完下市，不再从国内发货；H10蓝色不再发FBA，海外仓库存优先给TikTok、独立站、沃尔玛清货。</p></div>
+    <div class="card"><h3>T11入仓节奏</h3><p>第一批1,000台快到海外仓，先给TikTok与独立站；第二批直入FBA，Amazon约6月10日开售。</p></div>
   </div>
-
-  <!-- H10 card -->
-  <div class="card" style="margin-bottom:16px;display:flex;align-items:center;gap:28px;">
-    <div style="flex:0 0 120px;text-align:center;">
-      <div class="metric-num" style="font-size:40px;color:var(--color-muted);">3,351</div>
-      <div class="metric-label">总库存</div>
-    </div>
-    <div style="flex:1;">
-      <h3>H10 手持清洁机 <span class="tag-red" style="margin-left:8px;">已下市</span></h3>
-      <div style="display:flex;gap:12px;margin-top:6px;">
-        <span style="font-family:var(--font-mono);font-size:11px;color:var(--color-muted);">蓝色 1,323 台</span>
-        <span style="font-family:var(--font-mono);font-size:11px;color:var(--color-muted);">灰色 2,028 台</span>
-      </div>
-      <p style="margin-top:6px;font-size:13px;color:var(--color-muted);">6月清完大部分 · Amazon BD + 站外配合消化</p>
-    </div>
-  </div>
-
-  <!-- H11 Pro + Others -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-    <div class="card">
-      <h3>H11 Pro <span class="tag-amber" style="margin-left:8px;">新品待发</span></h3>
-      <p style="font-size:14px;color:var(--color-muted);margin-top:4px;">ASIN 待建 · 首批生产未启动 · 7月首发 100 台</p>
-    </div>
-    <div class="card">
-      <h3>T11 / L10 / L11 系列</h3>
-      <p style="font-size:14px;color:var(--color-muted);margin-top:4px;">当前库存数据待确认 · 7月T11起量需提前备货</p>
-    </div>
-  </div>
-
-  <div class="slide-footer">
-    <span>Yousky 供应链管理</span>
-    <span>数据来源：手持机-库存情况.xlsx · 2026.05.25</span>
-  </div>
+  <div class="slide-footer"><span>Yousky 供应链管理</span><span>2026.6-8 · SKU统一调整版</span></div>
 </div>
