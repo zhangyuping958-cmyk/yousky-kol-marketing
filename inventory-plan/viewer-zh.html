@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Yousky 6-8月 SKU / 渠道 / 月度备货计划</title>
   <style>
 :root {
@@ -984,126 +984,19 @@ p, li {
 }
 
 
-
-    html {
-      scroll-snap-type: y mandatory;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-      background: var(--color-bg);
-    }
-
-    html, body {
-      width: 100% !important;
-      height: 100% !important;
-      overflow: visible;
-      margin: 0;
-      font-family: var(--font-sans);
-      background: var(--color-bg);
-    }
-
-    body {
-      color: var(--color-fg);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .progress-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 2px;
-      width: 0;
-      background: var(--color-secondary);
-      z-index: 1000;
-      transition: width 0.3s ease;
-    }
-
-    .slide-frame {
-      width: 100vw;
-      height: 100vh;
-      height: 100dvh;
-      scroll-snap-align: start;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      background:
-        radial-gradient(circle at 18% 12%, rgba(196, 163, 90, 0.13), transparent 28%),
-        linear-gradient(135deg, #fbfaf7 0%, #efe5d7 100%);
-      overflow: hidden;
-    }
-
-    .slide-frame:nth-child(even) {
-      background:
-        radial-gradient(circle at 82% 18%, rgba(30, 62, 84, 0.10), transparent 28%),
-        linear-gradient(135deg, #f7f1e8 0%, #fbfaf7 100%);
-    }
-
-    .slide-scale {
-      width: 1280px;
-      height: 720px;
-      position: relative;
-      transform: scale(var(--viewer-scale, 1)) translateY(24px);
-      transform-origin: center center;
-      opacity: 0;
-      box-shadow: 0 26px 80px rgba(30, 62, 84, 0.18);
-      border-radius: 18px;
-      overflow: hidden;
-      background: #fafaf9;
-      transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-                  transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .slide-frame.visible .slide-scale {
-      opacity: 1;
-      transform: scale(var(--viewer-scale, 1)) translateY(0);
-    }
-
-    .page-num {
-      position: absolute;
-      right: 28px;
-      bottom: 18px;
-      min-width: 58px;
-      text-align: right;
-      font-family: var(--font-sans);
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      color: rgba(23, 27, 36, 0.42);
-      z-index: 30;
-      background: rgba(250, 250, 249, 0.72);
-      padding-left: 8px;
-    }
-
-    .nav-dots {
-      position: fixed;
-      right: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 1001;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .nav-dots button {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      border: 1px solid rgba(30, 62, 84, 0.38);
-      background: transparent;
-      cursor: pointer;
-      padding: 0;
-      transition: all 0.35s ease;
-    }
-
-    .nav-dots button.active {
-      background: var(--color-primary);
-      border-color: var(--color-primary);
-      transform: scale(1.6);
-    }
-
-    @media (max-width: 860px) {
-      .nav-dots { right: 10px; gap: 5px; }
-    }
+    html{scroll-snap-type:y mandatory;scroll-behavior:smooth;overflow-x:hidden;background:var(--color-bg)}
+    html,body{width:100%!important;height:100%!important;overflow:visible;margin:0;font-family:var(--font-sans);background:var(--color-bg)}
+    body{color:var(--color-fg);-webkit-font-smoothing:antialiased}
+    .progress-bar{position:fixed;top:0;left:0;height:2px;width:0;background:var(--color-secondary);z-index:1000;transition:width .3s ease}
+    .slide-frame{width:100vw;height:100vh;height:100dvh;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;position:relative;background:radial-gradient(circle at 18% 12%,rgba(196,163,90,.13),transparent 28%),linear-gradient(135deg,#fbfaf7 0%,#efe5d7 100%);overflow:hidden}
+    .slide-frame:nth-child(even){background:radial-gradient(circle at 82% 18%,rgba(30,62,84,.1),transparent 28%),linear-gradient(135deg,#f7f1e8 0%,#fbfaf7 100%)}
+    .slide-scale{width:1280px;height:720px;position:relative;transform:scale(var(--viewer-scale,1)) translateY(24px);transform-origin:center center;opacity:0;box-shadow:0 26px 80px rgba(30,62,84,.18);border-radius:18px;overflow:hidden;background:#fafaf9;transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1)}
+    .slide-frame.visible .slide-scale{opacity:1;transform:scale(var(--viewer-scale,1)) translateY(0)}
+    .page-num{position:absolute;right:28px;bottom:18px;min-width:58px;text-align:right;font-family:var(--font-sans);font-size:11px;letter-spacing:.08em;color:rgba(23,27,36,.42);z-index:30;background:rgba(250,250,249,.72);padding-left:8px}
+    .nav-dots{position:fixed;right:14px;top:50%;transform:translateY(-50%);z-index:1001;display:flex;flex-direction:column;gap:6px}
+    .nav-dots button{width:6px;height:6px;border-radius:50%;border:1px solid rgba(30,62,84,.38);background:transparent;cursor:pointer;padding:0;transition:all .35s ease}
+    .nav-dots button.active{background:var(--color-primary);border-color:var(--color-primary);transform:scale(1.6)}
+    @media(max-width:860px){.nav-dots{right:10px;gap:5px}}
 
   </style>
 </head>
@@ -1256,7 +1149,7 @@ p, li {
         <tr><td><span class="sku-chip">H11</span></td><td><span class="color-chip">灰色</span></td><td class="num strong">总计 8,328 / 可用 8,256</td><td>FBA 6,377、海外仓 75、海运在途 1,804</td><td>Amazon、TK、独立站</td><td>不能覆盖全量14,000需求</td><td><span class="priority-p0">新增5,800</span></td></tr>
         <tr><td><span class="sku-chip">H10</span></td><td><span class="color-chip">蓝色</span></td><td class="num">1,372</td><td>下市库存</td><td>TK、独立站、Walmart</td><td>不再发FBA，不再国内补货</td><td><span class="priority-clearance">清货</span></td></tr>
         <tr><td><span class="sku-chip">H10</span></td><td><span class="color-chip">灰色</span></td><td class="num">2,167</td><td>海外仓较少，需谨慎承诺</td><td>按可用仓位分配</td><td>不能承诺TK/DTC大促量</td><td><span class="priority-clearance">控量</span></td></tr>
-        <tr><td><span class="sku-chip">T10</span></td><td><span class="color-chip">多色</span></td><td class="num">1,998</td><td>下市/FBA清完下架</td><td>现有FBA优先</td><td>不再发货，不新增PO</td><td><span class="priority-clearance">清完下架</span></td></tr>
+        <tr><td><span class="sku-chip">T10</span></td><td><span class="color-chip">-</span></td><td class="num">1,998</td><td>下市/FBA清完下架</td><td>现有FBA优先</td><td>不再发货，不新增PO</td><td><span class="priority-clearance">清完下架</span></td></tr>
         <tr><td><span class="sku-chip">T11</span></td><td><span class="color-chip">浅灰</span></td><td class="num strong">1,985</td><td>含海运在途 1,000，预计先到海外仓</td><td>TK、独立站、Amazon</td><td>海外仓库存不能直接当FBA库存</td><td><span class="priority-p1">新增1,200</span></td></tr>
         <tr><td><span class="sku-chip">L10</span></td><td><span class="color-chip">灰色</span></td><td class="num">1,755</td><td>落叶机库存主力</td><td>TK、独立站、自发货</td><td>不新增Amazon FBA</td><td><span class="priority-risk">转渠道</span></td></tr>
         <tr><td><span class="sku-chip">L10</span></td><td><span class="color-chip">蓝色</span></td><td class="num">63</td><td>尾货数量少</td><td>清货渠道</td><td>不做主推承诺</td><td><span class="priority-clearance">尾货</span></td></tr>
@@ -1796,51 +1689,7 @@ p, li {
   </section>
   </main>
   <script>
-
-(function(){
-  var slides = document.querySelectorAll('.slide-frame'), total = slides.length;
-  var dots = document.getElementById('navDots'), bar = document.getElementById('progressBar');
-  for (var i = 0; i < total; i++) {
-    var btn = document.createElement('button');
-    btn.setAttribute('aria-label', '第' + (i + 1) + '页');
-    btn.onclick = (function(idx){ return function(){ document.getElementById('s' + (idx + 1)).scrollIntoView({ behavior: 'smooth' }); }; })(i);
-    dots.appendChild(btn);
-  }
-  var obs = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      var idx = parseInt(e.target.id.replace('s', ''), 10) - 1;
-      var btns = dots.querySelectorAll('button');
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        btns.forEach(function(b, i){ b.classList.toggle('active', i === idx); });
-        bar.style.width = ((idx + 1) / total * 100) + '%';
-      } else {
-        e.target.classList.remove('visible');
-      }
-    });
-  }, { threshold: 0.4 });
-  slides.forEach(function(s){ obs.observe(s); });
-  document.addEventListener('keydown', function(e){
-    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-      e.preventDefault();
-      var cur = Math.round(window.scrollY / window.innerHeight);
-      var next = Math.min(cur + 1, total - 1);
-      document.getElementById('s' + (next + 1)).scrollIntoView({ behavior: 'smooth' });
-    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-      e.preventDefault();
-      var cur = Math.round(window.scrollY / window.innerHeight);
-      var prev = Math.max(cur - 1, 0);
-      document.getElementById('s' + (prev + 1)).scrollIntoView({ behavior: 'smooth' });
-    }
-  });
-  function setScale(){
-    var s = Math.min(window.innerWidth / 1280, window.innerHeight / 720, 1);
-    document.documentElement.style.setProperty('--viewer-scale', s.toFixed(4));
-  }
-  window.addEventListener('resize', setScale);
-  setScale();
-})();
-
+(function(){var s=document.querySelectorAll('.slide-frame'),t=s.length,d=document.getElementById('navDots'),b=document.getElementById('progressBar');for(var i=0;i<t;i++){var btn=document.createElement('button');btn.setAttribute('aria-label','第'+(i+1)+'页');btn.onclick=(function(x){return function(){document.getElementById('s'+(x+1)).scrollIntoView({behavior:'smooth'})}})(i);d.appendChild(btn)}var o=new IntersectionObserver(function(e){e.forEach(function(x){var idx=parseInt(x.target.id.replace('s',''),10)-1,btns=d.querySelectorAll('button');if(x.isIntersecting){x.target.classList.add('visible');btns.forEach(function(b,i){b.classList.toggle('active',i===idx)});b.style.width=((idx+1)/t*100)+'%'}else{x.target.classList.remove('visible')}})},{threshold:.4});s.forEach(function(x){o.observe(x)});document.addEventListener('keydown',function(e){if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();var c=Math.round(window.scrollY/window.innerHeight);s[Math.min(c+1,t-1)].scrollIntoView({behavior:'smooth'})}else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();var c=Math.round(window.scrollY/window.innerHeight);s[Math.max(c-1,0)].scrollIntoView({behavior:'smooth'})}});function rs(){var sc=Math.min(window.innerWidth/1280,window.innerHeight/720,1);document.documentElement.style.setProperty('--viewer-scale',sc.toFixed(4))}window.addEventListener('resize',rs);rs()})();
   </script>
 </body>
 </html>
