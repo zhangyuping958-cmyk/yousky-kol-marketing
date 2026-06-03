@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Yousky 6-8月 SKU / 渠道 / 月度备货计划</title>
-  <style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Yousky 6-8月 SKU / 渠道 / 月度备货计划</title>
+<style>
 :root {
   --color-bg: #fafaf9;
   --color-bg-warm: #f3eee6;
@@ -984,28 +984,14 @@ p, li {
 }
 
 
-    html{scroll-snap-type:y mandatory;scroll-behavior:smooth;overflow-x:hidden;background:var(--color-bg)}
-    html,body{width:100%!important;height:100%!important;overflow:visible;margin:0;font-family:var(--font-sans);background:var(--color-bg)}
-    body{color:var(--color-fg);-webkit-font-smoothing:antialiased}
-    .progress-bar{position:fixed;top:0;left:0;height:2px;width:0;background:var(--color-secondary);z-index:1000;transition:width .3s ease}
-    .slide-frame{width:100vw;height:100vh;height:100dvh;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;position:relative;background:radial-gradient(circle at 18% 12%,rgba(196,163,90,.13),transparent 28%),linear-gradient(135deg,#fbfaf7 0%,#efe5d7 100%);overflow:hidden}
-    .slide-frame:nth-child(even){background:radial-gradient(circle at 82% 18%,rgba(30,62,84,.1),transparent 28%),linear-gradient(135deg,#f7f1e8 0%,#fbfaf7 100%)}
-    .slide-scale{width:1280px;height:720px;position:relative;transform:scale(var(--viewer-scale,1)) translateY(24px);transform-origin:center center;opacity:0;box-shadow:0 26px 80px rgba(30,62,84,.18);border-radius:18px;overflow:hidden;background:#fafaf9;transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1)}
-    .slide-frame.visible .slide-scale{opacity:1;transform:scale(var(--viewer-scale,1)) translateY(0)}
-    .page-num{position:absolute;right:28px;bottom:18px;min-width:58px;text-align:right;font-family:var(--font-sans);font-size:11px;letter-spacing:.08em;color:rgba(23,27,36,.42);z-index:30;background:rgba(250,250,249,.72);padding-left:8px}
-    .nav-dots{position:fixed;right:14px;top:50%;transform:translateY(-50%);z-index:1001;display:flex;flex-direction:column;gap:6px}
-    .nav-dots button{width:6px;height:6px;border-radius:50%;border:1px solid rgba(30,62,84,.38);background:transparent;cursor:pointer;padding:0;transition:all .35s ease}
-    .nav-dots button.active{background:var(--color-primary);border-color:var(--color-primary);transform:scale(1.6)}
-    @media(max-width:860px){.nav-dots{right:10px;gap:5px}}
-
-  </style>
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth;overflow-x:hidden;background:var(--color-bg)}html,body{width:100%!important;height:100%!important;overflow:visible;margin:0;font-family:var(--font-sans);background:var(--color-bg)}body{color:var(--color-fg);-webkit-font-smoothing:antialiased}.progress-bar{position:fixed;top:0;left:0;height:2px;width:0;background:var(--color-secondary);z-index:1000;transition:width .3s ease}.slide-frame{width:100vw;height:100vh;height:100dvh;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;position:relative;background:radial-gradient(circle at 18% 12%,rgba(196,163,90,.13),transparent 28%),linear-gradient(135deg,#fbfaf7,#efe5d7);overflow:hidden}.slide-frame:nth-child(even){background:radial-gradient(circle at 82% 18%,rgba(30,62,84,.1),transparent 28%),linear-gradient(135deg,#f7f1e8,#fbfaf7)}.slide-scale{width:1280px;height:720px;position:relative;transform:scale(var(--viewer-scale,1)) translateY(24px);transform-origin:center center;opacity:0;box-shadow:0 26px 80px rgba(30,62,84,.18);border-radius:18px;overflow:hidden;background:#fafaf9;transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1)}.slide-frame.visible .slide-scale{opacity:1;transform:scale(var(--viewer-scale,1)) translateY(0)}.page-num{position:absolute;right:28px;bottom:18px;min-width:58px;text-align:right;font-family:var(--font-sans);font-size:11px;letter-spacing:.08em;color:rgba(23,27,36,.42);z-index:30;background:rgba(250,250,249,.72);padding-left:8px}.nav-dots{position:fixed;right:14px;top:50%;transform:translateY(-50%);z-index:1001;display:flex;flex-direction:column;gap:6px}.nav-dots button{width:6px;height:6px;border-radius:50%;border:1px solid rgba(30,62,84,.38);background:transparent;cursor:pointer;padding:0;transition:all .35s ease}.nav-dots button.active{background:var(--color-primary);border-color:var(--color-primary);transform:scale(1.6)}@media(max-width:860px){.nav-dots{right:10px;gap:5px}}
+</style>
 </head>
 <body>
-  <div class="progress-bar" id="progressBar"></div>
-  <nav class="nav-dots" id="navDots" aria-label="页面导航"></nav>
-  <main>
-  <section class="slide-frame" id="s1" data-title="封面 — 备货计划总览">
-    <div class="slide-scale">
+<div class="progress-bar" id="progressBar"></div>
+<nav class="nav-dots" id="navDots"></nav>
+<main>
+  <section class="slide-frame" id="s1"><div class="slide-scale">
 <div class="slide-title">
   <div class="deck-mark">SUPPLY CHAIN · 2026.6-8</div>
   <div class="section-tag">INVENTORY PLAN</div>
@@ -1023,11 +1009,9 @@ p, li {
   </div>
   <div class="slide-footer"><span>Yousky 供应链管理</span><span>SKU统一调整版 · 2026.6-8</span></div>
 </div>
-      <div class="page-num">01 / 20</div>
-    </div>
-  </section>
-  <section class="slide-frame" id="s2" data-title="决策摘要 — 先补什么、停什么、转什么">
-    <div class="slide-scale">
+<div class="page-num">01 / 20</div>
+</div></section>
+  <section class="slide-frame" id="s2"><div class="slide-scale">
 <div class="slide">
   <div class="deck-mark">EXECUTIVE SUMMARY</div>
   <div class="header-row">
@@ -1068,11 +1052,9 @@ p, li {
   </div>
   <div class="slide-footer"><span>决策摘要</span><span>补主力 · 停下市 · 转渠道</span></div>
 </div>
-      <div class="page-num">02 / 20</div>
-    </div>
-  </section>
-  <section class="slide-frame" id="s3" data-title="备货管理总表 — SKU × 颜色 × 渠道 × 月度">
-    <div class="slide-scale">
+<div class="page-num">02 / 20</div>
+</div></section>
+  <section class="slide-frame" id="s3"><div class="slide-scale">
 <div class="slide-content slide-dense slide-master-overview">
   <div class="deck-mark">MASTER STOCKING TABLE</div>
   <div class="header-row compact-head">
@@ -1131,11 +1113,9 @@ p, li {
   <div class="master-total-band"><strong>三渠道合计 28,680</strong><span>6月 9,260 · 7月 10,510 · 8月 8,910 · 新增PO只投 H11 / H11 Pro / T11：9,500 台</span></div>
   <div class="slide-footer"><span>渠道总表</span><span>Amazon 17,700 · TikTok 6,380 · 独立站 4,600</span></div>
 </div>
-      <div class="page-num">03 / 20</div>
-    </div>
-  </section>
-  <section class="slide-frame" id="s4" data-title="当前库存水位 — SKU颜色与限制">
-    <div class="slide-scale">
+<div class="page-num">03 / 20</div>
+</div></section>
+  <section class="slide-frame" id="s4"><div class="slide-scale">
 <div class="slide-content">
   <div class="deck-mark">INVENTORY POSITION</div>
   <div class="header-row">
@@ -1149,7 +1129,7 @@ p, li {
         <tr><td><span class="sku-chip">H11</span></td><td><span class="color-chip">灰色</span></td><td class="num strong">总计 8,328 / 可用 8,256</td><td>FBA 6,377、海外仓 75、海运在途 1,804</td><td>Amazon、TK、独立站</td><td>不能覆盖全量14,000需求</td><td><span class="priority-p0">新增5,800</span></td></tr>
         <tr><td><span class="sku-chip">H10</span></td><td><span class="color-chip">蓝色</span></td><td class="num">1,372</td><td>下市库存</td><td>TK、独立站、Walmart</td><td>不再发FBA，不再国内补货</td><td><span class="priority-clearance">清货</span></td></tr>
         <tr><td><span class="sku-chip">H10</span></td><td><span class="color-chip">灰色</span></td><td class="num">2,167</td><td>海外仓较少，需谨慎承诺</td><td>按可用仓位分配</td><td>不能承诺TK/DTC大促量</td><td><span class="priority-clearance">控量</span></td></tr>
-        <tr><td><span class="sku-chip">T10</span></td><td><span class="color-chip">-</span></td><td class="num">1,998</td><td>下市/FBA清完下架</td><td>现有FBA优先</td><td>不再发货，不新增PO</td><td><span class="priority-clearance">清完下架</span></td></tr>
+        <tr><td><span class="sku-chip">T10</span></td><td><span class="color-chip">浅灰</span></td><td class="num">1,998</td><td>下市/FBA清完下架</td><td>现有FBA优先</td><td>不再发货，不新增PO</td><td><span class="priority-clearance">清完下架</span></td></tr>
         <tr><td><span class="sku-chip">T11</span></td><td><span class="color-chip">浅灰</span></td><td class="num strong">1,985</td><td>含海运在途 1,000，预计先到海外仓</td><td>TK、独立站、Amazon</td><td>海外仓库存不能直接当FBA库存</td><td><span class="priority-p1">新增1,200</span></td></tr>
         <tr><td><span class="sku-chip">L10</span></td><td><span class="color-chip">灰色</span></td><td class="num">1,755</td><td>落叶机库存主力</td><td>TK、独立站、自发货</td><td>不新增Amazon FBA</td><td><span class="priority-risk">转渠道</span></td></tr>
         <tr><td><span class="sku-chip">L10</span></td><td><span class="color-chip">蓝色</span></td><td class="num">63</td><td>尾货数量少</td><td>清货渠道</td><td>不做主推承诺</td><td><span class="priority-clearance">尾货</span></td></tr>
@@ -1159,11 +1139,9 @@ p, li {
   </div>
   <div class="slide-footer"><span>库存水位</span><span>截图日期：2026/5/25</span></div>
 </div>
-      <div class="page-num">04 / 20</div>
-    </div>
-  </section>
-  <section class="slide-frame" id="s5" data-title="订货点模型与PO触发">
-    <div class="slide-scale">
+<div class="page-num">04 / 20</div>
+</div></section>
+  <section class="slide-frame" id="s5"><div class="slide-scale">
 <div class="slide-content slide-dense">
   <div class="deck-mark">ROP MODEL</div>
   <div class="header-row compact-head">
@@ -1204,11 +1182,9 @@ p, li {
   </div>
   <div class="slide-footer"><span>订货点模型</span><span>ROP触发 · 不编交期 · 周度补真实参数</span></div>
 </div>
-      <div class="page-num">05 / 20</div>
-    </div>
-  </section>
-  <section class="slide-frame" id="s6" data-title="Amazon入仓备货计划">
-    <div class="slide-scale">
+<div class="page-num">05 / 20</div>
+</div></section>
+  <section class="slide-frame" id="s6"><div class="slide-scale">
 <div class="slide-content">
   <div class="deck-mark">AMAZON STOCKING</div>
   <div class="header-row">
@@ -1237,11 +1213,9 @@ p, li {
   </div>
   <div class="slide-footer"><span>Amazon备货</span><span>FBA资源聚焦可持续销售SKU</span></div>
 </div>
-      <div class="page-num">06 / 20</div>
-    </div>
-  </section>
-  <section class="slide-frame" id="s7" data-title="TikTok备货计划">
-    <div class="slide-scale">
+<div class="page-num">06 / 20</div>
+</div></section>
+  <section class="slide-frame" id="s7"><div class="slide-scale">
 <div class="slide-content">
   <div class="deck-mark">TIKTOK STOCKING</div>
   <div class="header-row">
@@ -1271,11 +1245,9 @@ p, li {
   </div>
   <div class="slide-footer"><span>TikTok备货</span><span>海外仓限定 · T11首批优先承接</span></div>
 </div>
-      <div class="page-num">07 / 20</div>
-    </div>
-  </section>
-  <section class="slide-frame" id="s8" data-title="独立站与Walmart承接计划">
-    <div class="slide-scale">
+<div class="page-num">07 / 20</div>
+</div></section>
+  <section class="slide-frame" id="s8"><div class="slide-scale">
 <div class="slide-content">
   <div class="deck-mark">DTC & WALMART</div>
   <div class="header-row">
@@ -1305,11 +1277,9 @@ p, li {
   </div>
   <div class="slide-footer"><span>DTC / Walmart备货</span><span>海外仓锁量 · 清货渠道协同</span></div>
 </div>
-      <div class="page-num">08 / 20</div>
-    </div>
-  </section>
-  <section class="slide-frame" id="s9" data-title="H11灰色主力款备货推演">
-    <div class="slide-scale">
+<div class="page-num">08 / 20</div>
+</div></section>
+  <section class="slide-frame" id="s9"><div class="slide-scale">
 <div class="slide-content slide-dense">
   <div class="deck-mark">H11 RUNWAY</div>
   <div class="header-row compact-head">
@@ -1350,11 +1320,9 @@ p, li {
   </div>
   <div class="slide-footer"><span>H11灰色推演</span><span>当前可用 8,256 · 新增PO 5,800</span></div>
 </div>
-      <div class="page-num">09 / 20</div>
-    </div>
-  </section>
-  <section class="slide-frame" id="s10" data-title="H11 Pro新品备货计划">
-    <div class="slide-scale">
+<div class="page-num">09 / 20</div>
+</div></section>
+  <section class="slide-frame" id="s10"><div class="slide-scale">
 <div class="slide-content">
   <div class="deck-mark">H11 PRO LAUNCH</div>
   <div class="header-row">
@@ -1381,11 +1349,9 @@ p, li {
   </div>
   <div class="slide-footer"><span>H11 Pro备货</span><span>现有可售按0 · 新增PO 2,500</span></div>
 </div>
-      <div class="page-num">10 / 20</div>
-    </div>
-  </section>
-  <section class="slide-frame" id="s11" data-title="T11两批次备货与入仓路径">
-    <div class="slide-scale">
+<div class="page-num">10 / 20</div>
+</div></section>
+  <section class="slide-frame" id="s11"><div class="slide-scale">
 <div class="slide-content">
   <div class="deck-mark">T11 ROUTING</div>
   <div class="header-row">
@@ -1410,11 +1376,9 @@ p, li {
   </div>
   <div class="slide-footer"><span>T11路径</span><span>首批海外仓 · 第二批FBA</span></div>
 </div>
-      <div class="page-num">11 / 20</div>
-    </div>
-  </section>
-  <section class="slide-frame" id="s12" data-title="H10与T10下市清货计划">
-    <div class="slide-scale">
+<div class="page-num">11 / 20</div>
+</div></section>
+  <section class="slide-frame" id="s12"><div class="slide-scale">
 <div class="slide-content">
   <div class="deck-mark">CLEARANCE PLAN</div>
   <div class="header-row">
@@ -1441,11 +1405,9 @@ p, li {
   </div>
   <div class="slide-footer"><span>下市清货</span><span>H10 / T10 不新增采购</span></div>
 </div>
-      <div class="page-num">12 / 20</div>
-    </div>
-  </section>
-  <section class="slide-frame" id="s13" data-title="落叶机专利风险与备货转向">
-    <div class="slide-scale">
+<div class="page-num">12 / 20</div>
+</div></section>
+  <section class="slide-frame" id="s13"><div class="slide-scale">
 <div class="slide-content">
   <div class="deck-mark">LEAF BLOWER ROUTING</div>
   <div class="header-row">
@@ -1472,11 +1434,9 @@ p, li {
   </div>
   <div class="slide-footer"><span>落叶机转向</span><span>L10/L11 站外承接 · Amazon不新增FBA</span></div>
 </div>
-      <div class="page-num">13 / 20</div>
-    </div>
-  </section>
-  <section class="slide-frame" id="s14" data-title="6月备货执行表">
-    <div class="slide-scale">
+<div class="page-num">13 / 20</div>
+</div></section>
+  <section class="slide-frame" id="s14"><div class="slide-scale">
 <div class="slide-content">
   <div class="deck-mark">JUNE EXECUTION</div>
   <div class="header-row">
@@ -1499,11 +1459,9 @@ p, li {
   </div>
   <div class="slide-footer"><span>6月执行</span><span>锁PO · 分仓位 · 停止错误入仓</span></div>
 </div>
-      <div class="page-num">14 / 20</div>
-    </div>
-  </section>
-  <section class="slide-frame" id="s15" data-title="7月备货执行表">
-    <div class="slide-scale">
+<div class="page-num">14 / 20</div>
+</div></section>
+  <section class="slide-frame" id="s15"><div class="slide-scale">
 <div class="slide-content">
   <div class="deck-mark">JULY EXECUTION</div>
   <div class="header-row">
@@ -1526,11 +1484,9 @@ p, li {
   </div>
   <div class="slide-footer"><span>7月执行</span><span>主力补货 · 新品入仓 · T11路径确认</span></div>
 </div>
-      <div class="page-num">15 / 20</div>
-    </div>
-  </section>
-  <section class="slide-frame" id="s16" data-title="8月备货执行表">
-    <div class="slide-scale">
+<div class="page-num">15 / 20</div>
+</div></section>
+  <section class="slide-frame" id="s16"><div class="slide-scale">
 <div class="slide-content">
   <div class="deck-mark">AUGUST EXECUTION</div>
   <div class="header-row">
@@ -1553,11 +1509,9 @@ p, li {
   </div>
   <div class="slide-footer"><span>8月执行</span><span>连续供应 · 渠道纪律 · 下一轮PO判断</span></div>
 </div>
-      <div class="page-num">16 / 20</div>
-    </div>
-  </section>
-  <section class="slide-frame" id="s17" data-title="新增PO与采购预算">
-    <div class="slide-scale">
+<div class="page-num">16 / 20</div>
+</div></section>
+  <section class="slide-frame" id="s17"><div class="slide-scale">
 <div class="slide-content procurement-slide">
   <div class="deck-mark">PROCUREMENT BUDGET</div>
   <div class="header-row">
@@ -1584,11 +1538,9 @@ p, li {
   </div>
   <div class="slide-footer"><span>采购预算</span><span>9,500台 · ¥189.65万</span></div>
 </div>
-      <div class="page-num">17 / 20</div>
-    </div>
-  </section>
-  <section class="slide-frame" id="s18" data-title="渠道配额与库存分配规则">
-    <div class="slide-scale">
+<div class="page-num">17 / 20</div>
+</div></section>
+  <section class="slide-frame" id="s18"><div class="slide-scale">
 <div class="slide-content">
   <div class="deck-mark">CHANNEL ALLOCATION</div>
   <div class="header-row">
@@ -1614,11 +1566,9 @@ p, li {
   </div>
   <div class="slide-footer"><span>渠道配额</span><span>先渠道约束，后销量承诺</span></div>
 </div>
-      <div class="page-num">18 / 20</div>
-    </div>
-  </section>
-  <section class="slide-frame" id="s19" data-title="风险与待确认项">
-    <div class="slide-scale">
+<div class="page-num">18 / 20</div>
+</div></section>
+  <section class="slide-frame" id="s19"><div class="slide-scale">
 <div class="slide-content">
   <div class="deck-mark">RISKS & OPEN ITEMS</div>
   <div class="header-row">
@@ -1644,11 +1594,9 @@ p, li {
   </div>
   <div class="slide-footer"><span>风险与待确认</span><span>不确定项进入复盘，不进入虚假精确表</span></div>
 </div>
-      <div class="page-num">19 / 20</div>
-    </div>
-  </section>
-  <section class="slide-frame" id="s20" data-title="时间线与周度复盘机制">
-    <div class="slide-scale">
+<div class="page-num">19 / 20</div>
+</div></section>
+  <section class="slide-frame" id="s20"><div class="slide-scale">
 <div class="slide-content">
   <div class="deck-mark">EXECUTION CADENCE</div>
   <div class="header-row">
@@ -1684,12 +1632,11 @@ p, li {
   </div>
   <div class="slide-footer"><span>执行节奏</span><span>周度复盘 · 动态锁量 · 滚动PO判断</span></div>
 </div>
-      <div class="page-num">20 / 20</div>
-    </div>
-  </section>
-  </main>
-  <script>
+<div class="page-num">20 / 20</div>
+</div></section>
+</main>
+<script>
 (function(){var s=document.querySelectorAll('.slide-frame'),t=s.length,d=document.getElementById('navDots'),b=document.getElementById('progressBar');for(var i=0;i<t;i++){var btn=document.createElement('button');btn.setAttribute('aria-label','第'+(i+1)+'页');btn.onclick=(function(x){return function(){document.getElementById('s'+(x+1)).scrollIntoView({behavior:'smooth'})}})(i);d.appendChild(btn)}var o=new IntersectionObserver(function(e){e.forEach(function(x){var idx=parseInt(x.target.id.replace('s',''),10)-1,btns=d.querySelectorAll('button');if(x.isIntersecting){x.target.classList.add('visible');btns.forEach(function(b,i){b.classList.toggle('active',i===idx)});b.style.width=((idx+1)/t*100)+'%'}else{x.target.classList.remove('visible')}})},{threshold:.4});s.forEach(function(x){o.observe(x)});document.addEventListener('keydown',function(e){if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();var c=Math.round(window.scrollY/window.innerHeight);s[Math.min(c+1,t-1)].scrollIntoView({behavior:'smooth'})}else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();var c=Math.round(window.scrollY/window.innerHeight);s[Math.max(c-1,0)].scrollIntoView({behavior:'smooth'})}});function rs(){var sc=Math.min(window.innerWidth/1280,window.innerHeight/720,1);document.documentElement.style.setProperty('--viewer-scale',sc.toFixed(4))}window.addEventListener('resize',rs);rs()})();
-  </script>
+</script>
 </body>
 </html>
