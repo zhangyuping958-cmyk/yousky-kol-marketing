@@ -1,0 +1,42 @@
+<div class="slide">
+  <div class="bg-grid"></div>
+  <div style="position:relative;z-index:2;display:flex;flex-direction:column;height:100%;">
+    <div class="tag">Step 1</div>
+    <h2>简历解析</h2>
+
+    <div class="row" style="flex:1;gap:24px;">
+      <!-- Left: upload area -->
+      <div class="col" style="max-width:340px;">
+        <div class="card" style="flex:1;display:flex;align-items:center;justify-content:center;border:2px dashed var(--border);min-height:200px;">
+          <div style="text-align:center;">
+            <p style="font-size:2rem;margin-bottom:8px;">📄</p>
+            <p style="font-weight:600;margin-bottom:4px;">上传候选人简历</p>
+            <p class="text-2" style="font-size:12px;">支持 PDF / DOCX / TXT</p>
+            <p class="mono" style="margin-top:16px;font-size:11px;color:var(--accent);">
+              拖拽到项目目录后运行<br>
+              python main.py parse 简历.pdf
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: parsed preview -->
+      <div class="col" style="flex:1;">
+        <div class="card" style="flex:1;overflow:hidden;">
+          <h3 style="font-size:0.9rem;color:var(--accent);margin-bottom:12px;">解析结果预览</h3>
+          <div style="background:rgba(0,0,0,0.3);border-radius:8px;padding:16px;flex:1;overflow-y:auto;max-height:380px;">
+            <p class="text-2" style="font-size:12px;line-height:1.7;white-space:pre-wrap;">
+              <!-- Resume text will be injected here -->
+              等待简历解析...
+            </p>
+          </div>
+          <div class="row" style="margin-top:12px;gap:12px;">
+            <span class="badge badge-good">文件: --</span>
+            <span class="badge badge-good">字符数: --</span>
+            <span class="badge badge-good">识别段落: --</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

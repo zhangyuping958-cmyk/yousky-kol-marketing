@@ -1,0 +1,85 @@
+{
+  "company": "Yousky",
+  "industry": "手持清洁设备 / Handheld Cleaning Appliances",
+  "brand_positioning": "品牌出海 — 通过TikTok内容驱动营销进军欧美市场",
+  "products": [
+    {
+      "name": "H11",
+      "type": "主力款手持清洁机",
+      "category": "清洁家电"
+    }
+  ],
+  "sales_channels": ["Amazon", "TikTok Shop", "DTC独立站"],
+  "marketing_department": {
+    "total_headcount": 19,
+    "marketing_headcount": 16,
+    "it_headcount": 3,
+    "leader": "张钰萍 (Zhang Yuping)",
+    "structure": {
+      "TikTok团队": {
+        "headcount": 6,
+        "roles": ["内容负责人", "创意策划", "AI视频制作", "剪辑师", "运营专员", "数据分析师"],
+        "responsibility": "TikTok内容创作、账号运营、AI视频生产、数据监控"
+      },
+      "达人合作/KOL团队": {
+        "headcount": 3,
+        "roles": ["达人合作负责人", "达人拓展专员x2"],
+        "responsibility": "KOL矩阵管理（头部→腰部→尾部）、内容SOP制定、激励佣金模型、数据复盘"
+      },
+      "网站/付费媒体团队": {
+        "headcount": 3,
+        "roles": ["Meta广告投放", "Google广告投放", "着陆页/CRO优化", "网站管理"],
+        "responsibility": "Meta Ads、Google Ads投放优化、着陆页转化率优化、独立站运营"
+      },
+      "内容与社区团队": {
+        "headcount": 4,
+        "roles": ["社区经理", "PR与内容", "EDM与CRM", "社区/UGC运营"],
+        "responsibility": "品牌PR、邮件营销、CRM管理、UGC内容运营、社区建设"
+      }
+    }
+  },
+  "strategy_2026": {
+    "april_review_problems": [
+      "五大结构性问题（详见4月复盘）",
+      "跨部门数据整合不足：Amazon、TikTok Shop、KOL数据、产品端数据未打通",
+      "私域用户资产薄弱，复购率待提升",
+      "内容生产效率有待规模化",
+      "达人合作ROI需要更精细化的数据追踪"
+    ],
+    "may_strategy": "构建私域引擎（私域引擎），打通跨部门数据，实现用户资产沉淀",
+    "key_initiatives": [
+      "跨部门数据整合（Amazon + TikTok Shop + KOL + 产品端）",
+      "私域用户运营体系搭建",
+      "内容生产规模化",
+      "达人矩阵精细化管理"
+    ]
+  },
+  "kol_strategy": {
+    "tier_model": "头部→腰部→尾部 三级达人矩阵",
+    "key_elements": ["内容SOP标准化", "激励佣金模型", "数据复盘体系"],
+    "platform_focus": "TikTok内容驱动"
+  },
+  "inventory_plan": {
+    "period": "2026年6月-8月",
+    "focus": "H11主力款库存规划、三渠道配额分配、风险预警"
+  },
+  "culture_values": {
+    "work_style": "咨询式汇报文化（Consulting-style reporting）",
+    "team_size": "小而精的创业团队（19人）",
+    "pace": "快速迭代、数据驱动",
+    "language": "中英双语工作环境（跨境电商）",
+    "key_traits": ["自驱力强", "数据敏感", "跨文化沟通", "快速学习", "结果导向"]
+  },
+  "hiring_context": {
+    "stage": "品牌出海扩张期",
+    "team_growing": true,
+    "typical_roles": [
+      "TikTok内容运营",
+      "KOL/达人拓展",
+      "付费广告投放",
+      "内容/社区运营",
+      "数据分析",
+      "电商运营"
+    ]
+  }
+}

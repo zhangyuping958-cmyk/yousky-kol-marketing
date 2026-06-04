@@ -1,0 +1,16 @@
+{
+  "title": "Pneuma Slide — Welcome",
+  "slides": [
+    { "file": "slides/slide-01.html", "title": "Pneuma Slide" },
+    { "file": "slides/slide-02.html", "title": "More Than Just a Tool" },
+    { "file": "slides/slide-03.html", "title": "Live Preview WYSIWYG" },
+    { "file": "slides/slide-04.html", "title": "Conversational Creation" },
+    { "file": "slides/slide-05.html", "title": "Click to Select, Edit Precisely" },
+    { "file": "slides/slide-06.html", "title": "AI-Generated Illustrations" },
+    { "file": "slides/slide-07.html", "title": "Theme Design System" },
+    { "file": "slides/slide-08.html", "title": "All-in-One Toolbox" },
+    { "file": "slides/slide-09.html", "title": "Smart Layout Engine" },
+    { "file": "slides/slide-10.html", "title": "Present & Export" },
+    { "file": "slides/slide-11.html", "title": "Start Creating" }
+  ]
+}

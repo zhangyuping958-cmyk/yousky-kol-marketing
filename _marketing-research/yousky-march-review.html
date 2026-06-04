@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Yousky · 3月复盘诊断</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Space+Grotesk:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Manrope', sans-serif;
+  background: #0b1326;
+  color: #dae2fd;
+  overflow: hidden;
+  height: 100vh;
+}
+h1, h2, h3, h4, .font-display { font-family: 'Space Grotesk', sans-serif; }
+
+/* Glass panels */
+.glass {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid #494454;
+}
+.glass-light {
+  background: rgba(30, 40, 70, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Grid background */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Slide container */
+.slides-wrapper {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+.slide {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 64px;
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  overflow-y: auto;
+}
+.slide.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+  z-index: 10;
+}
+.slide.exit {
+  opacity: 0;
+  transform: translateY(-30px) scale(0.98);
+}
+.slide::-webkit-scrollbar { width: 4px; }
+.slide::-webkit-scrollbar-thumb { background: #494454; border-radius: 4px; }
+
+/* Navigation */
+.nav-dots {
+  position: fixed;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.nav-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: #494454;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 0;
+}
+.nav-dot:hover { background: #958ea0; }
+.nav-dot.active {
+  background: #d0bcff;
+  box-shadow: 0 0 12px rgba(208, 188, 255, 0.4);
+}
+
+/* Top nav bar */
+.top-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 28px;
+  height: 56px;
+  background: rgba(11, 19, 38, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(73, 68, 84, 0.4);
+}
+.top-nav .brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #d0bcff;
+}
+.top-nav .slide-counter {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #958ea0;
+  font-weight: 600;
+}
+.top-nav .nav-arrows { display: flex; gap: 6px; }
+.top-nav .nav-arrows button {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid #494454;
+  color: #dae2fd;
+  width: 32px; height: 28px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center;
+}
+.top-nav .nav-arrows button:hover {
+  border-color: #d0bcff;
+  color: #d0bcff;
+}
+
+/* Cards */
+.card {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid #494454;
+  border-radius: 4px;
+  padding: 20px 24px;
+  transition: all 0.2s;
+}
+.card:hover { border-color: #d0bcff; }
+
+/* Bars */
+.bar-track {
+  height: 8px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Tags */
+.tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.tag-red { background: rgba(255,180,171,0.15); color: #ffb4ab; }
+.tag-orange { background: rgba(255,183,77,0.15); color: #ffb74d; }
+.tag-green { background: rgba(168,230,138,0.15); color: #a8e68a; }
+.tag-blue { background: rgba(173,198,255,0.15); color: #adc6ff; }
+.tag-cyan { background: rgba(76,215,246,0.15); color: #4cd7f6; }
+
+/* Timeline */
+.timeline-item { display: flex; gap: 16px; margin-bottom: 20px; }
+.timeline-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+.timeline-content h4 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 15px; }
+.timeline-content p { font-size: 13px; color: #958ea0; line-height: 1.5; }
+
+/* Data rows */
+.data-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(73,68,84,0.3); font-size: 14px; }
+.data-row:last-child { border-bottom: none; }
+
+/* Quote */
+.quote {
+  padding: 20px 24px;
+  border-left: 3px solid #d0bcff;
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 4px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #cbc3d7;
+}
+.quote cite { display: block; margin-top: 8px; font-size: 12px; color: #958ea0; font-style: normal; letter-spacing: 0.05em; }
+
+/* Slide titles */
+.slide-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 32px; letter-spacing: -0.01em; margin-bottom: 8px; }
+.slide-subtitle { color: #958ea0; font-size: 14px; margin-bottom: 28px; }
+.section-label {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #494454;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+/* Grid pattern */
+.bg-grid-pattern {
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Step cards */
+.step-card {
+  text-align: center;
+  padding: 24px 16px;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid #494454;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+.step-card:hover { border-color: #d0bcff; }
+.step-num {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(208, 188, 255, 0.15);
+  color: #d0bcff;
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  font-weight: 700; font-size: 16px;
+  margin-bottom: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.step-card h4 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 15px; }
+.step-card p { font-size: 13px; color: #958ea0; line-height: 1.5; }
+
+/* Principles */
+.principle-item {
+  padding: 14px 18px;
+  background: rgba(15, 23, 42, 0.4);
+  border-left: 3px solid #d0bcff;
+  margin-bottom: 10px;
+  border-radius: 0 4px 4px 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.principle-item strong { font-family: 'Space Grotesk', sans-serif; display: block; margin-bottom: 3px; font-size: 15px; }
+
+/* Scrollable slides */
+.scroll-slide { justify-content: flex-start; padding-top: 80px; }
+
+/* OKR grid */
+.okr-card { background: rgba(15,23,42,0.7); border: 1px solid #494454; border-radius: 4px; padding: 20px 24px; }
+.okr-card h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 16px; margin-bottom: 12px; }
+
+@media (max-width: 768px) {
+  .slide { padding: 72px 20px 40px; }
+  .slide-title { font-size: 24px; }
+  .nav-dots { right: 12px; gap: 8px; }
+  .nav-dot { width: 8px; height: 8px; }
+}
+</style>
+</head>
+<body class="bg-grid-pattern">
+
+<div class="top-nav">
+  <div class="brand">Yousky · 3🈷️ 复盘诊断</div>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <span class="slide-counter" id="slideCounter">01 / 14</span>
+    <div class="nav-arrows">
+      <button onclick="prevSlide()">◂</button>
+      <button onclick="nextSlide()">▸</button>
+    </div>
+  </div>
+</div>
+
+<div class="nav-dots" id="navDots"></div>
+
+<div class="slides-wrapper" id="slidesWrapper">
+
+<!-- ===== 1. COVER ===== -->
+<div class="slide active" data-index="0">
+  <div style="max-width:880px;margin:0 auto;text-align:center;">
+    <div style="width:48px;height:3px;background:#d0bcff;margin:0 auto 24px;border-radius:2px;"></div>
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:56px;letter-spacing:-0.02em;line-height:1.1;">
+      Yousky 3月复盘<br>
+      <span style="color:#d0bcff;">深度诊断与破局方案</span>
+    </h1>
+    <p style="color:#958ea0;font-size:16px;margin-top:16px;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.6;">
+      站在十一年海外市场营销操盘手的视角，穿透数据看本质，给出可执行的增长方案
+    </p>
+    <div style="margin-top:48px;display:flex;justify-content:center;gap:32px;flex-wrap:wrap;font-size:13px;color:#494454;">
+      <span>分析日期：2026年5月</span>
+      <span>基于 Yousky 3月份工作汇报</span>
+      <span>销售部 + 产品部 + 营销部</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 2. EXECUTIVE SUMMARY ===== -->
+<div class="slide" data-index="1">
+  <div style="max-width:1000px;margin:0 auto;width:100%;">
+    <div class="section-label">一页摘要</div>
+    <h2 class="slide-title">一句话结论</h2>
+    <div class="quote" style="margin-bottom:28px;">
+      3月份 Yousky 的销售达成率不到七成，两个核心新品在亏本赚吆喝，社媒引流几乎为零，KOL 合作数量严重不足。<br>
+      这不是"资源不够"的问题，而是<strong style="color:#d0bcff;">战略优先级和执行力</strong>的问题。
+      <cite>—— 把"做完了什么"换成"做成了什么"，差距就出来了</cite>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="card text-center">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:40px;font-weight:900;color:#ffb4ab;">60.4%</div>
+        <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#958ea0;margin-top:4px;">销量目标达成率</div>
+        <div style="font-size:13px;color:#958ea0;margin-top:8px;line-height:1.4;">距目标缺口 634 台<br>H10 和 T10 是主要拖累</div>
+      </div>
+      <div class="card text-center">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:40px;font-weight:900;color:#ffb4ab;">385%</div>
+        <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#958ea0;margin-top:4px;">T10 广告 TCOS 超标</div>
+        <div style="font-size:13px;color:#958ea0;margin-top:8px;line-height:1.4;">目标 18%，实际 69.3%<br>卖一单亏一单</div>
+      </div>
+      <div class="card text-center">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:40px;font-weight:900;color:#ffb4ab;">4 UV</div>
+        <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#958ea0;margin-top:4px;">社媒整月引流</div>
+        <div style="font-size:13px;color:#958ea0;margin-top:8px;line-height:1.4;">4 平台 · 24 帖子 · 6200 曝光<br>仅带来 4 个进店 UV</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 3. PROBLEM 1: PORTFOLIO ===== -->
+<div class="slide" data-index="2">
+  <div style="max-width:1000px;margin:0 auto;width:100%;">
+    <div class="flex flex-wrap gap-2 items-center mb-2">
+      <span class="section-label" style="margin-bottom:0;">致命问题</span>
+      <span class="tag tag-red">01</span>
+    </div>
+    <h2 class="slide-title">产品组合严重失衡</h2>
+    <p class="slide-subtitle">一个品牌靠一个 SKU 撑场面，两个新品在"失血"</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;margin-bottom:12px;">
+          <span class="tag tag-green" style="vertical-align:middle;margin-right:6px;">L10</span> 落叶清洁机 · 唯一亮点
+        </h3>
+        <div class="space-y-3">
+          <div><div class="flex justify-between text-sm mb-1"><span>销量达成 <span style="color:#a8e68a;">89.8%</span></span><span style="color:#a8e68a;">718 / 800</span></div><div class="bar-track"><div class="bar-fill" style="width:89.8%;background:#a8e68a;"></div></div></div>
+          <div><div class="flex justify-between text-sm mb-1"><span>广告 TCOS</span><span style="color:#a8e68a;">10.7% 低于目标 12% ✓</span></div><div class="bar-track"><div class="bar-fill" style="width:60%;background:#a8e68a;"></div></div></div>
+        </div>
+        <p style="font-size:13px;color:#958ea0;margin-top:8px;">⚠ 但 Review 星级跌到 3.8，转化率已开始下滑</p>
+      </div>
+      <div>
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;margin-bottom:12px;">
+          <span class="tag tag-red" style="vertical-align:middle;margin-right:6px;">H10 + T10</span> 两大失血点
+        </h3>
+        <div class="space-y-3">
+          <div><div class="flex justify-between text-sm mb-1"><span>H10 销量达成</span><span style="color:#ffb4ab;">38.3%</span></div><div class="bar-track"><div class="bar-fill" style="width:38.3%;background:#ffb4ab;"></div></div></div>
+          <div><div class="flex justify-between text-sm mb-1"><span>T10 销量达成</span><span style="color:#ffb4ab;">23.8%</span></div><div class="bar-track"><div class="bar-fill" style="width:23.8%;background:#ffb4ab;"></div></div></div>
+          <div><div class="flex justify-between text-sm mb-1"><span>T10 广告 TCOS</span><span style="color:#ffb4ab;">69.3% (目标 18%)</span></div><div class="bar-track"><div class="bar-fill" style="width:100%;background:#ffb4ab;"></div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="glass" style="margin-top:20px;padding:16px 20px;border-color:rgba(255,180,171,0.2);">
+      <p style="font-size:14px;line-height:1.5;">
+        <strong style="color:#ffb4ab;">诊断：</strong> T10 卖 $69.99，广告成本就烧掉 $48.5。4 月计划中 H10 毛利率预估 <strong style="color:#ffb4ab;">-3.2%</strong>、H11 预估 <strong style="color:#ffb4ab;">-0.9%</strong>——
+        <strong style="color:#ffb4ab;">你们在计划里写的是"继续亏损"。</strong>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 4. PROBLEM 2: SOCIAL MEDIA ===== -->
+<div class="slide" data-index="3">
+  <div style="max-width:1000px;margin:0 auto;width:100%;">
+    <div class="flex flex-wrap gap-2 items-center mb-2">
+      <span class="section-label" style="margin-bottom:0;">致命问题</span>
+      <span class="tag tag-red">02</span>
+    </div>
+    <h2 class="slide-title">社媒运营：形同虚设</h2>
+    <p class="slide-subtitle">4 个平台 · 1 个月 · 24 条内容 · 6200 曝光 · <span style="color:#ffb4ab;">4 个引流 UV</span></p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div class="card text-center">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;color:#adc6ff;">8</div>
+        <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#958ea0;">Instagram</div>
+        <div style="font-size:20px;font-weight:700;color:#adc6ff;margin-top:4px;">1,189</div>
+        <div style="font-size:12px;color:#958ea0;">曝光</div>
+        <div style="font-size:13px;font-weight:600;color:#ffb4ab;margin-top:2px;">互动 0.9%</div>
+      </div>
+      <div class="card text-center">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;color:#adc6ff;">8</div>
+        <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#958ea0;">Facebook</div>
+        <div style="font-size:20px;font-weight:700;color:#adc6ff;margin-top:4px;">1,433</div>
+        <div style="font-size:12px;color:#958ea0;">曝光</div>
+        <div style="font-size:13px;font-weight:600;color:#ffb4ab;margin-top:2px;">互动 0.4%</div>
+      </div>
+      <div class="card text-center">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;color:#adc6ff;">4</div>
+        <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#958ea0;">YouTube</div>
+        <div style="font-size:20px;font-weight:700;color:#adc6ff;margin-top:4px;">2,549</div>
+        <div style="font-size:12px;color:#958ea0;">曝光</div>
+        <div style="font-size:13px;font-weight:600;color:#958ea0;margin-top:2px;">互动 N/A</div>
+      </div>
+      <div class="card text-center">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;color:#adc6ff;">4</div>
+        <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#958ea0;">TikTok</div>
+        <div style="font-size:20px;font-weight:700;color:#adc6ff;margin-top:4px;">1,033</div>
+        <div style="font-size:12px;color:#958ea0;">曝光</div>
+        <div style="font-size:13px;font-weight:600;color:#ffb4ab;margin-top:2px;">互动 0.2%</div>
+      </div>
+    </div>
+    <div class="glass" style="margin-top:16px;padding:16px 20px;border-color:rgba(255,180,171,0.2);">
+      <p style="font-size:14px;line-height:1.5;">
+        <strong style="color:#ffb4ab;">诊断：</strong> 社媒不是"发了就行"。互动率 0.2%–0.9% 意味着内容完全没有击中用户。<br>
+        6200 曝光、4 个引流 UV——<strong style="color:#ffb4ab;">这相当于在商场门口发了一整天传单，只有 4 个人接了。</strong><br>
+        <span style="color:#958ea0;">问题本质：没有内容策略、没有预算投入、没有专人运营。</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 5. PROBLEM 3: KOL ===== -->
+<div class="slide" data-index="4">
+  <div style="max-width:1000px;margin:0 auto;width:100%;">
+    <div class="flex flex-wrap gap-2 items-center mb-2">
+      <span class="section-label" style="margin-bottom:0;">致命问题</span>
+      <span class="tag tag-red">03</span>
+    </div>
+    <h2 class="slide-title">KOL 营销：量不够 · 质不高</h2>
+    <p class="slide-subtitle">一个月 12 个 KOL，主要是置换合作，回复率只有竞品的一半</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div class="card">
+        <div class="data-row"><span>合作 KOL 总数</span><span style="color:#d0bcff;font-weight:600;">12 个</span></div>
+        <div class="data-row"><span>其中付费合作</span><span>8 个 (平均 $100/次)</span></div>
+        <div class="data-row"><span>置换合作</span><span>4 个</span></div>
+        <div class="data-row"><span>总花费</span><span>$1,257</span></div>
+        <div class="data-row"><span>平均 CPA</span><span style="color:#a8e68a;">$105 (低于预算 $250)</span></div>
+        <div class="data-row"><span>KOL 回复率</span><span style="color:#ffb4ab;">~10%</span></div>
+        <div class="data-row"><span>竞品回复率</span><span style="color:#adc6ff;">~20% (Tisscare/Safly Fun)</span></div>
+      </div>
+      <div class="glass" style="padding:20px;border-color:rgba(208,188,255,0.2);">
+        <p style="font-size:13px;font-weight:600;color:#d0bcff;margin-bottom:12px;letter-spacing:0.05em;text-transform:uppercase;">结构性问题</p>
+        <ul style="list-style:none;">
+          <li style="padding:6px 0;border-bottom:1px solid rgba(73,68,84,0.3);font-size:14px;">• 品类太窄 → 只找泳池垂类</li>
+          <li style="padding:6px 0;border-bottom:1px solid rgba(73,68,84,0.3);font-size:14px;">• 没有头部达人 → 品牌声量起不来</li>
+          <li style="padding:6px 0;border-bottom:1px solid rgba(73,68,84,0.3);font-size:14px;">• 预算太保守 → 置换为主，优质达人不接</li>
+          <li style="padding:6px 0;border-bottom:1px solid rgba(73,68,84,0.3);font-size:14px;">• 内容类型单一 → mom life / lifestyle 为主</li>
+          <li style="padding:6px 0;font-size:14px;">• 品牌声量不足 → 回复率低的核心原因</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:16px;">
+      回复率 10% vs 竞品 20%：表面看是开发信的问题，深层原因是品牌没有建立起"被信任"的认知。当一个 KOL 没听过你的品牌，去 Google 搜索——搜索结果页几乎是空的，信任感瞬间归零。
+    </div>
+  </div>
+</div>
+
+<!-- ===== 6. PROBLEM 4: QUALITY ===== -->
+<div class="slide" data-index="5">
+  <div style="max-width:1000px;margin:0 auto;width:100%;">
+    <div class="flex flex-wrap gap-2 items-center mb-2">
+      <span class="section-label" style="margin-bottom:0;">致命问题</span>
+      <span class="tag tag-red">04</span>
+    </div>
+    <h2 class="slide-title">产品质量正在侵蚀品牌根基</h2>
+    <p class="slide-subtitle">L10 Review 跌到 3.8 星，H10 有 7 大类质量问题</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div class="card">
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;margin-bottom:8px;">
+          <span class="tag tag-orange" style="vertical-align:middle;margin-right:6px;">L10</span> 落叶清洁机
+        </h4>
+        <div style="margin-top:6px;">
+          <span class="tag tag-red" style="margin-right:4px;">Review 3.8 星 ↓</span>
+          <span class="tag tag-orange" style="margin-right:4px;">伸缩杆不够长</span>
+          <span class="tag tag-orange" style="margin-right:4px;">电池故障/进水</span>
+          <span class="tag tag-orange" style="margin-top:4px;display:inline-block;">漏装配件</span>
+        </div>
+        <p style="font-size:13px;color:#958ea0;margin-top:10px;">一款达成率 89.8% 的产品，Review 掉到 3.8 星意味着转化率会持续下滑。</p>
+      </div>
+      <div class="card">
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;margin-bottom:8px;">
+          <span class="tag tag-red" style="vertical-align:middle;margin-right:6px;">H10</span> 手持清洁机
+        </h4>
+        <div style="margin-top:6px;">
+          <span class="tag tag-red" style="margin-right:4px;">开关断裂 (回料)</span>
+          <span class="tag tag-red" style="margin-right:4px;">电池不充电</span>
+          <span class="tag tag-orange" style="margin-right:4px;">齿轮安装错位</span>
+          <span class="tag tag-orange" style="margin-right:4px;">污垢喷出</span>
+          <span class="tag tag-orange" style="margin-right:4px;">配件脱落</span>
+          <span class="tag tag-orange" style="margin-top:4px;display:inline-block;margin-right:4px;">少配件</span>
+          <span class="tag tag-orange" style="margin-top:4px;display:inline-block;">卡扣断裂</span>
+        </div>
+        <p style="font-size:13px;color:#958ea0;margin-top:10px;">7 大类质量问题，开关断裂和电池问题是批量性的。</p>
+      </div>
+    </div>
+    <div class="glass" style="margin-top:16px;padding:16px 20px;border-color:rgba(255,180,171,0.2);">
+      <p style="font-size:14px;line-height:1.5;">
+        <strong style="color:#ffb4ab;">核心矛盾：</strong> 营销部花 $100 去获取一个用户，产品质量问题让这个用户留一个差评就走了——还劝退了后面 100 个潜在客户。<br>
+        <strong style="color:#d0bcff;">在产品质量问题解决之前，大规模投流 = 大规模烧钱 + 大规模制造差评。</strong>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 7. ROOT CAUSE ===== -->
+<div class="slide" data-index="6">
+  <div style="max-width:1000px;margin:0 auto;width:100%;">
+    <div class="section-label">根本原因分析</div>
+    <h2 class="slide-title">4 个致命问题是果，<span style="color:#d0bcff;">不是因</span></h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" style="margin-top:24px;">
+      <div class="card">
+        <div style="font-size:28px;margin-bottom:4px;">🎯</div>
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;">战略失焦</h4>
+        <p style="font-size:13px;color:#958ea0;line-height:1.5;margin-top:4px;">
+          同时在推 13 个 SKU，<strong style="color:#d0bcff;">没有一个真正打透。</strong>营销预算 $35,000 平均每个产品不到 $2,700。
+        </p>
+      </div>
+      <div class="card">
+        <div style="font-size:28px;margin-bottom:4px;">🔗</div>
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;">部门各自为战</h4>
+        <p style="font-size:13px;color:#958ea0;line-height:1.5;margin-top:4px;">
+          PPT 结构就看得出来：销售讲销售、产品讲产品、营销讲营销——<strong style="color:#d0bcff;">没有"合力"的痕迹。</strong>
+        </p>
+      </div>
+      <div class="card">
+        <div style="font-size:28px;margin-bottom:4px;">📊</div>
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;">缺少数据闭环</h4>
+        <p style="font-size:13px;color:#958ea0;line-height:1.5;margin-top:4px;">
+          PPT 里大量"做了什么"而不是"做成了什么"。<strong style="color:#d0bcff;">没有数据，4 月的计划就是拍脑袋。</strong>
+        </p>
+      </div>
+      <div class="card">
+        <div style="font-size:28px;margin-bottom:4px;">⏳</div>
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;">执行节奏太慢</h4>
+        <p style="font-size:13px;color:#958ea0;line-height:1.5;margin-top:4px;">
+          H10 灰色版入库一周未推广，H11 已到仓 listing 还没优化好。<strong style="color:#ffb4ab;">时间窗口不等人。</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 8. STRATEGIC PRIORITIES ===== -->
+<div class="slide" data-index="7">
+  <div style="max-width:1000px;margin:0 auto;width:100%;">
+    <div class="section-label">破局方案</div>
+    <h2 class="slide-title">三大战略优先级</h2>
+    <p class="slide-subtitle">不要试图同时解决所有问题——先打赢一场仗</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h4>止血 · 产品线精简</h4>
+        <p>砍掉或冻结不赚钱的 SKU，集中所有资源打透 1–2 个爆品</p>
+        <div style="margin-top:8px;font-size:11px;color:#4cd7f6;font-weight:600;letter-spacing:0.05em;">第 1–2 周</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h4>筑底 · 内容体系搭建</h4>
+        <p>建立 UGC 内容工厂 + 社媒日更节奏 + KOL 规模化触达体系</p>
+        <div style="margin-top:8px;font-size:11px;color:#4cd7f6;font-weight:600;letter-spacing:0.05em;">持续投入</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h4>放大 · 数据驱动增长</h4>
+        <p>打通全链路数据看板，用 ROI 说话，让每一分钱都有效果</p>
+        <div style="margin-top:8px;font-size:11px;color:#4cd7f6;font-weight:600;letter-spacing:0.05em;">第 3–4 周</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 9. ACTION 1: STOP BLEEDING ===== -->
+<div class="slide" data-index="8">
+  <div style="max-width:1000px;margin:0 auto;width:100%;">
+    <div class="flex flex-wrap gap-2 items-center mb-2">
+      <span class="section-label" style="margin-bottom:0;">行动方案</span>
+      <span class="tag tag-red">01</span>
+    </div>
+    <h2 class="slide-title">止血：产品线紧急手术</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="card" style="border-color:rgba(255,180,171,0.3);">
+        <span class="tag tag-red" style="margin-bottom:6px;">立即止损</span>
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;">T10 Hot Tub</h4>
+        <ul style="list-style:none;margin-top:8px;font-size:13px;color:#958ea0;">
+          <li style="padding:4px 0;">• 立即暂停站内广告</li>
+          <li style="padding:4px 0;">• 重新定价至 $89.99+</li>
+          <li style="padding:4px 0;">• 清理库存后评估是否继续</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:rgba(255,183,77,0.3);">
+        <span class="tag tag-orange" style="margin-bottom:6px;">预算砍半</span>
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;">H10 手持清洁机</h4>
+        <ul style="list-style:none;margin-top:8px;font-size:13px;color:#958ea0;">
+          <li style="padding:4px 0;">• 4 月广告预算砍 50%</li>
+          <li style="padding:4px 0;">• 配合产品部完成质量改善</li>
+          <li style="padding:4px 0;">• Review 修复后再恢复推广</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:rgba(168,230,138,0.3);">
+        <span class="tag tag-green" style="margin-bottom:6px;">全力投入</span>
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;">L10 落叶清洁机</h4>
+        <ul style="list-style:none;margin-top:8px;font-size:13px;color:#958ea0;">
+          <li style="padding:4px 0;">• <strong style="color:#a8e68a;">紧急修复 Review</strong> → 4.0+</li>
+          <li style="padding:4px 0;">• 随包裹附赠延长杆配件</li>
+          <li style="padding:4px 0;">• 集中 KOL 资源打 L10 内容</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 10. ACTION 2: KOL ===== -->
+<div class="slide" data-index="9">
+  <div style="max-width:1000px;margin:0 auto;width:100%;">
+    <div class="flex flex-wrap gap-2 items-center mb-2">
+      <span class="section-label" style="margin-bottom:0;">行动方案</span>
+      <span class="tag tag-cyan">02</span>
+    </div>
+    <h2 class="slide-title">KOL 营销：从"做"到"规模化"</h2>
+    <p class="slide-subtitle">一个月 12 个 KOL → 一个月 50+ 个 KOL，这是 4 月的底线目标</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div>
+        <div class="principle-item">
+          <strong style="color:#4cd7f6;">📈 触达量提升 5x</strong>
+          使用 Upfluence/Heepsy 批量筛选+自动化触达，目标从"12 个/月"提升到"50–80 个/月"
+        </div>
+        <div class="principle-item">
+          <strong style="color:#4cd7f6;">🎯 拓展达人类型</strong>
+          不局限于泳池垂类：宠物博主、ASMR 博主、家居改造、宝妈——<span style="color:#d0bcff;">跨界达人往往转化奇高</span>
+        </div>
+        <div class="principle-item">
+          <strong style="color:#4cd7f6;">💰 预算升级</strong>
+          从 $100/次 → $200–500/次，从置换为主转为"低固定费用+高佣金"
+        </div>
+      </div>
+      <div>
+        <div class="principle-item">
+          <strong style="color:#4cd7f6;">✉️ 开发信迭代</strong>
+          A/B 测试 3–5 个版本的开发信模板，2 周内找到最优版本
+        </div>
+        <div class="principle-item">
+          <strong style="color:#4cd7f6;">📋 Brief 标准化</strong>
+          建立 Brief 模板：必须展示的痛点、必须口播的卖点、禁忌事项
+        </div>
+        <div class="principle-item">
+          <strong style="color:#4cd7f6;">🔄 内容二次利用</strong>
+          表现好的 KOL 视频谈授权 (Spark Ads / Whitelisting)，自己投流放大
+        </div>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:12px;font-size:14px;">
+      回复率 10% 的根本原因是品牌声量不够。短期内无法解决，那就用规模换质量——触达量增加 5 倍，即使回复率不变，合作量也能从 12 个提升到 60 个。
+    </div>
+  </div>
+</div>
+
+<!-- ===== 11. ACTION 3: SOCIAL ===== -->
+<div class="slide" data-index="10">
+  <div style="max-width:1000px;margin:0 auto;width:100%;">
+    <div class="flex flex-wrap gap-2 items-center mb-2">
+      <span class="section-label" style="margin-bottom:0;">行动方案</span>
+      <span class="tag tag-cyan">03</span>
+    </div>
+    <h2 class="slide-title">社媒：从"轻运营"到"增长引擎"</h2>
+    <p class="slide-subtitle">4 个平台 · 6200 曝光 · 4 个 UV —— 不能再这样下去了</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="card text-center">
+        <div style="font-size:32px;margin-bottom:4px;">📅</div>
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;">建立日更节奏</h4>
+        <p style="font-size:13px;color:#958ea0;margin-top:6px;line-height:1.4;">每平台 4 条/月 → 20 条/月<br>内容日历：Tips · UGC · BTS · 场景</p>
+      </div>
+      <div class="card text-center">
+        <div style="font-size:32px;margin-bottom:4px;">🎬</div>
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;">UGC 内容工厂</h4>
+        <p style="font-size:13px;color:#958ea0;margin-top:6px;line-height:1.4;">招募 20–30 个微 KOC<br>免费寄样+佣金，批量产出 UGC</p>
+      </div>
+      <div class="card text-center">
+        <div style="font-size:32px;margin-bottom:4px;">📈</div>
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;">付费投流测试</h4>
+        <p style="font-size:13px;color:#958ea0;margin-top:6px;line-height:1.4;">$50/天/平台 测试内容类型<br>跑出 ROI 正向后迅速放量</p>
+      </div>
+    </div>
+    <div class="glass" style="margin-top:16px;padding:16px 20px;border-color:rgba(76,215,246,0.2);text-align:center;">
+      <span style="font-size:13px;font-weight:600;color:#4cd7f6;">目标（4月基准）：</span>
+      <span style="font-size:13px;color:#958ea0;"> 社媒月曝光 6,200 → 50万+ · 引流UV 4 → 500+ · 互动率 0.3% → 3%+</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 12. ACTION 4: DATA ===== -->
+<div class="slide" data-index="11">
+  <div style="max-width:1000px;margin:0 auto;width:100%;">
+    <div class="flex flex-wrap gap-2 items-center mb-2">
+      <span class="section-label" style="margin-bottom:0;">行动方案</span>
+      <span class="tag tag-cyan">04</span>
+    </div>
+    <h2 class="slide-title">数据体系：让每一分钱有迹可循</h2>
+    <p class="slide-subtitle">KOL 数据看板已有基础，现在要做"全链路"</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div class="card" style="border-color:rgba(168,230,138,0.2);">
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;"><span style="color:#a8e68a;">✓</span> 已搭建</h4>
+        <ul style="list-style:none;margin-top:8px;font-size:13px;color:#958ea0;">
+          <li style="padding:5px 0;border-bottom:1px solid rgba(73,68,84,0.3);">• KOL 业务数据看板 (50+ 字段)</li>
+          <li style="padding:5px 0;border-bottom:1px solid rgba(73,68,84,0.3);">• Amazon Attribution 链接追踪</li>
+          <li style="padding:5px 0;border-bottom:1px solid rgba(73,68,84,0.3);">• Promo Code 追踪机制</li>
+          <li style="padding:5px 0;">• 全链路 SOP</li>
+        </ul>
+        <p style="margin-top:8px;font-size:12px;color:#a8e68a;">这是3月份最正确的决定之一</p>
+      </div>
+      <div class="card" style="border-color:rgba(255,183,77,0.2);">
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;"><span style="color:#ffb74d;">✕</span> 需要补齐</h4>
+        <ul style="list-style:none;margin-top:8px;font-size:13px;color:#958ea0;">
+          <li style="padding:5px 0;border-bottom:1px solid rgba(73,68,84,0.3);">• 社媒内容效果追踪表</li>
+          <li style="padding:5px 0;border-bottom:1px solid rgba(73,68,84,0.3);">• 竞品 KOL 内容数据库</li>
+          <li style="padding:5px 0;border-bottom:1px solid rgba(73,68,84,0.3);">• 全渠道归因模型 (LTV 追踪)</li>
+          <li style="padding:5px 0;">• 每周 Content Case Study 机制</li>
+        </ul>
+        <p style="margin-top:8px;font-size:12px;color:#ffb74d;">4月需要补齐</p>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:16px;font-size:14px;">
+      不能衡量就无法改进。3 月你建立了"追踪能力"，4 月你要用这个能力去驱动决策——每个周二上午雷打不动的数据复盘会，用数据说话，而不是用感觉。
+    </div>
+  </div>
+</div>
+
+<!-- ===== 13. ROADMAP ===== -->
+<div class="slide" data-index="12">
+  <div style="max-width:1000px;margin:0 auto;width:100%;">
+    <div class="section-label">落地路线图</div>
+    <h2 class="slide-title">4 月 Week by Week</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:#ffb4ab;"></div>
+        <div class="timeline-content">
+          <h4>第1周 · 止血盘点</h4>
+          <p>T10 广告暂停 · H10 预算砍半 · L10 Review 修复方案启动 · 全部门对齐 4 月 OKR</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:#ffb74d;"></div>
+        <div class="timeline-content">
+          <h4>第2周 · 内容基建</h4>
+          <p>社媒日更启动 · KOL 触达量 3 倍 · UGC Creator 招募 (20人+) · TK 外包拍摄团队入职</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:#adc6ff;"></div>
+        <div class="timeline-content">
+          <h4>第3周 · 数据驱动</h4>
+          <p>全链路看板 V2.0 上线 · 投流测试启动 · PR 外链第二轮建联 · 周数据复盘会 Run 起来</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:#a8e68a;"></div>
+        <div class="timeline-content">
+          <h4>第4周 · 放大验证</h4>
+          <p>跑通内容放量投流 · KOL 合作量冲击 40–50 个 · ROI 正向产品加大投入 · 输出 4 月完整复盘</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 14. OKR ===== -->
+<div class="slide" data-index="13">
+  <div style="max-width:1000px;margin:0 auto;width:100%;">
+    <div class="section-label">4月核心目标</div>
+    <h2 class="slide-title">OKR <span style="color:#d0bcff;">指标明确 · 责任到人 · 每周复盘</span></h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5" style="margin-top:24px;">
+      <div class="okr-card">
+        <h3>📈 销售指标</h3>
+        <div class="data-row"><span>全平台销量目标</span><span style="font-weight:600;">2,580 台</span></div>
+        <div class="data-row"><span>全平台销售额目标</span><span style="font-weight:600;">¥1,695,224</span></div>
+        <div class="data-row"><span>L10 Review 星级</span><span><span style="color:#ffb4ab;">3.8</span> → <span style="color:#a8e68a;">4.0+</span></span></div>
+        <div class="data-row"><span>H10 广告 TCOS</span><span><span style="color:#ffb4ab;">52.9%</span> → <span style="color:#a8e68a;">&lt;30%</span></span></div>
+        <div class="data-row"><span>毛利率 (整体)</span><span><span style="color:#ffb4ab;">负</span> → <span style="color:#a8e68a;">转正</span></span></div>
+      </div>
+      <div class="okr-card">
+        <h3>📣 营销指标</h3>
+        <div class="data-row"><span>KOL 合作数量</span><span><span style="color:#ffb4ab;">12</span> → <span style="color:#a8e68a;">50</span></span></div>
+        <div class="data-row"><span>KOL 建联回复率</span><span><span style="color:#ffb4ab;">10%</span> → <span style="color:#a8e68a;">15%+</span></span></div>
+        <div class="data-row"><span>社媒月曝光</span><span><span style="color:#ffb4ab;">6,200</span> → <span style="color:#a8e68a;">500,000+</span></span></div>
+        <div class="data-row"><span>社媒引流 UV</span><span><span style="color:#ffb4ab;">4</span> → <span style="color:#a8e68a;">500+</span></span></div>
+        <div class="data-row"><span>社媒互动率</span><span><span style="color:#ffb4ab;">0.3%</span> → <span style="color:#a8e68a;">3%+</span></span></div>
+      </div>
+    </div>
+    <div class="glass" style="margin-top:16px;padding:16px 20px;border-color:rgba(208,188,255,0.2);text-align:center;">
+      <span style="font-size:13px;color:#d0bcff;font-weight:600;">核心原则：</span>
+      <span style="font-size:13px;color:#958ea0;">每周二上午数据复盘会，所有指标透明化，行就放量、不行就停——不要等到月底才发现方向错了。</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 15. CLOSING ===== -->
+<div class="slide" data-index="14">
+  <div style="max-width:800px;margin:0 auto;text-align:center;">
+    <div style="width:48px;height:3px;background:#d0bcff;margin:0 auto 24px;border-radius:2px;"></div>
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:48px;letter-spacing:-0.02em;line-height:1.2;">
+      THANK YOU
+    </h1>
+    <p style="color:#958ea0;font-size:16px;margin-top:12px;">Yousky · 3 月复盘深度诊断</p>
+    <div class="quote" style="margin-top:32px;text-align:left;">
+      在 2026 年 Q2 结束之前，Yousky 必须证明两个事情：<br><br>
+      <strong style="color:#d0bcff;">1️⃣ 我们能在不亏本的前提下卖出产品</strong><br>
+      <strong style="color:#d0bcff;">2️⃣ 我们能把社媒和 KOL 做成真正的增长引擎，而不是"在做而已"</strong><br><br>
+      否则，2026 年下半年不会比上半年更好过。
+      <cite>—— 以事为鉴，以数为尺，以果为凭</cite>
+    </div>
+    <div style="margin-top:32px;font-size:13px;color:#494454;">
+      期望 4 月复盘时，PPT 上的数字能让我们看到变化
+    </div>
+  </div>
+</div>
+
+</div><!-- end slides-wrapper -->
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const dotsContainer = document.getElementById('navDots');
+const counter = document.getElementById('slideCounter');
+let current = 0;
+const total = slides.length;
+let isTransitioning = false;
+
+// Create dots
+for (let i = 0; i < total; i++) {
+  const dot = document.createElement('button');
+  dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+  dot.onclick = () => goTo(i);
+  dotsContainer.appendChild(dot);
+}
+
+function updateSlide(index) {
+  slides.forEach((s, i) => {
+    s.classList.remove('active', 'exit');
+    if (i === index) s.classList.add('active');
+    else if (i < index) s.classList.add('exit');
+  });
+  document.querySelectorAll('.nav-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === index);
+  });
+  counter.textContent = String(index + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+}
+
+function goTo(index) {
+  if (isTransitioning || index === current || index < 0 || index >= total) return;
+  isTransitioning = true;
+  current = index;
+  updateSlide(index);
+  setTimeout(() => { isTransitioning = false; }, 500);
+}
+
+function nextSlide() { goTo(current + 1); }
+function prevSlide() { goTo(current - 1); }
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); prevSlide(); }
+  if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+  if (e.key === 'End') { e.preventDefault(); goTo(total - 1); }
+});
+
+// Touch support
+let touchStartY = 0;
+document.addEventListener('touchstart', (e) => { touchStartY = e.touches[0].clientY; });
+document.addEventListener('touchend', (e) => {
+  const diff = touchStartY - e.changedTouches[0].clientY;
+  if (Math.abs(diff) > 50) { diff > 0 ? nextSlide() : prevSlide(); }
+});
+
+// Mouse wheel
+let wheelTimeout = false;
+document.addEventListener('wheel', (e) => {
+  if (wheelTimeout) return;
+  wheelTimeout = true;
+  if (e.deltaY > 0) nextSlide();
+  else prevSlide();
+  setTimeout(() => { wheelTimeout = false; }, 800);
+});
+
+updateSlide(0);
+</script>
+</body>
+</html>

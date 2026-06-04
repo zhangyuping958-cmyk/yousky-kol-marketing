@@ -1,0 +1,82 @@
+<div class="slide">
+  <div class="bg-grid"></div>
+  <div style="position:relative;z-index:2;display:flex;flex-direction:column;height:100%;">
+    <div class="tag">Step 5</div>
+    <h2>面试评分与建议</h2>
+    <p style="color:var(--text-2);margin-bottom:20px;">基于面试题逐题打分，输出综合评估</p>
+
+    <div class="row" style="flex:1;gap:24px;">
+      <!-- Left: Score table -->
+      <div class="col" style="flex:1.2;">
+        <div class="card" style="flex:1;">
+          <h3 style="font-size:0.9rem;color:var(--accent);margin-bottom:12px;">各题评分</h3>
+          <table>
+            <thead>
+              <tr><th>题号</th><th>维度</th><th>题目</th><th>得分</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Q1</td><td>硬技能</td><td style="font-size:12px;">TikTok内容策略设计...</td><td><span class="badge badge-good">4/5</span></td></tr>
+              <tr><td>Q2</td><td>硬技能</td><td style="font-size:12px;">达人矩阵管理方案...</td><td><span class="badge badge-good">4/5</span></td></tr>
+              <tr><td>Q3</td><td>硬技能</td><td style="font-size:12px;">ROI分析与优化...</td><td><span class="badge badge-warn">3/5</span></td></tr>
+              <tr><td>Q4</td><td>软实力</td><td style="font-size:12px;">跨文化沟通案例...</td><td><span class="badge badge-good">5/5</span></td></tr>
+              <tr><td>Q5</td><td>价值观</td><td style="font-size:12px;">创业团队适应性...</td><td><span class="badge badge-good">4/5</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Right: Summary & Recommendation -->
+      <div class="col" style="flex:0.8;">
+        <div class="card" style="margin-bottom:16px;">
+          <h3 style="font-size:0.9rem;color:var(--accent);margin-bottom:12px;">维度汇总</h3>
+
+          <div style="margin-bottom:12px;">
+            <div class="row" style="justify-content:space-between;margin-bottom:4px;">
+              <span style="font-size:12px;">业务硬技能</span>
+              <span style="font-size:12px;font-weight:600;">3.7/5</span>
+            </div>
+            <div class="score-bar">
+              <div class="bar-bg"><div class="bar-fill good" style="width:74%;"></div></div>
+            </div>
+          </div>
+
+          <div style="margin-bottom:12px;">
+            <div class="row" style="justify-content:space-between;margin-bottom:4px;">
+              <span style="font-size:12px;">软实力</span>
+              <span style="font-size:12px;font-weight:600;">4.5/5</span>
+            </div>
+            <div class="score-bar">
+              <div class="bar-bg"><div class="bar-fill good" style="width:90%;"></div></div>
+            </div>
+          </div>
+
+          <div style="margin-bottom:12px;">
+            <div class="row" style="justify-content:space-between;margin-bottom:4px;">
+              <span style="font-size:12px;">职业兴趣与价值观</span>
+              <span style="font-size:12px;font-weight:600;">4.0/5</span>
+            </div>
+            <div class="score-bar">
+              <div class="bar-bg"><div class="bar-fill good" style="width:80%;"></div></div>
+            </div>
+          </div>
+
+          <div style="text-align:center;padding-top:8px;">
+            <span style="font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--accent);">4.0/5</span>
+            <p style="font-size:11px;color:var(--text-3);">总体均分</p>
+          </div>
+        </div>
+
+        <!-- Final verdict -->
+        <div class="card" style="border:2px solid var(--good);background:rgba(74,222,128,0.05);">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+            <span style="font-size:1.5rem;">✅</span>
+            <h3 style="font-size:1.1rem;color:var(--good);">建议：通过</h3>
+          </div>
+          <p style="font-size:12px;color:var(--text-2);line-height:1.6;">
+            候选人在KOL达人拓展方面经验匹配，软实力突出。建议入职后重点关注数据分析和付费广告的交叉培训。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

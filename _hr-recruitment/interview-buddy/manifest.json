@@ -1,0 +1,11 @@
+{
+  "title": "Interview Buddy · Yousky面试搭子",
+  "slides": [
+    {"title": "Welcome", "subtitle": "面试搭子 — 智能面试助手"},
+    {"title": "Parse Resume", "subtitle": "简历解析"},
+    {"title": "Job Position", "subtitle": "岗位匹配"},
+    {"title": "Interview Questions", "subtitle": "定制化面试题"},
+    {"title": "Voice Memos", "subtitle": "语音备忘录转录"},
+    {"title": "Evaluation", "subtitle": "评分与建议"}
+  ]
+}

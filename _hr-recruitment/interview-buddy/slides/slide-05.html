@@ -1,0 +1,64 @@
+<div class="slide">
+  <div class="bg-grid"></div>
+  <div style="position:relative;z-index:2;display:flex;flex-direction:column;height:100%;">
+    <div class="tag">Step 4</div>
+    <h2>语音备忘录转录</h2>
+    <p style="color:var(--text-2);margin-bottom:24px;">读取 Mac 语音备忘录 → 自动转为文本</p>
+
+    <div class="row" style="flex:1;gap:24px;">
+      <!-- Left: memo list -->
+      <div class="col" style="max-width:380px;">
+        <div class="card" style="flex:1;">
+          <h3 style="font-size:0.9rem;color:var(--accent);margin-bottom:12px;">🎙️ 语音备忘录</h3>
+
+          <div style="font-size:12px;color:var(--text-2);line-height:1.6;">
+            <p style="margin-bottom:8px;">默认路径：</p>
+            <p class="mono" style="font-size:11px;margin-bottom:16px;">
+              ~/Library/Application Support/<br>com.apple.voicememos/Recordings/
+            </p>
+          </div>
+
+          <!-- Memo items (placeholder) -->
+          <div class="card" style="margin-bottom:8px;padding:12px;background:rgba(0,0,0,0.2);">
+            <div class="row" style="justify-content:space-between;align-items:center;">
+              <div>
+                <p style="font-size:13px;font-weight:600;">录音 1.m4a</p>
+                <p class="text-2" style="font-size:11px;">2024-06-03 14:30 · 25MB · 45:00</p>
+              </div>
+              <span class="badge badge-good">已转录</span>
+            </div>
+          </div>
+
+          <div class="card" style="margin-bottom:8px;padding:12px;background:rgba(0,0,0,0.2);">
+            <div class="row" style="justify-content:space-between;align-items:center;">
+              <div>
+                <p style="font-size:13px;font-weight:600;">录音 2.m4a</p>
+                <p class="text-2" style="font-size:11px;">2024-06-03 15:15 · 18MB · 30:00</p>
+              </div>
+              <span class="badge badge-warn">待转录</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px;background:rgba(0,200,255,0.03);border:1px solid var(--accent-dim);">
+          <p class="mono" style="font-size:12px;">
+            python main.py memos<br>
+            python main.py transcribe --all
+          </p>
+        </div>
+      </div>
+
+      <!-- Right: transcript preview -->
+      <div class="col" style="flex:1;">
+        <div class="card" style="flex:1;">
+          <h3 style="font-size:0.9rem;color:var(--accent);margin-bottom:12px;">转录文本</h3>
+          <div style="background:rgba(0,0,0,0.3);border-radius:8px;padding:16px;flex:1;max-height:400px;overflow-y:auto;">
+            <p style="font-size:12px;color:var(--text-2);line-height:1.7;">
+              等待转录完成...
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
