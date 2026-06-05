@@ -177,7 +177,7 @@ def main():
     p.add_argument("--file", help="单个 .m4a 文件路径")
     p.add_argument("--latest", action="store_true", help="转录最新一条语音备忘录")
     p.add_argument("--all", action="store_true", help="转录所有语音备忘录")
-    p.add_argument("--method", choices=["whisper", "openai"], default="whisper", help="转录方式")
+    p.add_argument("--method", choices=["whisper", "whisperx", "openai"], default="whisperx", help="转录方式")
     p.add_argument("--dir", help="语音文件目录（配合 --all 使用）")
     p.set_defaults(func=cmd_transcribe)
 
