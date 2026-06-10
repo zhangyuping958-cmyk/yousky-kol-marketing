@@ -263,7 +263,7 @@ h2{
 <div class="nav-dots" id="navDots"></div>
 
 <!-- ═══════════ 01 · COVER ═══════════ -->
-<div class="slide" id="s1">
+<div class="slide visible" id="s1">
   <div class="bg-dot" style="width:400px;height:400px;top:-120px;right:-80px;"></div>
   <div class="bg-dot" style="width:200px;height:200px;bottom:-60px;left:-40px;background:var(--copper);opacity:0.04"></div>
   <div class="slide-tag">Yousky / Company Profile</div>
@@ -517,6 +517,11 @@ for (let i = 0; i < total; i++) {
   dot.onclick = () => slides[i].scrollIntoView({behavior:'smooth'});
   dotsContainer.appendChild(dot);
 }
+
+// Init first slide
+document.querySelectorAll('.nav-dots button')[0]?.classList.add('active');
+progress.style.width = (1 / total * 100) + '%';
+slides[0].classList.add('visible');
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
