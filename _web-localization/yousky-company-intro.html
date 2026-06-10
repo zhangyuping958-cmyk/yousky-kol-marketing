@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Yousky · 公司介绍</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Noto+Sans+SC:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:         #fafaf8;
+  --surface:    #f4f2ed;
+  --text:       #1a1d28;
+  --text-2:     #5a5d68;
+  --text-3:     #90939e;
+  --ocean:      #1a3a52;
+  --ocean-glow: #2c5f8a;
+  --copper:     #b8875a;
+  --copper-glow:#d4a574;
+  --gold:       #c4a35a;
+  --gold-glow:  #ddc08a;
+  --teal:       #2d6a6a;
+  --teal-glow:  #4a9a9a;
+  --good:       #4a7c6b;
+  --bad:        #b55a4a;
+  --font-display: "Clash Display","Inter","Noto Sans SC",sans-serif;
+  --font-serif:   "Playfair Display","Noto Serif SC",serif;
+  --font-body:    "Inter","Noto Sans SC",sans-serif;
+  --font-mono:    "SF Mono","JetBrains Mono",monospace;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+html{
+  scroll-snap-type:y mandatory;
+  scroll-behavior:smooth;
+  overflow-x:hidden;
+  background:var(--bg);
+}
+html,body{height:100%}
+
+body{
+  font-family:var(--font-body);
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  line-height:1.5;
+}
+
+.slide{
+  width:100vw;height:100vh;height:100dvh;
+  scroll-snap-align:start;
+  display:flex;flex-direction:column;
+  justify-content:center;
+  padding:6vw 8vw;
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+.slide-inner{
+  position:relative;z-index:2;
+  width:100%;max-width:920px;
+  opacity:0;transform:translateY(24px);
+  transition:opacity 0.55s cubic-bezier(0.22,1,0.36,1),
+             transform 0.55s cubic-bezier(0.22,1,0.36,1);
+}
+.slide.visible>.slide-inner{opacity:1;transform:translateY(0)}
+.slide-inner>*{opacity:0;transform:translateY(16px);
+  transition:opacity 0.5s cubic-bezier(0.22,1,0.36,1),
+             transform 0.5s cubic-bezier(0.22,1,0.36,1);}
+.slide.visible>.slide-inner>*{opacity:1;transform:translateY(0)}
+.slide.visible>.slide-inner>:nth-child(1){transition-delay:0.04s}
+.slide.visible>.slide-inner>:nth-child(2){transition-delay:0.10s}
+.slide.visible>.slide-inner>:nth-child(3){transition-delay:0.16s}
+.slide.visible>.slide-inner>:nth-child(4){transition-delay:0.22s}
+.slide.visible>.slide-inner>:nth-child(5){transition-delay:0.28s}
+.slide.visible>.slide-inner>:nth-child(6){transition-delay:0.34s}
+
+.progress-bar{
+  position:fixed;top:0;left:0;height:2px;width:0%;
+  background:var(--ocean);
+  z-index:1000;
+  transition:width 0.3s ease;
+}
+.nav-dots{
+  position:fixed;right:14px;top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:6px;z-index:1000;
+}
+.nav-dots button{
+  width:6px;height:6px;border-radius:50%;
+  border:1px solid #c5c0b8;
+  background:transparent;cursor:pointer;padding:0;
+  transition:all 0.35s ease;
+}
+.nav-dots button.active{
+  background:var(--ocean);border-color:var(--ocean);
+  transform:scale(1.6);
+}
+
+.slide-tag{
+  position:absolute;top:28px;left:8vw;
+  font-family:var(--font-mono);font-size:11px;
+  color:var(--text-3);letter-spacing:0.14em;z-index:3;
+  text-transform:uppercase;
+}
+.slide-num{
+  position:absolute;top:28px;right:8vw;
+  font-family:var(--font-mono);font-size:11px;
+  color:var(--text-3);z-index:3;
+}
+.slide-num span{color:var(--ocean)}
+
+h1{
+  font-family:var(--font-display);
+  font-weight:600;font-size:clamp(2.6rem,5.5vw,4.4rem);
+  letter-spacing:-0.03em;line-height:1.1;
+  color:var(--ocean);
+}
+h2{
+  font-family:var(--font-display);
+  font-weight:600;font-size:clamp(1.6rem,3.2vw,2.4rem);
+  letter-spacing:-0.02em;line-height:1.2;
+}
+.section-label{
+  font-family:var(--font-mono);font-size:12px;color:var(--copper);
+  letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px;
+}
+
+.insight{
+  font-size:clamp(1rem,1.6vw,1.3rem);
+  color:var(--text-2);line-height:1.6;
+  max-width:680px;margin-top:8px;
+  padding-left:16px;border-left:2px solid var(--copper-glow);
+}
+.insight strong{color:var(--ocean);font-weight:600}
+
+.stat-row{
+  display:flex;gap:24px;flex-wrap:wrap;
+}
+.stat-box{
+  min-width:140px;
+  padding:0 0 10px 0;
+  border-bottom:2px solid #d5d0c7;
+}
+.stat-box .num{
+  font-family:var(--font-display);
+  font-weight:600;font-size:clamp(1.8rem,3.5vw,2.8rem);
+  color:var(--ocean);line-height:1.1;
+}
+.stat-box .lbl{
+  font-size:12px;color:var(--text-3);margin-top:4px;
+  font-family:var(--font-mono);letter-spacing:0.04em;
+}
+.stat-box.warm .num{color:var(--copper)}
+.stat-box.teal .num{color:var(--teal)}
+.stat-box.gold .num{color:var(--gold)}
+
+.blockquote{
+  border-left:3px solid var(--ocean);
+  padding:8px 0 8px 20px;
+  margin:16px 0;
+}
+.blockquote p{
+  font-size:clamp(0.95rem,1.4vw,1.1rem);
+  color:var(--text-2);font-style:italic;line-height:1.55;
+}
+.blockquote footer{
+  font-size:11px;color:var(--text-3);font-family:var(--font-mono);
+  margin-top:6px;font-style:normal;
+}
+
+/* value cards */
+.value-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+}
+.value-card{
+  padding:20px 18px;
+  background:var(--surface);
+  border-radius:2px;
+  border-top:3px solid var(--ocean);
+}
+.value-card:nth-child(2){border-top-color:var(--copper)}
+.value-card:nth-child(3){border-top-color:var(--teal)}
+.value-card:nth-child(4){border-top-color:var(--gold)}
+.value-card:nth-child(5){border-top-color:var(--copper)}
+.value-card:nth-child(6){border-top-color:var(--ocean)}
+.value-card h3{
+  font-family:var(--font-display);font-weight:600;
+  font-size:15px;margin-bottom:6px;
+}
+.value-card p{
+  font-size:12px;color:var(--text-3);line-height:1.5;
+}
+
+/* product table */
+.data-table{
+  width:100%;border-collapse:collapse;font-size:14px;
+}
+.data-table thead th{
+  text-align:left;padding:10px 0;
+  font-family:var(--font-mono);font-size:11px;
+  color:var(--text-3);letter-spacing:0.08em;
+  border-bottom:1px solid #d5d0c7;
+  font-weight:500;
+}
+.data-table tbody td{
+  padding:10px 0;
+  border-bottom:1px solid #d5d0c7;
+  color:var(--text-2);line-height:1.5;
+}
+.data-table tbody td:first-child{color:var(--text);font-weight:600}
+.data-table .status-live{color:var(--teal);font-weight:600}
+.data-table .status-new{color:var(--ocean);font-weight:600}
+.data-table .status-upcoming{color:var(--copper);font-weight:600}
+
+.story-text{
+  font-size:clamp(1.05rem,1.6vw,1.25rem);
+  color:var(--text-2);line-height:1.7;max-width:800px;
+}
+.story-text em{color:var(--ocean);font-style:normal;font-weight:600}
+
+.compare-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:40px;
+}
+.compare-col h3{
+  font-family:var(--font-mono);font-size:11px;
+  letter-spacing:0.12em;margin-bottom:14px;
+  padding-bottom:8px;border-bottom:1px solid #d5d0c7;
+}
+.compare-col h3.ours{color:var(--ocean)}
+.compare-col h3.theirs{color:var(--copper)}
+.compare-col .item{
+  margin-bottom:18px;padding-left:0;
+}
+.compare-col .item .label{
+  font-weight:600;font-size:15px;color:var(--text);
+  margin-bottom:2px;
+}
+.compare-col .item .desc{
+  font-size:13px;color:var(--text-3);line-height:1.5;
+}
+
+.bg-dot{
+  position:absolute;border-radius:50%;
+  background:var(--ocean);opacity:0.04;
+  pointer-events:none;z-index:1;
+}
+
+@media(max-width:768px){
+  .slide{padding:48px 24px}
+  .value-grid{grid-template-columns:1fr 1fr}
+  .compare-grid{grid-template-columns:1fr;gap:24px}
+  .stat-row{flex-direction:column;gap:14px}
+  .slide-tag{left:24px}.slide-num{right:24px}
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+<div class="nav-dots" id="navDots"></div>
+
+<!-- ═══════════ 01 · COVER ═══════════ -->
+<div class="slide" id="s1">
+  <div class="bg-dot" style="width:400px;height:400px;top:-120px;right:-80px;"></div>
+  <div class="bg-dot" style="width:200px;height:200px;bottom:-60px;left:-40px;background:var(--copper);opacity:0.04"></div>
+  <div class="slide-tag">Yousky / Company Profile</div>
+  <div class="slide-num"><span>01</span> / 08</div>
+  <div class="slide-inner" style="text-align:center">
+    <div class="section-label">Brand & Business</div>
+    <h1 style="color:var(--text);margin-bottom:12px">Yousky<br><span style="color:var(--ocean)">泳池清洁生态品牌</span></h1>
+    <p class="story-text" style="max-width:640px;margin:8px auto 0;text-align:center">
+      为每一个后院，找回失落的欢笑<br>
+      <span style="font-size:0.85em;color:var(--text-3)">Revitalize your pool, reconnect your family</span>
+    </p>
+    <p style="font-size:13px;color:var(--text-3);margin-top:36px;font-family:var(--font-mono);letter-spacing:0.08em">
+      面向 DKTT 合作沟通 · 2026年6月
+    </p>
+  </div>
+</div>
+
+<!-- ═══════════ 02 · BRAND STORY ═══════════ -->
+<div class="slide" id="s2">
+  <div class="slide-tag">Yousky / Story</div>
+  <div class="slide-num"><span>02</span> / 08</div>
+  <div class="slide-inner">
+    <div class="section-label">品牌故事</div>
+    <h2 style="margin-bottom:20px">源于一位父亲的执着</h2>
+    <div class="story-text" style="margin-bottom:20px">
+      Yousky 的故事始于创始人 <em>Paul</em> 的一次深刻遗憾。作为两个孩子的父亲，Paul 曾深陷于泳池维护这种"甜蜜的负担"。每当孩子们呼唤<em>"爸爸，快来一起玩"</em>时，他往往正满头大汗地修理笨重的旧设备。他意识到：被浪费掉的不只是时间，更是孩子们转瞬即逝的童年。
+    </div>
+    <div class="story-text" style="margin-bottom:24px">
+      为了<em>"把时间还给家庭"</em>，Paul 辞去高管职位，投身后院革命。他将对家人的爱注入每一个产品细节——从一键启动的极简交互，到极致的清洁效率。
+    </div>
+    <div class="blockquote">
+      <p>"我们不只是清洁泳池，我们守护每一场纯粹的家庭聚会。"</p>
+      <footer>— Paul，Yousky 创始人</footer>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ 03 · MISSION & VISION ═══════════ -->
+<div class="slide" id="s3">
+  <div class="slide-tag">Yousky / Mission</div>
+  <div class="slide-num"><span>03</span> / 08</div>
+  <div class="slide-inner">
+    <div class="section-label">使命 · 愿景 · 价值观</div>
+    <h2 style="margin-bottom:24px">让泳池重获新生，让美好重回家庭</h2>
+
+    <div style="display:flex;gap:48px;margin-bottom:28px">
+      <div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);letter-spacing:0.12em;margin-bottom:4px">品牌使命</div>
+        <div style="font-family:var(--font-display);font-weight:600;font-size:20px;color:var(--ocean)">Revitalize your pool,<br>reconnect your family.</div>
+      </div>
+      <div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);letter-spacing:0.12em;margin-bottom:4px">品牌愿景</div>
+        <div style="font-family:var(--font-display);font-weight:600;font-size:20px;color:var(--copper)">全球家庭最具性价比的<br>"全场景无忧泳池生态"首选</div>
+      </div>
+    </div>
+
+    <div class="value-grid">
+      <div class="value-card">
+        <h3>极致省心</h3>
+        <p>Zero-Friction · 产品操作和水质管理做到"直觉化"和"无感化"</p>
+      </div>
+      <div class="value-card">
+        <h3>水质安全</h3>
+        <p>Purity First · 像守护饮用水一样守护泳池水质</p>
+      </div>
+      <div class="value-card">
+        <h3>瞬间就绪</h3>
+        <p>Ready-to-Party · 满足派对前的紧急清理需求</p>
+      </div>
+      <div class="value-card">
+        <h3>陪伴至上</h3>
+        <p>Connection · 技术是为了让人与人更近</p>
+      </div>
+      <div class="value-card">
+        <h3>普惠体验</h3>
+        <p>Accessible Excellence · 用更优价格交付超越头部的品质</p>
+      </div>
+      <div class="value-card">
+        <h3>生态思维</h3>
+        <p>Ecosystem Thinking · 全生命周期泳池管理闭环</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ 04 · PRODUCT MATRIX ═══════════ -->
+<div class="slide" id="s4">
+  <div class="slide-tag">Yousky / Products</div>
+  <div class="slide-num"><span>04</span> / 08</div>
+  <div class="slide-inner">
+    <div class="section-label">产品矩阵</div>
+    <h2 style="margin-bottom:8px">6 大系列，覆盖全场景泳池清洁</h2>
+    <p style="font-size:14px;color:var(--text-3);margin-bottom:24px">从 $59 到 $479，手动到全自动，完整产品生态</p>
+    <table class="data-table" style="margin-bottom:20px">
+      <thead><tr><th>系列</th><th>代表产品</th><th>定位</th><th>MAP 价格</th><th>状态</th></tr></thead>
+      <tbody>
+        <tr><td>大手持</td><td>H11 / H11 Pro</td><td>手持池底池壁清洁，60min 续航，3200mAh</td><td>$89–109</td><td class="status-live">在售 · 主力</td></tr>
+        <tr><td>水面机器人</td><td>K10</td><td>太阳能 25h 续航，清洁+净化二合一，APP 控制</td><td>$319.99</td><td class="status-new">2026/4 上市</td></tr>
+        <tr><td>落叶款</td><td>L10 / L10 Mini</td><td>83GPM 大吸力，池底水面落叶清理，180min 续航</td><td>$129.99</td><td class="status-live">在售</td></tr>
+        <tr><td>框架水面机</td><td>S10</td><td>地上框架泳池固定安装，太阳能版可选</td><td>$99–149</td><td class="status-live">在售</td></tr>
+        <tr><td>小手持</td><td>T11</td><td>SPA / 浴缸 / 小泳池，入水自动开关</td><td>$64.99</td><td class="status-upcoming">即将上市</td></tr>
+        <tr><td>池底机器人</td><td>C20</td><td>4800GPH，弓字形导航，3μm 超细过滤</td><td>$479.99</td><td class="status-upcoming">2026/10 上市</td></tr>
+      </tbody>
+    </table>
+    <p class="insight">
+      <strong>差异化：</strong>清洁+净化二合一 / 太阳能自主续航 / 高性价比 — 对标 Betta SE、AIPER、Dolphin，价格低 30-50%。
+    </p>
+  </div>
+</div>
+
+<!-- ═══════════ 05 · MARKET & CHANNELS ═══════════ -->
+<div class="slide" id="s5">
+  <div class="slide-tag">Yousky / Market</div>
+  <div class="slide-num"><span>05</span> / 08</div>
+  <div class="slide-inner">
+    <div class="section-label">市场与渠道</div>
+    <h2 style="margin-bottom:8px">Amazon + 独立站 + TK 三渠道布局</h2>
+    <p style="font-size:14px;color:var(--text-3);margin-bottom:28px">主市场 US / EU / AU，泳池清洁机品类年增速 20%+</p>
+
+    <div class="stat-row" style="margin-bottom:28px">
+      <div class="stat-box"><div class="num">US · EU · AU</div><div class="lbl">核心市场</div></div>
+      <div class="stat-box warm"><div class="num">4月 +33%</div><div class="lbl">销量环比增长</div></div>
+      <div class="stat-box teal"><div class="num">$100-150</div><div class="lbl">主力客单价区间</div></div>
+      <div class="stat-box gold"><div class="num">600+</div><div class="lbl">邮件订阅用户</div></div>
+    </div>
+
+    <table class="data-table" style="margin-bottom:20px">
+      <thead><tr><th>渠道</th><th>当前状态</th><th>核心策略</th><th>月度数据</th></tr></thead>
+      <tbody>
+        <tr><td>Amazon</td><td style="color:var(--teal);font-weight:600">主力渠道 · 稳定运营</td><td>SP 广告 + BD 活动，TACOS 降至 23%</td><td>占整体销量 ~70%</td></tr>
+        <tr><td>独立站 .com</td><td style="color:var(--ocean);font-weight:600">增长渠道 · 内容驱动</td><td>SEO + 邮件营销 + KOL 引流</td><td>4 月环比增长中</td></tr>
+        <tr><td>TikTok Shop</td><td style="color:var(--copper);font-weight:600">新渠道 · 4 月刚启动</td><td>达人寄样 + GMV Max + 内容矩阵</td><td>91 台 (仅 10 天)</td></tr>
+        <tr><td>Walmart</td><td style="color:var(--text-2)">补充渠道</td><td>多渠道分散风险</td><td>占比升至 25%</td></tr>
+      </tbody>
+    </table>
+
+    <p class="insight">
+      <strong>TK 是我们的战略增长引擎：</strong>4 月 BD 团队搭建完成，但内容产能几乎是零。这是我们需要 DKTT 的核心原因。
+    </p>
+  </div>
+</div>
+
+<!-- ═══════════ 06 · TK PAIN POINTS ═══════════ -->
+<div class="slide" id="s6">
+  <div class="slide-tag">Yousky / TK Channel</div>
+  <div class="slide-num"><span>06</span> / 08</div>
+  <div class="slide-inner">
+    <div class="section-label">TK 渠道现状</div>
+    <h2 style="margin-bottom:8px">数据在涨，但内容引擎尚未启动</h2>
+    <p style="font-size:14px;color:var(--text-3);margin-bottom:24px">我们有产品和渠道基础，缺的是内容产能</p>
+
+    <div class="stat-row" style="margin-bottom:28px">
+      <div class="stat-box"><div class="num">91 台</div><div class="lbl">TK 店铺 4 月销量 (仅 10 天)</div></div>
+      <div class="stat-box warm"><div class="num">39 台</div><div class="lbl">达人寄样数量</div></div>
+      <div class="stat-box" style="border-bottom-color:var(--bad)"><div class="num" style="color:var(--bad)">~0</div><div class="lbl">品牌自有 TK 内容产出</div></div>
+      <div class="stat-box gold"><div class="num">$15-20</div><div class="lbl">GMV Max CPS</div></div>
+    </div>
+
+    <div class="compare-grid">
+      <div>
+        <h3 class="ours">我们已有的</h3>
+        <div class="item" style="padding-left:18px;border-left:2px solid var(--good);margin-bottom:16px">
+          <div class="label">产品矩阵完整</div>
+          <div class="desc">6 大系列 10+ SKU，$59-479 全覆盖</div>
+        </div>
+        <div class="item" style="padding-left:18px;border-left:2px solid var(--good);margin-bottom:16px">
+          <div class="label">TK 店铺已开通</div>
+          <div class="desc">BD 团队 5 月搭建完成，达人建联体系运转</div>
+        </div>
+        <div class="item" style="padding-left:18px;border-left:2px solid var(--good);margin-bottom:0">
+          <div class="label">品牌基础扎实</div>
+          <div class="desc">使命愿景价值观完整，Means-Ends Chain 清晰</div>
+        </div>
+      </div>
+      <div>
+        <h3 class="theirs">我们缺的</h3>
+        <div class="item" style="padding-left:18px;border-left:2px solid var(--bad);margin-bottom:16px">
+          <div class="label">品牌自有 TK 内容 = 0</div>
+          <div class="desc">没有日更能力，没有 AI 内容工厂，传统实拍成本太高</div>
+        </div>
+        <div class="item" style="padding-left:18px;border-left:2px solid var(--bad);margin-bottom:16px">
+          <div class="label">KOL 合作效率极低</div>
+          <div class="desc">3 个月 13 达人 $2,342 投入 → 419K 曝光 → 0 转化</div>
+        </div>
+        <div class="item" style="padding-left:18px;border-left:2px solid var(--bad);margin-bottom:0">
+          <div class="label">品牌搜索基建 = 0</div>
+          <div class="desc">KOL Google 搜不到我们 → 信任归零 → 回复率仅 10%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ 07 · COOPERATION OVERVIEW ═══════════ -->
+<div class="slide" id="s7">
+  <div class="slide-tag">Yousky / Cooperation</div>
+  <div class="slide-num"><span>07</span> / 08</div>
+  <div class="slide-inner">
+    <div class="section-label">合作展望</div>
+    <h2 style="margin-bottom:24px">Yousky × DKTT 的合作空间</h2>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px">
+      <div style="padding:20px;background:var(--surface);border-left:3px solid var(--ocean);border-radius:0 2px 2px 0">
+        <h3 style="font-family:var(--font-display);font-size:17px;color:var(--ocean);margin-bottom:8px">TK 品牌内容矩阵搭建</h3>
+        <p style="font-size:13px;color:var(--text-3);line-height:1.55">AI 批量生成多语种、多场景短视频。品牌故事、产品卖点、ASMR 清洁、Before/After 对比 — 首月目标 100 万+ 曝光。</p>
+      </div>
+      <div style="padding:20px;background:var(--surface);border-left:3px solid var(--copper);border-radius:0 2px 2px 0">
+        <h3 style="font-family:var(--font-display);font-size:17px;color:var(--copper);margin-bottom:8px">产品种草 + 转化闭环</h3>
+        <p style="font-size:13px;color:var(--text-3);line-height:1.55">H11（$89-109 引流款）+ K10（$319 科技旗舰）差异化内容策略，从曝光 → 点击 → ATC → GMV 全链路追踪。</p>
+      </div>
+      <div style="padding:20px;background:var(--surface);border-left:3px solid var(--teal);border-radius:0 2px 2px 0">
+        <h3 style="font-family:var(--font-display);font-size:17px;color:var(--teal);margin-bottom:8px">KOL 素材二次加工投流</h3>
+        <p style="font-size:13px;color:var(--text-3);line-height:1.55">已有 13 条 KOL 视频素材 → AI 批量改编换语种、换场景 → Spark Ads 投流放大，最大化内容资产利用率。</p>
+      </div>
+      <div style="padding:20px;background:var(--surface);border-left:3px solid var(--gold);border-radius:0 2px 2px 0">
+        <h3 style="font-family:var(--font-display);font-size:17px;color:var(--gold);margin-bottom:8px">新品上市内容预热</h3>
+        <p style="font-size:13px;color:var(--text-3);line-height:1.55">10 月 C20 池底机器人上市 — 需要提前 2-3 个月的内容预热。AI 产能可以让新品"未上先火"。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ 08 · CLOSING ═══════════ -->
+<div class="slide" id="s8">
+  <div class="bg-dot" style="width:360px;height:360px;top:-100px;right:-60px;"></div>
+  <div class="bg-dot" style="width:160px;height:160px;bottom:-50px;left:80px;background:var(--copper);opacity:0.04"></div>
+  <div class="slide-tag">Yousky · DKTT</div>
+  <div class="slide-num"><span>08</span> / 08</div>
+  <div class="slide-inner" style="text-align:center">
+    <div class="section-label">Let's Talk</div>
+    <h1 style="color:var(--text);margin-bottom:12px">从内容出发<br><span style="color:var(--ocean)">一起把 TK 做起来</span></h1>
+    <p class="story-text" style="max-width:560px;margin:12px auto;text-align:center">
+      Yousky 不缺产品和渠道，缺的是<span style="color:var(--ocean);font-weight:600">能把品牌故事讲好的内容产能</span>。<br>
+      DKTT 缺的不是方法论，而是一个<span style="color:var(--copper);font-weight:600">有完整产品矩阵和预算的品牌方</span>。
+    </p>
+    <div class="blockquote" style="text-align:left;max-width:560px;margin:28px auto 0">
+      <p>"我们有产品、有预算、有决心。我们需要一个能跟我们一起打仗的 TK 内容合伙人。"</p>
+      <footer>— Yousky 市场营销部 · 2026.06</footer>
+    </div>
+  </div>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const dotsContainer = document.getElementById('navDots');
+const progress = document.getElementById('progress');
+const total = slides.length;
+
+for (let i = 0; i < total; i++) {
+  const dot = document.createElement('button');
+  dot.onclick = () => slides[i].scrollIntoView({behavior:'smooth'});
+  dotsContainer.appendChild(dot);
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      const idx = Array.from(slides).indexOf(entry.target);
+      document.querySelectorAll('.nav-dots button').forEach((d,i) => d.classList.toggle('active', i===idx));
+      progress.style.width = ((idx + 1) / total * 100) + '%';
+    }
+  });
+}, { threshold: 0.4 });
+
+slides.forEach(s => observer.observe(s));
+
+document.addEventListener('keydown', (e) => {
+  const visible = Array.from(slides).findIndex(s => {
+    const rect = s.getBoundingClientRect();
+    return rect.top >= -100 && rect.top <= 200;
+  });
+  if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
+    e.preventDefault();
+    const next = Math.min(visible + 1, total - 1);
+    slides[next].scrollIntoView({behavior:'smooth'});
+  }
+  if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+    e.preventDefault();
+    const prev = Math.max(visible - 1, 0);
+    slides[prev].scrollIntoView({behavior:'smooth'});
+  }
+});
+</script>
+</body>
+</html>

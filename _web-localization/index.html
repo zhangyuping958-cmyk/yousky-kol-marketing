@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>DKTT × Yousky — TikTok Agent 合作方案</title>
+<title>Yousky · 市场营销部</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Noto+Sans+SC:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Noto+Sans+SC:wght@200;300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -25,718 +25,509 @@
   --steel-glow: #b0b3bb;
   --teal:       #2d6a6a;
   --teal-glow:  #4a9a9a;
-  --good:       #4a7c6b;
-  --warm:       #b8875a;
-  --bad:        #b55a4a;
   --font-display: "Clash Display","Inter","Noto Sans SC",sans-serif;
   --font-serif:   "Playfair Display","Noto Serif SC",serif;
   --font-body:    "Inter","Noto Sans SC",sans-serif;
   --font-mono:    "SF Mono","JetBrains Mono",monospace;
 }
-
 *{margin:0;padding:0;box-sizing:border-box}
-
-html{
-  scroll-snap-type:y mandatory;
-  scroll-behavior:smooth;
-  overflow-x:hidden;
-  background:var(--bg);
-}
-html,body{height:100%}
-
+html{background:var(--bg)}
 body{
-  font-family:var(--font-body);
-  background:var(--bg);
-  color:var(--text);
-  -webkit-font-smoothing:antialiased;
-  line-height:1.5;
+  font-family:var(--font-body);background:var(--bg);
+  color:var(--text);-webkit-font-smoothing:antialiased;
+  line-height:1.6;min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;
 }
 
-/* Slide */
-.slide{
-  width:100vw;height:100vh;height:100dvh;
-  scroll-snap-align:start;
-  display:flex;flex-direction:column;
-  justify-content:center;
-  padding:6vw 8vw;
-  position:relative;
-  overflow:hidden;
-  isolation:isolate;
+/* =============================================
+   HERO
+   ============================================= */
+.hero{
+  text-align:center;padding:72px 40px 40px;
+  display:flex;flex-direction:column;align-items:center;
 }
-.slide-inner{
-  position:relative;z-index:2;
-  width:100%;max-width:920px;
-  opacity:0;transform:translateY(24px);
-  transition:opacity 0.55s cubic-bezier(0.22,1,0.36,1),
-             transform 0.55s cubic-bezier(0.22,1,0.36,1);
+.hero .tag{
+  font-family:var(--font-mono);font-size:11px;color:var(--copper);
+  letter-spacing:0.28em;margin-bottom:20px;text-transform:uppercase;
 }
-.slide.visible>.slide-inner{opacity:1;transform:translateY(0)}
-.slide-inner>*{opacity:0;transform:translateY(16px);
-  transition:opacity 0.5s cubic-bezier(0.22,1,0.36,1),
-             transform 0.5s cubic-bezier(0.22,1,0.36,1);}
-.slide.visible>.slide-inner>*{opacity:1;transform:translateY(0)}
-.slide.visible>.slide-inner>:nth-child(1){transition-delay:0.04s}
-.slide.visible>.slide-inner>:nth-child(2){transition-delay:0.10s}
-.slide.visible>.slide-inner>:nth-child(3){transition-delay:0.16s}
-.slide.visible>.slide-inner>:nth-child(4){transition-delay:0.22s}
-.slide.visible>.slide-inner>:nth-child(5){transition-delay:0.28s}
-.slide.visible>.slide-inner>:nth-child(6){transition-delay:0.34s}
-.slide.visible>.slide-inner>:nth-child(7){transition-delay:0.40s}
+.hero h1{
+  font-family:var(--font-serif);
+  font-weight:700;font-size:clamp(2.8rem,6vw,4.8rem);
+  letter-spacing:-0.02em;line-height:1.1;
+  background:linear-gradient(135deg,#c4a35a 0%,#d4b896 25%,#1a3a52 55%,#2c5f8a 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  margin-bottom:18px;
+  filter:drop-shadow(0 1px 2px rgba(26,58,82,0.08));
+}
+.hero .sub{
+  display:flex;align-items:center;justify-content:center;
+  gap:10px;flex-wrap:wrap;font-size:15px;line-height:1.6;margin-bottom:6px;
+}
+.hero .sub .kw-bold{font-weight:700;font-size:16px;color:var(--text);letter-spacing:-0.01em}
+.hero .sub .kw-mid{font-weight:450;color:var(--text-2);letter-spacing:0.02em}
+.hero .sub .kw-light{font-weight:300;color:var(--text-3);font-family:var(--font-mono);font-size:13px;letter-spacing:0.06em}
+.hero .sub .kw-sep{color:#d5d0c7;font-weight:200;font-size:12px}
+.hero .sig{
+  font-family:var(--font-mono);font-size:11px;font-weight:300;
+  color:var(--text-3);letter-spacing:0.12em;margin-top:10px;
+}
 
-/* Chrome */
-.progress-bar{
-  position:fixed;top:0;left:0;height:2px;width:0%;
+/* =============================================
+   BUBBLE STAGE
+   ============================================= */
+.bubble-stage{
+  position:relative;display:flex;flex-direction:column;align-items:center;
+  padding:8px 32px 20px;width:100%;max-width:960px;
+}
+.bubble-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:44px 56px;justify-items:center;padding:8px 0;
+}
+
+/* ---- wrapper ---- */
+.bw{
+  display:flex;flex-direction:column;align-items:center;
+  cursor:pointer;position:relative;
+}
+
+/* ---- bubble anchor (positioning context for side elements) ---- */
+.b-anchor{
+  position:relative;width:108px;height:108px;
+}
+
+/* ---- bubble sphere ---- */
+.bubble{
+  width:108px;height:108px;border-radius:50%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-decoration:none;position:absolute;inset:0;
+  transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  z-index:2;
+}
+.bubble::after{
+  content:"";position:absolute;inset:0;border-radius:50%;
+  opacity:0;transition:opacity 0.4s ease;pointer-events:none;
+}
+
+/* bubble colour variants */
+.b1{
+  background:
+    radial-gradient(circle at 38% 32%,rgba(255,255,255,0.55) 0%,rgba(255,255,255,0.08) 25%,transparent 45%),
+    radial-gradient(circle at 60% 65%,rgba(44,95,138,0.35) 0%,transparent 50%),
+    linear-gradient(145deg,#1a3a52 0%,#1e4562 35%,#153045 100%);
+  box-shadow:0 6px 24px rgba(26,58,82,0.25),inset 0 -2px 4px rgba(0,0,0,0.12);
+}
+.b1::after{box-shadow:0 0 40px rgba(26,58,82,0.35),0 0 80px rgba(44,95,138,0.15)}
+
+.b2{
+  background:
+    radial-gradient(circle at 38% 32%,rgba(255,255,255,0.5) 0%,rgba(255,255,255,0.06) 25%,transparent 45%),
+    radial-gradient(circle at 60% 65%,rgba(212,165,116,0.3) 0%,transparent 50%),
+    linear-gradient(145deg,#b8875a 0%,#c99a6e 35%,#a07548 100%);
+  box-shadow:0 6px 24px rgba(184,135,90,0.25),inset 0 -2px 4px rgba(0,0,0,0.1);
+}
+.b2::after{box-shadow:0 0 40px rgba(184,135,90,0.35),0 0 80px rgba(212,165,116,0.15)}
+
+.b3{
+  background:
+    radial-gradient(circle at 38% 32%,rgba(255,255,255,0.55) 0%,rgba(255,255,255,0.08) 25%,transparent 45%),
+    radial-gradient(circle at 60% 65%,rgba(221,192,138,0.3) 0%,transparent 50%),
+    linear-gradient(145deg,#c4a35a 0%,#d4b86e 35%,#b08d42 100%);
+  box-shadow:0 6px 24px rgba(196,163,90,0.25),inset 0 -2px 4px rgba(0,0,0,0.1);
+}
+.b3::after{box-shadow:0 0 40px rgba(196,163,90,0.35),0 0 80px rgba(221,192,138,0.15)}
+
+.b4{
+  background:
+    radial-gradient(circle at 38% 32%,rgba(255,255,255,0.55) 0%,rgba(255,255,255,0.08) 25%,transparent 45%),
+    radial-gradient(circle at 60% 65%,rgba(176,179,187,0.3) 0%,transparent 50%),
+    linear-gradient(145deg,#7a7d86 0%,#8e919a 35%,#6a6d75 100%);
+  box-shadow:0 6px 24px rgba(138,141,149,0.25),inset 0 -2px 4px rgba(0,0,0,0.12);
+}
+.b4::after{box-shadow:0 0 40px rgba(138,141,149,0.3),0 0 80px rgba(176,179,187,0.12)}
+
+.b5{
+  background:
+    radial-gradient(circle at 38% 32%,rgba(255,255,255,0.55) 0%,rgba(255,255,255,0.08) 25%,transparent 45%),
+    radial-gradient(circle at 60% 65%,rgba(74,154,154,0.3) 0%,transparent 50%),
+    linear-gradient(145deg,#2d6a6a 0%,#357d7d 35%,#214d4d 100%);
+  box-shadow:0 6px 24px rgba(45,106,106,0.25),inset 0 -2px 4px rgba(0,0,0,0.12);
+}
+.b5::after{box-shadow:0 0 40px rgba(45,106,106,0.35),0 0 80px rgba(74,154,154,0.15)}
+
+.b6{
+  background:
+    radial-gradient(circle at 38% 32%,rgba(255,255,255,0.5) 0%,rgba(255,255,255,0.06) 25%,transparent 45%),
+    radial-gradient(circle at 60% 65%,rgba(200,150,130,0.3) 0%,transparent 50%),
+    linear-gradient(145deg,#8b5a4a 0%,#a06d5c 35%,#6d3a2a 100%);
+  box-shadow:0 6px 24px rgba(139,90,74,0.25),inset 0 -2px 4px rgba(0,0,0,0.12);
+}
+.b6::after{box-shadow:0 0 40px rgba(139,90,74,0.35),0 0 80px rgba(160,109,92,0.15)}
+
+/* bubble inner */
+.bubble .b-icon{
+  font-size:22px;color:rgba(255,255,255,0.9);line-height:1;margin-bottom:2px;
+  text-shadow:0 1px 2px rgba(0,0,0,0.15);position:relative;z-index:1;
+}
+.bubble .b-num{
+  font-family:var(--font-display);font-weight:600;font-size:10px;
+  color:rgba(255,255,255,0.7);letter-spacing:0.06em;position:relative;z-index:1;
+}
+
+/* bubble label + chip */
+.b-label{
+  margin-top:12px;font-family:var(--font-display);font-weight:600;
+  font-size:14px;color:var(--text);letter-spacing:-0.01em;transition:color 0.3s ease;
+}
+.b-chip{
+  margin-top:6px;font-family:var(--font-mono);font-size:10px;
+  color:var(--copper);letter-spacing:0.06em;
+  padding:2px 10px;background:var(--surface);border-radius:6px;
+  opacity:0;transform:translateY(-6px);
+  transition:opacity 0.35s ease,transform 0.35s ease;
+}
+
+/* ---- bubble hover state ---- */
+.bw:hover .bubble,
+.bw.active .bubble{transform:scale(1.18)}
+.bw:hover .bubble::after,
+.bw.active .bubble::after{opacity:1}
+.bw:hover .b-chip,
+.bw.active .b-chip{opacity:1;transform:translateY(0)}
+
+/* =============================================
+   SIDE PANEL — glassmorphism
+   ============================================= */
+.side-panel{
+  position:absolute;top:50%;
+  width:272px;
+  background:rgba(255,255,255,0.72);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border:1px solid rgba(255,255,255,0.6);
+  border-radius:16px;padding:20px 24px;
+  box-shadow:0 8px 40px rgba(0,0,0,0.07),0 1px 3px rgba(0,0,0,0.04);
+  opacity:0;pointer-events:none;z-index:10;
+  transition:opacity 0.4s ease,transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+.side-panel .sp-title{
+  font-family:var(--font-display);font-weight:600;font-size:16px;
+  color:var(--ocean);margin-bottom:6px;letter-spacing:-0.01em;
+}
+.side-panel .sp-desc{
+  font-size:13px;color:var(--text-2);line-height:1.6;margin-bottom:14px;
+}
+.side-panel .sp-btn{
+  display:inline-block;font-family:var(--font-mono);font-size:11px;
+  color:#fff;background:linear-gradient(135deg,#c4a35a,#b8875a);
+  padding:6px 18px;border-radius:20px;text-decoration:none;
+  letter-spacing:0.06em;
+  transition:box-shadow 0.3s ease,transform 0.2s ease;
+  box-shadow:0 2px 8px rgba(184,135,90,0.25);
+}
+.side-panel .sp-btn:hover{
+  box-shadow:0 4px 16px rgba(184,135,90,0.4);transform:translateY(-1px);
+}
+
+/* left-side panels (bubbles 01, 03) */
+.bw.left .side-panel{
+  right:calc(100% + 32px);
+  transform:translateY(-50%) translateX(10px);
+}
+.bw.left:hover .side-panel,
+.bw.left.active .side-panel{
+  opacity:1;transform:translateY(-50%) translateX(0);pointer-events:auto;
+}
+
+/* right-side panels (bubbles 02, 04) */
+.bw.right .side-panel{
+  left:calc(100% + 32px);
+  transform:translateY(-50%) translateX(-10px);
+}
+.bw.right:hover .side-panel,
+.bw.right.active .side-panel{
+  opacity:1;transform:translateY(-50%) translateX(0);pointer-events:auto;
+}
+
+/* center-column panels — appear below bubble */
+.bw.center .side-panel{
+  left:50%;top:calc(100% + 14px);
+  transform:translateX(-50%) translateY(8px);
+}
+.bw.center:hover .side-panel,
+.bw.center.active .side-panel{
+  opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto;
+}
+
+/* =============================================
+   CONNECTOR DOTS — vertical row in the gap
+   ============================================= */
+.side-dots{
+  position:absolute;top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:5px;
+  opacity:0;transition:opacity 0.4s ease;z-index:5;pointer-events:none;
+}
+.bw.left  .side-dots{right:calc(100% + 12px)}
+.bw.right .side-dots{left:calc(100% + 12px)}
+.bw.center .side-dots{
+  left:50%;top:calc(100% + 4px);
+  transform:translateX(-50%);flex-direction:row;
+}
+
+.bw:hover .side-dots,
+.bw.active .side-dots{opacity:1}
+
+.side-dots i{
+  display:block;width:4px;height:4px;border-radius:50%;
   background:var(--copper);
-  z-index:1000;
-  transition:width 0.3s ease;
+  animation:pulse-dot 1.6s ease-in-out infinite;
 }
-.nav-dots{
-  position:fixed;right:14px;top:50%;transform:translateY(-50%);
-  display:flex;flex-direction:column;gap:6px;z-index:1000;
-}
-.nav-dots button{
-  width:6px;height:6px;border-radius:50%;
-  border:1px solid var(--steel);
-  background:transparent;cursor:pointer;padding:0;
-  transition:all 0.35s ease;
-}
-.nav-dots button.active{
-  background:var(--ocean);border-color:var(--ocean);
-  transform:scale(1.6);
+.side-dots i:nth-child(2){animation-delay:0.22s}
+.side-dots i:nth-child(3){animation-delay:0.44s}
+
+@keyframes pulse-dot{
+  0%,100%{opacity:0.15;transform:scale(0.7)}
+  50%{opacity:1;transform:scale(1.5)}
 }
 
-.slide-tag{
-  position:absolute;top:28px;left:8vw;
-  font-family:var(--font-mono);font-size:11px;
-  color:var(--text-3);letter-spacing:0.14em;z-index:3;
-  text-transform:uppercase;
-}
-.slide-num{
-  position:absolute;top:28px;right:8vw;
-  font-family:var(--font-mono);font-size:11px;
-  color:var(--text-3);z-index:3;
-}
-.slide-num span{color:var(--ocean)}
-
-/* Typography */
-h1{
-  font-family:var(--font-display);
-  font-weight:600;font-size:clamp(2.6rem,5.5vw,4.4rem);
-  letter-spacing:-0.03em;line-height:1.1;
-  color:var(--ocean);
-}
-h2{
-  font-family:var(--font-display);
-  font-weight:600;font-size:clamp(1.6rem,3.2vw,2.4rem);
-  letter-spacing:-0.02em;line-height:1.2;
-}
-h3{
-  font-family:var(--font-body);
-  font-weight:600;font-size:clamp(1rem,1.6vw,1.3rem);
-  letter-spacing:-0.01em;
-}
-.section-label{
-  font-family:var(--font-mono);font-size:12px;color:var(--copper);
-  letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px;
-}
-
-/* KPI */
-.kpi-hero{
-  display:flex;align-items:baseline;gap:14px;
-  margin:8px 0;
-}
-.kpi-hero .value{
-  font-family:var(--font-display);
-  font-weight:600;font-size:clamp(3.2rem,7vw,6rem);
-  letter-spacing:-0.03em;color:var(--ocean);line-height:1;
-}
-.kpi-hero .unit{
-  font-family:var(--font-body);
-  font-size:clamp(0.9rem,1.8vw,1.2rem);color:var(--text-2);
-  font-weight:500;
-}
-.kpi-hero.warm .value{color:var(--copper)}
-.kpi-hero.gold .value{color:var(--gold)}
-
-/* Insight */
-.insight{
-  font-size:clamp(1rem,1.6vw,1.3rem);
-  color:var(--text-2);line-height:1.55;
-  max-width:680px;margin-top:8px;
-  padding-left:16px;border-left:2px solid var(--copper-glow);
-}
-.insight strong{color:var(--ocean);font-weight:600;}
-
-/* Phase Cards */
-.phase-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
-}
-.phase-card{
-  padding:20px 16px;
-  background:var(--surface);
-  border-radius:2px;
-  border-top:3px solid var(--ocean);
-}
-.phase-card .phase-num{
-  font-family:var(--font-display);font-weight:600;
-  font-size:28px;color:var(--copper);margin-bottom:4px;
-}
-.phase-card h3{font-size:14px;color:var(--ocean);margin-bottom:6px}
-.phase-card p{font-size:12px;color:var(--text-3);line-height:1.5}
-
-/* Case Cards */
-.case-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:28px;
-}
-.case-card{
-  padding:24px;
-  background:var(--surface);
-  border-left:3px solid var(--ocean);
-  border-radius:0 2px 2px 0;
-}
-.case-card h3{
-  font-family:var(--font-display);font-size:18px;
-  color:var(--ocean);margin-bottom:12px;
-}
-.case-card .metric-row{
-  display:flex;gap:24px;flex-wrap:wrap;margin-bottom:12px;
-}
-.case-card .metric .num{
-  font-family:var(--font-display);font-weight:600;
-  font-size:clamp(1.6rem,2.5vw,2.2rem);
-  color:var(--copper);line-height:1.1;
-}
-.case-card .metric .lbl{
-  font-size:11px;color:var(--text-3);
-  font-family:var(--font-mono);letter-spacing:0.04em;margin-top:2px;
-}
-.case-card .desc{
-  font-size:13px;color:var(--text-2);line-height:1.55;
-}
-
-/* Content Type Grid */
-.type-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
-}
-.type-card{
-  padding:16px;
-  background:var(--surface);
-  border-radius:2px;
-  text-align:center;
-}
-.type-card .t-icon{
-  font-family:var(--font-display);font-weight:600;
-  font-size:28px;color:var(--copper);margin-bottom:6px;
-}
-.type-card h4{font-size:14px;color:var(--ocean);margin-bottom:4px}
-.type-card p{font-size:12px;color:var(--text-3);line-height:1.4}
-
-/* Compare */
-.compare-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:40px;
-}
-.compare-col h3{
-  font-family:var(--font-mono);font-size:11px;
-  letter-spacing:0.12em;margin-bottom:14px;
-  padding-bottom:8px;border-bottom:1px solid var(--steel-glow);
-}
-.compare-col h3.ours{color:var(--ocean)}
-.compare-col h3.theirs{color:var(--copper)}
-.compare-col .item{
-  margin-bottom:18px;padding-left:0;
-}
-.compare-col .item .label{
-  font-weight:600;font-size:15px;color:var(--text);
-  margin-bottom:2px;
-}
-.compare-col .item .desc{
-  font-size:13px;color:var(--text-3);line-height:1.5;
-}
-
-/* Need List */
-.need-list{
-  display:flex;flex-direction:column;gap:10px;
-}
-.need-item{
-  padding:14px 18px;
-  background:var(--surface);
-  border-left:3px solid var(--ocean);
-  border-radius:0 2px 2px 0;
-}
-.need-item .n-label{
-  font-weight:600;font-size:15px;color:var(--ocean);
-  margin-bottom:3px;
-}
-.need-item .n-desc{
-  font-size:13px;color:var(--text-3);line-height:1.5;
-}
-
-/* Stat Row */
-.stat-row{
-  display:flex;gap:24px;flex-wrap:wrap;
-}
-.stat-box{
-  min-width:140px;
-  padding:0 0 10px 0;
-  border-bottom:2px solid var(--steel-glow);
-}
-.stat-box .num{
-  font-family:var(--font-display);
-  font-weight:600;font-size:clamp(1.8rem,3.5vw,2.8rem);
-  color:var(--ocean);line-height:1.1;
-}
-.stat-box .lbl{
-  font-size:12px;color:var(--text-3);margin-top:4px;
-  font-family:var(--font-mono);letter-spacing:0.04em;
-}
-.stat-box.warm .num{color:var(--copper)}
-.stat-box.gold .num{color:var(--gold)}
-.stat-box.teal .num{color:var(--teal)}
-.stat-box.bad .num{color:var(--bad)}
-
-/* Quote */
-.blockquote{
-  border-left:3px solid var(--ocean);
-  padding:8px 0 8px 20px;
-  margin:20px 0;
-}
-.blockquote p{
-  font-size:clamp(0.95rem,1.4vw,1.1rem);
-  color:var(--text-2);font-style:italic;line-height:1.55;
-}
-.blockquote footer{
+/* =============================================
+   FOOTER
+   ============================================= */
+.footer{
+  text-align:center;padding:8px 32px 32px;
   font-size:11px;color:var(--text-3);font-family:var(--font-mono);
-  margin-top:6px;font-style:normal;
+  letter-spacing:0.06em;margin-top:auto;
 }
 
-/* Table */
-.data-table{
-  width:100%;border-collapse:collapse;font-size:14px;
+/* =============================================
+   RESPONSIVE — stack & panels below
+   ============================================= */
+@media(max-width:900px){
+  .bubble-stage{max-width:100%;padding:8px 16px 20px}
+  .bubble-grid{
+    grid-template-columns:1fr 1fr;gap:28px 40px;width:100%;
+  }
+  /* panels become static, centred below each bubble */
+  .side-panel{
+    position:relative;top:auto;left:auto!important;right:auto!important;
+    transform:none!important;width:100%;max-width:320px;
+    opacity:0;max-height:0;overflow:hidden;
+    padding:0 20px;margin-top:0;
+    border-width:0;
+    transition:opacity 0.35s ease,max-height 0.45s ease,padding 0.45s ease,margin 0.45s ease;
+  }
+  .bw.left:hover .side-panel,
+  .bw.left.active .side-panel,
+  .bw.right:hover .side-panel,
+  .bw.right.active .side-panel,
+  .bw.center:hover .side-panel,
+  .bw.center.active .side-panel{
+    opacity:1;max-height:220px;pointer-events:auto;
+    padding:18px 20px;margin-top:14px;border-width:1px;
+    transform:none!important;
+  }
+  .side-dots{display:none}
+  .b-anchor{width:88px;height:88px}
+  .bubble{width:88px;height:88px}
+  .bubble .b-icon{font-size:18px}
+  .b-label{font-size:13px}
 }
-.data-table thead th{
-  text-align:left;padding:10px 0;
-  font-family:var(--font-mono);font-size:11px;
-  color:var(--text-3);letter-spacing:0.08em;
-  border-bottom:1px solid var(--steel-glow);
-  font-weight:500;
-}
-.data-table tbody td{
-  padding:11px 0;
-  border-bottom:1px solid var(--steel-glow);
-  color:var(--text-2);line-height:1.5;
-}
-.data-table tbody td:first-child{color:var(--text);font-weight:600}
-.data-table .tag-ocean{color:var(--ocean);font-weight:600}
-.data-table .tag-copper{color:var(--copper);font-weight:600}
-
-/* Action list */
-.action-items{
-  display:flex;flex-direction:column;gap:12px;
-}
-.action-item{
-  display:flex;align-items:flex-start;gap:14px;
-  padding:12px 0;
-  border-bottom:1px solid var(--steel-glow);
-}
-.action-item .ai-num{
-  font-family:var(--font-display);font-weight:600;
-  font-size:24px;color:var(--copper);min-width:36px;line-height:1;
-}
-.action-item .ai-text strong{
-  font-size:15px;color:var(--ocean);display:block;margin-bottom:2px;
-}
-.action-item .ai-text span{
-  font-size:13px;color:var(--text-3);line-height:1.5;
-}
-
-/* Decorative */
-.bg-dot{
-  position:absolute;border-radius:50%;
-  background:var(--copper);opacity:0.06;
-  pointer-events:none;z-index:1;
-}
-
-@media(max-width:768px){
-  .slide{padding:48px 24px}
-  .phase-grid,.type-grid{grid-template-columns:1fr 1fr;gap:12px}
-  .case-grid,.compare-grid{grid-template-columns:1fr;gap:24px}
-  .stat-row{flex-direction:column;gap:14px}
-  .slide-tag{left:24px}.slide-num{right:24px}
+@media(max-width:600px){
+  .hero{padding:48px 24px 28px}
+  .hero h1{font-size:clamp(2rem,8vw,3rem)}
+  .bubble-grid{grid-template-columns:1fr;gap:20px;max-width:280px;margin:0 auto}
 }
 </style>
 </head>
 <body>
 
-<div class="progress-bar" id="progress"></div>
-<div class="nav-dots" id="navDots"></div>
-
-<!-- ═══════════ SLIDE 01 · COVER ═══════════ -->
-<div class="slide" id="s1">
-  <div class="bg-dot" style="width:420px;height:420px;top:-120px;right:-80px;"></div>
-  <div class="bg-dot" style="width:180px;height:180px;bottom:-60px;left:-40px;"></div>
-  <div class="slide-tag">DKTT × Yousky / 合作提案</div>
-  <div class="slide-num"><span>01</span> / 10</div>
-  <div class="slide-inner" style="text-align:center">
-    <div class="section-label">Partnership Proposal</div>
-    <h1 style="color:var(--text);margin-bottom:12px">DKTT<br><span style="color:var(--ocean)">TikTok AI Agent</span></h1>
-    <p style="font-size:clamp(1rem,1.6vw,1.2rem);color:var(--text-2);max-width:600px;margin:0 auto;line-height:1.6">
-      从跨境卖家 → 实拍带货 → AI 带货 → Agent 技术赋能<br>
-      一支完整经历 TK 出海全生命周期的实战团队
-    </p>
-    <p style="font-size:13px;color:var(--text-3);margin-top:36px;font-family:var(--font-mono);letter-spacing:0.08em;">
-      2026年6月 · 线上沟通准备
-    </p>
-  </div>
+<!-- ====== HERO ====== -->
+<div class="hero">
+  <div class="tag">YOUSKY · 市场营销部</div>
+  <h1>营销资料中心</h1>
+  <p class="sub">
+    <span class="kw-bold">品牌出海</span><span class="kw-sep">·</span><span class="kw-mid">TikTok 内容驱动</span><span class="kw-sep">·</span><span class="kw-light">清洁家电品类</span>
+  </p>
+  <p class="sig">张钰萍 · 2026</p>
 </div>
 
-<!-- ═══════════ SLIDE 02 · DKTT OVERVIEW ═══════════ -->
-<div class="slide" id="s2">
-  <div class="slide-tag">DKTT / Overview</div>
-  <div class="slide-num"><span>02</span> / 10</div>
-  <div class="slide-inner">
-    <div class="section-label">关于 DKTT</div>
-    <h2 style="margin-bottom:20px">深耕一线的"实战派"</h2>
-    <div class="stat-row" style="margin-bottom:28px">
-      <div class="stat-box teal"><div class="num">4</div><div class="lbl">业务阶段演进</div></div>
-      <div class="stat-box warm"><div class="num">100万+</div><div class="lbl">课程营收案例</div></div>
-      <div class="stat-box gold"><div class="num">1,000条</div><div class="lbl">30天AI内容产能</div></div>
-      <div class="stat-box teal"><div class="num">13万+</div><div class="lbl">品牌曝光案例</div></div>
+<!-- ====== BUBBLE STAGE ====== -->
+<div class="bubble-stage">
+
+  <div class="bubble-grid">
+
+    <!-- 01 — left -->
+    <div class="bw left" data-index="0">
+      <div class="b-anchor">
+        <div class="side-panel">
+          <div class="sp-title">市场营销部组织架构</div>
+          <p class="sp-desc">8 页完整 Slide 演示文稿，涵盖四大团队 16 人编制、岗位职责、招聘路线图 — TikTok · 达人 · 广告 · 内容社区</p>
+          <a href="../_hr-recruitment/marketing-org/viewer-zh.html" class="sp-btn">8页 Slide</a>
+        </div>
+        <div class="side-dots"><i></i><i></i><i></i></div>
+        <a href="../_hr-recruitment/marketing-org/viewer-zh.html" class="bubble b1">
+          <span class="b-icon">&#9670;</span>
+          <span class="b-num">01</span>
+        </a>
+      </div>
+      <span class="b-label">市场组织架构</span>
+      <span class="b-chip">8页 Slide</span>
     </div>
-    <p class="insight">
-      <strong>核心定位：</strong>团队完整经历了 TikTok 出海赛道全生命周期——跨境卖家 → 实拍带货 → 测品打品 → 矩阵化 AI 带货。<br>
-      他们跑通了 TK 全生态各种玩法，交付内容源自真金白银砸出来的实操经验。
-    </p>
-    <div class="blockquote" style="margin-top:24px">
-      <p>"我们不卖理论课，只交付我们自己跑通的东西。"</p>
-      <footer>— DKTT 团队</footer>
+
+    <!-- 02 — center -->
+    <div class="bw center" data-index="1">
+      <div class="b-anchor">
+        <div class="side-panel">
+          <div class="sp-title">组织架构框架图</div>
+          <p class="sp-desc">单页树形架构图，市场营销部 + IT 部共 19 人全景，逐岗标注人数与职责，清晰展示汇报关系</p>
+          <a href="../_hr-recruitment/marketing-org/org-chart-zh.html" class="sp-btn">单页图表</a>
+        </div>
+        <div class="side-dots"><i></i><i></i><i></i></div>
+        <a href="../_hr-recruitment/marketing-org/org-chart-zh.html" class="bubble b2">
+          <span class="b-icon">&#9711;</span>
+          <span class="b-num">02</span>
+        </a>
+      </div>
+      <span class="b-label">组织架构框架</span>
+      <span class="b-chip">单页图表</span>
     </div>
+
+    <!-- 03 — right -->
+    <div class="bw right" data-index="2">
+      <div class="b-anchor">
+        <div class="side-panel">
+          <div class="sp-title">4月复盘 &amp; 5月战略部署</div>
+          <p class="sp-desc">12 页 Consulting 风格汇报 Slide。跨部门数据拉通（亚马逊 · TK · KOL · 产品端），五大结构性问题诊断，5 月私域引擎搭建计划</p>
+          <a href="../_hr-recruitment/marketing-org/april-review-zh.html" class="sp-btn">12页 Slide</a>
+        </div>
+        <div class="side-dots"><i></i><i></i><i></i></div>
+        <a href="../_hr-recruitment/marketing-org/april-review-zh.html" class="bubble b3">
+          <span class="b-icon">&#9650;</span>
+          <span class="b-num">03</span>
+        </a>
+      </div>
+      <span class="b-label">4月复盘 &amp; 5月战略</span>
+      <span class="b-chip">12页 Slide</span>
+    </div>
+
+    <!-- 04 — left -->
+    <div class="bw left" data-index="3">
+      <div class="b-anchor">
+        <div class="side-panel">
+          <div class="sp-title">Yousky 手持清洁机 · 海外 KOL 营销拆解</div>
+          <p class="sp-desc">完整 PDF 策略文档。团队能力盘点、产品差异化定位、KOL 矩阵策略（头部→腰部→尾部）、内容 SOP、激励分佣模型、数据复盘体系</p>
+          <a href="../_marketing-research/Yousky手持清洁机海外KOL营销拆解.pdf" class="sp-btn">PDF 文档</a>
+        </div>
+        <div class="side-dots"><i></i><i></i><i></i></div>
+        <a href="../_marketing-research/Yousky手持清洁机海外KOL营销拆解.pdf" class="bubble b4">
+          <span class="b-icon">&#9632;</span>
+          <span class="b-num">04</span>
+        </a>
+      </div>
+      <span class="b-label">KOL 营销拆解</span>
+      <span class="b-chip">PDF 文档</span>
+    </div>
+
+    <!-- 05 — center (row 2) -->
+    <div class="bw center" data-index="4">
+      <div class="b-anchor">
+        <div class="side-panel">
+          <div class="sp-title">三渠道备货计划 2026.6-8</div>
+          <p class="sp-desc">10 页 Consulting 风格汇报 Slide。库存现状盘点、三渠道(Amazon·TK·DTC)需求预测、H11 主力款库存推演、月度备货PO计划、渠道配额分配策略、风险预警与行动清单</p>
+          <a href="../_business-operations/inventory-slides-html/viewer-zh.html" class="sp-btn">10页 Slide</a>
+        </div>
+        <div class="side-dots"><i></i><i></i><i></i></div>
+        <a href="../_business-operations/inventory-slides-html/viewer-zh.html" class="bubble b5">
+          <span class="b-icon">&#9679;</span>
+          <span class="b-num">05</span>
+        </a>
+      </div>
+      <span class="b-label">备货计划 6-8月</span>
+      <span class="b-chip">10页 Slide</span>
+    </div>
+
+    <!-- 06 — right (row 2) -->
+    <div class="bw right" data-index="5">
+      <div class="b-anchor">
+        <div class="side-panel">
+          <div class="sp-title">Yousky 公司介绍</div>
+          <p class="sp-desc">8 页品牌 Slide 演示文稿。品牌故事、使命愿景价值观、6 大产品矩阵、市场渠道布局、TK 现状与合作展望 — 面向合作伙伴展示用</p>
+          <a href="_web-localization/yousky-company-intro.html" class="sp-btn">8页 Slide</a>
+        </div>
+        <div class="side-dots"><i></i><i></i><i></i></div>
+        <a href="_web-localization/yousky-company-intro.html" class="bubble b6">
+          <span class="b-icon">&#9670;</span>
+          <span class="b-num">06</span>
+        </a>
+      </div>
+      <span class="b-label">公司介绍</span>
+      <span class="b-chip">8页 Slide</span>
+    </div>
+
   </div>
+
 </div>
 
-<!-- ═══════════ SLIDE 03 · FOUR PHASES ═══════════ -->
-<div class="slide" id="s3">
-  <div class="slide-tag">DKTT / Journey</div>
-  <div class="slide-num"><span>03</span> / 10</div>
-  <div class="slide-inner">
-    <div class="section-label">业务演进</div>
-    <h2 style="margin-bottom:24px">四个阶段，全链路实战积累</h2>
-    <div class="phase-grid">
-      <div class="phase-card">
-        <div class="phase-num">01</div>
-        <h3>TK 美区卖家</h3>
-        <p>从 0 到 1 建店与风控<br>选品逻辑与货盘源渠<br>高阶运营操作手册</p>
-      </div>
-      <div class="phase-card" style="border-top-color:var(--copper)">
-        <div class="phase-num" style="color:var(--teal)">02</div>
-        <h3>实拍带货</h3>
-        <p>爆款脚本拆解与创作<br>流量数据分析看板<br>50 个橱窗起号复盘</p>
-      </div>
-      <div class="phase-card" style="border-top-color:var(--teal)">
-        <div class="phase-num" style="color:var(--gold)">03</div>
-        <h3>AI 带货</h3>
-        <p>专属提示词库<br>AI 生成短视频实操<br>批量工具包 + 实战手册</p>
-      </div>
-      <div class="phase-card" style="border-top-color:var(--gold)">
-        <div class="phase-num" style="color:var(--bad)">04</div>
-        <h3>跨界 Agent</h3>
-        <p>自研工具试用权限<br>AI + TK 全链路提效<br>品牌定制化解决方案</p>
-      </div>
-    </div>
-    <p style="font-size:13px;color:var(--text-3);margin-top:24px;font-family:var(--font-mono);text-align:center">
-      从课程交付 → 工具赋能 → 品牌定制，每一阶段都建立在上一阶段的实战积累之上
-    </p>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 04 · CASE 1: TRAINING ═══════════ -->
-<div class="slide" id="s4">
-  <div class="slide-tag">DKTT / Case Study</div>
-  <div class="slide-num"><span>04</span> / 10</div>
-  <div class="slide-inner">
-    <div class="section-label">合作案例一</div>
-    <h2 style="margin-bottom:8px">AI 带货课程 — NGS·饼干老师</h2>
-    <p style="font-size:14px;color:var(--text-3);margin-bottom:28px">从流量到转化的完整闭环</p>
-    <div class="case-grid">
-      <div class="case-card">
-        <h3>核心数据</h3>
-        <div class="metric-row">
-          <div class="metric"><div class="num">65+ 人</div><div class="lbl">单条推文单天转化</div></div>
-          <div class="metric"><div class="num">100万+</div><div class="lbl">创造总营收</div></div>
-          <div class="metric"><div class="num">40万</div><div class="lbl">合作方净分润</div></div>
-        </div>
-        <div class="desc">
-          单条推文阅读量 <strong>20,000+</strong>，最高单条转化 <strong>150+ 人</strong>。<br>
-          100% 好评，<strong>0 退款、0 客诉</strong>。
-        </div>
-      </div>
-      <div class="case-card" style="border-left-color:var(--copper)">
-        <h3>关键打法</h3>
-        <div class="desc">
-          ▪ 精准私域爆文变现：推文→私域→成交<br>
-          ▪ 线下火爆交付 + 课后持续答疑<br>
-          ▪ 学员真实结果反馈驱动口碑裂变<br>
-          ▪ 多品类学员验证（宠物、设计品、消费品）
-        </div>
-      </div>
-    </div>
-    <p class="insight" style="margin-top:24px">
-      <strong>启示：</strong>从内容曝光 → 私域沉淀 → 高客单价转化，这条链路在泳池清洁机品类同样适用。
-    </p>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 05 · CASE 2: BRAND ═══════════ -->
-<div class="slide" id="s5">
-  <div class="slide-tag">DKTT / Case Study</div>
-  <div class="slide-num"><span>05</span> / 10</div>
-  <div class="slide-inner">
-    <div class="section-label">合作案例二</div>
-    <h2 style="margin-bottom:8px">TK 品牌曝光 — 高尔夫品牌 UNIHIMAL</h2>
-    <p style="font-size:14px;color:var(--text-3);margin-bottom:28px">AI 工业化内容产能的标杆案例</p>
-    <div class="stat-row" style="margin-bottom:28px">
-      <div class="stat-box teal"><div class="num">130,000+</div><div class="lbl">总曝光量</div></div>
-      <div class="stat-box warm"><div class="num">1,000 条</div><div class="lbl">30 天内容交付</div></div>
-      <div class="stat-box gold"><div class="num">150→30 天</div><div class="lbl">传统 vs AI 制作周期</div></div>
-      <div class="stat-box teal"><div class="num">1 条/天</div><div class="lbl">创新脚本产出</div></div>
-    </div>
-    <p class="insight" style="margin-bottom:24px">
-      <strong>核心技术：</strong>利用 AI 快速切换多语种、海量模特、多元化海外本土场景，解决传统实拍"成本高、周期长、本地化演员难找"的痛点。
-    </p>
-    <h3 style="font-family:var(--font-mono);font-size:11px;color:var(--copper);letter-spacing:0.1em;margin-bottom:10px">内容类型覆盖</h3>
-    <div class="type-grid">
-      <div class="type-card"><div class="t-icon">🎬</div><h4>品牌曝光</h4><p>卖点合辑·静音对比<br>ASMR·家庭场景</p></div>
-      <div class="type-card"><div class="t-icon">👤</div><h4>POV 讲解</h4><p>豪车牵狗·卡点<br>女儿父亲节·vlog</p></div>
-      <div class="type-card"><div class="t-icon">📦</div><h4>开箱测评</h4><p>开箱HAUL·球包setup<br>祖母孙子·鳄鱼来了</p></div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 06 · WHY YOUSKY + DKTT ═══════════ -->
-<div class="slide" id="s6">
-  <div class="slide-tag">Synergy / Why Now</div>
-  <div class="slide-num"><span>06</span> / 10</div>
-  <div class="slide-inner">
-    <div class="section-label">为什么是现在</div>
-    <h2 style="margin-bottom:24px">Yousky 的需求 × DKTT 的能力</h2>
-    <div class="compare-grid">
-      <div>
-        <h3 class="ours">Yousky 的痛点</h3>
-        <div class="item" style="padding-left:18px;border-left:2px solid var(--bad);margin-bottom:20px">
-          <div class="label">TK 内容产能 = 0</div>
-          <div class="desc">BD 团队 5 月才搭完，品牌自有 TK 账号几乎没有内容产出。传统实拍成本高、周期长、海外场景难拍。</div>
-        </div>
-        <div class="item" style="padding-left:18px;border-left:2px solid var(--bad);margin-bottom:20px">
-          <div class="label">KOL 3 个月 0 转化</div>
-          <div class="desc">13 个达人、$2,342 投入、419K 曝光、151 UV、0 订单。79% 是无效流量。</div>
-        </div>
-        <div class="item" style="padding-left:18px;border-left:2px solid var(--bad);margin-bottom:0">
-          <div class="label">品牌搜索 = 0</div>
-          <div class="desc">KOL Google 搜索 Yousky → 什么都找不到 → 拒绝合作。回复率仅 10%。</div>
-        </div>
-      </div>
-      <div>
-        <h3 class="theirs">DKTT 的能力</h3>
-        <div class="item" style="padding-left:18px;border-left:2px solid var(--good);margin-bottom:20px">
-          <div class="label">AI 工业化内容产能</div>
-          <div class="desc">30 天交付 1,000 条视频，多语种·多模特·多场景。彻底解决内容产能瓶颈。</div>
-        </div>
-        <div class="item" style="padding-left:18px;border-left:2px solid var(--good);margin-bottom:20px">
-          <div class="label">从曝光到转化的完整链路</div>
-          <div class="desc">单条推文 65+ 转化、100 万+ 营收。不只是做曝光，是带着转化的思路做内容。</div>
-        </div>
-        <div class="item" style="padding-left:18px;border-left:2px solid var(--good);margin-bottom:0">
-          <div class="label">品牌定制化 Agent 方案</div>
-          <div class="desc">自研工具 + 提示词库 + 全链路 SOP。不是卖课的，是可以深度合作的。</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 07 · PRODUCT LINE ═══════════ -->
-<div class="slide" id="s7">
-  <div class="slide-tag">Yousky / Products</div>
-  <div class="slide-num"><span>07</span> / 10</div>
-  <div class="slide-inner">
-    <div class="section-label">产品矩阵</div>
-    <h2 style="margin-bottom:8px">6 大系列，2026 年密集上市</h2>
-    <p style="font-size:14px;color:var(--text-3);margin-bottom:24px">每个新品都需要独立的内容策略和大量短视频素材</p>
-    <table class="data-table" style="margin-bottom:20px">
-      <thead><tr><th>系列</th><th>代表产品</th><th>定位</th><th>MAP 价格</th><th>状态</th></tr></thead>
-      <tbody>
-        <tr><td>大手持</td><td>H11 / H11 Pro</td><td>手持池底/池壁清洁，60min 续航</td><td>$89–109</td><td class="tag-ocean">在售 · 主力</td></tr>
-        <tr><td>水面机器人</td><td>K10</td><td>太阳能 25h 续航，清洁+净化二合一</td><td>$319.99</td><td class="tag-ocean">2026/4 上市</td></tr>
-        <tr><td>落叶款</td><td>L10 / L10 Mini</td><td>83GPM 大吸力，池底水面落叶清理</td><td>$129.99</td><td class="tag-copper">在售</td></tr>
-        <tr><td>框架水面机</td><td>S10</td><td>地上框架泳池固定安装式</td><td>$99–149</td><td class="tag-copper">在售</td></tr>
-        <tr><td>小手持</td><td>T11</td><td>SPA / 浴缸 / 小泳池专用</td><td>$64.99</td><td class="tag-copper">即将上市</td></tr>
-        <tr><td>池底机器人</td><td>C20</td><td>4800GPH，智能路径规划，3μm 过滤</td><td>$479.99</td><td style="font-weight:600;color:var(--gold)">2026/10 上市</td></tr>
-      </tbody>
-    </table>
-    <p class="insight">
-      <strong>内容需求：</strong>H11（手持）= 低客单引流款；K10（机器人）= 高客单科技感旗舰；C10（10月）= 需要提前 2 个月的内容预热。
-    </p>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 08 · COOPERATION NEEDS ═══════════ -->
-<div class="slide" id="s8">
-  <div class="slide-tag">Cooperation / Needs</div>
-  <div class="slide-num"><span>08</span> / 10</div>
-  <div class="slide-inner">
-    <div class="section-label">合作需求</div>
-    <h2 style="margin-bottom:24px">我们需要 DKTT 帮我们搭建 TK 内容引擎</h2>
-    <div class="need-list">
-      <div class="need-item" style="border-left-color:var(--ocean)">
-        <div class="n-label">1. 品牌曝光型内容 — 先做量，建立认知</div>
-        <div class="n-desc">AI 批量生成多语种、多场景、多元海外本土化短视频。目标首月 100 万+ 曝光。<br>内容类型：品牌故事、卖点合辑、ASMR 清洁场景、Before/After 对比。</div>
-      </div>
-      <div class="need-item" style="border-left-color:var(--copper)">
-        <div class="n-label">2. 产品种草 + 带货型内容</div>
-        <div class="n-desc">主推 H11（$89-109，低决策门槛引流款）+ K10（$319，科技感视觉冲击）。<br>参考 DKTT 品带货案例方法论，适配泳池清洁机品类的差异化内容策略。</div>
-      </div>
-      <div class="need-item" style="border-left-color:var(--teal)">
-        <div class="n-label">3. KOL 素材二次加工 & 投流放大</div>
-        <div class="n-desc">已有合作 KOL 视频素材 → AI 批量改编（换语种、换场景、换口播）→ Spark Ads 投流。<br>将 $2,342 投入的 13 条内容资产最大化利用。</div>
-      </div>
-      <div class="need-item" style="border-left-color:var(--gold)">
-        <div class="n-label">4. Agent 工具与 TK 店铺打通</div>
-        <div class="n-desc">DKTT 自研工具 + 提示词库 → 直接对接到 Yousky TK 店铺后台，追踪 UV → ATC → GMV 全链路数据。</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 09 · WHAT WE BRING ═══════════ -->
-<div class="slide" id="s9">
-  <div class="slide-tag">Yousky / Resources</div>
-  <div class="slide-num"><span>09</span> / 10</div>
-  <div class="slide-inner">
-    <div class="section-label">我们的资源</div>
-    <h2 style="margin-bottom:24px">Yousky 可以为合作提供的支持</h2>
-    <div class="stat-row" style="margin-bottom:24px">
-      <div class="stat-box"><div class="num">全系列</div><div class="lbl">产品免费寄样</div></div>
-      <div class="stat-box warm"><div class="num">完整</div><div class="lbl">卖点文案 + 素材库</div></div>
-      <div class="stat-box teal"><div class="num">50+</div><div class="lbl">KOL 数据看板字段</div></div>
-      <div class="stat-box gold"><div class="num">真实</div><div class="lbl">Amazon Review + 用户痛点</div></div>
-    </div>
-    <table class="data-table">
-      <thead><tr><th>资源类型</th><th>具体内容</th><th>用途</th></tr></thead>
-      <tbody>
-        <tr><td>产品样品</td><td>H11 / H11 Pro / K10 / L10 / S10 全系列</td><td>内容拍摄 + 达人寄样</td></tr>
-        <tr><td>品牌素材</td><td>产品图、Means-Ends Chain、品牌故事、使命愿景</td><td>AI 提示词输入 + 内容策略</td></tr>
-        <tr><td>用户数据</td><td>Amazon Review 痛点汇总、退货原因分析</td><td>内容角度精准打击用户痛点</td></tr>
-        <tr><td>数据看板</td><td>KOL 营销 50+ 字段看板（各渠道 UV/CTR/ROI）</td><td>投流效果追踪 + 数据驱动优化</td></tr>
-        <tr><td>合作预算</td><td>基于 Demo 效果和方案报价，老板现场拍板</td><td>快速决策，不拖流程</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!-- ═══════════ SLIDE 10 · NEXT STEPS ═══════════ -->
-<div class="slide" id="s10">
-  <div class="bg-dot" style="width:300px;height:300px;top:-80px;right:-60px;"></div>
-  <div class="bg-dot" style="width:140px;height:140px;bottom:-40px;left:120px;"></div>
-  <div class="slide-tag">DKTT × Yousky / Next</div>
-  <div class="slide-num"><span>10</span> / 10</div>
-  <div class="slide-inner" style="text-align:center">
-    <div class="section-label">Next Steps</div>
-    <h1 style="color:var(--text);margin-bottom:8px">明天聊什么</h1>
-    <p style="font-size:clamp(0.95rem,1.4vw,1.1rem);color:var(--text-2);max-width:600px;margin:12px auto 32px;line-height:1.6">
-      老板到场，希望看到 DKTT 的产品实力
-    </p>
-
-    <div style="text-align:left;max-width:620px;margin:0 auto;">
-      <div class="action-item">
-        <div class="ai-num">01</div>
-        <div class="ai-text">
-          <strong>UNIHIMAL 案例深度拆解</strong>
-          <span>1,000 条视频 30 天怎么生产的？产能分配？脚本-制作-发布全流程？</span>
-        </div>
-      </div>
-      <div class="action-item">
-        <div class="ai-num">02</div>
-        <div class="ai-text">
-          <strong>曝光→转化完整链路演示</strong>
-          <span>不只是曝光数据，我们要看到从视频到 GMV 的每一步转化路径。</span>
-        </div>
-      </div>
-      <div class="action-item">
-        <div class="ai-num">03</div>
-        <div class="ai-text">
-          <strong>Yousky 产品 Demo 视频</strong>
-          <span>能不能用 H11 手持清洁机做一个 demo？让我们直观感受 AI 产能的质量。</span>
-        </div>
-      </div>
-      <div class="action-item">
-        <div class="ai-num">04</div>
-        <div class="ai-text">
-          <strong>Agent 工具 × TK 店铺对接方案</strong>
-          <span>自研工具怎么跟我们的店铺打通？能追踪到 UV / ATC / GMV 吗？</span>
-        </div>
-      </div>
-      <div class="action-item">
-        <div class="ai-num">05</div>
-        <div class="ai-text">
-          <strong>合作模式 & 报价</strong>
-          <span>月费制？按视频条数？GMV 分成？给出 2-3 个可选方案。</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="blockquote" style="text-align:left;max-width:620px;margin:28px auto 0">
-      <p>"我们不需要另一个课程，我们需要一个能跟我们一起打仗的 TK 内容合伙人。"</p>
-      <footer>— Yousky 市场营销部</footer>
-    </div>
-  </div>
+<!-- ====== FOOTER ====== -->
+<div class="footer">
+  Yousky Marketing · 2026
 </div>
 
 <script>
-const slides = document.querySelectorAll('.slide');
-const dotsContainer = document.getElementById('navDots');
-const progress = document.getElementById('progress');
-const total = slides.length;
+(function(){
+  var wrappers = document.querySelectorAll('.bw');
+  var activeIdx = -1;
 
-for (let i = 0; i < total; i++) {
-  const dot = document.createElement('button');
-  dot.onclick = () => slides[i].scrollIntoView({behavior:'smooth'});
-  dotsContainer.appendChild(dot);
-}
+  function deactivateAll(){
+    wrappers.forEach(function(w){ w.classList.remove('active'); });
+  }
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      const idx = Array.from(slides).indexOf(entry.target);
-      document.querySelectorAll('.nav-dots button').forEach((d,i) => d.classList.toggle('active', i===idx));
-      progress.style.width = ((idx + 1) / total * 100) + '%';
-      // Update slide counter
-      const sn = entry.target.querySelector('.slide-num');
-      if (sn) {
-        const span = sn.querySelector('span');
-        if (span) span.textContent = String(idx + 1).padStart(2, '0');
+  wrappers.forEach(function(w){
+    w.addEventListener('mouseenter', function(){
+      var idx = parseInt(w.getAttribute('data-index'));
+      if (activeIdx === idx) return;
+      deactivateAll();
+      activeIdx = idx;
+      w.classList.add('active');
+    });
+
+    w.addEventListener('mouseleave', function(){
+      w.classList.remove('active');
+      if (activeIdx === parseInt(w.getAttribute('data-index'))) {
+        activeIdx = -1;
       }
-    }
-  });
-}, { threshold: 0.4 });
+    });
 
-slides.forEach(s => observer.observe(s));
-
-document.addEventListener('keydown', (e) => {
-  const visible = Array.from(slides).findIndex(s => {
-    const rect = s.getBoundingClientRect();
-    return rect.top >= -100 && rect.top <= 200;
+    // touch: tap to toggle
+    w.addEventListener('click', function(e){
+      var idx = parseInt(w.getAttribute('data-index'));
+      if (activeIdx !== idx){
+        e.preventDefault();
+        deactivateAll();
+        activeIdx = idx;
+        w.classList.add('active');
+      }
+    });
   });
-  if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
-    e.preventDefault();
-    const next = Math.min(visible + 1, total - 1);
-    slides[next].scrollIntoView({behavior:'smooth'});
-  }
-  if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-    e.preventDefault();
-    const prev = Math.max(visible - 1, 0);
-    slides[prev].scrollIntoView({behavior:'smooth'});
-  }
-});
+
+  // keep panel open when hovering into it
+  document.querySelectorAll('.side-panel').forEach(function(p){
+    p.addEventListener('mouseenter', function(){
+      var bw = p.closest('.bw');
+      if (bw) {
+        deactivateAll();
+        activeIdx = parseInt(bw.getAttribute('data-index'));
+        bw.classList.add('active');
+      }
+    });
+    p.addEventListener('mouseleave', function(){
+      var bw = p.closest('.bw');
+      if (bw) bw.classList.remove('active');
+      activeIdx = -1;
+    });
+  });
+
+})();
 </script>
+
 </body>
 </html>
